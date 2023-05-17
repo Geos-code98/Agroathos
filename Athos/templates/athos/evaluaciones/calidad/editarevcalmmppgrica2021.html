@@ -1,0 +1,178 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> EV. CALIDAD MMPP GR ICA</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+                    {% for field in form %}
+
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ field.label|escape }}:</strong>
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <div class='form-group'>
+                    {{form.npalet.label}}
+                    {{form.npalet}}
+                </div>
+                <div class='form-group'>
+                    {{form.anexo_tipocalidad.label}}
+                    {{form.anexo_tipocalidad}}
+                </div>
+                
+                <div class='form-group'>
+                    {{form.anexo_fundo.label}}
+                    {{form.anexo_fundo}}
+                </div>
+                <div class='form-group'>
+                    {{form.anexo_fecha_cosecha.label}}
+                    {{form.anexo_fecha_cosecha}}
+                </div>
+                <div class='form-group'>
+                    {{form.anexo_nro_guia.label}}
+                    {{form.anexo_nro_guia}}
+                </div>
+            
+				<div class='form-group'>
+					{{form.anexo_pep.label}}
+					{{form.anexo_pep}}
+				</div>
+				
+				<div class='form-group'>
+                    {{form.anexo_variedad.label}}
+                    {{form.anexo_variedad}}
+                </div>
+                <div class='form-group'>
+                    {{form.fecha_evaluacion.label}}
+                    {{form.fecha_evaluacion}}
+                </div>
+                <div class='form-group'>
+                    {{form.temperatura_pulpa.label}}
+                    {{form.temperatura_pulpa}}
+                </div>
+
+                <div class='form-group'>
+                    {{form.peso_muestra.label}}
+                    {{form.peso_muestra}}
+                </div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+
+ <script>  
+  $(function () {  
+   $("#id_fecha_evaluacion").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });
+
+ 
+  });  
+ </script>
+
+<script type="text/javascript">
+     
+    
+     
+      
+ function request_datospalets(ubicacionId) {
+
+        
+        
+        var urldata="/ajax/load-palets/" + ubicacionId;
+     console.log(urldata);
+
+      $.ajax({                       
+        url: urldata,                               
+        data: {},
+
+        success: function (data) {
+        console.log(data);
+     
+            $('#id_anexo_pep').val(data[0].anexo_guiad__anexo_ubi_mmpp__anexo_fundo__abreviatura +data[0].anexo_guiad__anexo_ubi_mmpp__anexo_modulo__nombremodulo+data[0].anexo_guiad__anexo_ubi_mmpp__anexo_lote__nom_lote);
+        
+            $('#id_anexo_fecha_cosecha').val(data[0].anexo_guiad__fecha_cosecha);
+
+            $('#id_anexo_fundo').val(data[0].anexo_guiad__anexo_guia__anexo_fundo__nom_fundo);
+
+            $('#id_anexo_nro_guia').val(data[0].anexo_guiad__anexo_guia__NroGuia);
+
+            $('#id_anexo_variedad').val(data[0].anexo_guiad__anexo_material__anexo_matmmpp__desc_material);
+            
+        
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+    }
+
+      $("#id_npalet").change(function () { 
+
+      var ubicacionId = $(this).val();
+        
+      request_datospalets(ubicacionId)
+    });
+
+
+ $("#id_njabas").change(function () { 
+
+      var num_jabas = $("#id_njabas").val();
+      var peso_planta=$("#id_peso_planta").val();
+      var resultado=Math.round((peso_planta/num_jabas)*100)/100;
+      $("#id_peso_promedio").val(resultado);
+        
+      request_pep(ubicacionId)
+    });
+
+
+ $("#id_peso_planta").change(function () { 
+
+      var num_jabas = $("#id_njabas").val();
+      var peso_planta=$("#id_peso_planta").val();
+      var resultado=Math.round((peso_planta/num_jabas)*100)/100;
+      $("#id_peso_promedio").val(resultado);
+        
+      request_pep(ubicacionId)
+    });
+
+
+
+
+
+  </script>
+
+
+
+
+{% endblock %}

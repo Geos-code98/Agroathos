@@ -1,0 +1,69 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">EV. BROTES Y YEMAS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearbroteevfenarsem' id subid varid %}" >
+				<button type="button" class="btn btn-success">Registrar Brote</button>
+			</a>
+			<a href="{% url 'detalleplantaevfenbrotesarandanossem' id subid  %}" >
+				<button type="button" class="btn btn-primary">Atras</button>
+			</a>
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N° </td>
+						<td>Verde4</td>
+						<td>Verde Rojo</td>
+						
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in brotepr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.verde4 }}
+							</td>
+							<td>
+								{{ dato.verderojo}}
+							</td>
+							
+							
+
+							<td>
+							 	<a href="{% url 'editarbroteevfenarsem'   id subid  dato.id varid %}"><i class="bi bi-pencil-square"></i></a>
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

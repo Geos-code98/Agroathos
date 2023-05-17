@@ -1,0 +1,41 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> ITEMS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				<div class='form-group'>
+					{{form.cod_item.label}}
+					{{form.cod_item}}
+					{{form.cod_item.errors}}
+				</div>
+				<div class='form-group'>
+					{{form.nom_item.label }}
+					{{form.nom_item }}
+					{{form.nom_item.errors }}
+				</div>
+				<div class='form-group'>
+					{{form.id_menu.label }}
+					{{form.id_menu }}
+					{{form.id_menu.errors }}
+				</div>
+				<div class='form-group'>
+					{{form.estado.label }}
+					{{form.estado }}
+					{{form.estado.errors }}
+				</div>
+				<input type="submit" value="Registrar">
+			</form>
+
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

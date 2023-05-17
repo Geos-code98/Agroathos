@@ -1,0 +1,220 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> HITOS FENOLOGICOS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				<div class='form-group'>
+					
+					<p id="variable">{{VariableCultivo}}</p>
+				</div>
+				<div class='form-group'>
+					{{form.semana.label}}
+					{{form.semana}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_area.label}}
+					{{form.anexo_area}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_tipo.label}}
+					{{form.anexo_tipo}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_grupo.label}}
+					{{form.anexo_grupo}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_subgrupo.label}}
+					{{form.anexo_subgrupo}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_hito.label}}
+					{{form.anexo_hito}}
+				</div>
+					<div class='form-group'>
+					{{form.anexo_subhito.label}}
+					{{form.anexo_subhito}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.valor.label}}
+					{{form.valor}}
+				</div>
+				
+        <div class='form-group'>
+          {{form.valor_max.label}}
+          {{form.valor_max}}
+        </div>
+	
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{% block script %}
+
+<script >
+
+
+	  $("#id_semana").change(function () { 
+
+      var semana = $(this).val();
+      var variable=$("#variable").text();
+      var array_variable=variable.split("-");
+      console.log(array_variable[1]);
+      	
+      if(array_variable[1]=="GRANADA")
+      {
+      	 if( semana==-1 || semana==0 || semana==7 || semana==12 || semana==18)
+		      {
+		      	
+		      	document.getElementById("id_anexo_tipo").value = '1';
+
+		      }
+		      else
+		      {
+		      	document.getElementById("id_anexo_tipo").value = '2';
+		      }
+      }
+
+
+
+   
+    });
+
+
+	function request_subgrupo (datoId) {
+		var urldata="/ajax/load-subgrupo/" + datoId;
+
+
+
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].desc}</option>`;
+        		
+        } 
+        $("#id_anexo_subgrupo").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+    
+
+    $("#id_anexo_grupo").change(function () { 
+
+      var datoId = $(this).val();
+      	
+      request_subgrupo(datoId)
+    });
+
+function request_hito (datoId) {
+		var urldata="/ajax/load-hito/" + datoId;
+
+
+
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].desc}</option>`;
+        		
+        } 
+        $("#id_anexo_hito").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+    
+
+    $("#id_anexo_subgrupo").change(function () { 
+
+      var datoId = $(this).val();
+      	
+      request_hito(datoId)
+    });
+
+
+
+function request_subhito (datoId) {
+		var urldata="/ajax/load-subhito/" + datoId;
+
+
+
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].desc}</option>`;
+        		
+        } 
+        $("#id_anexo_subhito").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+    
+
+    $("#id_anexo_hito").change(function () { 
+
+      var datoId = $(this).val();
+      	
+      request_subhito(datoId)
+    });
+
+
+
+
+</script>
+
+
+
+
+
+{% endblock%}

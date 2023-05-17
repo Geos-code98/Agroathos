@@ -1,0 +1,246 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<style>
+	#logoathos{
+		width: 100%;
+		height: 100%;
+	}
+	#qr{
+		width: 70%;
+		margin-top: -65%;
+		position: relative;
+		left: 50%;
+	}
+	#material{
+		width: 55%;
+	}
+</style>
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+			<a href="{% url 'acopio_athos' 94  %}" >
+
+				<button type="button" class="btn btn-success">Ir a Guia</button>
+			</a>
+			<a href="javascript:history.go(-1)" >
+
+				<button type="button" class="btn btn-secondary">Regresar</button>
+			</a>
+			
+					<div class="card">
+					<div class="card-header"><strong>IMPRIMIR</strong><small>ANTECEDENTES</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				<div>	
+				
+					<br>
+					<br>
+					<img src="{% static 'login/images/icons/encabezadofichapersonal.png' %}" id="logoathos"></a>
+				</div>	
+				<br>	
+						
+				
+				
+				<div class='form-group'>
+					<table>
+					
+						 <tr>
+					      <td><b>OBSERVACION </b></td>
+					      
+					    </tr>
+					
+					    <tr>
+					    	<td> La siguiente información es necesaria y obligatoria para el estudio de seguridad de la empresa y fines pertinentes para con su persona. Los datos suministrados serán clasificados como información confidencial y podrán ser presentados ante las autoridades nacionales cuando estas así lo requieran.</td>
+					    </tr>
+					 </table>
+			
+					 <h4><b>Datos Personales</b></h4>
+					 <table>
+						 <tr>
+					      <td><b>Nombres y Apellidos </b></td>
+					      <td>&nbsp {{buscar.0.ApellidoPat}} {{buscar.0.ApellidoMat}} {{buscar.0.Nombres}}</td>
+					     
+					    </tr>
+					   </table>
+					   <table>
+					    <tr>
+					      <td><b>DNI </b></td>
+					      <td> &nbsp {{buscar.0.nro_documento}} </td>
+
+					      <td><b>Fecha de Nacimiento </b></td>
+					      <td> &nbsp {{buscar.0.fecha_nacimiento|date:'d/m/Y'}} </td>
+					    </tr>
+
+					    <tr>
+					   	  <td><b>Lugar de Nacimiento </b></td>
+					      <td> &nbsp {{buscar.0.lugar_nacimiento}} </td>
+					     
+					      <td><b>Domicilio </b></td>
+					      <td> &nbsp {{buscar.0.direccion}} </td>
+					    </tr>
+
+
+					    <tr>
+					   	  <td><b>Estado Civil </b></td>
+					      <td> &nbsp {{buscar.0.anexo_estadocivil.desc}} </td>
+					     
+					      <td><b>Telefono </b></td>
+					      <td> &nbsp {{buscar.0.celular}} </td>
+					    </tr>
+					     <tr>
+					   	  <td><b>Grado de Intruccion </b></td>
+					      <td> &nbsp {{buscar.0.anexo_grado.desc}} </td>
+					     
+					      
+					    </tr>
+					    <tr>
+					    	<td><b>En caso de emergencia llamar a: </b></td>
+					      <td> &nbsp {{buscar.0.celular_emergencia}} </td>
+					    </tr>
+
+					    <tr>
+					    	<td><b>Datos del Conyugue: </b></td>
+					      <td> &nbsp {{buscar.0.anexo_pareja.desc}} </td>
+					    </tr>
+
+					    <tr>
+					    	<td><b>Nombre del Conyugue: </b></td>
+					      <td> &nbsp {{buscar.0.nombre_pareja}} </td>
+					    </tr>
+
+					    <tr>
+					    	<td><b>Datos del Conyugue: </b></td>
+					        <td> &nbsp {{buscar.0.direccion_pareja}} </td>
+					    </tr>
+					    <tr>
+					    	<td><b>Cantidad de Hijos: </b></td>
+					        <td> &nbsp {{buscar.0.cant_hijos}} </td>
+					    </tr>
+					    </table>
+					    <h7><b>Ultima Experiencia Laboral</b></bh7>
+					    
+					    <table> 
+					     <tr>
+					    	<td><b>Empresa: </b></td>
+					        <td> &nbsp {{buscar.0.empresa_experiencia}} </td>
+					 
+					    	<td><b>&nbspCargo:</b></td>
+					        <td> &nbsp {{buscar.0.cargo_experiencia}} </td>
+					   
+					    	<td><b>&nbspTiempo: </b></td>
+					        <td> &nbsp {{buscar.0.tiempo_experiencia}} </td>
+					    </tr>
+					</table>
+					<table>
+					     <tr>
+					    	<td><b>Tienes Antecedentes?: </b></td>
+					        <td> &nbsp {{buscar.0.anexo_antecedentes.desc}} </td>
+					
+					    	
+					    </tr>
+					    
+					    <tr>
+					    	<td><b> Antecedente:</b></td>
+					        <td> &nbsp {{buscar.0.antecedente}} </td>
+					    </tr>
+					    </table>
+					</table>
+					
+					<H7><b>Usted es Consumidor de:</b></H7>
+					<table>
+						<tr>
+					    	<td><b>Alcohol: </b></td>
+					        <td> &nbsp {{buscar.0.anexo_alcohol.desc}} </td>
+					 
+					    	<td><b>&nbsp Tabaco:</b></td>
+					        <td> &nbsp {{buscar.0.anexo_tabaco.desc}} </td>
+					   
+					    	<td><b>&nbsp Fármacos: </b></td>
+					        <td> &nbsp {{buscar.0.anexo_farmaco.desc}} </td>
+
+					        <td><b>&nbsp Sustancias Dependientes: </b></td>
+					        <td> &nbsp {{buscar.0.anexo_sustancia.desc}} </td>
+
+					        <td><b>&nbsp Fármacos: </b></td>
+					        <td> &nbsp {{buscar.0.anexo_farmaco.desc}} </td>
+					    </tr>
+					</table>
+					<table>
+					    <tr>
+					    	<td><b>Otra Sustancia: </b></td>
+					        <td> &nbsp {{buscar.0.otra_sustancia}} </td>
+					 
+					    	
+					    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</table>
+					
+							
+						
+
+					
+					 <img src="{% static 'login/images/icons/piepaginafichapersonal.png' %}" id="logoathos"></a>
+
+<table>
+	<tr>
+		<td>
+			
+					 Declaro bajo juramento que mis datos personales colocados en esta ficha son fidedignos y autorizo que la empresa EXFRUSUR S.A use mis datos para fines pertinentes con mí persona.
+		</td>
+	</tr>
+</table>
+
+
+				</div>
+					
+		
+			</form>
+				
+			<br>
+			<br>
+			<br>
+	</div>
+
+	</div>
+</div>
+
+</div>
+
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>
+
+	
+ 
+
+        
+
+</script>
+<script type="text/javascript" src="qrcode.js"></script>
+
+
+	
+</script>
+{% endblock %}

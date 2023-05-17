@@ -1,0 +1,174 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> INGRESO PERSONAL</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+				<div class='form-group'>
+					{{form.anexo_documentos.label}}
+					{{form.anexo_documentos}}
+				</div>
+				<div class='form-group'>
+					{{form.nro_documento.label}}
+					{{form.nro_documento}}
+				</div>
+				<div class='form-group'>
+					{{form.ApellidoPat.label}}
+					{{form.ApellidoPat}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.ApellidoMat.label}}
+					{{form.ApellidoMat}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.Nombres.label}}
+					{{form.Nombres}}
+				</div>
+					<div class='form-group'>
+					{{form.anexo_genero.label}}
+					{{form.anexo_genero}}
+				</div>
+				<div class='form-group'>
+					{{form.FecNac.label}}
+					{{form.FecNac}}
+				</div>
+				<div class='form-group'>
+					{{form.fecha_nacimiento.label}}
+					{{form.fecha_nacimiento}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.observacion.label}}
+					{{form.observacion}}
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+ <script>  
+ 	document.getElementById("id_anexo_documentos").value = '1';
+ /*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+$(function () {  
+   $("#datepicker").datetimepicker({  
+       format: 'Y-m-d',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+  <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+		 
+      
+
+          
+
+     });  
+
+
+
+       function request_listanegra(ubicacionId) {
+
+ 		
+ 		
+		var urldata="/ajax/load-lista-negra/" + ubicacionId;
+     console.log(urldata);
+
+      $.ajax({                       
+        url: urldata,                			    
+        data: {},
+
+        success: function (data) {
+     	console.log(data);
+     
+     		$('#id_observacion').val(data[0].descripcion_falta);
+
+     		
+        
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	}
+
+	  $("#id_nro_documento").change(function () { 
+
+      var ubicacionId = $(this).val();
+      	
+      request_listanegra(ubicacionId)
+    });
+
+  $("#id_FecNac").change(function () { 
+
+     var fechaval=$("#id_FecNac").val();
+     console.log(fechaval);
+     var arrFecha=fechaval.split(".");
+     var yyyy=arrFecha[2];
+     var mm=arrFecha[1];
+     var dd=arrFecha[0];
+    
+     $("#id_fecha_nacimiento").val(yyyy+"-"+mm+"-"+dd);
+    });
+
+	 
+
+
+
+   </script>
+
+
+
+ {% endblock %}

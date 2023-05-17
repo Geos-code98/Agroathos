@@ -1,0 +1,142 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<style>
+	#logoathos{
+		width: 100%;
+		height: 100%;
+	}
+	#qr{
+		width: 70%;
+		margin-top: -65%;
+		position: relative;
+		left: 50%;
+	}
+	#material{
+		width: 55%;
+	}
+</style>
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+			<a href="{% url 'acopio_athos' 94  %}" >
+
+				<button type="button" class="btn btn-success">Ir a Guia</button>
+			</a>
+			<a href="javascript:history.go(-1)" >
+
+				<button type="button" class="btn btn-secondary">Regresar</button>
+			</a>
+			
+					<div class="card">
+					<div class="card-header"><strong>IMPRIMIR</strong><small>PALET</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				<div>	
+				
+					<br>
+					<br>
+					<img src="{% static 'login/images/icons/formatosig.jpeg' %}" id="logoathos"></a>
+				</div>	
+				<br>	
+				
+				<div class='form-group'>
+					<h3 align="center"><b>N° TICKET</b></h3>
+					<h3 align="center" id="npalet"><b>{{palet.id}}</b></h3>
+				</div>
+					
+				<div class='form-group'>
+					<h4><b>PEP:</b></h4>
+					<h4 id="pep">{{pep}}</h4>
+				</div>
+				<div class='form-group'>
+					<h4><b>FECHA DE REGISTRO:</b></h4>
+					<h4 id="Fecha">{{palet.fecha_hora_creacion|date:'d/m/Y H:i:s'}}</h4>
+				</div>
+				<div class='form-group'>
+					<h4><b>MATERIAL:</b></h4>
+					<h4 id="material">{{palet.anexo_guiad.anexo_material.anexo_matmmpp.desc_material}}</h4>
+				</div>
+				<div class='form-group'>
+					<h4><b>NRO GUIA:</b></h4>
+					<h4 id="nroguia">{{palet.anexo_guiad.anexo_guia.NroGuia}}</h4>
+				</div>
+				<div class='form-group'>
+					<h4><b>CANT. CLAMSHELL:</b></h4>
+					<h4 id="cant_clamshell">{{palet.cant_clamshell}}</h4>
+				</div>
+				<div class='form-group'>
+					<h4><b>CANT. JABAS:</b></h4>
+					<h4 id="cant_jabas">{{palet.cant_jabas}}</h4>
+				</div>
+				<div class='form-group'>
+					<h4><b>PESO NETO:</b></h4>
+					<h4 id="peso_neto">{{palet.pesonet_palet}}</h4>
+				</div>
+				<div class='form-group'>
+					<h4><b>CAL MAT:</b></h4>
+					<h4>{{palet.anexo_guiad.anexo_calidad.calidad}}</h4>
+				</div>
+				<div class='form-group'>
+					<h4><b>FECHA COSECHA:</b></h4>
+					<h4 id="fecha_cosecha">{{palet.anexo_guiad.fecha_cosecha|date:'d/m/Y'}}</h4>
+				</div>
+			</form>
+			<div align="center"id="qr">
+					<div data-role="content">
+
+					<input id="item_txt" type="text" placeholder="Ingresa algún texto">
+					<button id="generarCodigo" class="btn btn-primary">Generar</button> 
+					<div id="codigoQR"></div>
+				</div>	
+			</div>			
+			<br>
+			<br>
+			<br>
+	</div>
+
+	</div>
+</div>
+
+</div>
+
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>
+
+	$(document).ready(function(){
+		var val0=$("#npalet").text();
+		var val1=$("#nroguia").text();
+		var val2=$("#npalet").text();
+		var val3=$("#nroguia").text();
+		var val4= $("#Fecha").text();
+		var val5=$("#material").text();
+		var val6=$("#pep").text();
+		var val7=$("#peso_neto").text();
+		var val8=$("#cant_jabas").text();
+		var val9=$("#fecha_cosecha").text();
+			
+     		$("#item_txt").val(val0+"||"+val6+"||"+val4+"||"+val3+"||"+ val5+"||"+ val7+"||"+ val8+"||"+ val9); 
+     		  $('#generarCodigo').click();
+     		  window.print();
+	
+});
+  
+ 
+
+        
+
+</script>
+<script type="text/javascript" src="qrcode.js"></script>
+
+
+	
+</script>
+{% endblock %}

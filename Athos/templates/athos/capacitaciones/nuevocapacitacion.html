@@ -1,0 +1,291 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> PLANTA</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class='form-group'>
+					<p id="ac_ica">{{ac_ica}}</p>
+				</div>
+				<div class='form-group'>
+					<p id="ac_car">{{ac_car}}</p>
+				</div>
+				<div class='form-group'>
+					<p id="ac_nep">{{ac_nep}}</p>
+				</div>
+				<div class='form-group'>
+					<p id="ac_naz">{{ac_naz}}</p>
+				</div>
+				<div class='form-group'>
+					<p id="ac_pis">{{ac_pis}}</p>
+				</div>
+				
+				<div class='form-group'>
+					{{form.fecha_hora_inicio.label}}
+					{{form.fecha_hora_inicio}}
+				</div>
+				<div class='form-group'>
+					{{form.fecha_hora_fin.label}}
+					{{form.fecha_hora_fin}}
+				</div>
+				<div class='form-group'>
+					{{form.lugar.label}}
+					{{form.lugar}}
+				</div>
+				<div class='form-group'>
+					{{form.codigoacta.label}}
+					{{form.codigoacta}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_datos.label}}
+					{{form.anexo_datos}}
+				</div>
+				
+				
+			
+				
+			
+				<div class='form-group'>
+					{{form.lugar_especifico.label}}
+					{{form.lugar_especifico}}
+				</div>
+				<div class='form-group'>
+					{{form.cantidad.label}}
+					{{form.cantidad}}
+				</div>
+				<div class='form-group'>
+					{{form.tipo_participante.label}}
+					{{form.tipo_participante}}
+				</div>
+				<div class='form-group'>
+					{{form.tipo_capacitacion.label}}
+					{{form.tipo_capacitacion}}
+				</div>
+				<div class='form-group'>
+					{{form.expositor.label}}
+					{{form.expositor}}
+				</div>
+				<div class='form-group'>
+					{{form.dniexpositor.label}}
+					{{form.dniexpositor}}
+				</div>
+				<div class='form-group'>
+					{{form.empresaexpositor.label}}
+					{{form.empresaexpositor}}
+				</div>
+				<div class='form-group'>
+					{{form.puestoexpositor.label}}
+					{{form.puestoexpositor}}
+				</div>
+					<div class='form-group'>
+					{{form.anexo_area.label}}
+					{{form.anexo_area}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_competencia.label}}
+					{{form.anexo_competencia}}
+				</div>
+					<div class='form-group'>
+					{{form.anexo_tema.label}}
+					{{form.anexo_tema}}
+				</div>
+			<fieldset id="fieldset1">
+				<legend id="legend1">Esto tengo que ocultarlo..</legend>
+				<div class='form-group' >
+					{{form.idtema.label}}
+					{{form.idtema}}
+				</div>
+
+				<div class='form-group'>
+					{{form.imagen_acta.label}}
+					{{form.imagen_acta}}
+				</div>
+				<div class='form-group'>
+					{{form.imagen_capacitacion.label}}
+					{{form.imagen_capacitacion}}
+				</div>
+
+
+				<div class='form-group'>
+					{{form.anexo_estado.label}}
+					{{form.anexo_estado}}
+				</div>
+			</fieldset>
+			<legend id="legend2">
+				hay que hacerlo aparecer..
+			</legend>
+
+			
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+
+
+<script>/*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+$("#legend2").css("display","none");
+$(function () {  
+   $("#datepicker").datetimepicker({  
+       format: 'Y-m-d H:i:s',  
+       timepicker:true,
+       step:5, 
+   });  
+   $("#datepicker1").datetimepicker({  
+       format: 'Y-m-d H:i:s',  
+       timepicker:true,
+       step:5, 
+   });  
+  }); 
+
+
+	$("#id_anexo_estado option[value="+ 1 +"]").attr("selected",true);
+  $("#id_anexo_estado option[value=" + 2 + "]").hide(); 
+ </script>
+ <script>/*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+$(function () {  
+   $("#datepicker").datetimepicker({  
+       format: 'Y-m-d H:i:s',  
+       timepicker:true,
+       step:5, 
+   });  
+   $("#datepicker1").datetimepicker({  
+       format: 'Y-m-d H:i:s',  
+       timepicker:true,
+       step:5, 
+   });  
+  });  
+ </script>
+ <script>
+
+ 	$("#legend1").click(function () { 
+
+      	$("#fieldset1").css("display","none");
+      	$("#legend2").css("display","block");
+      
+    });
+    $("#legend2").click(function () { 
+
+      	$("#fieldset1").css("display","block");
+      	$("#legend2").css("display","none");
+      
+    });
+
+ 	 function request_tema (fundoId) {
+		var urldata="/ajax/load-tema/" + fundoId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].nom_tema}</option>`;
+        		
+        } 
+        $("#id_anexo_tema").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+
+    $("#id_anexo_competencia").change(function () { 
+
+      var fundoId = $(this).val();
+      	
+      request_tema(fundoId)
+    });
+
+
+     $("#id_anexo_tema").change(function () { 
+     var resultado="";
+      let tema = $(this).val();
+      $("#id_idtema").val(tema);
+     
+    });
+
+     $("#id_lugar").change(function () { 
+     var sede = $(this).val();
+     var cad=  $('#id_lugar option:selected').text();
+     var arr_cad=cad.split("-");
+     if(sede==1)
+     {
+     	var correlativo=parseInt($("#ac_ica").text())+1;
+     	var text_sede="ICA";
+
+     }
+     else
+     {
+     	if(sede==2)
+	     {
+	     	var correlativo=parseInt($("#ac_car").text())+1;
+	     	var text_sede="CAR";
+
+	     }
+	     else
+	     {
+	     	if(sede==3)
+		     {
+		     	var correlativo=parseInt($("#ac_nep").text())+1;
+		     	var text_sede="NEP";
+
+		     }
+		     else
+		     {
+		     	if(sede==4)
+			     {
+			     	var correlativo=parseInt($("#ac_naz").text())+1;
+			     	var text_sede="NAZ";
+
+			     }
+			     else
+			     {
+			     	if(sede==5)
+				     {
+				     	var correlativo=parseInt($("#ac_pis").text())+1;
+				     	var text_sede="PIS";
+
+				     }
+			     }
+		     }
+	     }
+ 	 }
+ 	 var resultado=2021+"-"+text_sede+"-"+correlativo;
+ 	 $("#id_codigoacta").val(resultado);
+     
+
+     
+    });
+ </script>
+
+{%endblock%}

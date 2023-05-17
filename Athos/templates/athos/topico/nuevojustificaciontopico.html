@@ -1,0 +1,175 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<style type="text/css">
+	#id_justificacion{
+		text-transform: uppercase;
+	}
+</style>
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> JUSTIFICACIONES TOPICO</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley" enctype="multipart/form-data">
+				{% csrf_token %}
+				
+				<div class='form-group'>
+					{{form.anexo_zona.label}}
+					{{form.anexo_zona}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_lugar.label}}
+					{{form.anexo_lugar}}
+				</div>
+				<div class='form-group'>
+					{{form.dni.label}}
+					{{form.dni}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_motivo.label}}
+					{{form.anexo_motivo}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_detallemotivo.label}}
+					{{form.anexo_detallemotivo}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.fecha_justificacion.label}}
+					{{form.fecha_justificacion}}
+				</div>
+
+				<div class='form-group'>
+					{{form.fecha_inicio.label}}
+					{{form.fecha_inicio}}
+				</div>
+
+				<div class='form-group'>
+					{{form.fecha_fin.label}}
+					{{form.fecha_fin}}
+				</div>
+
+				<div class='form-group'>
+					{{form.justificacion.label}}
+					{{form.justificacion}}
+				</div>
+				<div class='form-group'>
+					{{form.adjunta.label}}
+					{{form.adjunta}}
+				</div>
+				<div class='form-group'>
+					{{form.imagen_justificacion1.label}}
+					{{form.imagen_justificacion1}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.imagen_justificacion2.label}}
+					{{form.imagen_justificacion2}}
+				</div>
+			
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+ <script>  
+ /*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+$(function () {  
+   $("#id_fecha_justificacion").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+
+   $("#id_fecha_inicio").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   }); 
+
+   $("#id_fecha_fin").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   }); 
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+  <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+		 
+       
+
+          
+
+     });  
+   </script>
+
+
+<script >
+	 function request_lugar (fundoId) {
+		var urldata="/ajax/load-ubicacion/" + fundoId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].Lugar}</option>`;
+        		
+        } 
+        $("#id_anexo_lugar").html(option_html);
+        	console.log(option_html);
+        },
+
+
+        error: function(result) {
+            console.log(result);
+        }
+         
+
+      });
+
+	} 
+      
+    $("#id_anexo_zona").change(function () { 
+       		console.log(fundoId);
+      var fundoId = $(this).val();
+      	
+      request_lugar(fundoId) 
+
+ });
+</script>
+
+
+ {% endblock %}
+
+
+
+

@@ -1,0 +1,195 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> BROTE - YEMA</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				<div class='form-group'>
+					{{form.anexo_diametro.label}}
+					{{form.anexo_diametro}}
+				</div>
+
+				<div class='form-group'>
+					{{form.diametro.label}}
+					{{form.diametro}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_brote.label}}
+					{{form.anexo_brote}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_yema.label}}
+					{{form.anexo_yema}}
+				</div>
+				<div class='form-group'>
+					{{form.altura.label}}
+					{{form.altura}}
+				</div>
+				<div class='form-group'>
+					{{form.diametrobrote.label}}
+					{{form.diametrobrote}}
+				</div>
+				<div class='form-group'>
+					{{form.nudos.label}}
+					{{form.nudos}}
+				</div>
+				<div class='form-group'>
+					{{form.hojas.label}}
+					{{form.hojas}}
+				</div>
+				<div class='form-group'>
+					{{form.A1.label}}
+					{{form.A1}}
+				</div>
+				<div class='form-group'>
+					{{form.L1.label}}
+					{{form.L1}}
+				</div>
+				<div class='form-group'>
+					{{form.A2.label}}
+					{{form.A2}}
+				</div>
+				<div class='form-group'>
+					{{form.L2.label}}
+					{{form.L2}}
+				</div>
+				<div class='form-group'>
+					{{form.A3.label}}
+					{{form.A3}}
+				</div>
+				<div class='form-group'>
+					{{form.L3.label}}
+					{{form.L3}}
+				</div>
+				<div class='form-group'>
+					{{form.axilas.label}}
+					{{form.axilas}}
+				</div>
+				
+				
+				<div class='form-group'>
+					{{form.yhinchada.label}}
+					{{form.yhinchada}}
+				</div>
+				<div class='form-group'>
+					{{form.yescamosa.label}}
+					{{form.yescamosa}}
+				</div>
+				<div class='form-group'>
+					{{form.ycargador.label}}
+					{{form.ycargador}}
+				</div>
+				<div class='form-group'>
+					{{form.botonfloral.label}}
+					{{form.botonfloral}}
+				</div>
+				<div class='form-group'>
+					{{form.botonrosado.label}}
+					{{form.botonrosado}}
+				</div>
+				<div class='form-group'>
+					{{form.flor.label}}
+					{{form.flor}}
+				</div>
+				<div class='form-group'>
+					{{form.cuajado.label}}
+					{{form.cuajado}}
+				</div>
+				<div class='form-group'>
+					{{form.verde1.label}}
+					{{form.verde1}}
+				</div>
+				<div class='form-group'>
+					{{form.verde2.label}}
+					{{form.verde2}}
+				</div>
+				<div class='form-group'>
+					{{form.verde3.label}}
+					{{form.verde3}}
+				</div>
+				<div class='form-group'>
+					{{form.verde4.label}}
+					{{form.verde4}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.verderojo.label}}
+					{{form.verderojo}}
+				</div>
+				<div class='form-group'>
+					{{form.rojoverde.label}}
+					{{form.rojoverde}}
+				</div>
+				<div class='form-group'>
+					{{form.rojoazul.label}}
+					{{form.rojoazul}}
+				</div>
+				<div class='form-group'>
+					{{form.azulrojo.label}}
+					{{form.azulrojo}}
+				</div>
+				<div class='form-group'>
+					{{form.maduro.label}}
+					{{form.maduro}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.longitud.label}}
+					{{form.longitud}}
+				</div>
+				<div class='form-group'>
+					{{form.latitud.label}}
+					{{form.latitud}}
+				</div>
+				
+				
+				
+				
+				
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+  <script>  
+     $(document).ready(function () {  
+	
+          if ("geolocation" in navigator)
+          { //check geolocation available 
+    //try to get user current location using getCurrentPosition() method
+   			 navigator.geolocation.getCurrentPosition(function(position){ 
+           	 console.log("Found your location nLat : "+position.coords.latitude+" nLang :"+ position.coords.longitude);
+           	 lat=position.coords.latitude;
+           	 lon=position.coords.longitude;
+
+           	 nlat=Math.round((lat)*10000000)/10000000;
+           	 nlon=Math.round((lon)*10000000)/10000000;
+           	 $("#id_longitud").val(nlon);
+			 $("#id_latitud").val(nlat);
+       		 });
+
+		  }
+		else
+		{
+   			 console.log("Browser doesn't support geolocation!");
+		}
+		
+
+     });  
+   </script>
+
+{%endblock%}

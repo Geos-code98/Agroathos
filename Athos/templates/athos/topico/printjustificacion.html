@@ -1,0 +1,157 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<style>
+	#logoathos{
+		width: 100%;
+		height: 100%;
+	}
+	#qr{
+		width: 70%;
+		margin-top: -65%;
+		position: relative;
+		left: 50%;
+	}
+	#material{
+		width: 55%;
+	}
+</style>
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+			<a href="{% url 'acopio_athos' 94  %}" >
+
+				<button type="button" class="btn btn-success">Ir a Guia</button>
+			</a>
+			<a href="javascript:history.go(-1)" >
+
+				<button type="button" class="btn btn-secondary">Regresar</button>
+			</a>
+			
+					<div class="card">
+					<div class="card-header"><strong>IMPRIMIR</strong><small>ANTECEDENTES</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				<div>	
+				
+					<br>
+					<br>
+					<img src="{% static 'login/images/icons/formatojustificacion.png' %}" id="logoathos"></a>
+				</div>	
+				<br>	
+						
+				<div class='form-group'>
+					<h4><b></b></h4>
+					
+				</div>
+				
+				<div class='form-group'>
+					<table>
+					
+							
+						
+
+						 <tr>
+					      <td><b>NOMBRE DEL TRABAJADOR </b></td>
+					      <td> {{buscar.0.ApellidoPat}} {{buscar.0.ApellidoMat}} {{buscar.0.Nombres}}</td>
+					      <td><b>AREA </b></td>
+					      <td> {{det.anexo_lugar.Lugar}} </td>
+					     
+					    </tr>
+					    <tr>
+					      <td><b>DNI </b></td>
+					      <td> &nbsp {{det.dni}} </td>
+					   	  <td><b>Codigo SAP </b></td>
+					      <td> &nbsp {{buscar.0.cod_trab}} </td>
+					     
+					    </tr>
+
+					</table>
+					<br>
+					 <img src="{% static 'login/images/icons/imagenjusti.png' %}" id="logoathos"></a>
+					
+					<table>
+					
+							
+						
+
+						 <tr>
+					      <td><b>JUSTIFICA </b></td>
+					      <td> &nbsp {{det.anexo_motivo}} &nbsp </td>
+					      <td><b>MOTIVO </b></td>
+					      <td> &nbsp {{det.anexo_detallemotivo}} &nbsp </td>
+					      <td><b>FECHA DE JUSTIFICACION </b></td>
+					      <td>  &nbsp {{det.fecha_justificacion|date:'d/m/Y '}} </td>
+					     
+					    </tr>
+					     <tr>
+					      <td><b>F. INICIO </b></td>
+					      <td> &nbsp {{det.fecha_inicio|date:'d/m/Y '}} &nbsp </td>
+					      <td><b>F. FIN  </b></td>
+					      <td>  {{det.fecha_fin|date:'d/m/Y '}} </td>
+					     
+					    </tr>
+					     
+
+					</table>
+					<br>
+					<table>
+						 <tr>
+					      <td><b>JUSTIFICACION &nbsp </b></td>
+					      <td> &nbsp  {{det.justificacion}}  </td>
+					      
+					     
+					    </tr>
+					</table>
+					<br>
+					<table>
+						 <tr>
+					      <td><b>DOCUMENTOS A ADJUNTAR: &nbsp </b></td>
+					      <td> &nbsp  {{det.adjunta}}  </td>
+					      
+					     
+					    </tr>
+					</table>
+					
+
+						<br>
+					 <img src="{% static 'login/images/icons/firmasjustificaciones.png' %}" id="logoathos"></a>
+
+				</div>
+					
+		
+			</form>
+				
+			<br>
+			<br>
+			<br>
+	</div>
+
+	</div>
+</div>
+
+</div>
+
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>
+
+	
+ 
+
+        
+
+</script>
+<script type="text/javascript" src="qrcode.js"></script>
+
+
+	
+</script>
+{% endblock %}

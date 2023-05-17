@@ -1,0 +1,145 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+  <div id="registration-form">
+    <div class='fieldset'>
+          <div class="col-lg-6">
+           <div class="card">
+               <div class="card-header"><strong>Registro</strong><small> EV. CALIDAD CONTROL DESCARTE HG</small></div>
+               <div class="card-body card-block">
+                 <form id="frmajax"  method="post" data-validate="parsley">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+
+                    <div class='form-group'>
+                        {{form.fecha_proceso.label}}
+                        {{form.fecha_proceso}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_turno.label}}
+                        {{form.anexo_turno}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_tipo.label}}
+                        {{form.anexo_tipo}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_fundo.label}}
+                        {{form.anexo_fundo}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_variedad.label}}
+                        {{form.anexo_variedad}}
+                    </div>
+                    <div class='form-group d-none' id="ticket">
+                        {{form.ticket.label}}
+                        {{form.ticket}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.fecha_cosecha.label}}
+                        {{form.fecha_cosecha}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.cantidad_muestra.label}}
+                        {{form.cantidad_muestra}}
+                    </div>
+
+                    <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+<script>  
+  $(function () {  
+     $("#id_fecha_proceso").datetimepicker({  
+         format: 'd/m/Y',  
+         timepicker:false  
+     });
+     $("#id_fecha_cosecha").datetimepicker({  
+         format: 'd/m/Y',  
+         timepicker:false  
+     });
+
+     s = document.querySelector("#id_anexo_fundo");
+     Array.from(s.options).sort((a,b)=>a.text.toLowerCase() > b.text.toLowerCase() ? 1:-1).forEach(e1=>s.add(e1));
+ });  
+</script>
+
+<script type="text/javascript">
+    $('#id_anexo_tipo').change(function(){
+        if ($('#id_anexo_tipo').val() == 1) {
+            $('#ticket').removeClass('d-none');
+        }else{
+            $('#ticket').addClass('d-none');
+        }
+    })
+</script>
+
+<script>  
+   $(document).ready(function () {  
+     jQuery.datetimepicker.setLocale('es');  
+ });
+</script> 
+
+<script>  
+   $(document).ready(function () {  
+      n =  new Date();
+      y = n.getFullYear();
+      //Mes
+      m = n.getMonth() + 1;
+      //Día
+      d = n.getDate();
+
+//Lo ordenas a gusto.
+if(m<10)
+{
+  if(d<10)
+  {
+    $("#id_fecha_proceso").val("0"+ d + "/" +"0" +m + "/" +y);
+    $("#id_fecha_cosecha").val("0"+ d + "/" +"0" +m + "/" +y);
+}
+else
+{
+    $("#id_fecha_proceso").val( d + "/" +"0" +m + "/" +y);
+    $("#id_fecha_cosecha").val( d + "/" +"0" +m + "/" +y);
+}
+}
+else
+{
+ if(d<10)
+ {
+    $("#id_fecha_proceso").val("0"+ d + "/" + m + "/" +y);
+    $("#id_fecha_cosecha").val("0"+ d + "/" + m + "/" +y);
+}
+else
+{
+    $("#id_fecha_proceso").val( d + "/" + m + "/" +y);
+    $("#id_fecha_cosecha").val( d + "/" + m + "/" +y);
+}
+}
+
+});  
+</script>
+{% endblock %}

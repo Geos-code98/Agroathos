@@ -1,0 +1,47 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">HOME</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			
+
+		</div>
+		
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">Bienvenido</strong>
+		</div>
+		<div class="card-body">
+		<div>
+			Hola {{user.get_full_name}} bienvenid@ a AgroAthos :) 
+			#SomosCheveres
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+
+	</article>
+</section>
+
+{% endblock %}
+{% block script %}
+
+<script>
+	
+	$(document).ready(function() {
+          $('#bootstrap-data-table').DataTable();
+        } );
+	
+</script>
+{% endblock %}

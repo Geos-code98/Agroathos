@@ -1,0 +1,130 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small>CENTROS ATHOS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				
+				<div class='form-group'>
+					{{form.qr.label}}
+					{{form.qr}}
+				</div>
+				<div class='form-group'>
+					{{form.traza1.label}}
+					{{form.traza1}}
+				</div>
+				<div class='form-group'>
+					{{form.traza2.label}}
+					{{form.traza2}}
+				</div>
+				<div class='form-group'>
+					{{form.traza3.label}}
+					{{form.traza3}}
+				</div>
+				<div class='form-group'>
+					{{form.traza4.label}}
+					{{form.traza4}}
+				</div>
+				<div class='form-group'>
+					{{form.traza5.label}}
+					{{form.traza5}}
+				</div>
+				<div class='form-group'>
+					{{form.traza6.label}}
+					{{form.traza6}}
+				</div>
+				<div class='form-group'>
+					{{form.traza7.label}}
+					{{form.traza7}}
+				</div>
+				<div class='form-group'>
+					{{form.traza8.label}}
+					{{form.traza8}}
+				</div>
+				<div class='form-group'>
+					{{form.traza9.label}}
+					{{form.traza9}}
+				</div>
+				<div class='form-group'>
+					{{form.traza10.label}}
+					{{form.traza10}}
+				</div>
+				<div class='form-group'>
+					{{form.traza11.label}}
+					{{form.traza11}}
+				</div>
+				<div class='form-group'>
+					{{form.traza12.label}}
+					{{form.traza12}}
+				</div>
+				<div class='form-group'>
+					{{form.traza13.label}}
+					{{form.traza13}}
+				</div>
+				<div class='form-group'>
+					{{form.traza14.label}}
+					{{form.traza14}}
+				</div>
+				<div class='form-group'>
+					{{form.traza15.label}}
+					{{form.traza15}}
+				</div>
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>
+	$(document).ready(function() {
+
+    $('#id_qr').change(function(){
+    	 var cad = document.getElementById("id_qr").value;
+		//var java=cad.substring(71, 69);
+		arreglo=cad.split("?");
+		//alert(java);
+       //document.getElementById(canjavas).value = java;
+       $("#id_traza1").val(arreglo[1]);
+       $("#id_traza2").val(arreglo[2]);
+       $("#id_traza3").val(arreglo[3]);
+       $("#id_traza4").val(arreglo[4]);
+       $("#id_traza5").val(arreglo[5]);
+       $("#id_traza6").val(arreglo[6]);
+       $("#id_traza7").val(arreglo[7]);
+       $("#id_traza8").val(arreglo[8]);
+       $("#id_traza9").val(arreglo[9]);
+       $("#id_traza10").val(arreglo[10]);
+       $("#id_traza11").val(arreglo[11]);
+       $("#id_traza12").val(arreglo[12]);
+       $("#id_traza13").val(arreglo[13]);
+       $("#id_traza14").val(arreglo[14]);
+       $("#id_traza15").val(arreglo[15]);
+      
+
+     
+       
+        return false;
+    });
+   
+});
+	
+</script>
+<script>
+  
+</script>
+{% endblock %}

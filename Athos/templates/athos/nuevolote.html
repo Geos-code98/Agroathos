@@ -1,0 +1,68 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+
+			<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> LOTES</small></div>
+					<div class="card-body card-block">
+			
+			<form id="frmajax"  method="post" data-validate="parsley">
+		
+				{% csrf_token %}
+				<div class='form-group'>
+					{{form.mod.label}}
+					{{form.mod}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.nom_lote.label}}
+					{{form.nom_lote}}
+				</div>
+				<div class='form-group'>
+					{{form.longitud.label}}
+					{{form.longitud}}
+				</div>
+				<div class='form-group'>
+					{{form.latitud.label}}
+					{{form.latitud}}
+				</div>
+				<div class='form-group'>
+					{{form.cod_alterno1.label}}
+					{{form.cod_alterno1}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.cod_alterno2.label}}
+					{{form.cod_alterno2}}
+				</div>
+			
+
+				<div class='form-group'>
+					{{form.estado.label }}
+					{{form.estado }}
+				</div>
+				
+				
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{% block script%}
+<script>
+	$("#id_mod").select2()
+
+</script>
+{% endblock %}

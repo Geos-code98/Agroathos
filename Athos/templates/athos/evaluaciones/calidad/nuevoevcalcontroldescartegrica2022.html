@@ -1,0 +1,124 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> EV. CALIDAD CONTROL DESCARTE GR ICA</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+                    {% for field in form %}
+
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ field.label|escape }}:</strong>
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <div class='form-group'>
+                    {{form.fecha_proceso.label}}
+                    {{form.fecha_proceso}}
+                </div>
+                <div class='form-group'>
+                    {{form.anexo_linea.label}}
+                    {{form.anexo_linea}}
+                </div>
+                
+                <div class='form-group'>
+                    {{form.controlador_prod.label}}
+                    {{form.controlador_prod}}
+                </div>
+                
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+
+ <script>  
+  $(function () {  
+   $("#id_fecha_proceso").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });
+
+ 
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+    <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+		if(m<10)
+    {
+      if(d<10)
+      {
+        $("#id_fecha_proceso").val("0"+ d + "/" +"0" +m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_proceso").val( d + "/" +"0" +m + "/" +y);  
+      }
+    }
+    else
+    {
+       if(d<10)
+      {
+        $("#id_fecha_proceso").val("0"+ d + "/" + m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_proceso").val( d + "/" + m + "/" +y);  
+      }
+    }
+
+
+          
+
+
+          
+
+     });  
+   </script>
+
+
+
+
+
+
+
+{% endblock %}

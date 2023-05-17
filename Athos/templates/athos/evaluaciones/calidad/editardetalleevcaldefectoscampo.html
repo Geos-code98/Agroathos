@@ -1,0 +1,330 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+  <div id="registration-form">
+    <div class='fieldset'>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header"><strong>Registro</strong><small>DETALLE  EV. CALIDAD DEFECTOS CAMPO</small></div>
+          <div class="card-body card-block">
+            <form id="frmajax"  method="post" data-validate="parsley">
+              {% csrf_token %}
+
+
+              <div class='form-group' >
+                {{form.dni.label}}
+                {{form.dni}}
+              </div>
+              <div class='form-group' >
+                {{form.anexo_auxiliares.label}}
+                {{form.anexo_auxiliares}}
+              </div>
+
+              <div class='form-group'  >
+                {{form.valvula.label}}
+                {{form.valvula}}
+              </div>
+              <div class='form-group'>
+                {{form.anexo_variedad.label}}
+                {{form.anexo_variedad}}
+              </div>
+              <div class='form-group'>
+                {{form.anexo_tipo.label}}
+                {{form.anexo_tipo}}
+              </div>
+
+              <div class='form-group' id="ev01">
+                {{form.reingreso.label}}
+                {{form.reingreso}}
+              </div>
+              <div class='form-group' id="ev02">
+                {{form.anexo_evaluacion.label}}
+                {{form.anexo_evaluacion}}
+              </div>
+              <div class='form-group' id="ev03">
+                {{form.muestra.label}}
+                {{form.muestra}}
+              </div>
+          <!--<div class='form-group' id="ev2">
+              {{form.densidad.label}}
+              {{form.densidad}}
+            </div>-->
+            <div class='form-group' id="ev04">
+              {{form.anexo_caseta.label}}
+              {{form.anexo_caseta}}
+            </div>
+            <div class='form-group' id="ev05">
+              {{form.anexo_tipo_envase.label}}
+              {{form.anexo_tipo_envase}}
+            </div>
+            <div class='form-group' id="ev06">
+              {{form.exportable.label}}
+              {{form.exportable}}
+            </div>
+            <div class='form-group' id="ev07">
+              {{form.desgarro.label}}
+              {{form.desgarro}}
+            </div>
+            <div class='form-group' id="ev08">
+              {{form.inmadurez.label}}
+              {{form.inmadurez}}
+            </div>
+            <div class='form-group' id="ev09">
+              {{form.polvo.label}}
+              {{form.polvo}}
+            </div>
+            <div class='form-group' id="ev10">
+              {{form.restos_florales.label}}
+              {{form.restos_florales}}
+            </div>
+            <div class='form-group' id="ev11">
+              {{form.heridas.label}}
+              {{form.heridas}}
+            </div>
+            <div class='form-group' id="ev12">
+              {{form.bajo_calibre.label}}
+              {{form.bajo_calibre}}
+            </div> 
+            <div class='form-group' id="ev13">
+              {{form.remanente.label}}
+              {{form.remanente}}
+            </div>
+            <div class='form-group' id="ev14">
+              {{form.bayas.label}}
+              {{form.bayas}}
+            </div>
+            <div class='form-group' id="ev15">
+              {{form.pudricion.label}}
+              {{form.pudricion}}
+            </div>
+            <div class='form-group' id="ev16">
+              {{form.cochinilla.label}}
+              {{form.cochinilla}}
+            </div>
+            <div class='form-group' id="ev17">
+              {{form.fruta_decolorada.label}}
+              {{form.fruta_decolorada}}
+            </div>
+            <div class='form-group'>
+              {{form.observacion.label}}
+              {{form.observacion}}
+            </div>
+            <div class='form-group'>
+              {{form.longitud.label}}
+              {{form.longitud}}
+            </div>
+            <div class='form-group'>
+              {{form.latitud.label}}
+              {{form.latitud}}
+            </div>
+
+            <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+<script type="text/javascript">
+  $(document).on('ready',function(){
+    var tipoCalidad = $('#id_anexo_tipo').val();
+    if (tipoCalidad==1)
+    {
+      $("#ev01").css("display", "");
+      $("#ev02").css("display", "");
+      $("#ev03").css("display", "");
+      $("#ev04").css("display", "");
+      $("#ev05").css("display", "");
+      $("#ev06").css("display", "");
+      $("#ev07").css("display", "");
+      $("#ev08").css("display", "");
+      $("#ev09").css("display", "");
+      $("#ev10").css("display", "");
+      $("#ev11").css("display", "");
+      $("#ev12").css("display", "");
+      $("#ev13").css("display", "");
+      $("#ev14").css("display", "");
+      $("#ev15").css("display", "");
+      $("#ev16").css("display", "");
+      $("#ev17").css("display", "");
+
+      $("#ev13").css("display", "none");
+      $("#ev14").css("display", "none");
+      $("#ev06").css("display", "none");
+    }   
+    else
+    {
+     if (tipoCalidad==2)
+     {
+      $("#ev01").css("display", "none");
+      $("#ev02").css("display", "none");
+      $("#ev03").css("display", "none");
+      $("#ev04").css("display", "none");
+      $("#ev05").css("display", "none");
+      $("#ev06").css("display", "none");
+      $("#ev07").css("display", "none");
+      $("#ev08").css("display", "none");
+      $("#ev09").css("display", "none");
+      $("#ev10").css("display", "none");
+      $("#ev11").css("display", "none");
+      $("#ev12").css("display", "none");
+      $("#ev13").css("display", "none");
+      $("#ev14").css("display", "none");
+      $("#ev15").css("display", "none");
+      $("#ev16").css("display", "none");
+      $("#ev17").css("display", "none");
+
+      $("#ev01").css("display", "");
+      $("#ev03").css("display", "");
+      $("#ev06").css("display", "");
+    }
+    if (tipoCalidad==3)
+    {
+     $("#ev01").css("display", "none");
+     $("#ev02").css("display", "none");
+     $("#ev03").css("display", "none");
+     $("#ev04").css("display", "none");
+     $("#ev05").css("display", "none");
+     $("#ev06").css("display", "none");
+     $("#ev07").css("display", "none");
+     $("#ev08").css("display", "none");
+     $("#ev09").css("display", "none");
+     $("#ev10").css("display", "none");
+     $("#ev11").css("display", "none");
+     $("#ev12").css("display", "none");
+     $("#ev13").css("display", "none");
+     $("#ev14").css("display", "none");
+     $("#ev15").css("display", "none");
+     $("#ev16").css("display", "none");
+     $("#ev17").css("display", "none");
+
+     $("#ev01").css("display", "");
+     $("#ev13").css("display", "");
+     $("#ev14").css("display", "");
+
+   }    
+ } 
+})
+</script>
+
+<script type="text/javascript">
+
+  $("#id_anexo_tipo").change(function(){
+    var item=$(this).val();
+    if (item==1)
+    {
+      $("#ev01").css("display", "");
+      $("#ev02").css("display", "");
+      $("#ev03").css("display", "");
+      $("#ev04").css("display", "");
+      $("#ev05").css("display", "");
+      $("#ev06").css("display", "");
+      $("#ev07").css("display", "");
+      $("#ev08").css("display", "");
+      $("#ev09").css("display", "");
+      $("#ev10").css("display", "");
+      $("#ev11").css("display", "");
+      $("#ev12").css("display", "");
+      $("#ev13").css("display", "");
+      $("#ev14").css("display", "");
+      $("#ev15").css("display", "");
+      $("#ev16").css("display", "");
+      $("#ev17").css("display", "");
+
+      $("#ev13").css("display", "none");
+      $("#ev14").css("display", "none");
+      $("#ev06").css("display", "none");
+    }   
+    else
+    {
+     if (item==2)
+     {
+      $("#ev01").css("display", "none");
+      $("#ev02").css("display", "none");
+      $("#ev03").css("display", "none");
+      $("#ev04").css("display", "none");
+      $("#ev05").css("display", "none");
+      $("#ev06").css("display", "none");
+      $("#ev07").css("display", "none");
+      $("#ev08").css("display", "none");
+      $("#ev09").css("display", "none");
+      $("#ev10").css("display", "none");
+      $("#ev11").css("display", "none");
+      $("#ev12").css("display", "none");
+      $("#ev13").css("display", "none");
+      $("#ev14").css("display", "none");
+      $("#ev15").css("display", "none");
+      $("#ev16").css("display", "none");
+      $("#ev17").css("display", "none");
+
+      $("#ev01").css("display", "");
+      $("#ev03").css("display", "");
+      $("#ev06").css("display", "");
+    }
+    if (item==3)
+    {
+     $("#ev01").css("display", "none");
+     $("#ev02").css("display", "none");
+     $("#ev03").css("display", "none");
+     $("#ev04").css("display", "none");
+     $("#ev05").css("display", "none");
+     $("#ev06").css("display", "none");
+     $("#ev07").css("display", "none");
+     $("#ev08").css("display", "none");
+     $("#ev09").css("display", "none");
+     $("#ev10").css("display", "none");
+     $("#ev11").css("display", "none");
+     $("#ev12").css("display", "none");
+     $("#ev13").css("display", "none");
+     $("#ev14").css("display", "none");
+     $("#ev15").css("display", "none");
+     $("#ev16").css("display", "none");
+     $("#ev17").css("display", "none");
+
+     $("#ev01").css("display", "");
+     $("#ev13").css("display", "");
+     $("#ev14").css("display", "");
+
+   }    
+ } 
+})
+
+</script>
+
+
+<script type="text/javascript">
+
+
+ if ("geolocation" in navigator)
+          { //check geolocation available 
+    //try to get user current location using getCurrentPosition() method
+    navigator.geolocation.getCurrentPosition(function(position){ 
+     console.log("Found your location nLat : "+position.coords.latitude+" nLang :"+ position.coords.longitude);
+     lat=position.coords.latitude;
+     lon=position.coords.longitude;
+
+     nlat=Math.round((lat)*10000000)/10000000;
+     nlon=Math.round((lon)*10000000)/10000000;
+     $("#id_longitud").val(nlon);
+     $("#id_latitud").val(nlat);
+   });
+
+  }
+  else
+  {
+   console.log("Browser doesn't support geolocation!");
+ }
+
+</script>
+
+
+
+
+{% endblock %}

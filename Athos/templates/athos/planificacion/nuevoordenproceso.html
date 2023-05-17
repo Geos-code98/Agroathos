@@ -1,0 +1,236 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small>ORDEN PROCESO</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+				
+				<div class='form-group'>
+					<p id="num1" >{{result.desc_material}}</p>
+				</div>
+								
+				<div class='form-group'>
+					<p id="num2" >{{result.cant_cajas}}</p>
+				</div>
+					
+				<div class='form-group'>
+					<p id="num3" >{{result.peso_material}}</p>
+				</div>
+				<div class='form-group'>
+					{{form.nro_orden.label}}
+					{{form.nro_orden}}
+				</div>
+				
+			
+				
+				<div class='form-group'>
+					{{form.desc_material.label}}
+					{{form.desc_material}}
+				</div>
+				
+			
+			
+				<div class='form-group'>
+					{{form.cant_cajas.label}}
+					{{form.cant_cajas}}
+				</div>
+				
+			
+				
+				<div class='form-group'>
+					{{form.consumo.label}}
+					{{form.consumo}}
+				</div>
+
+				
+					<div class='form-group'>
+					{{form.kpg.label}}
+					{{form.kpg}}
+				</div>
+				
+			
+
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+
+
+<script type="text/javascript">
+	var desc_material=$("#num1").text();
+	var cant_cajas=$("#num2").text();
+	var cant_cajas1=parseInt(cant_cajas);	
+	$("#id_desc_material").val(desc_material);
+	$("#id_cant_cajas").val(cant_cajas1);
+	$("#id_consumo").change(function () { 
+
+	    var peso_material=$("#num3").text();
+		var kpg =0;
+	 	
+		var peso_material1=parseFloat(peso_material.replace(",","."));
+
+		var consumo=$("#id_consumo").val();
+		consumo1=parseFloat(consumo);
+		kpg=consumo1*peso_material1;
+		$("#id_kpg").val(kpg);
+
+    
+    });
+
+
+   
+	var datoid=0;
+	
+	
+	function request_detalleplan(id) {
+		var urldata="/ajax/load-detalleplan/" + id;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].pos_pedido} </option>`;
+        		
+        } 
+        $("#id_anexo_detalleplan").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+
+	 $("#id_anexo_plan").change(function () { 
+
+      var id = $(this).val();
+    	
+      request_detalleplan(id)
+    });
+
+
+	  $("#id_anexo_detalleplan").change(function () { 
+
+      var datoid = $(this).val();
+    	console.log(datoid)
+    
+    });
+
+      
+     function request_detallemateriales(datoid) {
+
+ 		
+ 		
+		var urldata="/ajax/load-detallemateriales/" + datoid;
+     console.log(urldata);
+
+      $.ajax({                       
+        url: urldata,                			    
+        data: {},
+
+        success: function (data) {
+     	console.log(data);
+     
+     		$('#id_desc_material').val(data[0].desc_material);
+
+     		$('#id_peso_material').val(data[0].peso_material);
+
+     		$('#id_anexo_categoria').val(data[0].anexo_categoria);
+			
+			$('#id_un_material').val(data[0].un_material);
+
+     		
+     		$('#id_cant_cajas').val(data[0].cant_cajas);
+     		$('#id_kpg').val(data[0].kpg);
+     		$('#id_anexo_calibre').val(data[0].anexo_calibre);
+     		$('#id_cajas_palet').val(data[0].cajas_palet);
+     		$('#id_cant_palet').val(data[0].cant_palet);
+     		$('#id_anexo_variedad').val(data[0].anexo_variedad__desc_material);
+     
+        
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	}
+
+   $("#id_anexo_detalleplan").change(function () { 
+
+      var datoid = $(this).val();
+    	
+      request_detallemateriales(datoid)
+    });
+
+   $("#id_cant_cajas").change(function () { 
+
+      var peso=$("#id_peso_material").val();
+      var cant=$("#id_cant_cajas").val();
+      var resultado=peso*cant;
+      var resultado1=(Math.round(resultado*100))/100;
+      $("#id_kpg").val(resultado1);
+
+      var cajas_palet=$("#id_cajas_palet").val();
+      
+      var palet=cant/cajas_palet;
+      var palet1=(Math.round(palet*100))/100;
+      $("#id_cant_palet").val(palet1);
+      
+    });
+
+
+   $("#id_cajas_palet").change(function () { 
+   	  var cant=$("#id_cant_cajas").val();
+      var cajas_palet=$("#id_cajas_palet").val();
+      
+      var palet=cant/cajas_palet;
+      var palet1=(Math.round(palet*100))/100;
+      $("#id_cant_palet").val(palet1);
+      
+    });
+</script>
+
+
+
+
+{% endblock %}

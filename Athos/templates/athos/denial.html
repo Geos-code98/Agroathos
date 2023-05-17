@@ -1,0 +1,25 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">MAESTRA DE CAMPO</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="javascript:window.open('{% url 'crearcampo' %}','','width=900,height=700,left=50,top=50,toolbar=yes');void 0" >
+				<button type="button" class="btn btn-success">Registrar Campo</button>
+			</a>
+
+		</div>
+		<br>
+		
+	
+		<br>
+		<div class="reporte">
+			<h3 id="hreporte">NO TIENES ACCESO</h3>
+			
+		</div>
+	</article>
+</section>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small>PRODUCCION VARIABLE</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				<div class='form-group'>
+					{{form.anexo_subvariable.label}}
+					{{form.anexo_subvariable}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_versiones.label}}
+					{{form.anexo_versiones}}
+				</div>
+
+			
+				
+				<div class='form-group'>
+					{{form.cantidad.label}}
+					{{form.cantidad}}
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+	
+
+<script>  
+  $(function () {  
+   $("#datepicker").datetimepicker({  
+       format: 'Y-m-d',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script>   
+{% endblock %}

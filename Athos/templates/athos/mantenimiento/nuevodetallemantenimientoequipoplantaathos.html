@@ -1,0 +1,168 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header"><strong>Registro</strong><small>DETALLE ALQUILER DE MAQUINARIAS</small></div>
+					<div class="card-body card-block">
+						<form id="frmajax"  method="POST" data-validate="parsley">
+							{% csrf_token %}
+
+							{% if form.errors %}
+							{% for field in form %}
+
+							{% for error in field.errors %}
+							<div class="alert alert-danger">
+								<strong>{{ field.label|escape }}:</strong>
+								<strong>{{ error|escape }}</strong>
+							</div>
+							{% endfor %}
+							{% endfor %}
+							{% for error in form.non_field_errors %}
+							<div class="alert alert-danger">
+								<strong>{{ error|escape }}</strong>
+							</div>
+							{% endfor %}
+							{% endif %}
+
+							<div class='form-group'>
+								{{form.anexo_pep.label}}
+								{{form.anexo_pep}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_proceso.label}}
+								{{form.anexo_proceso}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_labor.label}}
+								{{form.anexo_labor}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_implemento.label}}
+								{{form.anexo_implemento}}
+							</div>
+							<div class='form-group'>
+								{{form.fecha_mantenimiento.label}}
+								{{form.fecha_mantenimiento}}
+							</div>
+							<div class='form-group'>
+								{{form.hora_inicio.label}}
+								{{form.hora_inicio}}
+							</div>
+							<div class='form-group'>
+								{{form.hora_final.label}}
+								{{form.hora_final}}
+							</div>
+							<div class='form-group'>
+								{{form.total_horas.label}}
+								{{form.total_horas}}
+							</div>
+							<div class='form-group d-none'>
+								<p id="cultivo">{{variable_cultivo.id}}</p>
+							</div>
+
+							<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+{%block script%}
+
+<script type="text/javascript">
+
+$("#id_fecha_mantenimiento").datetimepicker({  
+	format: 'd/m/Y',  
+	timepicker:false 
+}); 
+
+$("#id_hora_inicio").datetimepicker({  
+	format: 'H:i',  
+	timepicker:true,
+	datepicker:false,
+	step:15  
+}); 
+
+$("#id_hora_final").datetimepicker({  
+	format: 'H:i',  
+	timepicker:true,
+	datepicker:false,
+	step:15  
+});
+
+function calcularTotalHoras(){
+	inicio = $("#id_hora_inicio").val();
+	fin = $("#id_hora_final").val();
+
+	if (inicio && fin != "") {
+		inicioMinutos = parseInt(inicio.substr(3,2));
+		inicioHoras = parseInt(inicio.substr(0,2));
+		
+		finMinutos = parseInt(fin.substr(3,2));
+		finHoras = parseInt(fin.substr(0,2));
+
+		transcurridoMinutos = finMinutos - inicioMinutos;
+		transcurridoHoras = finHoras - inicioHoras;
+		
+		if (transcurridoMinutos < 0) {
+			transcurridoHoras--;
+			transcurridoMinutos = 60 + transcurridoMinutos;
+		}
+		
+		horas = transcurridoHoras.toString();
+		minutos = transcurridoMinutos.toString();
+		
+		if (horas.length < 2) {
+			horas = "0"+horas;
+		}
+		
+		if (horas.length < 2) {
+			horas = "0"+horas;
+		}
+
+		$("#id_total_horas").val(horas+":"+minutos);
+	}
+}
+
+$("#id_hora_inicio").change(function(){
+	calcularTotalHoras();
+});
+
+$("#id_hora_final").change(function(){
+	calcularTotalHoras();
+});
+
+function request_labores (laborID, cultivoID) {
+	var urldata="/ajax/load-labores/" + laborID + "/" + cultivoID;
+
+	$.ajax({
+		url: urldata,
+		data: {},
+		success: function (data) {
+			var option_html = `<option value="0" >---------</option>`;
+			for (var i = 0; i < data.length; i++) {
+				option_html += `<option value="${data[i].id}" >${data[i].labor}</option>`;
+			}
+			$("#id_anexo_labor").html(option_html);
+		},
+		error: function(result) {
+			console.log(result);
+		}
+	});
+}
+
+$("#id_anexo_proceso").change(function () { 
+	var laborID = $(this).val();
+	var cultivoID = $("#cultivo").html();
+	request_labores(laborID, cultivoID);
+});
+
+</script>
+
+{% endblock %}

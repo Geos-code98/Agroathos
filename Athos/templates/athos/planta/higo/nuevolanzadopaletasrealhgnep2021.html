@@ -1,0 +1,399 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+
+	
+
+
+<section  class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> LANZADO PALETAS NEP-HG-2021</small></div>
+					<div class="card-body card-block">
+			<form  id="lanzadopaletasrealform"  method="post" data-validate="parsley"  data-cities-url="" >
+				{% csrf_token %}
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+
+				<input type="submit" value="LANZAR PALET" id="registrar" class="btn btn-primary">
+				<input type="button" onclick="location.reload()" value="LIMPIAR" id="registrar" class="btn btn-secondary">	
+				<div class='form-group'>
+					{{form.linea.label}}
+					{{form.linea}}
+				</div>
+				
+				<div class='form-group' >
+					{{form.leerqr.label}}
+					{{form.leerqr}}
+				</div>
+			
+				<div class='form-group'>
+					{{form.npalet.label}}
+					{{form.npalet}}
+				</div>
+
+				<div class='form-group'>
+					{{form.njabas.label}}
+					{{form.njabas}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.peso.label}}
+					{{form.peso}}
+				</div>
+				<div class='form-group'>
+					{{form.estado.label}}
+					{{form.estado}}
+				</div>
+					
+			
+					
+				<div class='form-group'>
+					{{form.anexo_turno.label}}
+					{{form.anexo_turno}}
+				</div>
+					
+				<div class='form-group'>
+					{{form.fecha_hora_creacion.label}}
+					{{form.fecha_hora_creacion}}
+				</div>
+				<div class='form-group' >
+					{{form.fecha_lanzado.label}}
+					{{form.fecha_lanzado}}
+				</div>	
+
+				<div class='form-group' >
+					{{form.fecha_cosecha.label}}
+					{{form.fecha_cosecha}}
+				</div>	
+				<div class='form-group' >
+					{{form.pep.label}}
+					{{form.pep}}
+				</div>
+				<div class='form-group' >
+					{{form.material.label}}
+					{{form.material}}
+				</div>
+				
+				<div class='form-group' >
+					{{form.trazabilidad.label}}
+					{{form.trazabilidad}}
+				</div>
+
+				<a href="{% url 'programa_changelist' %}">Nevermind</a>
+			</form>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>
+	
+	$(document).ready(function() {
+	
+    $('#id_leerqr').change(function(){
+    	 
+      
+        return false;
+
+         
+      
+
+     
+		
+     
+    });
+
+    $("#id_leerqr").attr('readonly','readonly');
+    document.getElementById("id_estado").value=2;
+    $("#id_estado option[value=" + 1 + "]").hide();
+
+
+});
+
+	
+</script>
+
+<script>
+	
+
+	var npalet=$("#id_npalet").val();
+    console.log(npalet);
+   	  
+   	var fecha_lanzado=$("#datepicker").val();
+    console.log(fecha_lanzado);
+   
+
+    var fecha_cosecha=$("#id_fecha_cosecha").val();
+    console.log(fecha_cosecha);
+  
+
+    var arreglo_mes=fecha_cosecha.split("/");
+    var mes=arreglo_mes[1];
+    var dia=arreglo_mes[0];
+    dia=parseInt(dia);
+    console.log(mes); 
+
+    console.log(dia);
+
+    var pep=$("#id_pep").val();
+    console.log(pep);
+
+    var material=$("#id_material").val();
+    console.log(material);
+     
+    var fundo= pep.substr(0,3);
+    console.log(fundo);
+
+    if (fundo == "STF")
+    {
+    	var v_fundo="F";
+    }
+    else
+    {
+    	if (fundo =="SNA")
+    	{
+    		var v_fundo="S";
+  		}
+  		else
+  		{
+  			if (fundo =="LPO")
+    		{
+    			var v_fundo="E";
+    		}
+    		else
+    		{
+    			if (fundo =="PAR")
+    			{
+    				var v_fundo="P";
+    			}
+    			else
+    			{
+    				if (fundo =="MAC")
+   					{				
+    					var v_fundo="M";
+   					}
+   					else
+   					{
+   						if (fundo =="SAT")
+   						{				
+    						var v_fundo="G";
+   						}
+   						else
+   						{
+   							if (fundo =="SOJ")
+   							{				
+    							var v_fundo="O";
+   							}
+   						}
+   					}
+    			}
+    		}
+  		}
+    }
+
+	console.log(v_fundo);
+
+	if(material=="M.P.-GRANADA EMEK")
+	{
+		var variedad="D";
+		var cod_var=1;
+	}
+	else
+	{
+		if(material=="M.P.-GRANADA ACCO")
+		{	
+			var variedad="D";
+			var cod_var=3;
+		}
+		else
+		{
+			if(material=="M.P.-GRANADA KAMEL")
+			{	
+				var variedad="A";
+				var cod_var=3;
+			}
+			else
+			{
+				if(material=="M.P.-GRANADA HERCOVITZ")
+				{	
+					var variedad="A";
+					var cod_var=2;
+				}
+				else
+				{
+					if(material=="M.P.-GRANADA SHANY")
+					{	
+						var variedad="D";
+						var cod_var=2;
+					}
+					else
+					{
+						if(material=="M.P. –GRANADA ANGEL RED")
+						{	
+							var variedad="D";
+							var cod_var=4;
+						}
+						else
+						{
+							if(material=="M.P.-GRANADA 116")
+							{	
+								var variedad="A";
+								var cod_var=1;
+							}
+							else
+							{
+								if(material=="M.P.-GRANADA WONDERFULL")
+								{	
+									var variedad="W";
+									var cod_var=1;
+								}
+							}
+						}
+					}	
+				}
+			}
+		}
+	}
+console.log(variedad);
+console.log(cod_var);
+
+//calculando juliano
+if(mes=="01")
+{
+	var acu=0;
+	
+}
+else
+{
+	if(mes=="02")
+	{
+		var acu=31;
+	
+	}
+	else
+	{
+		if(mes=="03")
+		{
+			var acu=58;
+	
+		}
+		else
+		{
+			if(mes=="04")
+			{
+				var acu=90;
+		
+			}
+			else
+			{
+				if(mes=="05")
+				{
+					var acu=120;
+	
+				}
+				else
+				{
+					if(mes=="06")
+					{
+						var acu=151;
+	
+					}
+					else
+					{
+						if(mes=="07")
+						{
+							var acu=181;
+	
+						}
+						else
+						{
+							if(mes=="08")
+							{
+								var acu=212;
+		
+							}
+							else
+							{
+								if(mes=="09")
+								{
+									var acu=243;
+		
+								}
+								else
+								{
+									if(mes=="10")
+									{
+										var acu=273;
+		
+									}
+									else
+									{
+										if(mes=="11")
+										{
+											var acu=304;
+		
+										}
+										else
+										{
+											if(mes=="12")
+											{
+												var acu=334;
+		
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+var juliano=acu+dia;
+
+if (juliano<100)
+{
+	var julianof="0"+juliano;
+}
+else
+{
+	var julianof=juliano;
+}
+
+console.log(julianof);
+
+var diferencia=moment(fecha_lanzado,'DD-MM-YYYY').diff(moment(fecha_cosecha,'DD-MM-YYYY'), 'days');
+console.log(diferencia);
+var trazabilidad="21"+julianof+diferencia+"G"+v_fundo+variedad+cod_var;
+console.log(trazabilidad);
+$("#id_trazabilidad").val(trazabilidad);
+
+</script>
+{% endblock %}

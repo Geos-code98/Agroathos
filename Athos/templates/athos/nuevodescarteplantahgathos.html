@@ -1,0 +1,297 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+          <div class="col-lg-6">
+             <div class="card">
+                 <div class="card-header"><strong>Registro</strong><small> DESCARTE PLANTA HG ATHOS</small></div>
+                 <div class="card-body card-block">
+                   <form id="frmajax"  method="post" data-validate="parsley">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class='form-group'>
+                        {{form.fecha_proceso.label}}
+                        {{form.fecha_proceso}}
+                    </div>
+                    <div class='form-group'>
+                      {{form.anexo_turno.label}}
+                      {{form.anexo_turno}}
+                  </div>
+                  <div class='form-group'>
+                     {{form.anexo_planta.label}}
+                     {{form.anexo_planta}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.anexo_material.label}}
+                     {{form.anexo_material}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte1.label}}
+                     {{form.descarte1}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte2.label}}
+                     {{form.descarte2}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte3.label}}
+                     {{form.descarte3}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte4.label}}
+                     {{form.descarte4}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte5.label}}
+                     {{form.descarte5}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte6.label}}
+                     {{form.descarte6}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte7.label}}
+                     {{form.descarte7}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte8.label}}
+                     {{form.descarte8}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte9.label}}
+                     {{form.descarte9}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte10.label}}
+                     {{form.descarte10}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte11.label}}
+                     {{form.descarte11}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte12.label}}
+                     {{form.descarte12}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte13.label}}
+                     {{form.descarte13}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte14.label}}
+                     {{form.descarte14}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte15.label}}
+                     {{form.descarte15}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte16.label}}
+                     {{form.descarte16}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte17.label}}
+                     {{form.descarte17}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.descarte18.label}}
+                     {{form.descarte18}}
+                 </div>
+                 <div class='form-group'>
+                     <p>Total Descarte</p>
+                     <p id="resultado">0</p>
+                 </div>
+                 <div class='form-group d-none'>
+                     {{form.total_descarte.label}}
+                     {{form.total_descarte}}
+                 </div>
+
+                 <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+             </form>
+         </div>
+     </div>
+ </div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $('#id_anexo_material').select2();
+        //$('#id_total_descarte').prop('disabled', true);
+
+        $("#id_descarte1").val(0);
+        $("#id_descarte2").val(0);
+        $("#id_descarte3").val(0);
+        $("#id_descarte4").val(0);
+        $("#id_descarte5").val(0);
+        $("#id_descarte6").val(0);
+        $("#id_descarte7").val(0);
+        $("#id_descarte8").val(0);
+        $("#id_descarte9").val(0);
+        $("#id_descarte10").val(0);
+        $("#id_descarte11").val(0);
+        $("#id_descarte12").val(0);
+        $("#id_descarte13").val(0);
+        $("#id_descarte14").val(0);
+        $("#id_descarte15").val(0);
+        $("#id_descarte16").val(0);
+        $("#id_descarte17").val(0);
+        $("#id_descarte18").val(0);
+
+        $("#id_descarte1").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte2").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte3").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte4").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte5").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte6").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte7").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte8").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte9").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte10").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte11").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte12").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte13").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte14").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte15").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte16").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte17").change(function(){
+            totalDescarte();
+        });
+        $("#id_descarte18").change(function(){
+            totalDescarte();
+        });
+    })
+
+    function totalDescarte(){
+        var descarte1 = parseFloat($("#id_descarte1").val());
+        var descarte2 = parseFloat($("#id_descarte2").val());
+        var descarte3 = parseFloat($("#id_descarte3").val());
+        var descarte4 = parseFloat($("#id_descarte4").val());
+        var descarte5 = parseFloat($("#id_descarte5").val());
+        var descarte6 = parseFloat($("#id_descarte6").val());
+        var descarte7 = parseFloat($("#id_descarte7").val());
+        var descarte8 = parseFloat($("#id_descarte8").val());
+        var descarte9 = parseFloat($("#id_descarte9").val());
+        var descarte10 = parseFloat($("#id_descarte10").val());
+        var descarte11 = parseFloat($("#id_descarte11").val());
+        var descarte12 = parseFloat($("#id_descarte12").val());
+        var descarte13 = parseFloat($("#id_descarte13").val());
+        var descarte14 = parseFloat($("#id_descarte14").val());
+        var descarte15 = parseFloat($("#id_descarte15").val());
+        var descarte16 = parseFloat($("#id_descarte16").val());
+        var descarte17 = parseFloat($("#id_descarte17").val());
+        var descarte18 = parseFloat($("#id_descarte18").val());
+
+        var total = descarte1 + descarte2 + descarte3 + descarte4 + descarte5 + descarte6 + descarte7 + descarte8 + descarte9 + descarte10 + descarte11 + descarte12 + descarte13 + descarte14 + descarte15 + descarte16 + descarte17 + descarte18;
+
+        $("#id_total_descarte").val(total);
+        $("#resultado").text(total);
+    }
+</script>
+
+<script>  
+  $(function () {  
+    $("#id_fecha_proceso").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+});  
+</script>
+<script>  
+ $(document).ready(function () {  
+   jQuery.datetimepicker.setLocale('es');  
+});  
+</script> 
+
+<script>  
+ $(document).ready(function () {  
+    n =  new Date();
+    y = n.getFullYear();
+        //Mes
+        m = n.getMonth() + 1;
+        //Día
+        d = n.getDate();
+
+//Lo ordenas a gusto.
+if(m<10)
+{
+  if(d<10)
+  {
+    $("#id_fecha_proceso").val("0"+ d + "/" +"0" +m + "/" +y);
+}
+else
+{
+    $("#id_fecha_proceso").val( d + "/" +"0" +m + "/" +y);  
+}
+}
+else
+{
+ if(d<10)
+ {
+    $("#id_fecha_proceso").val("0"+ d + "/" + m + "/" +y);
+}
+else
+{
+    $("#id_fecha_proceso").val( d + "/" + m + "/" +y);  
+}
+}          
+
+});
+</script>
+
+
+{% endblock %}

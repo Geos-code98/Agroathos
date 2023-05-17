@@ -1,0 +1,97 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<style type="text/css">
+		
+		td,p{
+			font-size: 12px;
+		}
+
+	</style>
+	<article id="usuarios">
+		<h1 id="h1-usuarios">CAPACITACIONES</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearcapacitacion' id %}" >
+				<button type="button" class="btn btn-success">Registrar Capacitacion</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Fecha</td>
+						<td>Codigo</td>
+						<td>Datos</td>
+						<td>Area</td>
+						<td>Competencia</td>
+						<td>Tema</td>
+						
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in capacitacionpr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.fecha_hora_inicio | date:'Y-m-d ' }}
+							</td>
+							
+							<td>
+								{{ dato.codigoacta }}
+							</td>
+
+							<td>
+								{{ dato.anexo_datos }}
+							</td>
+							
+							<td>
+								{{ dato.anexo_area }}
+							</td>
+							<td>
+								{{ dato.anexo_competencia }}
+							</td>
+							<td>
+								{% for tema in dato.anexo_tema.all %}
+									<p>{{tema.nom_tema}}</p>
+								{% endfor %}
+								
+							</td>
+							
+							<td>
+							 	<a href="{% url 'editarcapacitacion'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+								<a href="{% url 'asistenciacapacitacion' id dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% if request.user.username == "dsilva" %}
+									<a href="{% url 'confirmativacapacitacion' id dato.id %}"><i class="bi bi-arrow-up-circle-fill"></i></a>
+								{% endif %}
+
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">ARAÑAS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'creararanas' id subid varid nicoid %}" >
+				<button type="button" class="btn btn-success">Registrar Eval.</button>
+			</a>
+
+			<a href="{% url 'evaluaciones' id  %}" >
+				<button type="button" class="btn btn-primary">Ir a Ev. Plagas</button>
+			</a>
+
+			<a href="{% url 'gruposplagasarandanos' id subid  %}" >
+				<button type="button" class="btn btn-secondary">Ir a Grupos</button>
+			</a>
+
+			<a href="{% url 'subgruposplagasarandanos' id subid varid %}" >
+				<button type="button" class="btn btn-info">Ir a SubGrupos</button>
+			</a>
+
+		
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Fecha-Hora</td>
+						
+					
+						
+
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in variablespr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.fecha_hora_creacion}}
+							</td>
+							
+						
+							
+							
+
+							<td>
+							 	<a href="{% url 'editararanas'  id subid  varid nicoid dato.id %}"><i class="bi bi-pencil-square"></i></a>
+							 	
+							<!-- 	<a href="{% url 'subgruposplagasarandanos' id subid dato.id  %}"><img src="{% static 'login/images/icons/ver.png' %}" title="HOLI1"></a>
+								-->
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

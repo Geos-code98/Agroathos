@@ -1,0 +1,318 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE PROYECCION</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				<div class='form-group'>
+					{{form.anexo_pep.label}}
+					{{form.anexo_pep}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_subvariable.label}}
+					{{form.anexo_subvariable}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_aniocampana.label}}
+					{{form.anexo_aniocampana}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_aniocosecha.label}}
+					{{form.anexo_aniocosecha}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_varpep.label}}
+					{{form.anexo_varpep}}
+				</div>
+
+				<div class='form-group'>
+					{{form.semana1.label}}
+					{{form.semana1}}
+				</div>
+				<div class='form-group'>
+					{{form.semana2.label}}
+					{{form.semana2}}
+				</div>
+				<div class='form-group'>
+					{{form.semana3.label}}
+					{{form.semana3}}
+				</div>
+				<div class='form-group'>
+					{{form.semana4.label}}
+					{{form.semana4}}
+				</div>
+				<div class='form-group'>
+					{{form.semana5.label}}
+					{{form.semana5}}
+				</div>
+				<div class='form-group'>
+					{{form.semana6.label}}
+					{{form.semana6}}
+				</div>
+				<div class='form-group'>
+					{{form.semana7.label}}
+					{{form.semana7}}
+				</div>
+				<div class='form-group'>
+					{{form.semana8.label}}
+					{{form.semana8}}
+				</div>
+				<div class='form-group'>
+					{{form.semana9.label}}
+					{{form.semana9}}
+				</div>
+				<div class='form-group'>
+					{{form.semana10.label}}
+					{{form.semana10}}
+				</div>
+				<div class='form-group'>
+					{{form.semana11.label}}
+					{{form.semana11}}
+				</div>
+				<div class='form-group'>
+					{{form.semana12.label}}
+					{{form.semana12}}
+				</div>
+				<div class='form-group'>
+					{{form.semana13.label}}
+					{{form.semana13}}
+				</div>
+				<div class='form-group'>
+					{{form.semana14.label}}
+					{{form.semana14}}
+				</div>
+				<div class='form-group'>
+					{{form.semana15.label}}
+					{{form.semana15}}
+				</div>
+				<div class='form-group'>
+					{{form.semana16.label}}
+					{{form.semana16}}
+				</div>
+				<div class='form-group'>
+					{{form.semana17.label}}
+					{{form.semana17}}
+				</div>
+				<div class='form-group'>
+					{{form.semana18.label}}
+					{{form.semana18}}
+				</div>
+				<div class='form-group'>
+					{{form.semana19.label}}
+					{{form.semana19}}
+				</div>
+				<div class='form-group'>
+					{{form.semana20.label}}
+					{{form.semana20}}
+				</div>
+				<div class='form-group'>
+					{{form.semana21.label}}
+					{{form.semana21}}
+				</div>
+				<div class='form-group'>
+					{{form.semana22.label}}
+					{{form.semana22}}
+				</div>
+				<div class='form-group'>
+					{{form.semana23.label}}
+					{{form.semana23}}
+				</div>
+				<div class='form-group'>
+					{{form.semana24.label}}
+					{{form.semana24}}
+				</div>
+				<div class='form-group'>
+					{{form.semana25.label}}
+					{{form.semana25}}
+				</div>
+				<div class='form-group'>
+					{{form.semana26.label}}
+					{{form.semana26}}
+				</div>
+				<div class='form-group'>
+					{{form.semana27.label}}
+					{{form.semana27}}
+				</div>
+				<div class='form-group'>
+					{{form.semana28.label}}
+					{{form.semana28}}
+				</div>
+				<div class='form-group'>
+					{{form.semana29.label}}
+					{{form.semana29}}
+				</div>
+				<div class='form-group'>
+					{{form.semana30.label}}
+					{{form.semana30}}
+				</div>
+				<div class='form-group'>
+					{{form.semana31.label}}
+					{{form.semana31}}
+				</div>
+				<div class='form-group'>
+					{{form.semana32.label}}
+					{{form.semana32}}
+				</div>
+				<div class='form-group'>
+					{{form.semana33.label}}
+					{{form.semana33}}
+				</div>
+				<div class='form-group'>
+					{{form.semana34.label}}
+					{{form.semana34}}
+				</div>
+				<div class='form-group'>
+					{{form.semana35.label}}
+					{{form.semana35}}
+				</div>
+				<div class='form-group'>
+					{{form.semana36.label}}
+					{{form.semana36}}
+				</div>
+				<div class='form-group'>
+					{{form.semana37.label}}
+					{{form.semana37}}
+				</div>
+				<div class='form-group'>
+					{{form.semana38.label}}
+					{{form.semana38}}
+				</div>
+				<div class='form-group'>
+					{{form.semana39.label}}
+					{{form.semana39}}
+				</div>
+				<div class='form-group'>
+					{{form.semana40.label}}
+					{{form.semana40}}
+				</div>
+				<div class='form-group'>
+					{{form.semana41.label}}
+					{{form.semana41}}
+				</div>
+				<div class='form-group'>
+					{{form.semana42.label}}
+					{{form.semana42}}
+				</div>
+				<div class='form-group'>
+					{{form.semana43.label}}
+					{{form.semana43}}
+				</div>
+				<div class='form-group'>
+					{{form.semana44.label}}
+					{{form.semana44}}
+				</div>
+				<div class='form-group'>
+					{{form.semana45.label}}
+					{{form.semana45}}
+				</div>
+				<div class='form-group'>
+					{{form.semana46.label}}
+					{{form.semana46}}
+				</div>
+				<div class='form-group'>
+					{{form.semana47.label}}
+					{{form.semana47}}
+				</div>
+				<div class='form-group'>
+					{{form.semana48.label}}
+					{{form.semana48}}
+				</div>
+				<div class='form-group'>
+					{{form.semana49.label}}
+					{{form.semana49}}
+				</div>
+				<div class='form-group'>
+					{{form.semana50.label}}
+					{{form.semana50}}
+				</div>
+				<div class='form-group'>
+					{{form.semana51.label}}
+					{{form.semana51}}
+				</div>
+				<div class='form-group'>
+					{{form.semana52.label}}
+					{{form.semana52}}
+				</div>
+				<div class='form-group'>
+					{{form.semana53.label}}
+					{{form.semana53}}
+				</div>
+
+
+				<input type="submit" value="Registrar" id="registrar" >
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script type="text/javascript">
+      $('#id_anexo_pep').select2();
+      $('#id_anexo_subvariable').select2();
+
+      $('#id_anexo_pep').change(function(){
+
+      var selected = $(this).find('option:selected');
+      var data_id_select =  $(selected).attr('data-id')
+      console.log()
+       
+         $.ajax({
+            url: '/ajax/load-data-pep/' + data_id_select,
+            dataType: 'json',
+            type: "GET",
+            success: function(result){
+              
+                $("#id_anexo_aniocampana").val(result[0].ano_campana)
+                $("#id_anexo_varpep").val(result[0].var_pep)
+            }
+        });
+
+
+    });
+     
+      //$("#id_anexo_zona").val(2).trigger('change');
+     
+      
+  </script>
+
+
+
+<script>
+	$(document).ready(function() {
+
+	/*$('#id_linea').change(function(){
+		document.getElementById("id_Codigoqr").focus();
+	});
+	*/
+
+	
+
+		 document.getElementById("id_anexo_sociedad").value=1;
+		
+  
+
+   
+});
+    
+  
+
+
+</script>
+
+
+{% endblock %}

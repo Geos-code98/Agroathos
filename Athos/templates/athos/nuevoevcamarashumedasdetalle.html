@@ -1,0 +1,115 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE CÁMARAS HÚMEDAS</small></div>
+					<div class="card-body card-block">
+						<form id="frmajax"  method="post" data-validate="parsley">
+							{% csrf_token %}
+							<div class='form-group'>
+								{{form.fecha_evaluacion.label}}
+								{{form.fecha_evaluacion}}
+							</div>
+							<div class='form-group'>
+								{{form.frutos_infestados.label}}
+								{{form.frutos_infestados}}
+							</div>
+							<div class='form-group'>
+								{{form.botrytis_cinerea.label}}
+								{{form.botrytis_cinerea}}
+							</div>
+							<div class='form-group'>
+								{{form.alternaria.label}}
+								{{form.alternaria}}
+							</div>
+							<div class='form-group'>
+								{{form.cladosporium_sp.label}}
+								{{form.cladosporium_sp}}
+							</div>
+							<div class='form-group'>
+								{{form.apergillus_niger.label}}
+								{{form.apergillus_niger}}
+							</div>
+							<div class='form-group'>
+								{{form.pestalotiopsis_sp.label}}
+								{{form.pestalotiopsis_sp}}
+							</div>
+							<div class='form-group'>
+								{{form.rhyzopus_spp.label}}
+								{{form.rhyzopus_spp}}
+							</div>
+							<div class='form-group'>
+								{{form.penicillum_sp.label}}
+								{{form.penicillum_sp}}
+							</div>
+							<div class='form-group'>
+								{{form.sin_esporular.label}}
+								{{form.sin_esporular}}
+							</div>
+							<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{%block script%}
+
+<script>  
+  $(function () {  
+     $("#id_fecha_evaluacion").datetimepicker({  
+         format: 'd/m/Y',  
+         timepicker:false  
+     });
+ });  
+</script>
+
+<script>  
+   $(document).ready(function () {  
+     jQuery.datetimepicker.setLocale('es');  
+ });
+</script> 
+
+<script>  
+   $(document).ready(function () {  
+      n =  new Date();
+      y = n.getFullYear();
+      //Mes
+      m = n.getMonth() + 1;
+      //Día
+      d = n.getDate();
+
+//Lo ordenas a gusto.
+if(m<10)
+{
+  if(d<10)
+  {
+    $("#id_fecha_evaluacion").val("0"+ d + "/" +"0" +m + "/" +y);
+}
+else
+{
+    $("#id_fecha_evaluacion").val( d + "/" +"0" +m + "/" +y);
+}
+}
+else
+{
+ if(d<10)
+ {
+    $("#id_fecha_evaluacion").val("0"+ d + "/" + m + "/" +y);
+}
+else
+{
+    $("#id_fecha_evaluacion").val( d + "/" + m + "/" +y);
+}
+}
+
+});  
+</script>
+{% endblock %}

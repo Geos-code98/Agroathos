@@ -1,0 +1,78 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">MENÚ</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="javascript:window.open('{% url 'crearmenu' %}','','width=900,height=700,left=50,top=50,toolbar=yes');void 0">
+				<button type="button" class="btn btn-success">Registrar Menu</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+
+			
+				
+				<thead>
+					<br>
+					<tr>
+						<td>N°</td>
+						<td>Código</td>
+						<td>Nombres</td>
+						<td>Estado</td>
+						<td>Usuario-Creación</td>
+						<td>Fecha-Creación</td>
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in mprincipal %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.cod_menu}}
+							</td>
+							<td>
+								{{ dato.nom_menu }}
+							</td>
+							<td>
+								{{ dato.estado }}
+							</td>
+							<td>
+								{{ dato.usuario_creacion }}
+							</td>
+
+							
+							<td>
+								{{ dato.fecha_hora_creacion }}
+							</td>
+							<td>
+								<a href="{% url 'editarmenu' dato.id %}"><i class="bi bi-pencil-square"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+	</article>
+</section>
+{% endblock %}

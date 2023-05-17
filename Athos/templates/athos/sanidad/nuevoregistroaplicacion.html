@@ -1,0 +1,467 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+          <div class="col-lg-6">
+             <div class="card">
+                 <div class="card-header"><strong>Registro</strong><small> REGISTRO APLICACION SANIDAD</small></div>
+                 <div class="card-body card-block">
+                   <form id="frmajax"  method="post" data-validate="parsley">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+
+                    <div class='form-group d-none'>
+                     <p id="numero_tanque">{{ver.numero_tanque}}</p>
+                 </div>
+
+                 <div class='form-group d-none'>
+                     <p id="id_factor1">{{factor}}</p>
+                 </div>
+
+                 <div class='form-group d-none'>
+                     <p id="ha">{{ha}}</p>
+                 </div>
+                 <div class='form-group d-none'>
+                     <p id="volumen">{{volumen}}</p>
+                 </div>
+                 <div class='form-group'>
+                     {{form.anexo_rpta.label}}
+                     {{form.anexo_rpta}}
+                 </div>	
+                 <div class='form-group'>
+                     {{form.anexo_listas.label}}
+                     {{form.anexo_listas}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.anexo_objetivo.label}}
+                     {{form.anexo_objetivo}}
+                 </div>
+                 <div class='form-group d-none'>
+                     {{form.anexo_tipo.label}}
+                     {{form.anexo_tipo}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.dosis.label}}
+                     {{form.dosis}}
+                 </div>
+
+                 <div class='form-group'>
+                     {{form.tipo_dosis_real.label}}
+                     {{form.tipo_dosis_real}}
+                 </div>
+
+                 <div class='form-group'>
+                     {{form.dosis_real.label}}
+                     {{form.dosis_real}}
+                 </div>
+
+                 <div class='form-group'>
+                     {{form.factor.label}}
+                     {{form.factor}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.total_producto.label}}
+                     {{form.total_producto}}
+                 </div>
+
+
+				<!--
+				
+				
+				<div class='form-group'>
+					{{form.hora_inicio.label}}
+					{{form.hora_inicio}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.hora_final.label}}
+					{{form.hora_final}}
+				</div>
+				<div class='form-group'>
+					{{form.cod_aplicador.label}}
+					{{form.cod_aplicador}}
+				</div>
+				
+			
+				
+            -->
+
+            <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{% block script %}
+
+<script >
+  $('#id_anexo_listas').select2();
+  $('#id_anexo_metodo').select2();
+  $('#id_anexo_equipo').select2();
+  $('#id_anexo_objetivo').select2();
+</script>
+<script>  
+    var valor_dosis;
+    var cadena;
+    var res;
+    $(function () {  
+       $("#id_hora_inicio").datetimepicker({  
+           format:'H:i',
+           timepicker:true,
+           datepicker:false,
+           step:10,
+       });  
+   });  
+
+    $(function () {  
+       $("#id_hora_final").datetimepicker({  
+           format:'H:i',
+           timepicker:true,
+           datepicker:false,
+           step:10,
+       });  
+   });
+
+    function request_objetivo(ubicacionId) {
+        var urldata="/ajax/load-objetivoplagas/" + ubicacionId;
+
+        $.ajax({                       
+            url: urldata,                    
+            data: {},
+            success: function (data) {
+                var option_html = `<option value="0" >---------</option>`;
+                for (var i = 0; i < data.length; i++) {     
+
+
+                    option_html += `<option value="${data[i].anexo_plagas__id}" >${data[i].anexo_plagas__id}- ${data[i].anexo_plagas__nombre_comun}-${data[i].anexo_dosis__tipo}</option>`;
+
+                } 
+                $("#id_anexo_objetivo").html(option_html);
+            //
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+    });
+
+    }
+
+
+
+//$("#id_anexo_tipo").prop('disabled', true);
+
+$("#id_anexo_listas").change(function () { 
+
+  var ubicacionId = $(this).val();
+  global_ubicacion_id=ubicacionId;      
+  request_objetivo(ubicacionId)
+});
+
+
+$("#id_anexo_objetivo").change(function () { 
+
+  var objetivo_id = $(this).val();
+  global_objetivo_id=objetivo_id; 
+  cadena=$('select[id="id_anexo_objetivo"] option:selected').text();
+  res = cadena.split('-')[2];
+
+  if(res=="DOSIS/200")
+  {
+      valor_dosis=2;
+      document.getElementById("id_anexo_tipo").value=2;
+      $("#id_anexo_tipo"). trigger("change");
+
+  }
+  else
+  {
+
+     valor_dosis=1;    
+     document.getElementById("id_anexo_tipo").value=1;
+     $("#id_anexo_tipo"). trigger("change");
+
+ }
+
+
+});
+
+$("#id_anexo_tipo").change(function () { 
+
+  var tipo_dosis_id = $(this).val();
+  global_tipo_id=tipo_dosis_id;
+
+  request_factor_premezcla(global_ubicacion_id,global_objetivo_id,global_tipo_id);
+});
+
+var global_dosis=''; 
+var item1=0;
+var numero_tanque=$('#numero_tanque').text();
+var numero_tanque1=numero_tanque.replace(',','.');
+var numero_tanque2 =  parseFloat(numero_tanque1);
+var factor=$('#id_factor1').text();
+var factor1=factor.replace(',','.');
+var factor2 =  parseFloat(factor1);
+
+
+var ha=$('#ha').text();
+var ha1=ha.replace(',','.');
+var ha2 =  parseFloat(ha1);
+$("#id_tipo_dosis_real").change(function () { 
+
+  item2 = $(this).val();
+  id_tipo_dosis_real
+      //calculando dosis real
+      item1=$("#id_anexo_tipo").val();
+      console.log("item1"+item1);
+      var  dosis=$("#id_dosis").val();
+      if (item1==2)
+      {
+          if(item2==2)
+          {
+              $("#id_dosis_real").val(dosis);
+              $("#id_dosis_real"). trigger("change");
+          }
+          else
+          {
+              vol=$("#volumen").text();
+              vol1=parseFloat(vol.replace(",","."));
+              dosis1=(dosis*vol1)/200;
+              dosis1=Math.round((dosis1*100))/100;
+              $("#id_dosis_real").val(dosis1);
+              $("#id_dosis_real"). trigger("change");
+          }
+
+      }
+      else
+      {
+          if(item2==1)
+          {
+              $("#id_dosis_real").val(dosis);
+              $("#id_dosis_real"). trigger("change");
+          }
+          else
+          {
+              vol=$("#volumen").text();
+              vol1=parseFloat(vol.replace(",","."));
+              dosis1=(dosis*200)/vol1;
+              dosis1=Math.round((dosis1*100))/100;
+              $("#id_dosis_real").val(dosis1);
+              $("#id_dosis_real"). trigger("change");
+          }    
+      }
+      
+  });
+
+$("#id_dosis_real").change(function (){
+    var dosis = $('#id_dosis_real').val();
+    item=$("#id_anexo_tipo").val();
+
+    var numero_tanque=$('#numero_tanque').text();
+    var numero_tanque1=numero_tanque.replace(',','.');
+    var numero_tanque2 =  parseFloat(numero_tanque1);
+    var factor=$('#id_factor1').text();
+    var factor1=factor.replace(',','.');
+    var factor2 =  parseFloat(factor1);
+
+
+    var ha=$('#ha').text();
+    var ha1=ha.replace(',','.');
+    var ha2 =  parseFloat(ha1);
+
+    var  item=global_tipo_id;
+    console.log("item"+item);
+    calcula_producto(item,dosis,numero_tanque2,factor2.ha2);
+    $('#id_dosis_real').val(dosis);
+});
+
+
+
+function request_factor_premezcla(ubicacion_id,objetivo_id,tipo_id) {
+
+
+    var urldata="/ajax/load-factor-premezcla/" + ubicacion_id+'/'+objetivo_id+'/'+tipo_id;
+
+    $.ajax({                       
+        url: urldata,
+        data: {},
+
+        success: function (data) {
+
+         if (data.length != 0)
+         {
+             $('#id_factor').val(data[0].factor_premezcla);
+
+             $('#id_dosis').val(data[0].dosis_min);
+
+             global_dosis=$('#id_dosis').val();
+             var dosis =  parseFloat(global_dosis);
+             var  item=global_tipo_id;
+
+             //calcula_dosis(item,dosis,numero_tanque2,factor2);
+
+         }
+         else
+         {
+             $('#id_factor').val("");
+
+             $('#id_dosis').val("");
+             var dosis =  parseFloat(global_dosis);
+             var  item=global_tipo_id;
+
+             //calcula_dosis(item,dosis,numero_tanque2,factor2);
+         }
+
+     },
+     error: function(result) {
+        console.log(result);
+    }
+
+});
+
+}
+
+
+function calcula_producto(item,dosis,numero_tanque2,factor2,ha)
+{
+    item2=$("#id_tipo_dosis_real").val();
+    valor_dosis=$("#id_anexo_tipo").val();
+    var vol=$('#volumen').text();
+    var vol1=vol.replace(',','.');
+    var vol2 =  parseFloat(vol1);
+
+    var ha=$('#ha').text();
+    var ha1=ha.replace(',','.');
+    var ha2 =  parseFloat(ha1);
+
+    if(valor_dosis==2)
+    {
+
+        if(item2==2)
+        {
+            $("#id_dosis_real").val(dosis);
+            total_producto=(dosis*vol2*ha2)/200;
+            total_producto1=Math.round((total_producto*100))/100;
+
+            if ($('#id_total_producto').val() == ""){
+                $('#id_total_producto').val(0);
+            }else{
+                $('#id_total_producto').val(total_producto1);
+            }
+
+        }
+        else
+        {
+
+          vol=$("#volumen").text();
+          vol1=parseFloat(vol.replace(",","."));
+          dosis1=$("#id_dosis_real").val();
+          dosis1=Math.round((dosis1*100))/100;
+          $("#id_dosis_real").val(dosis1);
+
+
+          var total_producto=0;
+          total_producto=(dosis1*ha2);
+          total_producto1=Math.round((total_producto*100))/100;
+          //$('#id_total_producto').val(total_producto1);
+
+          if ($('#id_total_producto').val() == ""){
+                $('#id_total_producto').val(0);
+            }else{
+                $('#id_total_producto').val(total_producto1);
+            }
+
+    }
+
+
+}
+else
+{
+
+    if(item2==1)
+    {
+
+        $("#id_dosis_real").val(dosis);
+
+        var total_producto=0;  
+        console.log("dosis real"+dosis);   
+        total_producto=(dosis*ha2);
+        total_producto1=Math.round((total_producto*100))/100;
+        //$('#id_total_producto').val(total_producto1);
+        console.log('ESTOY EN TRUE DE ITEM 2 = 1');
+        console.log(dosis + " " +ha2);
+
+        if ($('#id_total_producto').val() == ""){
+                $('#id_total_producto').val(0);
+            }else{
+                $('#id_total_producto').val(total_producto1);
+            }
+
+    }
+    else
+    {
+
+      vol=$("#volumen").text();
+      vol1=parseFloat(vol.replace(",","."));
+      dosis1=$("#id_dosis_real").val();
+      dosis1=Math.round((dosis1*100))/100;
+      $("#id_dosis_real").val(dosis1);
+
+      
+
+      total_producto=(dosis1*vol2*ha2)/200;
+      console.log("dosis1"+dosis1);
+      console.log("voldos"+vol2);
+      console.log("hados"+ha2);
+
+      total_producto1=Math.round((total_producto*100))/100;
+      //$('#id_total_producto').val(total_producto1);
+
+      console.log('ESTOY EN FALSE DE ITEM 2 = 1');
+
+      if ($('#id_total_producto').val() == ""){
+                $('#id_total_producto').val(0);
+            }else{
+                $('#id_total_producto').val(total_producto1);
+            }
+}
+
+}
+
+}
+
+$(document).ready(function(){
+    if ($("#id_anexo_tipo").val() != "") {
+        var tipo_dosis_id = $("#id_anexo_tipo").val();
+        global_tipo_id=tipo_dosis_id;
+        $("#id_anexo_tipo").change(function () {
+          var tipo_dosis_id = $(this).val();
+          global_tipo_id=tipo_dosis_id;
+
+          request_factor_premezcla(global_ubicacion_id,global_objetivo_id,global_tipo_id);
+      });
+    }
+});
+
+</script>
+{% endblock %}

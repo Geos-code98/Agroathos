@@ -1,0 +1,81 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> MATERIAL PROD TERMINADO</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+			
+				
+				<div class='form-group'>
+					{{form.cod_material.label}}
+					{{form.cod_material}}
+				</div>
+
+				<div class='form-group'>
+					{{form.desc_material.label}}
+					{{form.desc_material}}
+				</div>
+
+				<div class='form-group'>
+					{{form.grupo_art.label}}
+					{{form.grupo_art}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_cultivo.label}}
+					{{form.anexo_cultivo}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_categoria.label}}
+					{{form.anexo_categoria}}
+				</div>
+
+				<div class='form-group'>
+					{{form.cod_sap.label}}
+					{{form.cod_sap}}
+				</div>
+
+			
+
+				<div class='form-group'>
+					{{form.anexo_marca.label}}
+					{{form.anexo_marca}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_envase.label}}
+					{{form.anexo_envase}}
+				</div>
+
+				<div class='form-group'>
+					{{form.peso_neto.label}}
+					{{form.peso_neto}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_unidad.label}}
+					{{form.anexo_unidad}}
+				</div>
+				<div class='form-group'>
+					{{form.calibre.label}}
+					{{form.calibre}}
+				</div>
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+

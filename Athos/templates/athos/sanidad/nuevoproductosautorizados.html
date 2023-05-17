@@ -1,0 +1,108 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> PRODUCTOS AUTORIZADOS SANIDAD</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				<div class='form-group'>
+					{{form.anexo_producto.label}}
+					{{form.anexo_producto}}
+				</div>
+
+				<div class='form-group'>
+					{{form.codigo_material.label}}
+					{{form.codigo_material}}
+				</div>
+				<div class='form-group'>
+					{{form.nom_comercial.label}}
+					{{form.nom_comercial}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_ingrediente.label}}
+					{{form.anexo_ingrediente}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_toxico.label}}
+					{{form.anexo_toxico}}
+				</div>
+				<div class='form-group'>
+					{{form.um.label}}
+					{{form.um}}
+				</div>
+				<div class='form-group'>
+					{{form.pr.label}}
+					{{form.pr}}
+				</div>
+				<div class='form-group'>
+					{{form.uac.label}}
+					{{form.uac}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.nroaplicaciones.label}}
+					{{form.nroaplicaciones}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.concentracion_ia.label}}
+					{{form.concentracion_ia}}
+				</div>
+				<div class='form-group'>
+					{{form.formulacion.label}}
+					{{form.formulacion}}
+				</div>
+				<div class='form-group'>
+					{{form.pc.label}}
+					{{form.pc}}
+				</div>
+				<div class='form-group'>
+					{{form.codigo_senasa.label}}
+					{{form.codigo_senasa}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_permitido.label}}
+					{{form.anexo_permitido}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_versiones.label}}
+					{{form.anexo_versiones}}
+				</div>
+				<div class='form-group'>
+					{{form.equivalencia.label}}
+					{{form.equivalencia}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_estado.label}}
+					{{form.anexo_estado}}
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{% block script %}
+
+<script >
+  $('#id_anexo_producto').select2();
+  $('#id_anexo_ingrediente').select2();
+  $('#id_anexo_toxico').select2();
+  $('#id_anexo_plagas').select2();
+ 
+</script>
+{% endblock %}

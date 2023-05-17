@@ -1,0 +1,156 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+{% load staticfiles %}
+{% load extras %}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Código</td>
+						<td>Nombres</td>
+						
+						<td align="center">Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in mis %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.cod_subitem }}
+							</td>
+							<td>
+								{{ dato.nom_SubItem }}
+							</td>
+							
+							<td align="center">
+								<!--<a href="{% url 'editarsubitem' id dato.id %}"><img src="{% static 'login/images/icons/editar1.png' %}" title="editar"></a>-->
+								<!--menu-->
+								{% if dato.id < 44  or dato.id == 49 or dato.id == 42 or dato.id == 108 %}
+								<a href="{% url 'campo' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								<!--ACOPIO-->
+								{% if dato.id == 45  or dato.id == 52 or dato.id == 98 or dato.id == 127 or dato.id == 165%}
+								<a href="{% url 'campos' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								<!--evaluaciones-->
+								{% if dato.id == 44  or dato.id == 47 or dato.id == 55 or dato.id == 56 or dato.id == 61 or dato.id == 65 or dato.id == 66 or dato.id == 70 or dato.id == 71 or dato.id == 106 or dato.id == 122 or dato.id == 123 or dato.id == 130 or dato.id == 134 or dato.id == 142 or dato.id == 144 or dato.id == 147 or dato.id == 148 or dato.id == 149 or dato.id == 150 or dato.id == 151 or dato.id == 152 or dato.id == 158 or dato.id == 159 or dato.id == 160 or dato.id == 161 or dato.id == 162 or dato.id == 163 or dato.id == 164 or dato.id == 166 or dato.id == 168 or dato.id == 169 or dato.id == 170 or dato.id == 172 or dato.id == 174%}
+								<a href="{% url 'evaluaciones' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								<!--producto terminado-->
+								{% if dato.id == 46%}
+								<a href="{% url 'prterminado' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								<!--proyecciones-->
+								{% if dato.id == 48 or dato.id == 51  or dato.id == 53%}
+								<a href="{% url 'proyecciones' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								{% if dato.id == 50 %}
+								<a href="{% url 'cgfeno' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								
+								{% if dato.id == 54  or dato.id == 57 or dato.id == 58 or dato.id == 59 or dato.id == 60 or dato.id == 62 or dato.id == 63 or dato.id == 64 or dato.id == 69 or dato.id == 153 or dato.id == 155 %}
+								<a href="{% url 'maestras' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+
+								{% if dato.id == 67 or dato.id == 68 %}
+								<a href="{% url 'logistica' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								
+								{% if dato.id == 72  or dato.id == 73 or dato.id == 74 or dato.id == 75 or dato.id == 76 or dato.id == 77 or dato.id == 78 or dato.id == 79 or dato.id == 80 or dato.id == 81 or dato.id == 82 or dato.id == 91 or dato.id == 92 or dato.id == 93 or dato.id == 99 %}
+								<a href="{% url 'sanidad' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 83  or dato.id == 84 or dato.id == 85 or dato.id == 86 or dato.id == 87  or dato.id == 88 or dato.id == 89 or dato.id == 90 or dato.id == 105 or dato.id == 111 or dato.id == 112 or dato.id == 154%}
+								<a href="{% url 'riego' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 94 or dato.id == 124 or dato.id == 145 or dato.id == 146  %}
+								<a href="{% url 'acopio_athos' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 104 %}
+								<a href="{% url 'acopio_athos_02' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 95 %}
+								<a href="{% url 'garita' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 96 or dato.id == 97 or dato.id == 125 %}
+								<a href="{% url 'plantagranada' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 100 or dato.id == 101 or dato.id == 102 or dato.id == 103 %}
+								<a href="{% url 'programaproduccion' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 107 or dato.id == 110 %}
+								<a href="{% url 'calidadagricola' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 109 or dato.id == 140 or dato.id == 141 %}
+								<a href="{% url 'topico' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if  dato.id == 113 or dato.id == 114 or dato.id == 115 or dato.id == 116 or dato.id == 117 or dato.id == 118 or dato.id == 119 or dato.id == 120 or dato.id == 121 %}
+								<a href="{% url 'planificacion' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 126 %}
+								<a href="{% url 'capacitaciones' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+
+								{% if dato.id == 128 or dato.id == 129 or dato.id == 131 %}
+								<a href="{% url 'acopio_athos_03' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 132 or dato.id == 133 or dato.id == 135  %}
+								<a href="{% url 'acopio_athos_04' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 173 %}
+								<a href="{% url 'acopio_athos_05' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 136 or dato.id == 137   %}
+								<a href="{% url 'plantahigo' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 138 or dato.id == 139 or dato.id == 143 or dato.id == 156 or dato.id == 171 %}
+								<a href="{% url 'rrhh' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 157 %}
+								<a href="{% url 'mantenimiento' dato.id  %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+	</article>
+</section>
+{% endblock %}

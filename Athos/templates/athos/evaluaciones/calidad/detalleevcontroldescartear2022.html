@@ -1,0 +1,66 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">DETALLE EV. CONTROL DESCARTE AR</h1>
+		<div>
+			<a href="{% url 'creardetalleevcontroldescartear2022' id subid %}" >
+				<button type="button" class="btn btn-success">Registrar Detalle</button>
+			</a>
+			<a href="{% url 'evaluaciones' id %}" >
+				<button type="button" class="btn btn-danger">Volver</button>
+			</a>
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Fecha Cosecha</td>
+						<td>Fundo</td>
+						<td>Turno</td>
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in detallepr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.fecha_cosecha }}
+							</td>
+							<td>
+								{{ dato.anexo_fundo }}
+							</td>
+							<td>
+								{{ dato.anexo_turno }}
+							</td>
+							
+							<td>
+							 	<a href="{% url 'editardetalleevcontroldescartear2022'  id  subid dato.id %}"><i class="bi bi-pencil-square"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

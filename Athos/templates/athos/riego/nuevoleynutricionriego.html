@@ -1,0 +1,114 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> LEY NUTRICION</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				<div class='form-group'>
+					{{form.codigo.label}}
+					{{form.codigo}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_producto.label}}
+					{{form.anexo_producto}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.nombre.label}}
+					{{form.nombre}}
+				</div>
+				<div class='form-group'>
+					{{form.um.label}}
+					{{form.um}}
+				</div>
+				<div class='form-group'>
+					{{form.n.label}}
+					{{form.n}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.p2o5.label}}
+					{{form.p2o5}}
+				</div>
+				<div class='form-group'>
+					{{form.k2o.label}}
+					{{form.k2o}}
+				</div>
+				<div class='form-group'>
+					{{form.cao.label}}
+					{{form.cao}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.mgo.label}}
+					{{form.mgo}}
+				</div>
+				<div class='form-group'>
+					{{form.s.label}}
+					{{form.s}}
+				</div>
+				<div class='form-group'>
+					{{form.fe.label}}
+					{{form.fe}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.mn.label}}
+					{{form.mn}}
+				</div>
+				<div class='form-group'>
+					{{form.b.label}}
+					{{form.b}}
+				</div>
+				<div class='form-group'>
+					{{form.zn.label}}
+					{{form.zn}}
+				</div>
+				<div class='form-group'>
+					{{form.mo.label}}
+					{{form.mo}}
+				</div>
+				<div class='form-group'>
+					{{form.ci.label}}
+					{{form.ci}}
+				</div>
+				<div class='form-group'>
+					{{form.cu.label}}
+					{{form.cu}}
+				</div>
+				<div class='form-group'>
+					{{form.h2o.label}}
+					{{form.h2o}}
+				</div>
+				<div class='form-group'>
+					{{form.kc.label}}
+					{{form.kc}}
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{% block script %}
+
+<script >
+	$("#id_kc").val(1);
+
+</script>
+
+ {% endblock %}

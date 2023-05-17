@@ -1,0 +1,69 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">AREA LABOR</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'creararealabor' %}" >
+				<button type="button" class="btn btn-success">Registrar Area Labor</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Area</td>
+						<td>Labor</td>
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in arealaborpr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.area }}
+							</td>
+
+							<td>
+								{{ dato.anexo_labor }}
+							</td>
+							
+						
+							
+							
+
+							<td>
+							 	<a href="{% url 'editararealabor'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+								<a href="#"><i class="bi bi-eye-fill"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

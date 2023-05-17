@@ -1,0 +1,100 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> CONSUMO REQUERIMIENTO RIEGO FERT</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				<div class='form-group'>
+				
+					<p id="ver">{{ver}}</p>
+				</div>
+				<div class='form-group'>
+					{{form.anexo_riego.label}}
+					{{form.anexo_riego}}
+				</div>
+				<div class='form-group'>
+					{{form.fecha_consumo.label}}
+					{{form.fecha_consumo}}
+				</div>
+				<div class='form-group'>
+					{{form.consumo.label}}
+					{{form.consumo}}
+				</div>
+				
+				
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+
+  <script>  
+  	$("#id_anexo_riego").select2();
+  $(function () {  
+   $("#id_fecha_consumo").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false 
+
+   }); 
+
+
+   $("#id_hora_inicio").datetimepicker({  
+       format: 'H:i',  
+       timepicker:true,
+       datepicker:false,
+       step:15  
+   }); 
+
+   $("#id_hora_final").datetimepicker({  
+       format: 'H:i',  
+       timepicker:true,
+       datepicker:false,
+       step:15  
+   }); 
+
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+
+
+
+
+<script >
+	$(document).ready(function(){
+	
+	$("#id_caudal_final").change(function(){
+		var caudal_inicial=$("#id_caudal_inicial").val();
+		var caudal_final=$("#id_caudal_final").val();
+		
+		var res=Math.round((caudal_final-caudal_inicial)*100)/100;
+		$("#id_volumen").val(res);	
+
+            
+        });
+	
+});
+
+</script>
+
+
+{% endblock %}

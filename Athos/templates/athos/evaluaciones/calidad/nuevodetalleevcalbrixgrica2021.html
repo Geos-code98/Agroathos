@@ -1,0 +1,147 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+          <div class="col-lg-6">
+           <div class="card">
+               <div class="card-header"><strong>Registro</strong><small> DETALLE BRIX GR ICA</small></div>
+               <div class="card-body card-block">
+                 <form id="frmajax"  method="post" data-validate="parsley">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    
+
+                    <div class='form-group'>
+                        {{form.sector.label}}
+                        {{form.sector}}
+                    </div>
+
+                    <div class='form-group'>
+                        {{form.peso.label}}
+                        {{form.peso}}
+                    </div>
+
+                    <div class='form-group'>
+                      {{form.diametro.label}}
+                      {{form.diametro}}
+                  </div>
+
+                  <div class='form-group'>
+                      {{form.diametro_polar.label}}
+                      {{form.diametro_polar}}
+                  </div>
+
+                  <div class='form-group'>
+                    {{form.color_interno.label}}
+                    {{form.color_interno}}
+                </div>
+
+                <div class='form-group'>
+                  {{form.color_externo.label}}
+                  {{form.color_externo}}
+              </div>
+
+              <div class='form-group'>
+                  {{form.brix.label}}
+                  {{form.brix}}
+              </div>
+
+              <div class='form-group'>
+                  {{form.gasto_naoh.label}}
+                  {{form.gasto_naoh}}
+              </div>
+
+              <div class='form-group'>
+                  {{form.acidez.label}}
+                  {{form.acidez}}
+              </div>
+
+              <div class='form-group'>
+                  {{form.indice_madurez.label}}
+                  {{form.indice_madurez}}
+              </div>
+
+              <div class='form-group'>
+                  {{form.peso_arilo.label}}
+                  {{form.peso_arilo}}
+              </div>
+
+
+              <div class='form-group'>
+                  {{form.peso_cascara.label}}
+                  {{form.peso_cascara}}
+              </div>
+
+
+              <div class='form-group'>
+                  {{form.anexo_llenado.label}}
+                  {{form.anexo_llenado}}
+              </div>
+
+
+              <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+          </form>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+
+<script>
+
+   $("#id_gasto_naoh").change(function () { 
+
+      var naoh = $("#id_gasto_naoh").val();
+      var acidez=(((naoh*0.064*0.1)/25)*5*100);
+      var acidez0=(Math.round((acidez*100)))/100;
+      $("#id_acidez").val(acidez0);
+      $("#id_acidez").trigger("change");
+
+      
+  });
+
+
+   $("#id_acidez").change(function () { 
+
+      var acidez1 = $("#id_acidez").val();
+      var brix = $("#id_brix").val();
+      var indice=Math.round((brix/acidez1)*100)/100;
+      
+      $("#id_indice_madurez").val(indice);
+      
+      
+  });
+
+
+
+
+
+</script>
+
+
+
+
+{% endblock %}

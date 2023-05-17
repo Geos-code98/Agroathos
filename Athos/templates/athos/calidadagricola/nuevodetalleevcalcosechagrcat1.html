@@ -1,0 +1,317 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE EV. CALIDAD COSECHA GR-CAT1</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+        
+        <div class='form-group'>
+          {{form.qrevaluador.label}}
+          {{form.qrevaluador}}
+        </div>				
+
+				<div class='form-group'>
+					{{form.total_fruta.label}}
+					{{form.total_fruta}}
+				</div>
+        <div class='form-group'>
+          {{form.fruta_cosechable_c3.label}}
+          {{form.fruta_cosechable_c3}}
+        </div>
+				
+				<div class='form-group'>
+					{{form.fruta_clara2.label}}
+					{{form.fruta_clara2}}
+				</div>
+
+          <div class='form-group'>
+          {{form.fruta_clara3.label}}
+          {{form.fruta_clara3}}
+        </div>
+        <div class='form-group'>
+          {{form.fruta_rajada.label}}
+          {{form.fruta_rajada}}
+        </div>
+				<div class='form-group'>
+					{{form.fruta_descarte.label}}
+					{{form.fruta_descarte}}
+				</div>
+			
+			
+          <div class='form-group'>
+          {{form.dano_tijera.label}}
+          {{form.dano_tijera}}
+        </div>
+        <div class='form-group'>
+          {{form.sin_pedunculo.label}}
+          {{form.sin_pedunculo}}
+        </div>
+         <div class='form-group'>
+          {{form.con_pedunculo.label}}
+          {{form.con_pedunculo}}
+        </div>
+        
+        <div class='form-group'>
+          {{form.fruta_hojas.label}}
+          {{form.fruta_hojas}}
+        </div>
+        <div class='form-group'>
+          {{form.fruta_deshidratada.label}}
+          {{form.fruta_deshidratada}}
+        </div>
+
+
+       <div class='form-group'>
+          {{form.corona_deshidratada.label}}
+          {{form.corona_deshidratada}}
+        </div>
+
+          <div class='form-group'>
+          {{form.fruta_deforme.label}}
+          {{form.fruta_deforme}}
+        </div>
+      
+        <div class='form-group'>
+          {{form.fruta_pquemada.label}}
+          {{form.fruta_pquemada}}
+        </div>
+        <div class='form-group'>
+          {{form.corona_botritis.label}}
+          {{form.corona_botritis}}
+        </div>
+        <div class='form-group'>
+          {{form.queresa.label}}
+          {{form.queresa}}
+        </div>
+      
+        <div class='form-group'>
+          {{form.fruta_sana.label}}
+          {{form.fruta_sana}}
+        </div>
+        
+
+        <div class='form-group'>
+          {{form.anexo_guantes.label}}
+          {{form.anexo_guantes}}
+        </div>
+
+        <div class='form-group'>
+          {{form.anexo_tijeras.label}}
+          {{form.anexo_tijeras}}
+        </div>
+
+        <div class='form-group'>
+          {{form.anexo_jabas_burbupack.label}}
+          {{form.anexo_jabas_burbupack}}
+        </div>
+
+        <div class='form-group'>
+          {{form.anexo_jabas_sinb.label}}
+          {{form.anexo_jabas_sinb}}
+        </div>
+				
+				<div class='form-group'>
+          {{form.cochinilla.label}}
+          {{form.cochinilla}}
+        </div>
+				
+				<div class='form-group'>
+          {{form.color25.label}}
+          {{form.color25}}
+        </div>
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+
+ <script>  
+  $(function () {  
+   $("#id_fecha").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+    <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+		if(m<10)
+    {
+      if(d<10)
+      {
+        $("#id_fecha").val("0"+ d + "/" +"0" +m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha").val( d + "/" +"0" +m + "/" +y);  
+      }
+    }
+    else
+    {
+       if(d<10)
+      {
+        $("#id_fecha").val("0"+ d + "/" + m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha").val( d + "/" + m + "/" +y);  
+      }
+    }
+
+
+          
+
+
+          
+
+     });  
+   </script>
+
+
+<script type="text/javascript">
+     
+      
+      $('#id_anexo_zona').select2();
+     
+       $('#id_anexo_fundo').select2();
+        
+      $('#id_ubicacion').select2(); 
+     // $("#id_anexo_cultivo").val(2).trigger('change');
+      //$("#id_anexo_eje").val(2).trigger('change');
+     
+      
+ function request_zona (fundoId) {
+		var urldata="/ajax/load-fundos/" + fundoId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].nom_fundo}</option>`;
+        		
+        } 
+        $("#id_anexo_fundo").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+   
+ function request_pep (ubicacionId) {
+		var urldata="/ajax/load-pep/" + ubicacionId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].anexo_fundo__abreviatura} ${data[i].anexo_modulo__nombremodulo} ${data[i].anexo_lote__nom_lote}</option>`;
+        		
+        } 
+        $("#id_anexo_pep").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+
+function request_turno (turnoid) {
+    var urldata="/ajax/load-turnopp/" + turnoid;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) {   
+        
+            
+              option_html += `<option value="${data[i].id}" > ${data[i].turno} </option>`;
+            
+        } 
+        $("#id_anexo_turno").html(option_html);
+          console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+  } 
+
+
+
+
+       $("#id_anexo_zona").change(function () { 
+
+      var fundoId = $(this).val();
+      	
+      request_zona(fundoId)
+    });
+
+  $("#id_anexo_fundo").change(function () { 
+
+      var ubicacionId = $(this).val();
+      	
+      request_pep(ubicacionId)
+    });
+
+ $("#id_anexo_pep").change(function () { 
+
+      var turnoid = $(this).val();
+        
+      request_turno(turnoid)
+    });
+
+  </script>
+
+
+
+
+{% endblock %}

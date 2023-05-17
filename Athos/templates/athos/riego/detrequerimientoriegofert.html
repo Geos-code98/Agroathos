@@ -1,0 +1,95 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h2 id="h1-usuarios">CAPA2-REQUERIMIENTOS PRODUCTOS FERTILIZANTES</h2>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			{% now "Y-m-d" as todays_date %}
+			
+			{% if ver1|date:'Y-m-d' <= todays_date  or request.user.username == "jcordova" or request.user.username == "clupuche" or request.user.username == "jmamani" or request.user.username == "frondon" %}
+   				<!--  data-toggle="modal" data-target="#scrollmodal" -->
+				<a href="{% url 'creardetrequerimientoriegofert' id subid  %}" >
+				<button type="button" class="btn btn-success">Registrar REQ</button>
+				</a>
+			{% endif %}
+			
+			<a href="{% url 'riego' id  %}" >
+				<button type="button" class="btn btn-secondary">Atras</button>
+			</a>
+		
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<TD>Ley</TD>
+						<td>Total Producto</td>
+						<td>Consumido</td>
+						<td>Saldo</td>
+						<td>Fecha Creacion</td>
+						<td>UBI ID</td>
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in detallepr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+						
+							<td>
+								{{ dato.anexo_ley}}
+							</td>
+							<td>
+								{{ dato.total_producto}}
+							</td>
+							
+							<td>
+								{{ dato.suma_consumo}}
+							</td>
+							<td>
+								{{ dato.resto_consumo}}
+							</td>
+							<td>
+								{{ dato.fecha_hora_creacion|date:'Y-m-d'}}
+							</td>
+							<td>
+								{{ dato.id}}
+							</td>
+
+							<td>
+							{% if dato.fecha_hora_creacion|date:'Y-m-d' == todays_date or request.user.username == "avalenzuela" or request.user.username == "clupuche" or request.user.username == "eandia" or request.user.username == "jcordova" or request.user.username == "rrojas" or request.user.username == "dlifonzo" or request.user.username == "wtucno" or request.user.username == "achacaliaza"  or request.user.username == "jmamani" or request.user.username == "frondon"%}
+   									<a href="{% url 'editardetrequerimientoriegofert'  id subid dato.id %}"><i class="bi bi-pencil-square"></i></a>
+							{% endif %}
+							 	
+							 	
+							 	<a href="{% url 'consumorequerimientoriegofert'  id subid  dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

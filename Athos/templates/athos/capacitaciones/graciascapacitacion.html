@@ -1,0 +1,19 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">GRACIAS POR RESPONDER NUESTRO FORMULARIO</h1>
+		
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearencuestacapacitacion' id %}" >
+				<button type="button" class="btn btn-success">Registrar Encuesta</button>
+			</a>
+
+		</div>
+		
+	</article>
+</section>
+{% endblock %}

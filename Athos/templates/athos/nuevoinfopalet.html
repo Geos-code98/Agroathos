@@ -1,0 +1,213 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> PALET</small></div>
+					<div class="card-body card-block">
+						<a href="javascript: history.go(-1)" >
+							<button type="button" class="btn btn-secondary">Atrás</button>
+						</a>
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				<div class='form-group'>
+					
+					<p id="resto_jaba">Saldo Jabas: {{palet1.resto_jabas}}</p>
+					
+				</div>
+				<div class='form-group'>
+					{{form.anexo_tipoparihuela.label}}
+					{{form.anexo_tipoparihuela}}
+				</div>
+				<div class='form-group' id="almacenacopio">
+					{{form.anexo_almacen.label}}
+					{{form.anexo_almacen}}
+				</div>
+				<div class='form-group'>
+					{{form.cant_jabas.label}}
+					{{form.cant_jabas}}
+				</div>
+				<div class='form-group'>
+					{{form.pesobr_palet.label}}
+					{{form.pesobr_palet}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.pesova_jabas.label}}
+					{{form.pesova_jabas}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_envase2.label}}
+					{{form.anexo_envase2}}
+				</div>
+				<div class='form-group'>
+					{{form.cant_jabas2.label}}
+					{{form.cant_jabas2}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.pesonet_palet.label}}
+					{{form.pesonet_palet}}
+				</div>
+				<div class='form-group'>
+					
+					<p id="peso_jaba">{{palet1.anexo_material.anexo_mattransporte.peso}}</p>
+					
+				</div>
+					<div class='form-group'>
+					
+					<p id="lala">{{palet2.cant_jabas}}</p>
+					
+				</div>
+				<div class='form-group'>
+					
+					<p id="peso_parihuela"></p>
+					
+				</div>
+				
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+			
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>
+	$(document).ready(function() {
+
+	/*$('#id_linea').change(function(){
+		document.getElementById("id_Codigoqr").focus();
+	});
+	*/
+	document.getElementById("id_anexo_almacen").value=2;
+	document.getElementById("id_anexo_envase2").options.length=3; 
+   	  $('#id_anexo_tipoparihuela').change(function(){
+    	 
+    	
+		
+		var cad1 =  $('#id_anexo_tipoparihuela option:selected').text();
+		arreglo1=cad1.split("-");
+		var p_parihuela=parseFloat(arreglo1[1]);
+		console.log(p_parihuela);
+		$('#peso_parihuela').text(p_parihuela);
+		
+		
+
+	
+    });
+
+
+     $('#id_cant_jabas').change(function(){
+    	 
+    	
+		var neto=0;
+		var jabas_vacias=0;
+		var ant_saldo=0;
+		var cad =  $('#resto_jaba').text();
+		arreglo=cad.split(": ");
+
+		var saldo=parseFloat(arreglo[1]);
+		
+		console.log("saldo actual"+saldo);
+		
+		ant_saldo=parseFloat($('#lala').text());
+		console.log("saldo anterior: "+ant_saldo);
+		if(ant_saldo=="NaN"){
+			ant_saldo=0;
+			
+		}
+		saldo=saldo+ant_saldo;
+		console.log("saldo post conversion: "+ant_saldo);
+		console.log("nuevo saldo: "+saldo);
+		cant_jabas=$('#id_cant_jabas').val();
+		console.log(cant_jabas);
+		if(cant_jabas>saldo )
+		{
+			alert("No puedes poner mas jabas de las que no tienes.. revisa tu saldo");
+		}
+			
+	
+		//alert(java);
+       //document.getElementById(canjavas).value = java;
+      // $("#id_npalet").val(arreglo[0]);
+      // $("#id_njavas").val(arreglo[7]);
+       //$("#id_peso").val(arreglo[6].replace(",","."));
+
+	
+    });
+
+     $('#id_cant_jabas2').change(function(){
+    	 
+    	
+		var neto=0;
+		var jabas_vacias=0;
+		var cant_jabas=$('#id_cant_jabas').val();
+		var peso_jaba=$('#peso_jaba').html().replace(",",".");
+		var peso_bruto=$('#id_pesobr_palet').val();
+		
+		var id_material2=$('#id_anexo_envase2').val();
+		var cad1 =  $('#id_anexo_tipoparihuela option:selected').text();
+		arreglo1=cad1.split("-");
+		var p_parihuela=parseFloat(arreglo1[1]);
+		console.log(p_parihuela);
+		$('#peso_parihuela').text(p_parihuela);
+
+		var cant_jabas2=$('#id_cant_jabas2').val();
+		var peso_mat2=0;
+		console.log("-----");
+		console.log(id_material2);
+		if(id_material2==2)
+		{
+			peso_mat2=1.5;
+		}
+		else
+		{
+			peso_mat2=1.8;
+		}	
+		var pt=0;
+		pt=peso_mat2*cant_jabas2;
+		console.log(cant_jabas2);
+		console.log(peso_mat2);
+		console.log(pt);
+		
+		
+		jabas_vacias=Math.round((cant_jabas*peso_jaba)*100)/100;
+		neto=Math.round((peso_bruto-jabas_vacias-p_parihuela-pt)*100)/100;
+		$('#id_pesonet_palet').val(neto);
+		$('#id_pesova_jabas').val(jabas_vacias);
+		
+			
+		
+		//alert(java);
+       //document.getElementById(canjavas).value = java;
+      // $("#id_npalet").val(arreglo[0]);
+      // $("#id_njavas").val(arreglo[7]);
+       //$("#id_peso").val(arreglo[6].replace(",","."));
+       
+      
+
+       
+
+
+        return false;
+    });
+  
+    });  
+  
+
+
+</script>
+
+{% endblock %}

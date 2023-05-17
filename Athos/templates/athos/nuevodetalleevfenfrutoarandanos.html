@@ -1,0 +1,75 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE FRUTOS ARANDANOS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				<div class='form-group'>
+					{{form.nbaya.label}}
+					{{form.nbaya}}
+				</div>
+				<div class='form-group'>
+					{{form.calibre.label}}
+					{{form.calibre}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_selector.label}}
+					{{form.anexo_selector}}
+				</div>
+				<div class='form-group'>
+					{{form.observacion.label}}
+					{{form.observacion}}
+				</div>
+				<div class='form-group'>
+					{{form.longitud.label}}
+					{{form.longitud}}
+				</div>
+				<div class='form-group'>
+					{{form.latitud.label}}
+					{{form.latitud}}
+				</div>
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+  <script>  
+     $(document).ready(function () {  
+	
+          if ("geolocation" in navigator)
+          { //check geolocation available 
+    //try to get user current location using getCurrentPosition() method
+   			 navigator.geolocation.getCurrentPosition(function(position){ 
+           	 console.log("Found your location nLat : "+position.coords.latitude+" nLang :"+ position.coords.longitude);
+           	 lat=position.coords.latitude;
+           	 lon=position.coords.longitude;
+
+           	 nlat=Math.round((lat)*10000000)/10000000;
+           	 nlon=Math.round((lon)*10000000)/10000000;
+           	 $("#id_longitud").val(nlon);
+			 $("#id_latitud").val(nlat);
+       		 });
+
+		  }
+		else
+		{
+   			 console.log("Browser doesn't support geolocation!");
+		}
+		
+
+     });  
+   </script>
+{%endblock%}

@@ -1,0 +1,227 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+
+	
+
+
+<section  class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> EV. CONTROL PRD TERMINADO</small></div>
+					<div class="card-body card-block">
+			<form  id="lanzadopaletasrealform"  method="post" data-validate="parsley"  data-cities-url="" >
+				{% csrf_token %}
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+
+			
+				<!--<input type="button" onclick="location.reload()" value="LIMPIAR" id="registrar">-->	
+				<div class='form-group' >
+					{{form.fecha.label}}
+					{{form.fecha}}
+				</div>
+					
+
+				<div class='form-group' >
+					{{form.anexo_centro.label}}
+					{{form.anexo_centro}}
+				</div>
+
+				<div class='form-group' >
+					{{form.anexo_linea.label}}
+					{{form.anexo_linea}}
+				</div>
+				
+				
+
+				<div class='form-group' >
+					{{form.anexo_turno.label}}
+					{{form.anexo_turno}}
+				</div>
+				<div class='form-group' >
+					{{form.anexo_pagina.label}}
+					{{form.anexo_pagina}}
+				</div>
+				<div class='form-group' >
+					{{form.observacion.label}}
+					{{form.observacion}}
+				</div>
+			
+				<div class='form-group' >
+					
+					{{form.fecha_hora_creacion}}
+				</div>
+
+			
+				
+
+					<input type="submit" value="REGISTRAR" id="registrar" class="btn btn-primary">	
+				<a href="{% url 'programa_changelist' %}">Nevermind</a>
+			</form>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+ <script>  
+ 	 $('#id_anexo_centro').select2();
+ 	    
+  $(function () {  
+   $("#datepickercreacion1").datetimepicker({  
+       format: 'Y-m-d',  
+       timepicker:false 
+
+   }); 
+   $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+		 
+          if(d<10)
+		 {
+		 	if(m<10)
+		 	{
+          		
+          		$("#datepickercreacion").val(y + "-"+ "0"+m+ "-"+ "0"+ d + " "+ H+":"+MI+":"+SEC);
+          		$("#datepickercreacion1").val(y + "-"+ "0"+m+ "-"+ "0"+ d );
+
+          		
+          	}
+          	else
+          	{
+          		
+          		$("#datepickercreacion").val(y + "-"+ m + "-"+"0" + d  + " "+ H + ":" + MI + ":" +SEC);
+          		$("#datepickercreacion1").val(y + "-"+ m + "-"+"0" + d );
+
+          	}
+      	 }
+      	 else
+      	 {
+      	 	 if(m<10)
+		 	{
+          		
+          		$("#datepickercreacion").val(y + "-"+  "0" +m +"-"+ d  + " "+ H + ":" + MI + ":" +SEC);
+          		$("#datepickercreacion1").val(y + "-"+  "0" +m +"-"+ d );
+          	}
+          	else
+          	{
+          		
+          		$("#datepickercreacion").val(y + "-"+ m + "-"+d  + " "+ H + ":" + MI + ":" +SEC);
+          		$("#datepickercreacion1").val(y + "-"+ m + "-"+d );
+          	}
+      	 }
+
+
+          
+
+     });   
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+    <script>  
+      function request_linea (fundoId) {
+		var urldata="/ajax/load-lineas/" + fundoId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].descripcion}</option>`;
+        		
+        } 
+        $("#id_anexo_linea").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+      
+       $("#id_anexo_centro").change(function () { 
+
+      var fundoId = $(this).val();
+      	
+      request_linea(fundoId)
+    });
+
+   </script>
+    <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+		H= n.getHours();
+		MI=n.getMinutes();
+		SEC=n.getSeconds();
+		console.log(H);
+		console.log(MI);
+		//document.getElementById("datepickercreacion").removeAttribute("readonly");
+		if (H<=20 && MI<=59)
+		{
+			document.getElementById("id_anexo_turno").value=1;
+		}
+		else
+		{
+			document.getElementById("id_anexo_turno").value=2;
+		}
+
+//Lo ordenas a gusto.
+		 
+        
+
+
+          
+
+     }); 
+   </script>
+<script>
+  
+</script>
+{% endblock %}

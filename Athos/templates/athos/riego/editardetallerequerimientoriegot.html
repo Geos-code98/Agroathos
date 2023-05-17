@@ -1,0 +1,243 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> CONSUMO REQUERIMIENTO RIEGO FERT</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+				<div class='form-group'>
+				
+					<p id="ver">{{ver}}</p>
+				</div>
+
+				<div class='form-group'>
+				
+					<p id="ver2">{{ver1}}</p>
+				</div>
+
+				<div class='form-group'>
+					{{form.fecha_consumo.label}}
+					{{form.fecha_consumo}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_pulso.label}}
+					{{form.anexo_pulso}}
+				</div>
+			
+				<div class='form-group'>
+					{{form.hora_inicio.label}}
+					{{form.hora_inicio}}
+				</div>
+				<div class='form-group'>
+					{{form.hora_final.label}}
+					{{form.hora_final}}
+				</div>
+
+				<div class='form-group'>
+					{{form.caudal_inicial.label}}
+					{{form.caudal_inicial}}
+				</div>
+				<div class='form-group'>
+					{{form.caudal_final.label}}
+					{{form.caudal_final}}
+				</div>
+				<div class='form-group'>
+					{{form.consumo.label}}
+					{{form.consumo}}
+				</div>
+			
+				
+					
+				
+				<div class='form-group'>
+					{{form.ph_agua.label}}
+					{{form.ph_agua}}
+				</div>
+				<div class='form-group'>
+					{{form.ce_agua.label}}
+					{{form.ce_agua}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.ph_solucion.label}}
+					{{form.ph_solucion}}
+				</div>
+				<div class='form-group'>
+					{{form.ce_solucion.label}}
+					{{form.ce_solucion}}
+				</div>
+				<!--
+				<div class='form-group'>
+					{{form.tensio20.label}}
+					{{form.tensio20}}
+				</div>
+				<div class='form-group'>
+					{{form.tensio30.label}}
+					{{form.tensio30}}
+				</div>
+				<div class='form-group'>
+					{{form.tensio40.label}}
+					{{form.tensio40}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.tensio60.label}}
+					{{form.tensio60}}
+				</div>
+				<div class='form-group'>
+					{{form.tensio90.label}}
+					{{form.tensio90}}
+				</div>
+				-->
+				<div class='form-group'>
+					{{form.paf.label}}
+					{{form.paf}}
+				</div>
+				<div class='form-group'>
+					{{form.pdf.label}}
+					{{form.pdf}}
+				</div>
+				<div class='form-group'>
+					{{form.pdvr.label}}
+					{{form.pdvr}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_operador.label}}
+					{{form.anexo_operador}}
+				</div>
+
+				<div class='form-group'>
+					{{form.codigo.label}}
+					{{form.codigo}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.observacion.label}}
+					{{form.observacion}}
+				</div>
+				
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+
+  <script>
+$("#id_anexo_operador").select2();
+  var idcodigo=$("#id_codigo").val();
+  var arr_idcodigo= idcodigo.split(",");
+      for (i=0;i<=arr_idcodigo.length-1;i++)
+      {
+        $("#id_anexo_operador option[value="+ arr_idcodigo[i] +"]").attr("selected",true);
+      }
+
+
+  $(function () {  
+   $("#id_fecha_consumo").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false 
+
+   }); 
+
+
+   $("#id_hora_inicio").datetimepicker({  
+       format: 'H:i',  
+       timepicker:true,
+       datepicker:false,
+       step:15  
+   }); 
+
+   $("#id_hora_final").datetimepicker({  
+       format: 'H:i',  
+       timepicker:true,
+       datepicker:false,
+       step:15  
+   }); 
+
+  });  
+
+    $("#id_anexo_operador").change(function () { 
+     var resultado="";
+      let eq = $(this).val();
+      $("#id_codigo").val(eq);
+     
+    });
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+   
+
+
+
+
+
+<script >
+
+	var res=0;
+	var factor=$('#ver2').text();
+	var factor1=factor.replace(",",".");
+	$(document).ready(function(){
+	
+	$("#id_caudal_final").change(function(){
+		var caudal_inicial=$("#id_caudal_inicial").val();
+		var caudal_final=$("#id_caudal_final").val();
+		
+		res=Math.round((caudal_final-caudal_inicial)*100*factor1)/100;
+		
+		$('#id_consumo').val(res);
+
+		var almacenar=$('#ver').text();
+		var almacenar1=almacenar.replace(",",".");
+		console.log("resta");
+		console.log(almacenar1-res);
+		if (almacenar1== 0 )
+		{
+			alert("cuidado! no tienes saldo!");
+			
+		}
+            
+        });
+	
+});
+
+
+
+</script>
+
+
+{% endblock %}

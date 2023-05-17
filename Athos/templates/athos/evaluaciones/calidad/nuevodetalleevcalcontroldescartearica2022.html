@@ -1,0 +1,194 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE CONTROL DESCARTE AR ICA</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class='form-group'>
+            {{form.exportable1.label}}
+            {{form.exportable1}}
+        </div>
+        <div class='form-group'>
+            {{form.exportable2.label}}
+            {{form.exportable2}}
+        </div>
+        <div class='form-group'>
+            {{form.exportable2_5.label}}
+            {{form.exportable2_5}}
+        </div>
+        <div class='form-group'>
+          {{form.exportable3.label}}
+          {{form.exportable3}}
+        </div>
+         <div class='form-group'>
+          {{form.exportable4.label}}
+          {{form.exportable4}}
+        </div>
+
+
+        <div class='form-group'>
+            {{form.condicion1.label}}
+            {{form.condicion1}}
+        </div>
+         <div class='form-group'>
+          {{form.condicion2.label}}
+          {{form.condicion2}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion3.label}}
+          {{form.condicion3}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion4.label}}
+          {{form.condicion4}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion5.label}}
+          {{form.condicion5}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion6.label}}
+          {{form.condicion6}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion7.label}}
+          {{form.condicion7}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion8.label}}
+          {{form.condicion8}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion9.label}}
+          {{form.condicion9}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion10.label}}
+          {{form.condicion10}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion11.label}}
+          {{form.condicion11}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion12.label}}
+          {{form.condicion12}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion13.label}}
+          {{form.condicion13}}
+        </div>
+        <div class='form-group'>
+          {{form.condicion14.label}}
+          {{form.condicion14}}
+        </div>
+
+        <div class='form-group'>
+          {{form.calidad1.label}}
+          {{form.calidad1}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad2.label}}
+          {{form.calidad2}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad3.label}}
+          {{form.calidad3}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad4.label}}
+          {{form.calidad4}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad5.label}}
+          {{form.calidad5}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad6.label}}
+          {{form.calidad6}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad7.label}}
+          {{form.calidad7}}
+        </div>
+         <div class='form-group'>
+          {{form.calidad8.label}}
+          {{form.calidad8}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad9.label}}
+          {{form.calidad9}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad10.label}}
+          {{form.calidad10}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad11.label}}
+          {{form.calidad11}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad12.label}}
+          {{form.calidad12}}
+        </div>
+        <div class='form-group'>
+          {{form.calidad13.label}}
+          {{form.calidad13}}
+        </div>
+
+
+        <div class='form-group'>
+          {{form.fitosanitario1.label}}
+          {{form.fitosanitario1}}
+        </div>
+        <div class='form-group'>
+          {{form.fitosanitario2.label}}
+          {{form.fitosanitario2}}
+        </div>
+        <div class='form-group'>
+          {{form.fitosanitario3.label}}
+          {{form.fitosanitario3}}
+        </div>
+        <div class='form-group'>
+          {{form.fitosanitario4.label}}
+          {{form.fitosanitario4}}
+        </div>
+        <div class='form-group'>
+          {{form.fitosanitario5.label}}
+          {{form.fitosanitario5}}
+        </div>
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+{% endblock %}

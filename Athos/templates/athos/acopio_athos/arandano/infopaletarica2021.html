@@ -1,0 +1,89 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">PALETS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearinfopaletarica2021' id subid varid %}" >
+				<button type="button" class="btn btn-success">Registrar Palet</button>
+			</a>
+			<a href="{% url 'guiadetallesathosarica2021' id subid  %}" >
+				<button type="button" class="btn btn-primary">Ir a Guia Detalles</button>
+			</a>
+			<a href="{% url 'acopio_athos_03' id  %}" >
+				<button type="button" class="btn btn-secondary">Ir a Guia</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>N° Palet</td>
+						<td>Cantidad de Jabas</td>
+						<td>Peso Bruto</td>
+						<td>Peso Jabas Vacias</td>
+						<td>Peso Neto</td>
+					
+						
+
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in infopaletpr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.id}}
+							</td>
+							
+							<td>
+								{{ dato.cant_jabas }}
+							</td>
+							<td>
+								{{ dato.pesobr_palet}}
+							</td>
+							<td>
+								{{ dato.pesova_jabas }}
+							</td>
+							<td>
+								{{ dato.pesonet_palet }}
+							</td>
+							
+							
+
+							<td>
+							 	<a href="{% url 'editarinfopaletarica2021'  id subid  dato.id varid %}"><i class="bi bi-pencil-square"></i></a>
+							 	
+							 	<a href="{% url 'printpaletarica2021' id subid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

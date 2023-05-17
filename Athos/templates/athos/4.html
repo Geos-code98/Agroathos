@@ -1,0 +1,69 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">Itemks</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="javascript:window.open('{% url 'crearitems' %}','','width=900,height=700,left=50,top=50,toolbar=yes');void 0">
+				<button type="button" class="btn btn-success">Registrar Items</button>
+			</a>
+
+		</div>
+		<br>
+		<div class="busqueda">
+			<input type="text" id="textbusqueda" placeholder="Filtrar por codigo..">
+			<input type="button" value= "Busqueda" id="botonbuscar" name="buscar"/>
+		</div>
+		<br>
+		<br>
+		<div class="reporte">
+			<h3 id="hreporte">REPORTE</h3>
+			<table border="1" id="tablaReporte">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Código</td>
+						<td>Nombres</td>
+						<td>Menu</td>
+						<td>Estado</td>
+						<td>Usuario-Creación</td>
+						<td>Fecha-Creación</td>
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in item %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.cod_item}}
+							</td>
+							<td>
+								{{ dato.nom_item }}
+							</td>
+							<td>
+								{{ dato.id_menu.nom_menu }}
+							</td>
+							<td>
+								{{ dato.estado }}
+							</td>
+							<td>
+								{{ dato.usuario_creacion.first_name }} {{ dato.usuario_creacion.last_name }}
+							</td>
+							<td>
+								{{ dato.fecha_hora_creacion }}
+							</td>
+							<td>
+								<a href="{% url 'editaritems' dato.id %}">editar</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</article>
+</section>
+{% endblock %}

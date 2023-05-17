@@ -1,0 +1,127 @@
+{% load staticfiles %}
+{% load extras %}
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AGRO ATHOS</title>
+    <link rel="shortcut icon" type="text/css" href="{% static 'login/images/icons/favicon.ico' %}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style type="text/css">
+        .bi{
+            color: #000;
+            font-size: 30px;
+        }
+    </style>
+
+</head>
+<body >
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/scss/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.datetimepicker.min.css'%}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/select2.min.css' %}">
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="{% url 'usuarios' %}">
+                    <h3>AGROATHOS</h3>
+                </a>
+                <!--<a class="navbar-brand hidden" href="{% url 'usuarios' %}">
+                    <img src="{% static 'images/logo2.png' %}" alt="Logo">
+                </a>-->
+            </div>
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="{% url 'usuarios' %}"> <i class="menu-icon fa fa-dashboard"></i>
+                            INICIO 
+                        </a>
+                    </li>
+
+                    {% if user.is_superuser %}
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cog"></i>
+                            CONFIG.
+                        </a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{% url 'usuarios' %}">USUARIO</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="{% url 'menu' %}">MENU</a></li>
+                            <li><i class="fa fa-bars"></i><a href="{% url 'items' %}">ITEMS</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                    {% if user.username == 'picagr' or user.username == 'jhuamanp' or user.is_superuser %}
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa bi bi-bar-chart-fill"></i>
+                            PRODUCTIVIDAD
+                        </a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="bi bi-file-earmark-bar-graph-fill"></i><a href="{% url 'productividadplanta' %}">PROD. PLANTA</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                    {% getmenuchild %}
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+
+    <div id="right-panel" class="right-panel">
+
+        <header id="header" class="header">
+            <div class="header-menu">
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                </div>
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="{%  url 'logout' %}">
+                            <img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="User Avatar">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content mt-3">
+            <div class="col-sm-12">
+                {% block contenido %}
+                {% endblock%}
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'assets/js/vendor/jquery-2.1.4.min.js' %}" ></script>
+    <script src="{% static 'assets/js/plugins.js' %}" ></script>
+    <script src="{% static 'assets/js/main.js' %}" ></script>
+    <script src="{% static 'assets/js/lib/data-table/datatables.min.js'%}"></script>
+    <script src="{% static 'assets/js/lib/data-table/dataTables.bootstrap.min.js'%}" ></script>
+    <script src="{% static 'assets/js/lib/data-table/datatables-init.js'%}" ></script>
+    <script src="{% static 'assets/js/jquery.datetimepicker.full.min.js'%}" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script> 
+    <script src="{% static 'assets/js/qr/jquery.min.js'%}"></script>
+    <script src="{% static 'assets/js/qr/qrcode.js'%}"></script>
+    <script src="{% static 'assets/js/qr/main.js'%}"></script>
+    <script src="{% static 'date/jquery.js' %}" ></script>
+    <script src="{% static 'date/jquery.datetimepicker.js' %}" ></script>
+    <script src="{% static 'assets/js/select2.min.js'%}"></script>
+    {%block script%}
+    {% endblock %}
+</body>
+</html>

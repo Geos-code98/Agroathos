@@ -1,0 +1,1363 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+      <div class="col-lg-6">
+       <div class="card">
+         <div class="card-header"><strong>Registro</strong><small> EV. CALIDAD ACOPIO PLANTA CARAZ</small></div>
+         <div class="card-body card-block">
+           <form id="frmajax"  method="post" data-validate="parsley">
+            {% csrf_token %}
+            {% if form.errors %}
+            {% for field in form %}
+
+            {% for error in field.errors %}
+            <div class="alert alert-danger">
+              <strong>{{ field.label|escape }}:</strong>
+              <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <div class='form-group'>
+              {{form.fecha.label}}
+              {{form.fecha}}
+            </div>
+            <div class='form-group'>
+              {{form.idacopio.label}}
+              {{form.idacopio}}
+            </div>
+            <!--<div class='form-group'>
+              {{form.anexo_tipo_envase.label}}
+              {{form.anexo_tipo_envase}}
+            </div>!-->
+            <div class='form-group'>
+              {{form.tpulpa.label}}
+              {{form.tpulpa}}
+            </div>
+
+            <div class='form-group'>
+             {{form.dl_tamano1.label}}
+             {{form.dl_tamano1}}
+           </div>
+           <div class='form-group'>
+             {{form.dl_tamano2.label}}
+             {{form.dl_tamano2}}
+           </div>
+           <div class='form-group'>
+             {{form.dl_tamano3.label}}
+             {{form.dl_tamano3}}
+           </div>
+           <div class='form-group'>
+            {{form.dl_tamano4.label}}
+            {{form.dl_tamano4}}
+          </div>
+          <div class='form-group'>
+            {{form.dc_mediano.label}}
+            {{form.dc_mediano}}
+          </div>
+          <div class='form-group'>
+            {{form.dc_grande.label}}
+            {{form.dc_grande}}
+          </div>
+          <div class='form-group'>
+            {{form.dc_extra.label}}
+            {{form.dc_extra}}
+          </div>
+          <div class='form-group'>
+            {{form.dc_jumbo.label}}
+            {{form.dc_jumbo}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n1_1.label}}
+            {{form.nb_n1_1}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n1_2.label}}
+            {{form.nb_n1_2}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n1_3.label}}
+            {{form.nb_n1_3}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n1_4.label}}
+            {{form.nb_n1_4}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n2_1.label}}
+            {{form.nb_n2_1}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n2_2.label}}
+            {{form.nb_n2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n2_3.label}}
+            {{form.nb_n2_3}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n2_4.label}}
+            {{form.nb_n2_4}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n3_1.label}}
+            {{form.nb_n3_1}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n3_2.label}}
+            {{form.nb_n3_2}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n3_3.label}}
+            {{form.nb_n3_3}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n3_4.label}}
+            {{form.nb_n3_4}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n4_1.label}}
+            {{form.nb_n4_1}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n4_2.label}}
+            {{form.nb_n4_2}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n4_3.label}}
+            {{form.nb_n4_3}}
+          </div>
+          <div class='form-group'>
+            {{form.nb_n4_4.label}}
+            {{form.nb_n4_4}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_blandos_1.label}}
+            {{form.tol_blandos_1}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_blandos_3.label}}
+            {{form.tol_blandos_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_blandos3_3.label}}
+            {{form.tol_blandos3_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_blandos4_3.label}}
+            {{form.tol_blandos4_3}}
+          </div> 
+          <div class='form-group'>
+            {{form.tol_cic_2.label}}
+            {{form.tol_cic_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_cic_3.label}}
+            {{form.tol_cic_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_cic2_3.label}}
+            {{form.tol_cic2_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_cic2_4.label}}
+            {{form.tol_cic2_4}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_def_2.label}}
+            {{form.tol_def_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_def_3.label}}
+            {{form.tol_def_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_def2_3.label}}
+            {{form.tol_def2_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_def2_4.label}}
+            {{form.tol_def2_4}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_desgarro_2.label}}
+            {{form.tol_desgarro_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_desgarro2_2.label}}
+            {{form.tol_desgarro2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_desgarro2_3.label}}
+            {{form.tol_desgarro2_3}}
+          </div> 
+          <div class='form-group'>
+            {{form.tol_desgarro2_4.label}}
+            {{form.tol_desgarro2_4}}
+          </div> 
+          <div class='form-group'>
+            {{form.tol_deshidratado_2.label}}
+            {{form.tol_deshidratado_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_deshidratado2_2.label}}
+            {{form.tol_deshidratado2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_deshidratado2_3.label}}
+            {{form.tol_deshidratado2_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_deshidratado2_4.label}}
+            {{form.tol_deshidratado2_4}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_frutosr4_1.label}}
+            {{form.tol_frutosr4_1}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_frutosr4_2.label}}
+            {{form.tol_frutosr4_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_frutosr4_3.label}}
+            {{form.tol_frutosr4_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_frutosr4_4.label}}
+            {{form.tol_frutosr4_4}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_polvo1_1.label}}
+            {{form.tol_polvo1_1}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_polvo1_2.label}}
+            {{form.tol_polvo1_2}}
+          </div> 
+          <div class='form-group'>
+            {{form.tol_polvo1_3.label}}
+            {{form.tol_polvo1_3}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_polvo1_4.label}}
+            {{form.tol_polvo1_4}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_restosf_2.label}}
+            {{form.tol_restosf_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_restosf2_2.label}}
+            {{form.tol_restosf2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_restosf3_2.label}}
+            {{form.tol_restosf3_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_restosf4_2.label}}
+            {{form.tol_restosf4_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_restosp_2.label}}
+            {{form.tol_restosp_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_restosp2_2.label}}
+            {{form.tol_restosp2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_restosp3_2.label}}
+            {{form.tol_restosp3_2}}
+          </div>
+          <div class='form-group'>
+            {{form.tol_restosp4_2.label}}
+            {{form.tol_restosp4_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_pudricion_1.label}}
+            {{form.cd_pudricion_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_pudricion_2.label}}
+            {{form.cd_pudricion_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_pudricion_3.label}}
+            {{form.cd_pudricion_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_pudricion_4.label}}
+            {{form.cd_pudricion_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_blando_1.label}}
+            {{form.cd_blando_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_blando_2.label}}
+            {{form.cd_blando_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_blando_3.label}}
+            {{form.cd_blando_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_blando_4.label}}
+            {{form.cd_blando_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_micelio_1.label}}
+            {{form.cd_micelio_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_micelio_2.label}}
+            {{form.cd_micelio_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_micelio_3.label}}
+            {{form.cd_micelio_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_micelio_4.label}}
+            {{form.cd_micelio_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_herida_1.label}}
+            {{form.cd_herida_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_herida_2.label}}
+            {{form.cd_herida_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_herida_3.label}}
+            {{form.cd_herida_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_herida_4.label}}
+            {{form.cd_herida_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_deshidratacion_1.label}}
+            {{form.cd_deshidratacion_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_deshidratacion_2.label}}
+            {{form.cd_deshidratacion_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_deshidratacion_3.label}}
+            {{form.cd_deshidratacion_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_deshidratacion_4.label}}
+            {{form.cd_deshidratacion_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_desgarro_1.label}}
+            {{form.cd_desgarro_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_desgarro_2.label}}
+            {{form.cd_desgarro_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_desgarro_3.label}}
+            {{form.cd_desgarro_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_desgarro_4.label}}
+            {{form.cd_desgarro_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_exudacion_1.label}}
+            {{form.cd_exudacion_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_exudacion_2.label}}
+            {{form.cd_exudacion_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_exudacion_3.label}}
+            {{form.cd_exudacion_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_exudacion_4.label}}
+            {{form.cd_exudacion_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_machucon_1.label}}
+            {{form.cd_machucon_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_machucon_2.label}}
+            {{form.cd_machucon_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_machucon_3.label}}
+            {{form.cd_machucon_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_machucon_4.label}}
+            {{form.cd_machucon_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_partidura_1.label}}
+            {{form.cd_partidura_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_partidura_2.label}}
+            {{form.cd_partidura_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_partidura_3.label}}
+            {{form.cd_partidura_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_partidura_4.label}}
+            {{form.cd_partidura_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_fruta_hinchada_1.label}}
+            {{form.cd_fruta_hinchada_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_fruta_hinchada_2.label}}
+            {{form.cd_fruta_hinchada_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_fruta_hinchada_3.label}}
+            {{form.cd_fruta_hinchada_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_fruta_hinchada_4.label}}
+            {{form.cd_fruta_hinchada_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_globito_1.label}}
+            {{form.cd_globito_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_globito_2.label}}
+            {{form.cd_globito_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_globito_3.label}}
+            {{form.cd_globito_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cd_globito_4.label}}
+            {{form.cd_globito_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_polvo_1.label}}
+            {{form.cal_polvo_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_polvo_2.label}}
+            {{form.cal_polvo_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_polvo_3.label}}
+            {{form.cal_polvo_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_polvo_4.label}}
+            {{form.cal_polvo_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_deformes_1.label}}
+            {{form.cal_deformes_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_deformes_2.label}}
+            {{form.cal_deformes_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_deformes_3.label}}
+            {{form.cal_deformes_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_deformes_4.label}}
+            {{form.cal_deformes_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_picadura_ave_1.label}}
+            {{form.cal_picadura_ave_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_picadura_ave_2.label}}
+            {{form.cal_picadura_ave_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_picadura_ave_3.label}}
+            {{form.cal_picadura_ave_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_picadura_ave_4.label}}
+            {{form.cal_picadura_ave_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_russet_1.label}}
+            {{form.cal_russet_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_russet_2.label}}
+            {{form.cal_russet_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_russet_3.label}}
+            {{form.cal_russet_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_russet_4.label}}
+            {{form.cal_russet_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_cicatriz_1.label}}
+            {{form.cal_cicatriz_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_cicatriz_2.label}}
+            {{form.cal_cicatriz_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_cicatriz_3.label}}
+            {{form.cal_cicatriz_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_cicatriz_4.label}}
+            {{form.cal_cicatriz_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_presenciap_1.label}}
+            {{form.cal_presenciap_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_presenciap_2.label}}
+            {{form.cal_presenciap_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_presenciap_3.label}}
+            {{form.cal_presenciap_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_presenciap_4.label}}
+            {{form.cal_presenciap_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_restos_1.label}}
+            {{form.cal_restos_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_restos_2.label}}
+            {{form.cal_restos_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_restos_3.label}}
+            {{form.cal_restos_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_restos_4.label}}
+            {{form.cal_restos_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_frutaiv_1.label}}
+            {{form.cal_frutaiv_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_frutaiv_2.label}}
+            {{form.cal_frutaiv_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_frutaiv_3.label}}
+            {{form.cal_frutaiv_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_frutaiv_4.label}}
+            {{form.cal_frutaiv_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_frutair_1.label}}
+            {{form.cal_frutair_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_frutair_2.label}}
+            {{form.cal_frutair_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_frutair_3.label}}
+            {{form.cal_frutair_3}}
+          </div>
+
+          <div class='form-group'>
+            {{form.cal_frutair_4.label}}
+            {{form.cal_frutair_4}}
+          </div>
+
+          <div class='form-group'>
+            {{form.cal_bajoc_1.label}}
+            {{form.cal_bajoc_1}}
+          </div>
+
+          <div class='form-group'>
+            {{form.cal_bajoc_2.label}}
+            {{form.cal_bajoc_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_bajoc_3.label}}
+            {{form.cal_bajoc_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_bajoc_4.label}}
+            {{form.cal_bajoc_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_materiale_1.label}}
+            {{form.cal_materiale_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_materiale_2.label}}
+            {{form.cal_materiale_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_materiale_3.label}}
+            {{form.cal_materiale_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_materiale_4.label}}
+            {{form.cal_materiale_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_decoloracion_1.label}}
+            {{form.cal_decoloracion_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_decoloracion_2.label}}
+            {{form.cal_decoloracion_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_decoloracion_3.label}}
+            {{form.cal_decoloracion_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cal_decoloracion_4.label}}
+            {{form.cal_decoloracion_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_cochinilla_1.label}}
+            {{form.fit_cochinilla_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_cochinilla_2.label}}
+            {{form.fit_cochinilla_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_cochinilla_3.label}}
+            {{form.fit_cochinilla_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_cochinilla_4.label}}
+            {{form.fit_cochinilla_4}}
+          </div>
+
+          <div class='form-group'>
+            {{form.fit_pulgon_1.label}}
+            {{form.fit_pulgon_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_pulgon_2.label}}
+            {{form.fit_pulgon_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_pulgon_3.label}}
+            {{form.fit_pulgon_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_pulgon_4.label}}
+            {{form.fit_pulgon_4}}
+          </div>
+
+          <div class='form-group'>
+            {{form.fit_moscaf_1.label}}
+            {{form.fit_moscaf_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_moscaf_2.label}}
+            {{form.fit_moscaf_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_moscaf_3.label}}
+            {{form.fit_moscaf_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_moscaf_4.label}}
+            {{form.fit_moscaf_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_aranas_1.label}}
+            {{form.fit_aranas_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_aranas_2.label}}
+            {{form.fit_aranas_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_aranas_3.label}}
+            {{form.fit_aranas_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fit_aranas_4.label}}
+            {{form.fit_aranas_4}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m1_1.label}}
+            {{form.sol_m1_1}}
+          </div>
+
+          <div class='form-group'>
+            {{form.sol_m1_2.label}}
+            {{form.sol_m1_2}}
+          </div>
+
+          <div class='form-group'>
+            {{form.sol_m1_3.label}}
+            {{form.sol_m1_3}}
+          </div>
+
+          <div class='form-group'>
+            {{form.sol_m1_4.label}}
+            {{form.sol_m1_4}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m2_1.label}}
+            {{form.sol_m2_1}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m2_2.label}}
+            {{form.sol_m2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m2_3.label}}
+            {{form.sol_m2_3}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m2_4.label}}
+            {{form.sol_m2_4}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m3_1.label}}
+            {{form.sol_m3_1}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m3_2.label}}
+            {{form.sol_m3_2}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m3_3.label}}
+            {{form.sol_m3_3}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m3_4.label}}
+            {{form.sol_m3_4}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m4_1.label}}
+            {{form.sol_m4_1}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m4_2.label}}
+            {{form.sol_m4_2}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m4_3.label}}
+            {{form.sol_m4_3}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m4_4.label}}
+            {{form.sol_m4_4}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m5_1.label}}
+            {{form.sol_m5_1}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m5_2.label}}
+            {{form.sol_m5_2}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m5_3.label}}
+            {{form.sol_m5_3}}
+          </div>
+          <div class='form-group'>
+            {{form.sol_m5_4.label}}
+            {{form.sol_m5_4}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m1_1.label}}
+            {{form.aci_m1_1}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m1_2.label}}
+            {{form.aci_m1_2}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m1_3.label}}
+            {{form.aci_m1_3}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m1_4.label}}
+            {{form.aci_m1_4}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m2_1.label}}
+            {{form.aci_m2_1}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m2_2.label}}
+            {{form.aci_m2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m2_3.label}}
+            {{form.aci_m2_3}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m2_4.label}}
+            {{form.aci_m2_4}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m3_1.label}}
+            {{form.aci_m3_1}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m3_2.label}}
+            {{form.aci_m3_2}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m3_3.label}}
+            {{form.aci_m3_3}}
+          </div>
+          <div class='form-group'>
+            {{form.aci_m3_4.label}}
+            {{form.aci_m3_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m1_1.label}}
+            {{form.cpu_m1_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m1_2.label}}
+            {{form.cpu_m1_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m1_3.label}}
+            {{form.cpu_m1_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m1_4.label}}
+            {{form.cpu_m1_4}}
+          </div>
+
+          <div class='form-group'>
+            {{form.cpu_m2_1.label}}
+            {{form.cpu_m2_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m2_2.label}}
+            {{form.cpu_m2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m2_3.label}}
+            {{form.cpu_m2_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m2_4.label}}
+            {{form.cpu_m2_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m3_1.label}}
+            {{form.cpu_m3_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m3_2.label}}
+            {{form.cpu_m3_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m3_3.label}}
+            {{form.cpu_m3_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m3_4.label}}
+            {{form.cpu_m3_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m4_1.label}}
+            {{form.cpu_m4_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m4_2.label}}
+            {{form.cpu_m4_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m4_3.label}}
+            {{form.cpu_m4_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m4_4.label}}
+            {{form.cpu_m4_4}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m5_1.label}}
+            {{form.cpu_m5_1}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m5_2.label}}
+            {{form.cpu_m5_2}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m5_3.label}}
+            {{form.cpu_m5_3}}
+          </div>
+          <div class='form-group'>
+            {{form.cpu_m5_4.label}}
+            {{form.cpu_m5_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m1_1.label}}
+            {{form.fir_m1_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m1_2.label}}
+            {{form.fir_m1_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m1_3.label}}
+            {{form.fir_m1_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m1_4.label}}
+            {{form.fir_m1_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m2_1.label}}
+            {{form.fir_m2_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m2_2.label}}
+            {{form.fir_m2_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m2_3.label}}
+            {{form.fir_m2_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m2_4.label}}
+            {{form.fir_m2_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m3_1.label}}
+            {{form.fir_m3_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m3_2.label}}
+            {{form.fir_m3_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m3_3.label}}
+            {{form.fir_m3_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m3_4.label}}
+            {{form.fir_m3_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m4_1.label}}
+            {{form.fir_m4_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m4_2.label}}
+            {{form.fir_m4_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m4_3.label}}
+            {{form.fir_m4_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m4_4.label}}
+            {{form.fir_m4_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m5_1.label}}
+            {{form.fir_m5_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m5_2.label}}
+            {{form.fir_m5_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m5_3.label}}
+            {{form.fir_m5_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m5_4.label}}
+            {{form.fir_m5_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m6_1.label}}
+            {{form.fir_m6_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m6_2.label}}
+            {{form.fir_m6_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m6_3.label}}
+            {{form.fir_m6_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m6_4.label}}
+            {{form.fir_m6_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m7_1.label}}
+            {{form.fir_m7_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m7_2.label}}
+            {{form.fir_m7_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m7_3.label}}
+            {{form.fir_m7_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m7_4.label}}
+            {{form.fir_m7_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m8_1.label}}
+            {{form.fir_m8_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m8_2.label}}
+            {{form.fir_m8_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m8_3.label}}
+            {{form.fir_m8_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m8_4.label}}
+            {{form.fir_m8_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m9_1.label}}
+            {{form.fir_m9_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m9_2.label}}
+            {{form.fir_m9_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m9_3.label}}
+            {{form.fir_m9_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m9_4.label}}
+            {{form.fir_m9_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m10_1.label}}
+            {{form.fir_m10_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m10_2.label}}
+            {{form.fir_m10_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m10_3.label}}
+            {{form.fir_m10_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m10_4.label}}
+            {{form.fir_m10_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m11_1.label}}
+            {{form.fir_m11_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m11_2.label}}
+            {{form.fir_m11_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m11_3.label}}
+            {{form.fir_m11_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m11_4.label}}
+            {{form.fir_m11_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m12_1.label}}
+            {{form.fir_m12_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m12_2.label}}
+            {{form.fir_m12_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m12_3.label}}
+            {{form.fir_m12_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m12_4.label}}
+            {{form.fir_m12_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m13_1.label}}
+            {{form.fir_m13_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m13_2.label}}
+            {{form.fir_m13_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m13_3.label}}
+            {{form.fir_m13_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m13_4.label}}
+            {{form.fir_m13_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m14_1.label}}
+            {{form.fir_m14_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m14_2.label}}
+            {{form.fir_m14_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m14_3.label}}
+            {{form.fir_m14_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m14_4.label}}
+            {{form.fir_m14_4}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m15_1.label}}
+            {{form.fir_m15_1}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m15_2.label}}
+            {{form.fir_m15_2}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m15_3.label}}
+            {{form.fir_m15_3}}
+          </div>
+          <div class='form-group'>
+            {{form.fir_m15_4.label}}
+            {{form.fir_m15_4}}
+          </div>
+
+
+          <div class='form-group'>
+            {{form.anexo_prioridad.label}}
+            {{form.anexo_prioridad}}
+          </div>
+          <div class='form-group'>
+            {{form.observacion.label}}
+            {{form.observacion}}
+          </div>
+
+          <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<!--<script type="text/javascript">
+  document.getElementById('id_anexo_tipo_envase').value = 1
+</script>-->
+
+<script>  
+  $(function () {  
+   $("#id_fecha").datetimepicker({  
+     format: 'd/m/Y',  
+     timepicker:false  
+   });  
+ });  
+</script>
+<script>  
+ $(document).ready(function () {  
+   jQuery.datetimepicker.setLocale('es');  
+ });  
+</script> 
+
+
+<script>  
+ $(document).ready(function () {  
+  n =  new Date();
+  y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+if(m<10)
+{
+  if(d<10)
+  {
+    $("#id_fecha").val("0"+ d + "/" +"0" +m + "/" +y);
+  }
+  else
+  {
+    $("#id_fecha").val( d + "/" +"0" +m + "/" +y);  
+  }
+}
+else
+{
+ if(d<10)
+ {
+  $("#id_fecha").val("0"+ d + "/" + m + "/" +y);
+}
+else
+{
+  $("#id_fecha").val( d + "/" + m + "/" +y);  
+}
+}
+
+
+
+
+
+
+
+});  
+</script>
+
+
+<script type="text/javascript">
+
+
+  $('#id_anexo_zona').select2();
+
+  $('#id_anexo_fundo').select2();
+
+  $('#id_ubicacion').select2(); 
+     // $("#id_anexo_cultivo").val(2).trigger('change');
+      //$("#id_anexo_eje").val(2).trigger('change');
+
+      
+      function request_zona (fundoId) {
+        var urldata="/ajax/load-fundos/" + fundoId;
+
+        $.ajax({                       
+          url: urldata,                    
+          data: {},
+          success: function (data) {
+            var option_html = `<option value="0" >---------</option>`;
+            for (var i = 0; i < data.length; i++) { 	
+
+
+             option_html += `<option value="${data[i].id}" >${data[i].nom_fundo}</option>`;
+
+           } 
+           $("#id_anexo_fundo").html(option_html);
+           console.log(option_html);
+         },
+         error: function(result) {
+          console.log(result);
+        }
+
+      });
+
+      } 
+
+      function request_pep (ubicacionId) {
+        var urldata="/ajax/load-pep/" + ubicacionId;
+
+        $.ajax({                       
+          url: urldata,                    
+          data: {},
+          success: function (data) {
+            var option_html = `<option value="0" >---------</option>`;
+            for (var i = 0; i < data.length; i++) { 	
+
+
+             option_html += `<option value="${data[i].id}" >${data[i].anexo_fundo__abreviatura} ${data[i].anexo_modulo__nombremodulo} ${data[i].anexo_lote__nom_lote}</option>`;
+
+           } 
+           $("#id_ubicacion").html(option_html);
+           console.log(option_html);
+         },
+         error: function(result) {
+          console.log(result);
+        }
+
+      });
+
+      } 
+
+
+
+
+
+      $("#id_anexo_zona").change(function () { 
+
+        var fundoId = $(this).val();
+
+        request_zona(fundoId)
+      });
+
+      $("#id_anexo_fundo").change(function () { 
+
+        var ubicacionId = $(this).val();
+
+        request_pep(ubicacionId)
+      });
+
+      if ("geolocation" in navigator)
+          { //check geolocation available 
+    //try to get user current location using getCurrentPosition() method
+    navigator.geolocation.getCurrentPosition(function(position){ 
+     console.log("Found your location nLat : "+position.coords.latitude+" nLang :"+ position.coords.longitude);
+     lat=position.coords.latitude;
+     lon=position.coords.longitude;
+
+     nlat=Math.round((lat)*10000000)/10000000;
+     nlon=Math.round((lon)*10000000)/10000000;
+     $("#id_longitud").val(nlon);
+     $("#id_latitud").val(nlat);
+   });
+
+  }
+  else
+  {
+   console.log("Browser doesn't support geolocation!");
+ }
+
+</script>
+
+
+
+
+{% endblock %}

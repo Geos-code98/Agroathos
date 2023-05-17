@@ -1,0 +1,186 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">EV. CALIDAD DEFECTOS ARANDANOS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearevcaldefectoscampo' id %}" >
+				<button type="button" class="btn btn-success">Registrar Evaluación</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title">REPORTE</strong>
+							</div>
+							<div class="card-body">
+								<table id="bootstrap-data-table" class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<td>N°</td>
+											<td>Fecha</td>
+											<td>Usuario</td>
+											<td>Zona</td>
+											<td>Fundo</td>
+											<td>PEP</td>
+											<td>Acción</td>
+										</tr>
+									</thead>
+									<tbody id="reportes">
+										{% for dato in defectospr %}
+										<tr>
+											<td>
+												{{ forloop.counter }}
+											</td>
+
+											<td>
+												{{ dato.fecha }}
+											</td>
+											<td>
+												{{ dato.usuario_creacion }}
+											</td>
+											<td>
+												{{ dato.anexo_zona }}
+											</td>
+											<td>
+												{{ dato.anexo_fundo }}
+											</td>
+											<td>
+												{{ dato.ubicacion }}
+											</td>
+											<td>
+												<!--    {% if dato.fecha_hora_creacion|date:'Y-m-d' == dato.fecha2|date:'Y-m-d' or request.user.username == "sventura" or request.user.username == "admin" or request.user.username == "Mfigueroa" or request.user.username == "ssifuentes" %}-->
+												<a href="{% url 'editarevcaldefectoscampo'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+												<!--    {% endif %}-->
+												<a href="{% url 'detalleevcaldefectoscampo'  id dato.id %}"><i class="bi bi-eye-fill"></i></a>
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+</section>
+{% endblock %}
+
+{%block script%}
+<script>  
+	$(function () {  
+		$("#id_fecha").datetimepicker({  
+			format: 'd/m/Y',  
+			timepicker:false  
+		});  
+	});  
+</script>
+<script>  
+	$(document).ready(function () {  
+		jQuery.datetimepicker.setLocale('es');  
+	});  
+</script> 
+
+<script>  
+	$(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+if(m<10)
+{
+	if(d<10)
+	{
+		$("#id_fecha").val("0"+ d + "/" +"0" +m + "/" +y);
+	}
+	else
+	{
+		$("#id_fecha").val( d + "/" +"0" +m + "/" +y);  
+	}
+}
+else
+{
+	if(d<10)
+	{
+		$("#id_fecha").val("0"+ d + "/" + m + "/" +y);
+	}
+	else
+	{
+		$("#id_fecha").val( d + "/" + m + "/" +y);  
+	}
+}
+
+});  
+</script>
+
+<script type="text/javascript">
+	$('#id_anexo_zona').select2();
+	$('#id_anexo_fundo').select2();
+	$('#id_ubicacion').select2(); 
+
+	function request_zona (fundoId) {
+		var urldata="/ajax/load-fundos/" + fundoId;
+
+		$.ajax({                       
+			url: urldata,                    
+			data: {},
+			success: function (data) {
+				var option_html = `<option value="0" >---------</option>`;
+				for (var i = 0; i < data.length; i++) { 	
+					option_html += `<option value="${data[i].id}" >${data[i].nom_fundo}</option>`;
+				} 
+				$("#id_anexo_fundo").html(option_html);
+				console.log(option_html);
+			},
+			error: function(result) {
+				console.log(result);
+			}
+
+		});
+
+	} 
+
+	function request_pep (ubicacionId) {
+		var urldata="/ajax/load-pep/" + ubicacionId;
+
+		$.ajax({                       
+			url: urldata,                    
+			data: {},
+			success: function (data) {
+				var option_html = `<option value="0" >---------</option>`;
+				for (var i = 0; i < data.length; i++) { 	
+					option_html += `<option value="${data[i].id}" >${data[i].anexo_fundo__abreviatura} ${data[i].anexo_modulo__nombremodulo} ${data[i].anexo_lote__nom_lote}</option>`;
+				} 
+				$("#id_ubicacion").html(option_html);
+				console.log(option_html);
+			},
+			error: function(result) {
+				console.log(result);
+			}
+
+		});
+	} 
+
+	$("#id_anexo_zona").change(function () { 
+		var fundoId = $(this).val();
+		request_zona(fundoId)
+	});
+
+	$("#id_anexo_fundo").change(function () { 
+		var ubicacionId = $(this).val();
+		request_pep(ubicacionId)
+	});
+
+</script>
+{% endblock %}

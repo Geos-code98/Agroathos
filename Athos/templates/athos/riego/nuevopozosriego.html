@@ -1,0 +1,119 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> POZOS RIEGO</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				<div class='form-group'>
+					{{form.anexo_zona.label}}
+					{{form.anexo_zona}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_fundo.label}}
+					{{form.anexo_fundo}}
+				</div>
+				<div class='form-group'>
+					{{form.anio.label}}
+					{{form.anio}}
+				</div>
+				<div class='form-group'>
+					{{form.nombre.label}}
+					{{form.nombre}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.codigo.label}}
+					{{form.codigo}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.npozo.label}}
+					{{form.npozo}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad.label}}
+					{{form.capacidad}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_real.label}}
+					{{form.capacidad_real}}
+				</div>
+				
+				
+				
+				<div class='form-group'>
+					{{form.capacidad_ene.label}}
+					{{form.capacidad_ene}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_feb.label}}
+					{{form.capacidad_feb}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_mar.label}}
+					{{form.capacidad_mar}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_abr.label}}
+					{{form.capacidad_abr}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_may.label}}
+					{{form.capacidad_may}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_jun.label}}
+					{{form.capacidad_jun}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_jul.label}}
+					{{form.capacidad_jul}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_ago.label}}
+					{{form.capacidad_ago}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_sep.label}}
+					{{form.capacidad_sep}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_oct.label}}
+					{{form.capacidad_oct}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_nov.label}}
+					{{form.capacidad_nov}}
+				</div>
+				<div class='form-group'>
+					{{form.capacidad_dic.label}}
+					{{form.capacidad_dic}}
+				</div>
+
+				<div class='form-group'>
+					{{form.caudal_autorizado.label}}
+					{{form.caudal_autorizado}}
+				</div>
+				<div class='form-group'>
+					{{form.factor_correccion.label}}
+					{{form.factor_correccion}}
+				</div>
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

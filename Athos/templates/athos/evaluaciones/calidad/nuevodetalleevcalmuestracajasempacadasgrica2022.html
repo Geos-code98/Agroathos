@@ -1,0 +1,402 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+  <div id="registration-form">
+    <div class='fieldset'>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header"><strong>Registro</strong><small> EV. CALIDAD DE MUESTRAS DE CAJAS EMPACADAS GR ICA 2022</small></div>
+          <div class="card-body card-block">
+            <form id="frmajax"  method="post" data-validate="parsley">
+              {% csrf_token %}
+              {% if form.errors %}
+              {% for field in form %}
+
+              {% for error in field.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ field.label|escape }}:</strong>
+                <strong>{{ error|escape }}</strong>
+              </div>
+              {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+              </div>
+              {% endfor %}
+              {% endif %}
+
+              <style type="text/css">
+                h5{
+                  text-align: center;
+                  margin: 15px,0px,55px,0px;
+                }
+              </style>
+
+              <h5>CAT1</h5>
+              <div class='form-group'>
+                {{form.cicatriz_cat1.label}}
+                {{form.cicatriz_cat1}}
+              </div>
+              <div class='form-group'>
+                {{form.danio_roce_cat1.label}}
+                {{form.danio_roce_cat1}}
+              </div>
+              <div class='form-group'>
+                {{form.deformes_cat1.label}}
+                {{form.deformes_cat1}}
+              </div>
+              <div class='form-group'>
+                {{form.insolacion_leve_cat1.label}}
+                {{form.insolacion_leve_cat1}}
+              </div>
+              <div class='form-group'>
+                {{form.libre_defectos_cat1.label}}
+                {{form.libre_defectos_cat1}}
+              </div>
+              <div class='form-group'>
+                {{form.manchas_cat1.label}}
+                {{form.manchas_cat1}}
+              </div>
+              <div class='form-group'>
+                {{form.rajaduras_cat1.label}}
+                {{form.rajaduras_cat1}}
+              </div>
+
+              <h5>CAT2</h5>
+              <div class='form-group'>
+                {{form.insolacion_moderada_cat2.label}}
+                {{form.insolacion_moderada_cat2}}
+              </div>
+              <div class='form-group'>
+                {{form.cicatriz_cat2.label}}
+                {{form.cicatriz_cat2}}
+              </div>
+              <div class='form-group'>
+                {{form.corona_deshidratada_cat2.label}}
+                {{form.corona_deshidratada_cat2}}
+              </div>
+              <div class='form-group'>
+                {{form.danio_mecanico_cat2.label}}
+                {{form.danio_mecanico_cat2}}
+              </div>
+              <div class='form-group'>
+                {{form.danio_roce_cat2.label}}
+                {{form.danio_roce_cat2}}
+              </div>
+              <div class='form-group'>
+                {{form.golpe_leve_cat2.label}}
+                {{form.golpe_leve_cat2}}
+              </div>
+              <div class='form-group'>
+                {{form.manchas_cat2.label}}
+                {{form.manchas_cat2}}
+              </div>
+              <div class='form-group'>
+                {{form.rajaduras_cat2.label}}
+                {{form.rajaduras_cat2}}
+              </div>
+
+              <h5>CAT INDUSTRIAL</h5>
+              <div class='form-group'>
+                {{form.cicatriz_industrial.label}}
+                {{form.cicatriz_industrial}}
+              </div>
+              <div class='form-group'>
+                {{form.danio_roce_industrial.label}}
+                {{form.danio_roce_industrial}}
+              </div>
+              <div class='form-group'>
+                {{form.manchas_industrial.label}}
+                {{form.manchas_industrial}}
+              </div>
+              <div class='form-group'>
+                {{form.rajaduras_industrial.label}}
+                {{form.rajaduras_industrial}}
+              </div>
+
+              <h5>DESCARTE</h5>
+              <div class='form-group'>
+                {{form.arilo_expuesto_descarte.label}}
+                {{form.arilo_expuesto_descarte}}
+              </div>
+              <div class='form-group'>
+                {{form.corona_deshidratada_descarte.label}}
+                {{form.corona_deshidratada_descarte}}
+              </div>
+              <div class='form-group'>
+                {{form.danio_plagas_descarte.label}}
+                {{form.danio_plagas_descarte}}
+              </div>
+              <div class='form-group'>
+                {{form.golpe_fuerte_descarte.label}}
+                {{form.golpe_fuerte_descarte}}
+              </div>
+              <div class='form-group'>
+                {{form.insolado_fuerte_descarte.label}}
+                {{form.insolado_fuerte_descarte}}
+              </div>
+              <div class='form-group'>
+                {{form.pudricion_descarte.label}}
+                {{form.pudricion_descarte}}
+              </div>
+              <div class='form-group'>
+                {{form.rajados_severos_descarte.label}}
+                {{form.rajados_severos_descarte}}
+              </div>
+
+
+              <h5>SUMATORIAS</h5>
+              <div class='form-group'>
+                {{form.suma_cat1.label}}
+                {{form.suma_cat1}}
+              </div>
+              <div class='form-group'>
+                {{form.suma_cat2.label}}
+                {{form.suma_cat2}}
+              </div>
+              <div class='form-group'>
+                {{form.suma_industrial.label}}
+                {{form.suma_industrial}}
+              </div>
+              <div class='form-group'>
+                {{form.suma_descarte.label}}
+                {{form.suma_descarte}}
+              </div>
+
+              <div class='form-group'>
+                {{form.unidades_totales_muestreadas.label}}
+                {{form.unidades_totales_muestreadas}}
+              </div>
+
+              <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+{%block script%}
+<script type="text/javascript">
+  $('#id_cicatriz_cat1').focus();
+
+  function sumaCat1(){
+    var cicatriz_cat1 = parseInt($("#id_cicatriz_cat1").val());
+    var danio_roce_cat1 = parseInt($("#id_danio_roce_cat1").val());
+    var deformes_cat1 = parseInt($("#id_deformes_cat1").val());
+    var insolacion_leve_cat1 = parseInt($("#id_insolacion_leve_cat1").val());
+    var libre_defectos_cat1 = parseInt($("#id_libre_defectos_cat1").val());
+    var manchas_cat1 = parseInt($("#id_manchas_cat1").val());
+    var rajaduras_cat1 = parseInt($("#id_rajaduras_cat1").val());
+
+    var resultado = cicatriz_cat1 + danio_roce_cat1 + deformes_cat1 + insolacion_leve_cat1 + libre_defectos_cat1 + manchas_cat1 + rajaduras_cat1;
+
+    $("#id_suma_cat1").val(resultado);
+    $("#id_suma_cat1").trigger('change');
+    return false;
+  }
+
+  function sumaCat2(){
+    var insolacion_moderada_cat2 = parseInt($("#id_insolacion_moderada_cat2").val());
+    var cicatriz_cat2 = parseInt($("#id_cicatriz_cat2").val());
+    var corona_deshidratada_cat2 = parseInt($("#id_corona_deshidratada_cat2").val());
+    var danio_mecanico_cat2 = parseInt($("#id_danio_mecanico_cat2").val());
+    var danio_roce_cat2 = parseInt($("#id_danio_roce_cat2").val());
+    var golpe_leve_cat2 = parseInt($("#id_golpe_leve_cat2").val());
+    var manchas_cat2 = parseInt($("#id_manchas_cat2").val());
+    var rajaduras_cat2 = parseInt($("#id_rajaduras_cat2").val());
+
+    var resultado = insolacion_moderada_cat2 + cicatriz_cat2 + corona_deshidratada_cat2 + danio_mecanico_cat2 + danio_roce_cat2 + golpe_leve_cat2 + manchas_cat2 + rajaduras_cat2;
+
+    $("#id_suma_cat2").val(resultado);
+    $("#id_suma_cat2").trigger('change');
+    return false;
+  }
+
+  function sumaCatIndustrial(){
+    var cicatriz_industrial = parseInt($("#id_cicatriz_industrial").val());
+    var danio_roce_industrial = parseInt($("#id_danio_roce_industrial").val());
+    var manchas_industrial = parseInt($("#id_manchas_industrial").val());
+    var rajaduras_industrial = parseInt($("#id_rajaduras_industrial").val());
+    
+    var resultado = cicatriz_industrial + danio_roce_industrial + manchas_industrial + rajaduras_industrial;
+
+    $("#id_suma_industrial").val(resultado);
+    $("#id_suma_industrial").trigger('change');
+    return false;
+  }
+
+  function sumaDescarte(){
+    var arilo_expuesto_descarte = parseInt($("#id_arilo_expuesto_descarte").val());
+    var corona_deshidratada_descarte = parseInt($("#id_corona_deshidratada_descarte").val());
+    var danio_plagas_descarte = parseInt($("#id_danio_plagas_descarte").val());
+    var golpe_fuerte_descarte = parseInt($("#id_golpe_fuerte_descarte").val());
+    var insolado_fuerte_descarte = parseInt($("#id_insolado_fuerte_descarte").val());
+    var pudricion_descarte = parseInt($("#id_pudricion_descarte").val());
+    var rajados_severos_descarte = parseInt($("#id_rajados_severos_descarte").val());
+
+    var resultado = arilo_expuesto_descarte + corona_deshidratada_descarte + danio_plagas_descarte + golpe_fuerte_descarte + insolado_fuerte_descarte + pudricion_descarte + rajados_severos_descarte;
+
+    $("#id_suma_descarte").val(resultado);
+    $("#id_suma_descarte").trigger('change');
+    return false;
+  }
+
+  function unidadeesTotales(){
+    var totalCat1 = parseInt($("#id_suma_cat1").val());
+    var totalCat2 = parseInt($("#id_suma_cat2").val());
+    var totalIndustrial = parseInt($("#id_suma_industrial").val());
+    var totalDescarte = parseInt($("#id_suma_descarte").val());
+
+    var resultado = totalCat1 + totalCat2 + totalIndustrial + totalDescarte;
+    $("#id_unidades_totales_muestreadas").val(resultado);
+    $("#id_unidades_totales_muestreadas").trigger('change');
+    return false;
+  }
+
+  /*SUMA CAT1*/
+  $("#id_cicatriz_cat1").change(function(){
+    sumaCat1();
+    unidadeesTotales();
+  });
+
+  $("#id_danio_roce_cat1").change(function(){ 
+    sumaCat1();
+    unidadeesTotales();
+  });
+
+  $("#id_deformes_cat1").change(function(){ 
+    sumaCat1();
+    unidadeesTotales();
+  });
+
+  $("#id_insolacion_leve_cat1").change(function(){ 
+    sumaCat1();
+    unidadeesTotales();
+  });
+
+  $("#id_libre_defectos_cat1").change(function(){ 
+    sumaCat1();
+    unidadeesTotales();
+  });
+
+  $("#id_manchas_cat1").change(function(){ 
+    sumaCat1();
+    unidadeesTotales();
+  });
+
+  $("#id_rajaduras_cat1").change(function(){ 
+    sumaCat1();
+    unidadeesTotales();
+  });
+
+
+  /*SUMA CAT2*/
+  $("#id_insolacion_moderna_cat2").change(function(){ 
+    sumaCat2();
+    unidadeesTotales();
+  });
+
+  $("#id_cicatriz_cat2").change(function(){ 
+    sumaCat2();
+    unidadeesTotales();
+  });
+
+  $("#id_corona_deshidratada_cat2").change(function(){ 
+    sumaCat2();
+    unidadeesTotales();
+  });
+
+  $("#id_danio_mecanico_cat2").change(function(){ 
+    sumaCat2();
+    unidadeesTotales();
+  });
+
+  $("#id_danio_roce_cat2").change(function(){ 
+    sumaCat2();
+    unidadeesTotales();
+  });
+
+  $("#id_golpe_leve_cat2").change(function(){ 
+    sumaCat2();
+    unidadeesTotales();
+  });
+
+  $("#id_manchas_cat2").change(function(){ 
+    sumaCat2();
+    unidadeesTotales();
+  });
+
+  $("#id_rajaduras_cat2").change(function(){ 
+    sumaCat2();
+    unidadeesTotales();
+  });
+
+
+  /*SUMA CAT INDUSTRIAL*/
+  $("#id_cicatriz_industrial").change(function(){ 
+    sumaCatIndustrial();
+    unidadeesTotales();
+  });
+
+  $("#id_danio_roce_industrial").change(function(){ 
+    sumaCatIndustrial();
+    unidadeesTotales();
+  });
+
+  $("#id_manchas_industrial").change(function(){ 
+    sumaCatIndustrial();
+    unidadeesTotales();
+  });
+
+  $("#id_rajaduras_industrial").change(function(){ 
+    sumaCatIndustrial();
+    unidadeesTotales();
+  });
+
+
+  /*SUMA DESCARTE*/
+  $("#id_arilo_expuesto_descarte").change(function(){ 
+    sumaDescarte();
+    unidadeesTotales();
+  });
+
+  $("#id_corona_deshidratada_descarte").change(function(){ 
+    sumaDescarte();
+    unidadeesTotales();
+  });
+
+  $("#id_danio_plagas_descarte").change(function(){ 
+    sumaDescarte();
+    unidadeesTotales();
+  });
+
+  $("#id_golpe_fuerte_descarte").change(function(){ 
+    sumaDescarte();
+    unidadeesTotales();
+  });
+
+  $("#id_insolado_fuerte_descarte").change(function(){ 
+    sumaDescarte();
+    unidadeesTotales(); 
+  });
+
+  $("#id_pudricion_descarte").change(function(){ 
+    sumaDescarte();
+    unidadeesTotales();
+  });
+
+  $("#id_rajados_severos_descarte").change(function(){ 
+    sumaDescarte();
+    unidadeesTotales(); 
+  });
+
+
+</script>
+
+{% endblock %}

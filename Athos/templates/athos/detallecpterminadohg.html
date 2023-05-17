@@ -1,0 +1,67 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">DETALLE CONTROL DE PRD. TERMINADO</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'creardetallecontrolproductoterminadohg' id subid varid %}" >
+				<button type="button" class="btn btn-success">Registrar Detalle</button>
+			</a>
+			<a href="{% url 'controlproductoterminadohg' id subid  %}" >
+				<button type="button" class="btn btn-primary">Ir a Control</button>
+			</a>
+			<a href="{% url 'evaluaciones' id  %}" >
+				<button type="button" class="btn btn-secondary">Ir a Ubicacion</button>
+			</a>
+		</div>
+		<div class="content mt-3">
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title">REPORTE</strong>
+							</div>
+							<div class="card-body">
+								<table id="bootstrap-data-table" class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<td>N°</td>
+											<td>N° Palet</td>
+											<td>Presentacion</td>
+											<td>Trazabilidad</td>
+											<td>Acción</td>
+										</tr>
+									</thead>
+									<tbody id="reportes">
+										{% for dato in detallepr %}
+										<tr>
+											<td>
+												{{ forloop.counter }}
+											</td>
+											<td>
+												{{ dato.npalet}}
+											</td>
+											<td>
+												{{ dato.anexo_presentacion.descripcion }}
+											</td>
+											<td>
+												{{ dato.trazabilidad }}
+											</td>
+											<td>
+												<a href="{% url 'editardetallecontrolproductoterminadohg' id subid dato.id varid  %}"><i class="bi bi-pencil-square"></i></a>
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+</section>
+{% endblock %}

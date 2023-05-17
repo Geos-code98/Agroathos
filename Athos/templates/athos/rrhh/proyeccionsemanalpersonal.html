@@ -1,0 +1,71 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">PROYECCION SEMANAL PERSONAL</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearproyeccionsemanalpersonal' id %}" >
+				<button type="button" class="btn btn-success">Registrar Proyeccion Semanal </button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Fundo</td>
+						<td>Cultivo</td>
+						<td>Año</td>
+						<td>Semana</td>
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in proyeccionsemper %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.anexo_fundo }}
+							</td>
+							<td>
+								{{ dato.anexo_cultivo }}
+							</td>
+							<td>
+								{{ dato.anio }}
+							</td>
+							<td>
+								{{ dato.semana }}
+							</td>
+
+							<td>
+							 	<a href="{% url 'editarproyeccionsemanalpersonal'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+								<a href="{% url 'detalleproyeccionsemanalpersonal'  id dato.id %}"><i class="bi bi-eye-fill"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

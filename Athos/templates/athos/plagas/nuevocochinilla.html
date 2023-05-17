@@ -1,0 +1,358 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>REGISTRO </strong><small>ÁCARO HIALINO</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				
+				<div class='form-group' id="ocultarev">
+					{{form.acaro_hialino_nplanta.label}}
+					{{form.acaro_hialino_nplanta}}
+				</div>
+				<div class='form-group'  id="ocultarev">
+					{{form.arana_roja_nplanta.label}}
+					{{form.arana_roja_nplanta}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.argy_spha_nfrutos.label}}
+					{{form.argy_spha_nfrutos}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.argy_spha_nlarvasgr.label}}
+					{{form.argy_spha_nlarvasgr}}
+				</div>
+				<div class='form-group' id="ocultarev" >
+					{{form.argy_spha_nlarvaspe.label}}
+					{{form.argy_spha_nlarvaspe}}
+				</div>
+				<div class='form-group' id="ocultarev" >
+					{{form.argy_spha_nplantas.label}}
+					{{form.argy_spha_nplantas}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.cigarrita_individuos.label}}
+					{{form.cigarrita_individuos}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_porplantas.label}}
+					{{form.cochi_hari_porplantas}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_nadultos_corona.label}}
+					{{form.cochi_hari_nadultos_corona}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_nadultos_planta.label}}
+					{{form.cochi_hari_nadultos_planta}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_ninfas_corona.label}}
+					{{form.cochi_hari_ninfas_corona}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_ovisacos_corona.label}}
+					{{form.cochi_hari_ovisacos_corona}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_ovisacos_planta.label}}
+					{{form.cochi_hari_ovisacos_planta}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_adultos_brotes.label}}
+					{{form.cochi_hari_adultos_brotes}}
+				</div>
+				<div class='form-group'>
+					{{form.cochi_hari_adultos_ramas.label}}
+					{{form.cochi_hari_adultos_ramas}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_ninfas_frutos.label}}
+					{{form.cochi_hari_ninfas_frutos}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_ninfas_brotes.label}}
+					{{form.cochi_hari_ninfas_brotes}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_ninfas_ramas.label}}
+					{{form.cochi_hari_ninfas_ramas}}
+				</div>
+				<div class='form-group' >
+					{{form.cochi_hari_ovisacos_brotes.label}}
+					{{form.cochi_hari_ovisacos_brotes}}
+				</div>
+				
+				<div class='form-group' >
+					{{form.cochi_hari_ovisacos_ramas.label}}
+					{{form.cochi_hari_ovisacos_ramas}}
+				</div>
+
+				<div class='form-group' id="ocultarev">
+					{{form.crypto_plantas.label}}
+					{{form.crypto_plantas}}
+				</div>
+
+				<div class='form-group' id="ocultarev">
+					{{form.diabro.label}}
+					{{form.diabro}}
+				</div>
+				
+				<div class='form-group' id="ocultarev">
+					{{form.gryllus.label}}
+					{{form.gryllus}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.helio_plantas.label}}
+					{{form.helio_plantas}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.helio_frutos.label}}
+					{{form.helio_frutos}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.helio_larvasgr.label}}
+					{{form.helio_larvasgr}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.helio_larvaspe.label}}
+					{{form.helio_larvaspe}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.helio_posturas.label}}
+					{{form.helio_posturas}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.membracidos_nplanta.label}}
+					{{form.membracidos_nplanta}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.mosca_blanca_ninfa.label}}
+					{{form.mosca_blanca_ninfa}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.mosca_blanca_adulta.label}}
+					{{form.mosca_blanca_adulta}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.mosca_fruta_num.label}}
+					{{form.mosca_fruta_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.plecto_num.label}}
+					{{form.plecto_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.prosco_num.label}}
+					{{form.prosco_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.pulgones_por.label}}
+					{{form.pulgones_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.pulgones_brotes.label}}
+					{{form.pulgones_brotes}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.pulgones_num.label}}
+					{{form.pulgones_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.queresas_por.label}}
+					{{form.queresas_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.queresas_num.label}}
+					{{form.queresas_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.spodo_por.label}}
+					{{form.spodo_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.spodo_larvargr.label}}
+					{{form.spodo_larvargr}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.spodo_larvape.label}}
+					{{form.spodo_larvape}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.spodo_masa.label}}
+					{{form.spodo_masa}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.trips_num.label}}
+					{{form.trips_num}}
+				</div>
+					<div class='form-group' id="ocultarev">
+					{{form.aranas_num.label}}
+					{{form.aranas_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.cocci_num.label}}
+					{{form.cocci_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.crisopas_num.label}}
+					{{form.crisopas_num}}
+				</div>
+				<div class='form-group' id="ocultarev" >
+					{{form.cryptola_num.label}}
+					{{form.cryptola_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.otros_num.label}}
+					{{form.otros_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.alternaria_por.label}}
+					{{form.alternaria_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.grado_infestacion.label}}
+					{{form.grado_infestacion}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.antra_por.label}}
+					{{form.antra_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.botritis_flores.label}}
+					{{form.botritis_flores}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.botritis_frutos.label}}
+					{{form.botritis_frutos}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.botritis_num.label}}
+					{{form.botritis_num}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.lasio_por.label}}
+					{{form.lasio_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.pestalo_por.label}}
+					{{form.pestalo_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.pestalo_ramas.label}}
+					{{form.pestalo_ramas}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.phyto_por.label}}
+					{{form.phyto_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.planta_quemadas_por.label}}
+					{{form.planta_quemadas_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.planta_quemadas_ramas.label}}
+					{{form.planta_quemadas_ramas}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.roya_por.label}}
+					{{form.roya_por}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.roya_grado.label}}
+					{{form.roya_grado}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.hoja_ancha_hojas.label}}
+					{{form.hoja_ancha_hojas}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.hoja_ancha_hojas2.label}}
+					{{form.hoja_ancha_hojas2}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.hoja_ancha_cotiledones.label}}
+					{{form.hoja_ancha_cotiledones}}
+				</div>
+				
+				<div class='form-group' id="ocultarev">
+					{{form.hoja_angosta_focos.label}}
+					{{form.hoja_angosta_focos}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.hoja_angosta_1.label}}
+					{{form.hoja_angosta_1}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.hoja_angosta_1.label}}
+					{{form.hoja_angosta_1}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.hoja_angosta_1.label}}
+					{{form.hoja_angosta_1}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.hoja_angosta_2.label}}
+					{{form.hoja_angosta_2}}
+				</div>
+				<div class='form-group' id="ocultarev">
+					{{form.abejas.label}}
+					{{form.abejas}}
+				</div>
+					<div class='form-group'>
+					{{form.longitud.label}}
+					{{form.longitud}}
+				</div>
+				<div class='form-group'>
+					{{form.latitud.label}}
+					{{form.latitud}}
+				</div>
+
+
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+
+{%endblock%}
+{%block script%}
+  <script>  
+     $(document).ready(function () {  
+	
+          if ("geolocation" in navigator)
+          { //check geolocation available 
+    //try to get user current location using getCurrentPosition() method
+   			 navigator.geolocation.getCurrentPosition(function(position){ 
+           	 console.log("Found your location nLat : "+position.coords.latitude+" nLang :"+ position.coords.longitude);
+           	 lat=position.coords.latitude;
+           	 lon=position.coords.longitude;
+
+           	 nlat=Math.round((lat)*10000000)/10000000;
+           	 nlon=Math.round((lon)*10000000)/10000000;
+           	 $("#id_longitud").val(nlon);
+			 $("#id_latitud").val(nlat);
+       		 });
+
+		  }
+		else
+		{
+   			 console.log("Browser doesn't support geolocation!");
+		}
+		
+
+     });  
+   </script>
+{%endblock%}

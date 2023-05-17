@@ -1,0 +1,206 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">SUBGRUPOS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearsubgruposplagasarandanos' id subid varid %}" >
+				<button type="button" class="btn btn-success">Registrar SubGrupo</button>
+			</a>
+			<a href="{% url 'gruposplagasarandanos' id subid  %}" >
+				<button type="button" class="btn btn-primary">Ir a Grupos</button>
+			</a>
+			<a href="{% url 'evaluaciones' id  %}" >
+				<button type="button" class="btn btn-secondary">Ir a Ev. Plagas</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>SubGrupos</td>
+						
+					
+						
+
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in subgrupospr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.subgrupo}}
+							</td>
+							
+						
+							
+							
+
+							<td>
+							 	<a href="{% url 'editarsubgruposplagasarandanos'  id subid  dato.id varid %}"><i class="bi bi-pencil-square"></i></a>
+
+							 	{% if dato.id == 1 %}
+								<a href="{% url 'variablesplagasarandanos' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+								{% endif %}
+							 	
+								
+								{% if dato.id == 2 %}
+								<a href="{% url 'aranaroja' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+								{% endif %}
+
+								{% if dato.id == 3 %}
+								<a href="{% url 'argy' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+								{% endif %}
+								{% if dato.id == 4 %}
+								<a href="{% url 'cigarrita' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+								{% endif %}
+								{% if dato.id == 5 %}
+								<a href="{% url 'cochinilla' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+								{% endif %}
+								{% if dato.id == 6 %}
+								<a href="{% url 'crypto' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+								{% endif %}
+								{% if dato.id == 7 %}
+								<a href="{% url 'diabro' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								{% if dato.id == 8 %}
+								<a href="{% url 'gryllus' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								{% if dato.id == 9 %}
+								<a href="{% url 'helio' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								{% if dato.id == 10 %}
+								<a href="{% url 'membracidos' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								{% if dato.id == 11 %}
+								<a href="{% url 'moscablanca' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+								{% if dato.id == 12 %}
+								<a href="{% url 'moscafruta' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 13 %}
+								<a href="{% url 'plecto' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 14 %}
+								<a href="{% url 'procospidos' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 15 %}
+								<a href="{% url 'pulgones' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 16 %}
+								<a href="{% url 'queresas' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 17 %}
+								<a href="{% url 'spodo' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 26 %}
+								<a href="{% url 'trips' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 27 %}
+								<a href="{% url 'aranas' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 28 %}
+								<a href="{% url 'cocci' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 29 %}
+								<a href="{% url 'crisopas' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 30 %}
+								<a href="{% url 'cryptola' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 31 %}
+								<a href="{% url 'otro' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 32 %}
+								<a href="{% url 'alternaria' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 33 %}
+								<a href="{% url 'antra' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 34 %}
+								<a href="{% url 'botri' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 35 %}
+								<a href="{% url 'lasio' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 36 %}
+								<a href="{% url 'pestalo' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 37 %}
+								<a href="{% url 'phyto' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 38 %}
+								<a href="{% url 'plantaquemada' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 39 %}
+								<a href="{% url 'roya' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 40 %}
+								<a href="{% url 'hojasanchas' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 41 %}
+								<a href="{% url 'hojasangostas' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+
+								{% if dato.id == 42 %}
+								<a href="{% url 'abejas' id subid varid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								{% endif %}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

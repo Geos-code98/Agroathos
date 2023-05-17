@@ -1,0 +1,253 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+
+	
+
+
+<section  class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> PRODUCCION</small></div>
+					<div class="card-body card-block">
+			<form  id="#Produccionform" action="{% url 'editarproduccion' id subid %}" method="post" data-validate="parsley"  data-cities-url="" novalidate>
+				{% csrf_token %}
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+
+
+				<div class='form-group'>
+					{{form.anexo_fundo.label}}
+					{{form.anexo_fundo}}
+				</div>
+
+				<div class='form-group'>
+					Modulo
+					<select name="anexo_modulo" placeholder="Modulo" data-required="true" data-error-message="modulo requerido!" class="form-control" required="" id="id_anexo_modulo">
+ 						 <option value="" >---------</option>
+ 						  						     
+
+					</select>
+				</div>
+
+				<div class='form-group'>
+					Lote
+					<select name="anexo_lote" placeholder="Lote" data-required="true" data-error-message="Lote requerido!" class="form-control" required="" id="id_anexo_lote">
+  						<option value="" >---------</option>
+
+					</select>
+				</div>
+				
+			
+				<div class='form-group'>
+					{{form.anexo_campana.label}}
+					{{form.anexo_campana}}
+				</div>
+				<div class='form-group'>
+					{{form.ano_campana.label}}
+					{{form.ano_campana}}
+				</div>
+				<div class='form-group'>
+					{{form.organos_campana.label}}
+					{{form.organos_campana}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_variedad.label}}
+					{{form.anexo_variedad}}
+				</div>
+
+				
+				<div class='form-group'>
+					{{form.area.label}}
+					{{form.area}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.inicio_campana.label}}
+					{{form.inicio_campana}}
+				</div>
+				<div class='form-group'>
+					{{form.inicio_cosecha_clp.label}}
+					{{form.inicio_cosecha_clp}}
+				</div>
+				<div class='form-group'>
+					{{form.cierre_campana.label}}
+					{{form.cierre_campana}}
+				</div>
+				<div class='form-group'>
+					{{form.anio_cosecha.label}}
+					{{form.anio_cosecha}}
+				</div>
+				<div class='form-group'>
+					{{form.var_pep.label}}
+					{{form.var_pep}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_siembra.label}}
+					{{form.anexo_siembra}}
+				</div>
+				<div class='form-group'>
+					{{form.etapa.label}}
+					{{form.etapa}}
+				</div>
+				<div class='form-group'>
+					{{form.responsable.label}}
+					{{form.responsable}}
+				</div>
+				<div class='form-group'>
+					{{form.estado.label}}
+					{{form.estado}}
+				</div>
+				
+
+				<input type="submit" value="Registrar" id="registrar" onclick="cerrar();" class="btn btn-primary">
+				<a href="{% url 'programa_changelist' %}">Nevermind</a>
+			</form>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>
+	console.log($("#fundo").val() + 'fundo');
+	function request_modulo (fundoId, moduloId=0) {
+		var urldata="/ajax/load-modulitos/" + fundoId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        	if (moduloId !== 0) {
+        		if (moduloId == data[i].id) {
+        			option_html += `<option value="${data[i].id}" selected="selected">${data[i].nombremodulo}</option>`;
+        		}
+        		else
+        		{
+	        		option_html+=`<option value="${data[i].id}">${data[i].nombremodulo}</option>`;
+        		}
+        	}else{
+        		option_html+=`<option value="${data[i].id}">${data[i].nombremodulo}</option>`;
+        	}
+        } 
+        $("#id_anexo_modulo").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+	}
+	function request_lote(moduloId, loteId=0) {
+		var urldata="/ajax/load-lotecitos/" + moduloId;  
+      $.ajax({                       
+        url: urldata,                   
+        data: {},
+        success: function (data) {
+        console.log(data.length)
+        var option_html=`<option value="0">---------</option>`;
+        for (var i = 0; i < data.length; i++) { 
+        	if (loteId !== 0 && loteId !== "") {
+        		if (loteId == data[i].id) {
+    		     	option_html+=`<option value="${data[i].id}" selected="selected">${data[i].nom_lote}</option>`;
+        		}else{
+	         	option_html+=`<option value="${data[i].id}">${data[i].nom_lote}</option>`;
+        		}
+        	}else{
+	         	option_html+=`<option value="${data[i].id}">${data[i].nom_lote}</option>`;
+        	}
+        	console.log(data[i].id, data[i].nom_lote)
+        } 
+        $("#id_anexo_lote").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+		
+	}
+
+	if ($('#fundo').val()!=="")
+	{	
+		if ("{{sub_campo.anexo_lote.id}}" != "") {
+			console.log("{{sub_campo.anexo_lote.id}}"+"sub_lote");
+			request_lote("{{sub_campo.anexo_modulo.id}}","{{sub_campo.anexo_lote.id}}")
+		}
+		try{
+			console.log("{{sub_campo.anexo_modulo.id}}"+"sub_campo");
+			request_modulo($('#fundo').val(),"{{sub_campo.anexo_modulo.id}}")
+		}catch(error){
+			console.log(error)
+		}
+	}
+
+    $("#fundo").change(function () { 
+      var fundoId = $(this).val();
+      request_modulo(fundoId)
+    });
+  
+    $("#id_anexo_modulo").change(function () {
+      var moduloId = $(this).val();
+      request_lote(moduloId)
+
+    });
+
+
+</script>
+  </script>
+
+<script>  
+  $(function () {  
+   $("#datepicker1").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+  $(function () {  
+   $("#datepicker2").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });
+  $(function () {  
+   $("#id_inicio_cosecha_clp").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script>   
+{% endblock %}

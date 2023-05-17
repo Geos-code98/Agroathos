@@ -1,0 +1,39 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+			<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> TEMPERATURA ENFRIADO</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				
+				<div class='form-group'>
+					{{form.m_tempinterna.label}}
+					{{form.m_tempinterna}}
+				</div>
+				<div class='form-group'>
+					{{form.m_tempexterna.label}}
+					{{form.m_tempexterna}}
+				</div>
+				<div class='form-group'>
+					{{form.m_tempambiente.label}}
+					{{form.m_tempambiente}}
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

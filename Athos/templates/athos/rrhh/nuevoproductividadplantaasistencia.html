@@ -1,0 +1,43 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> CONFIGURACION ASISTENCIA</small></div>
+					<div class="card-body card-block">
+						<form id="frmajax"  method="post" data-validate="parsley">
+							{% csrf_token %}
+
+							<div class='form-group'>
+								{{form.anexo_fecha.label}}
+								{{form.anexo_fecha}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_linea.label}}
+								{{form.anexo_linea}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_actividad_labor.label}}
+								{{form.anexo_actividad_labor}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_mesa.label}}
+								{{form.anexo_mesa}}
+							</div>
+
+							<a href="javascript: history.go(-1)" >
+								<button type="button" class="btn btn-danger">Atrás</button>
+							</a>
+							<input type="submit" value="Registrar" class="btn btn-success">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+{% block script %}
+{%endblock%}

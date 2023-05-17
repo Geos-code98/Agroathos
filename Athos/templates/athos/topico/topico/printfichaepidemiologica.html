@@ -1,0 +1,284 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<style>
+	#logoathos{
+		width: 100%;
+		height: 100%;
+	}
+	#qr{
+		width: 70%;
+		margin-top: -65%;
+		position: relative;
+		left: 50%;
+	}
+	#material{
+		width: 55%;
+	}
+</style>
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+			<a href="{% url 'topico' 141  %}" >
+
+				<button type="button" class="btn btn-success">Ir a Fichas</button>
+			</a>
+			<a href="javascript:history.go(-1)" >
+
+				<button type="button" class="btn btn-secondary">Regresar</button>
+			</a>
+			
+					<div class="card">
+					<div class="card-header"><strong>IMPRIMIR</strong><small>FICHA EPI.</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				<div>	
+				
+					<br>
+					<br>
+					<img src="{% static 'login/images/icons/encabezadofichaepidemiologica.png' %}" id="logoathos"></a>
+				</div>	
+				<br>	
+						
+				<div class='form-group'>
+					<h4><b></b></h4>
+					
+				</div>
+				
+				<div class='form-group'>
+					<table>
+					
+							
+						
+
+						 <tr>
+					      <td><b>PLANTA/FUNDO</b></td>
+					      <td> {{buscar.anexo_lugar.Lugar}} </td>
+					      <td><b>&nbsp AREA </b></td>
+					      <td> {{det.anexo_lugar.Lugar}} </td>
+					     
+					    </tr>
+					    <tr>
+					      <td><b>NOMBRES Y APELLIDOS </b></td>
+					      <td> &nbsp {{buscar.nombre_completo}} </td>
+					   	  
+					     
+					    </tr>
+
+					</table>
+					
+					<table>
+					
+							
+						
+
+						 <tr>
+					      <td><b>DNI </b></td>
+					      <td> &nbsp {{buscar.dni}} &nbsp </td>
+					      <td><b>EDAD </b></td>
+					      <td> &nbsp {{buscar.edad}} &nbsp </td>
+					      <td><b>SEXO </b></td>
+					      <td>  &nbsp {{buscar.genero}} &nbsp </td>
+					      <td><b>FECHA EVALUACION </b></td>
+					      <td>  &nbsp {{buscar.fecha_evaluacion|date:'d/m/Y '}} &nbsp </td>
+					     
+					    </tr>
+					</table>
+					<table>
+					     <tr>
+					      <td><b>1. ¿Estoy en riesgo de haber contraido el coronavirus COVID-19?</b></td>
+					      
+					    
+					    </tr>
+					    <tr>
+					    	<td> &nbsp {{buscar.anexo_preg1.desc}} &nbsp </td>
+					     
+					    </tr>
+					     
+					 </table>
+					 <h7><b>2. De ser SI, ¿presenta alguno de estos sintomas?</b></h7>
+					 <table>
+					 	<tr>
+					 		<td> &nbsp ({{buscar.anexo_preg2_1.desc}}) &nbsp </td>
+					 		<td>Tos</td>
+
+					      
+					 	</tr>
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg2_2.desc}}) &nbsp </td>
+					 		<td>Fiebre(T°>38 °C)/Escalofrios</td>
+					 	</tr>
+					 	
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg2_3.desc}}) &nbsp </td>
+					 		<td>Dolor de garganta</td>
+					 	</tr>
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg2_4.desc}}) &nbsp </td>
+					 		<td>Congestion Nasal</td>
+					 	</tr>
+
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg2_5.desc}}) &nbsp </td>
+					 		<td>Malestar general</td>
+					 	</tr>
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg2_6.desc}}) &nbsp </td>
+					 		<td>Dolor</td>
+					 	</tr>
+					 </table>
+					
+					<table>
+						 <tr>
+					      <td><b>3. Fecha inicio de sintomas: &nbsp </b></td>
+					      <td> &nbsp  {{buscar.fecha_sintomas}}  </td>
+					    </tr>
+
+					     <tr>
+					      <td><b>4. ¿Has estado fuera de la ciudad de Ica en los ultimos 14 dias?: &nbsp </b></td>
+					      <td> &nbsp  {{buscar.anexo_preg4_1.desc}}  </td> 
+					    </tr>
+
+					     <tr>
+					      <td><b>¿En qué lugar? &nbsp </b></td>
+					      
+					    </tr>
+					    <tr>
+					    	<td> &nbsp  {{buscar.lugar_visita}}  </td> 
+					    </tr>
+
+					     <tr>
+					      <td><b>5. ¿Has estado en contacto con un caso confirmado y/o sospechoso de COVID-19?: &nbsp </b></td>
+					      <td> &nbsp  {{buscar.anexo_preg5_1.desc}}  </td> 
+					    </tr>
+
+					</table>
+					
+					<h7><b>6. Presenta alguna de estas condiciones de comorbilidad:</b></h7>
+					 <table>
+					 	<tr>
+					 		<td> &nbsp ({{buscar.anexo_preg6_1.desc}}) &nbsp </td>
+					 		<td>Embarazo</td>
+
+					 		<td><b>	&nbsp Trimestre</b></td>
+					 		<td> &nbsp ({{buscar.trimestre_embarazo}}) &nbsp </td>
+					      
+					 	</tr>
+					 </table>
+					 <table>	
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_2.desc}}) &nbsp </td>
+					 		<td>Enfermedad cardiovascular/hipertensión</td>
+					 	</tr>
+					 	
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_3.desc}}) &nbsp </td>
+					 		<td>Diabetes</td>
+					 	</tr>
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_4.desc}}) &nbsp </td>
+					 		<td>Enfermedad hepátical</td>
+					 	</tr>
+
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_5.desc}}) &nbsp </td>
+					 		<td>Enfermedad crónica neurológical</td>
+					 	</tr>
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_6.desc}}) &nbsp </td>
+					 		<td>Post parto (<6 semanas)</td>
+					 	</tr>
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_7.desc}}) &nbsp </td>
+					 		<td>Enfermedad renal</td>
+					 	</tr>
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_8.desc}}) &nbsp </td>
+					 		<td>Daño hepático</td>
+					 	</tr>
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_9.desc}}) &nbsp </td>
+					 		<td>Enfermedad pulmonar crónica</td>
+					 	</tr>
+
+					 	<tr>
+					 		
+					 		<td> &nbsp ({{buscar.anexo_preg6_10.desc}}) &nbsp </td>
+					 		<td>Cáncer</td>
+					 	</tr>
+					 </table>
+					 <h7><b>Datos del Personal que evalúa</b></h7>>
+					<table>
+						 <tr>
+					      <td><b>Apellidos y Nombres: &nbsp </b></td>
+					      
+					    </tr>
+					    <tr>
+					    	<td> &nbsp  {{buscar.usuario_creacion.first_name}} &nbsp {{buscar.usuario_creacion.last_name}}  </td> 
+					    </tr>
+						 <tr>
+					      <td><b>Firma y sello : &nbsp </b></td>
+					      
+					    </tr>
+					</table>
+
+				</div>
+					
+		
+			</form>
+				
+			<br>
+			<br>
+			<br>
+	</div>
+
+	</div>
+</div>
+
+</div>
+
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>
+
+	
+ 
+
+        
+
+</script>
+<script type="text/javascript" src="qrcode.js"></script>
+
+
+	
+</script>
+{% endblock %}

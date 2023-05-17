@@ -1,0 +1,66 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> PROYECCION</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				<div class='form-group'>
+					{{form.lunes.label}}
+					{{form.lunes}}
+				</div>
+				<div class='form-group'>
+					{{form.martes.label}}
+					{{form.martes}}
+				</div>
+				<div class='form-group'>
+					{{form.miercoles.label}}
+					{{form.miercoles}}
+				</div>
+				<div class='form-group'>
+					{{form.jueves.label}}
+					{{form.jueves}}
+				</div>
+				<div class='form-group'>
+					{{form.viernes.label}}
+					{{form.viernes}}
+				</div>
+				<div class='form-group'>
+					{{form.sabado.label}}
+					{{form.sabado}}
+				</div>
+				<div class='form-group'>
+					{{form.domingo.label}}
+					{{form.domingo}}
+				</div>
+				<div class='form-group'>
+					{{form.semana1.label}}
+					{{form.semana1}}
+				</div>
+				<div class='form-group'>
+					{{form.semana2.label}}
+					{{form.semana2}}
+				</div>
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+
+{% endblock %}

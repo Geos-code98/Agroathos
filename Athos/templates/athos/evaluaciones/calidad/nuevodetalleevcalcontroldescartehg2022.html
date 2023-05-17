@@ -1,0 +1,141 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE CONTROL DESCARTE HG</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class='form-group'>
+            {{form.exportable1.label}}
+            {{form.exportable1}}
+        </div>
+        <div class='form-group'>
+            {{form.exportable2.label}}
+            {{form.exportable2}}
+        </div>
+        <div class='form-group'>
+          {{form.exportable3.label}}
+          {{form.exportable3}}
+        </div>
+         <div class='form-group'>
+          {{form.exportable4.label}}
+          {{form.exportable4}}
+        </div><div class='form-group'>
+            {{form.exportable5.label}}
+            {{form.exportable5}}
+        </div>
+        <div class='form-group'>
+            {{form.exportable6.label}}
+            {{form.exportable6}}
+        </div>
+        <div class='form-group'>
+          {{form.exportable7.label}}
+          {{form.exportable7}}
+        </div>
+         <div class='form-group'>
+          {{form.exportable8.label}}
+          {{form.exportable8}}
+        </div>
+
+        <div class='form-group'>
+            {{form.descarte1.label}}
+            {{form.descarte1}}
+        </div>
+        <div class='form-group'>
+            {{form.descarte2.label}}
+            {{form.descarte2}}
+        </div>
+        <div class='form-group'>
+          {{form.descarte3.label}}
+          {{form.descarte3}}
+        </div>
+         <div class='form-group'>
+          {{form.descarte4.label}}
+          {{form.descarte4}}
+        </div>
+        <div class='form-group'>
+            {{form.descarte5.label}}
+            {{form.descarte5}}
+        </div>
+        <div class='form-group'>
+            {{form.descarte6.label}}
+            {{form.descarte6}}
+        </div>
+        <div class='form-group'>
+          {{form.descarte7.label}}
+          {{form.descarte7}}
+        </div>
+         <div class='form-group'>
+          {{form.descarte8.label}}
+          {{form.descarte8}}
+        </div>
+        <div class='form-group'>
+            {{form.descarte9.label}}
+            {{form.descarte9}}
+        </div>
+        <div class='form-group'>
+            {{form.descarte10.label}}
+            {{form.descarte10}}
+        </div>
+        <div class='form-group'>
+          {{form.descarte11.label}}
+          {{form.descarte11}}
+        </div>
+         <div class='form-group'>
+          {{form.descarte12.label}}
+          {{form.descarte12}}
+        </div>
+        <div class='form-group'>
+            {{form.descarte13.label}}
+            {{form.descarte13}}
+        </div>
+        <div class='form-group'>
+            {{form.descarte14.label}}
+            {{form.descarte14}}
+        </div>
+        <div class='form-group'>
+          {{form.descarte15.label}}
+          {{form.descarte15}}
+        </div>
+         <div class='form-group'>
+          {{form.descarte16.label}}
+          {{form.descarte16}}
+        </div>
+        <div class='form-group'>
+          {{form.descarte17.label}}
+          {{form.descarte17}}
+        </div>
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">VALVULAS PROGRAMA PRODUCCION</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearturnoprogramaproduccion' id  subid %}" >
+				<button type="button" class="btn btn-success">Registrar VALVULAS</button>
+			</a>
+			<a href="{% url 'campo' id %}" >
+				<button type="button" class="btn btn-secondary">Regresar</button>
+			</a>
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Valvula</td>
+						<td>Suelo</td>
+						<td>Hectareaje</td>
+						<td>Densidad</td>
+						<td>Estado</td>
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in turnopr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.turno }}
+							</td>
+							<td>
+								{{ dato.anexo_suelo }}
+							</td>
+							<td>
+								{{ dato.hectareaje }}
+							</td>
+							<td>
+								{{ dato.densidad }}
+							</td>
+						
+							<td>
+								{{ dato.anexo_estado}}
+							</td>
+							
+
+							<td>
+							 	<a href="{% url 'editarturnoprogramaproduccion'  id subid dato.id %}"><i class="bi bi-pencil-square"></i></a>
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

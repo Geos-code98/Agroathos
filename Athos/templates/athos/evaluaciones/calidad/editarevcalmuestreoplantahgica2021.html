@@ -1,0 +1,1017 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> EV. CALIDAD MUESTREO PLANTA HIGO</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+                    {% for field in form %}
+
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ field.label|escape }}:</strong>
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+				<div class='form-group'>
+                     {{form.fecha.label}}
+                     {{form.fecha}}
+                 </div>
+                 <div class='form-group'>
+                    {{form.nro_ticket.label}}
+                    {{form.nro_ticket}}
+                </div>
+                <div class='form-group'>
+                    {{form.temperatura_pulpa.label}}
+                    {{form.temperatura_pulpa}}
+                </div>
+                <div class='form-group'>
+                    {{form.peso_muestra.label}}
+                    {{form.peso_muestra}}
+                </div>
+
+                <div class='form-group'>
+                    {{form.exportable11.label}}
+                    {{form.exportable11}}
+                </div>
+
+                <div class='form-group'>
+                  {{form.exportable13.label}}
+                  {{form.exportable13}}
+              </div>
+
+              <div class='form-group'>
+                {{form.exportable15.label}}
+                {{form.exportable15}}
+            </div>
+            <div class='form-group'>
+              {{form.exportable18.label}}
+              {{form.exportable18}}
+          </div>
+
+
+          <div class='form-group'>
+              {{form.exportable20.label}}
+              {{form.exportable20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.exportable24.label}}
+              {{form.exportable24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.exportable27.label}}
+              {{form.exportable27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.exportable30.label}}
+              {{form.exportable30}}
+          </div>
+          <h5><b>Condicion</b></h5>
+          <div class='form-group'>
+              {{form.pudricion11.label}}
+              {{form.pudricion11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pudricion13.label}}
+              {{form.pudricion13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pudricion15.label}}
+              {{form.pudricion15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pudricion18.label}}
+              {{form.pudricion18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pudricion20.label}}
+              {{form.pudricion20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pudricion24.label}}
+              {{form.pudricion24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pudricion27.label}}
+              {{form.pudricion27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pudricion30.label}}
+              {{form.pudricion30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.micelio11.label}}
+              {{form.micelio11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.micelio13.label}}
+              {{form.micelio13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.micelio15.label}}
+              {{form.micelio15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.micelio18.label}}
+              {{form.micelio18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.micelio20.label}}
+              {{form.micelio20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.micelio24.label}}
+              {{form.micelio24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.micelio27.label}}
+              {{form.micelio27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.micelio30.label}}
+              {{form.micelio30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pasmado11.label}}
+              {{form.pasmado11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pasmado13.label}}
+              {{form.pasmado13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pasmado15.label}}
+              {{form.pasmado15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pasmado18.label}}
+              {{form.pasmado18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pasmado20.label}}
+              {{form.pasmado20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pasmado24.label}}
+              {{form.pasmado24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pasmado27.label}}
+              {{form.pasmado27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pasmado30.label}}
+              {{form.pasmado30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.sobremaduro11.label}}
+              {{form.sobremaduro11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.sobremaduro13.label}}
+              {{form.sobremaduro13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.sobremaduro15.label}}
+              {{form.sobremaduro15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.sobremaduro18.label}}
+              {{form.sobremaduro18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.sobremaduro20.label}}
+              {{form.sobremaduro20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.sobremaduro24.label}}
+              {{form.sobremaduro24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.sobremaduro27.label}}
+              {{form.sobremaduro27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.sobremaduro30.label}}
+              {{form.sobremaduro30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_latex11.label}}
+              {{form.danio_latex11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_latex13.label}}
+              {{form.danio_latex13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_latex15.label}}
+              {{form.danio_latex15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_latex18.label}}
+              {{form.danio_latex18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_latex20.label}}
+              {{form.danio_latex20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_latex24.label}}
+              {{form.danio_latex24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_latex27.label}}
+              {{form.danio_latex27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_latex30.label}}
+              {{form.danio_latex30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.ostiolo_abierto11.label}}
+              {{form.ostiolo_abierto11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.ostiolo_abierto13.label}}
+              {{form.ostiolo_abierto13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.ostiolo_abierto15.label}}
+              {{form.ostiolo_abierto15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.ostiolo_abierto18.label}}
+              {{form.ostiolo_abierto18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.ostiolo_abierto20.label}}
+              {{form.ostiolo_abierto20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.ostiolo_abierto24.label}}
+              {{form.ostiolo_abierto24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.ostiolo_abierto27.label}}
+              {{form.ostiolo_abierto27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.ostiolo_abierto30.label}}
+              {{form.ostiolo_abierto30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mecanico11.label}}
+              {{form.danio_mecanico11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mecanico13.label}}
+              {{form.danio_mecanico13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mecanico15.label}}
+              {{form.danio_mecanico15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mecanico18.label}}
+              {{form.danio_mecanico18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mecanico20.label}}
+              {{form.danio_mecanico20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mecanico24.label}}
+              {{form.danio_mecanico24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mecanico27.label}}
+              {{form.danio_mecanico27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mecanico30.label}}
+              {{form.danio_mecanico30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pedunculo_malcortado11.label}}
+              {{form.pedunculo_malcortado11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pedunculo_malcortado13.label}}
+              {{form.pedunculo_malcortado13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pedunculo_malcortado15.label}}
+              {{form.pedunculo_malcortado15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pedunculo_malcortado18.label}}
+              {{form.pedunculo_malcortado18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pedunculo_malcortado20.label}}
+              {{form.pedunculo_malcortado20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pedunculo_malcortado24.label}}
+              {{form.pedunculo_malcortado24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pedunculo_malcortado27.label}}
+              {{form.pedunculo_malcortado27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.pedunculo_malcortado30.label}}
+              {{form.pedunculo_malcortado30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.agrietado11.label}}
+              {{form.agrietado11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.agrietado13.label}}
+              {{form.agrietado13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.agrietado15.label}}
+              {{form.agrietado15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.agrietado18.label}}
+              {{form.agrietado18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.agrietado20.label}}
+              {{form.agrietado20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.agrietado24.label}}
+              {{form.agrietado24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.agrietado27.label}}
+              {{form.agrietado27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.agrietado30.label}}
+              {{form.agrietado30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deshidratado11.label}}
+              {{form.deshidratado11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deshidratado13.label}}
+              {{form.deshidratado13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deshidratado15.label}}
+              {{form.deshidratado15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deshidratado18.label}}
+              {{form.deshidratado18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deshidratado20.label}}
+              {{form.deshidratado20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deshidratado24.label}}
+              {{form.deshidratado24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deshidratado27.label}}
+              {{form.deshidratado27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deshidratado30.label}}
+              {{form.deshidratado30}}
+          </div>
+
+          <h5><b>Calidad</b></h5>
+
+          <div class='form-group'>
+              {{form.bajo_calibre11.label}}
+              {{form.bajo_calibre11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.bajo_calibre13.label}}
+              {{form.bajo_calibre13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.bajo_calibre15.label}}
+              {{form.bajo_calibre15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.bajo_calibre18.label}}
+              {{form.bajo_calibre18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.bajo_calibre20.label}}
+              {{form.bajo_calibre20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.bajo_calibre24.label}}
+              {{form.bajo_calibre24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.bajo_calibre27.label}}
+              {{form.bajo_calibre27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.bajo_calibre30.label}}
+              {{form.bajo_calibre30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deformes11.label}}
+              {{form.deformes11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deformes13.label}}
+              {{form.deformes13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deformes15.label}}
+              {{form.deformes15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deformes18.label}}
+              {{form.deformes18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deformes20.label}}
+              {{form.deformes20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deformes24.label}}
+              {{form.deformes24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deformes27.label}}
+              {{form.deformes27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.deformes30.label}}
+              {{form.deformes30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.cicatriz11.label}}
+              {{form.cicatriz11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.cicatriz13.label}}
+              {{form.cicatriz13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.cicatriz15.label}}
+              {{form.cicatriz15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.cicatriz18.label}}
+              {{form.cicatriz18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.cicatriz20.label}}
+              {{form.cicatriz20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.cicatriz24.label}}
+              {{form.cicatriz24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.cicatriz27.label}}
+              {{form.cicatriz27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.cicatriz30.label}}
+              {{form.cicatriz30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.manchas11.label}}
+              {{form.manchas11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.manchas13.label}}
+              {{form.manchas13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.manchas15.label}}
+              {{form.manchas15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.manchas18.label}}
+              {{form.manchas18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.manchas20.label}}
+              {{form.manchas20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.manchas24.label}}
+              {{form.manchas24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.manchas27.label}}
+              {{form.manchas27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.manchas30.label}}
+              {{form.manchas30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.inmadurez_verde11.label}}
+              {{form.inmadurez_verde11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.inmadurez_verde13.label}}
+              {{form.inmadurez_verde13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.inmadurez_verde15.label}}
+              {{form.inmadurez_verde15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.inmadurez_verde18.label}}
+              {{form.inmadurez_verde18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.inmadurez_verde20.label}}
+              {{form.inmadurez_verde20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.inmadurez_verde24.label}}
+              {{form.inmadurez_verde24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.inmadurez_verde27.label}}
+              {{form.inmadurez_verde27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.inmadurez_verde30.label}}
+              {{form.inmadurez_verde30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.excremento_ave11.label}}
+              {{form.excremento_ave11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.excremento_ave13.label}}
+              {{form.excremento_ave13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.excremento_ave15.label}}
+              {{form.excremento_ave15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.excremento_ave18.label}}
+              {{form.excremento_ave18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.excremento_ave20.label}}
+              {{form.excremento_ave20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.excremento_ave24.label}}
+              {{form.excremento_ave24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.excremento_ave27.label}}
+              {{form.excremento_ave27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.excremento_ave30.label}}
+              {{form.excremento_ave30}}
+          </div>
+
+
+          <div class='form-group'>
+              {{form.picado_ave11.label}}
+              {{form.picado_ave11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.picado_ave13.label}}
+              {{form.picado_ave13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.picado_ave15.label}}
+              {{form.picado_ave15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.picado_ave18.label}}
+              {{form.picado_ave18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.picado_ave20.label}}
+              {{form.picado_ave20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.picado_ave24.label}}
+              {{form.picado_ave24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.picado_ave27.label}}
+              {{form.picado_ave27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.picado_ave30.label}}
+              {{form.picado_ave30}}
+          </div>
+
+
+          <h5><b>Fitosanitario</b></h5>
+          <div class='form-group'>
+              {{form.danio_trips11.label}}
+              {{form.danio_trips11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_trips13.label}}
+              {{form.danio_trips13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_trips15.label}}
+              {{form.danio_trips15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_trips18.label}}
+              {{form.danio_trips18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_trips20.label}}
+              {{form.danio_trips20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_trips24.label}}
+              {{form.danio_trips24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_trips27.label}}
+              {{form.danio_trips27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_trips30.label}}
+              {{form.danio_trips30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_queresa11.label}}
+              {{form.danio_queresa11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_queresa13.label}}
+              {{form.danio_queresa13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_queresa15.label}}
+              {{form.danio_queresa15}}
+          </div>
+
+
+          <div class='form-group'>
+              {{form.danio_queresa18.label}}
+              {{form.danio_queresa18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_queresa20.label}}
+              {{form.danio_queresa20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_queresa24.label}}
+              {{form.danio_queresa24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_queresa27.label}}
+              {{form.danio_queresa27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_queresa30.label}}
+              {{form.danio_queresa30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_aranita11.label}}
+              {{form.danio_aranita11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_aranita13.label}}
+              {{form.danio_aranita13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_aranita15.label}}
+              {{form.danio_aranita15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_aranita18.label}}
+              {{form.danio_aranita18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_aranita20.label}}
+              {{form.danio_aranita20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_aranita24.label}}
+              {{form.danio_aranita24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_aranita27.label}}
+              {{form.danio_aranita27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_aranita30.label}}
+              {{form.danio_aranita30}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mosca11.label}}
+              {{form.danio_mosca11}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mosca13.label}}
+              {{form.danio_mosca13}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mosca15.label}}
+              {{form.danio_mosca15}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mosca18.label}}
+              {{form.danio_mosca18}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mosca20.label}}
+              {{form.danio_mosca20}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mosca24.label}}
+              {{form.danio_mosca24}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mosca27.label}}
+              {{form.danio_mosca27}}
+          </div>
+
+          <div class='form-group'>
+              {{form.danio_mosca30.label}}
+              {{form.danio_mosca30}}
+          </div>
+
+          <div class='form-group'>
+            {{form.anexo_estadio_brix1.label}}
+            {{form.anexo_estadio_brix1}}
+        </div>
+        <div class='form-group'>
+            {{form.brix1.label}}
+            {{form.brix1}}
+        </div>
+        <div class='form-group'>
+            {{form.anexo_estadio_brix2.label}}
+            {{form.anexo_estadio_brix2}}
+        </div>
+        <div class='form-group'>
+            {{form.brix2.label}}
+            {{form.brix2}}
+        </div>
+        <div class='form-group'>
+            {{form.anexo_estadio_brix3.label}}
+            {{form.anexo_estadio_brix3}}
+        </div>
+        <div class='form-group'>
+            {{form.brix3.label}}
+            {{form.brix3}}
+        </div>
+        <div class='form-group'>
+            {{form.anexo_firmeza1.label}}
+            {{form.anexo_firmeza1}}
+        </div>
+        <div class='form-group'>
+            {{form.valor_firmeza1.label}}
+            {{form.valor_firmeza1}}
+        </div>
+        <div class='form-group'>
+            {{form.anexo_firmeza2.label}}
+            {{form.anexo_firmeza2}}
+        </div>
+        <div class='form-group'>
+            {{form.valor_firmeza2.label}}
+            {{form.valor_firmeza2}}
+        </div>
+        <div class='form-group'>
+            {{form.anexo_firmeza3.label}}
+            {{form.anexo_firmeza3}}
+        </div>
+        <div class='form-group'>
+            {{form.valor_firmeza3.label}}
+            {{form.valor_firmeza3}}
+        </div>
+
+        <div class='form-group'>
+          {{form.longitud.label}}
+          {{form.longitud}}
+      </div>
+      <div class='form-group'>
+          {{form.latitud.label}}
+          {{form.latitud}}
+      </div>
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+ <script>  
+  $(function () {  
+   $("#id_fecha").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+{% endblock %}

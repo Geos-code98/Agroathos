@@ -1,0 +1,76 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+
+		<h2 id="h1-usuarios">CAPA3-DETALLE CONSUMO REQ. RIEGO </h2>
+		<div>
+			<a href="{% url 'creardetallerequerimientoriegot' id subid varid  %}" >
+				<button type="button" class="btn btn-success">Registrar Consumo</button>
+			</a>
+			
+			
+			<a href="{% url 'detalleregistroriegofertilizacion' id subid   %}" >
+				<button type="button" class="btn btn-secondary">Atras</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title">REPORTE</strong>
+							</div>
+							<div class="card-body">
+								<table id="bootstrap-data-table" class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<td>N°</td>
+											<TD>Fecha Consumo</TD>
+											
+											<td>Consumo</td>
+											<td>UBI ID</td>
+											
+											<td>Acción</td>
+										</tr>
+									</thead>
+									<tbody id="reportes">
+										{% for dato in detallepr %}
+										<tr>
+											<td>
+												{{ forloop.counter }}
+											</td>
+											<td>
+												{{ dato.fecha_consumo|date:'D, d/m/Y'}}
+											</td>
+											
+											<td>
+												{{ dato.consumo}}
+											</td>
+											<td>
+												{{ dato.id}}
+											</td>
+											
+											
+
+											<td>
+												<a href="{% url 'editardetallerequerimientoriegot'  id subid varid  dato.id %}"><i class="bi bi-pencil-square"></i></a>
+												
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+</section>
+{% endblock %}

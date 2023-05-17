@@ -1,0 +1,78 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h4 id="h1-usuarios">EV. CONTROL DE PRODUCTO TERMINADO HG</h4>
+		<div>
+			<a href="{% url 'crearcontrolproductoterminadohg' id subid %}" >
+				<button type="button" class="btn btn-success">Crear Registro</button>
+			</a>
+			<a href="{% url 'evaluaciones' id %}" >
+				<button type="button" class="btn btn-primary">Ir a Ubicaciòn</button>
+			</a>
+		</div>
+		<div class="content mt-3">
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title">REPORTE</strong>
+							</div>
+							<div class="card-body">
+								<table id="bootstrap-data-table" class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<td>N°</td>
+											<td>Fecha</td>
+											<td>Centro</td>
+											<td>Linea</td>						
+											<td>Turno</td>
+											<td>Página</td>	
+											<td>Observaciones</td>
+											<td>Accion</td>
+										</tr>
+									</thead>
+									<tbody>
+										{% for dato in controlpr %}
+										<tr>
+											<td>
+												{{ forloop.counter }}
+											</td>
+											<td>
+												{{ dato.fecha |date:'d/m/Y' }}
+											</td>
+											<td>
+												{{ dato.anexo_centro }}
+											</td>
+											<td>
+												{{ dato.anexo_linea }}
+											</td>
+											<td>
+												{{ dato.anexo_turno }}
+											</td>
+											<td>
+												{{ dato.anexo_pagina}}
+											</td>
+											<td>
+												{{ dato.observacion}}
+											</td>
+											<td>
+												<a href="{% url 'editarcontrolproductoterminadohg'  id subid dato.id %}"><i class="bi bi-pencil-square"></i></a>		
+												<a href="{% url 'detallecontrolproductoterminadohg'  id subid dato.id %}"><i class="bi bi-eye-fill"></i></a>
+											</td>			
+										</tr>
+										{% endfor %}
+									</tbody>
+
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>
+</section>
+{% endblock %}

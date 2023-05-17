@@ -1,0 +1,246 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> REQUERIMIENTO RIEGO FERT</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				<div class='form-group'>
+					{{form.anexo_ley.label}}
+					{{form.anexo_ley}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.lunes.label}}
+					{{form.lunes}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.martes.label}}
+					{{form.martes}}
+				</div>
+
+				<div class='form-group'>
+					{{form.miercoles.label}}
+					{{form.miercoles}}
+				</div>
+
+				<div class='form-group'>
+					{{form.jueves.label}}
+					{{form.jueves}}
+				</div>
+				<div class='form-group'>
+					{{form.viernes.label}}
+					{{form.viernes}}
+				</div>
+
+				<div class='form-group'>
+					{{form.sabado.label}}
+					{{form.sabado}}
+				</div>
+				<div class='form-group'>
+					{{form.domingo.label}}
+					{{form.domingo}}
+				</div>
+				<div class='form-group'>
+					{{form.total_producto.label}}
+					{{form.total_producto}}
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+
+
+  <script>  
+  	
+  $(function () {  
+   $("#id_fecha_requerimiento").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false 
+
+   }); 
+
+
+
+
+  });  
+
+  $('#id_anexo_ley').select2();
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+    <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+		if(m<10)
+    {
+      if(d<10)
+      {
+        $("#id_fecha_requerimiento").val("0"+ d + "/" +"0" +m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_requerimiento").val( d + "/" +"0" +m + "/" +y);  
+      }
+    }
+    else
+    {
+       if(d<10)
+      {
+        $("#id_fecha_requerimiento").val("0"+ d + "/" + m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_requerimiento").val( d + "/" + m + "/" +y);  
+      }
+    }
+
+
+
+
+     }); 
+
+    $('#id_domingo').change(function(){
+	          
+	    var lun=parseFloat($('#id_lunes').val());
+	    var mar=parseFloat($('#id_martes').val());
+	    var mie=parseFloat($('#id_miercoles').val());
+	    var jue=parseFloat($('#id_jueves').val());
+	    var vie=parseFloat($('#id_viernes').val());
+	    var sab=parseFloat($('#id_sabado').val());
+	    var dom=parseFloat($('#id_domingo').val());
+	    var result= lun+mar+mie+jue+vie+sab+dom;
+	    var result1=(Math.round(result*100))/100
+	    $("#id_total_producto").val(result1);
+	    console.log(result);
+    }); 
+
+    $('#id_lunes').change(function(){
+	          
+	    var lun=parseFloat($('#id_lunes').val());
+	    var mar=parseFloat($('#id_martes').val());
+	    var mie=parseFloat($('#id_miercoles').val());
+	    var jue=parseFloat($('#id_jueves').val());
+	    var vie=parseFloat($('#id_viernes').val());
+	    var sab=parseFloat($('#id_sabado').val());
+	    var dom=parseFloat($('#id_domingo').val());
+	    var result= lun+mar+mie+jue+vie+sab+dom;
+	    var result1=(Math.round(result*100))/100
+	    $("#id_total_producto").val(result1);
+	    console.log(result);
+    }); 
+
+    $('#id_martes').change(function(){
+	          
+	    var lun=parseFloat($('#id_lunes').val());
+	    var mar=parseFloat($('#id_martes').val());
+	    var mie=parseFloat($('#id_miercoles').val());
+	    var jue=parseFloat($('#id_jueves').val());
+	    var vie=parseFloat($('#id_viernes').val());
+	    var sab=parseFloat($('#id_sabado').val());
+	    var dom=parseFloat($('#id_domingo').val());
+	    var result= lun+mar+mie+jue+vie+sab+dom;
+	    var result1=(Math.round(result*100))/100
+	    $("#id_total_producto").val(result1);
+	    console.log(result);
+    }); 
+
+    $('#id_miercoles').change(function(){
+	          
+	    var lun=parseFloat($('#id_lunes').val());
+	    var mar=parseFloat($('#id_martes').val());
+	    var mie=parseFloat($('#id_miercoles').val());
+	    var jue=parseFloat($('#id_jueves').val());
+	    var vie=parseFloat($('#id_viernes').val());
+	    var sab=parseFloat($('#id_sabado').val());
+	    var dom=parseFloat($('#id_domingo').val());
+	    var result= lun+mar+mie+jue+vie+sab+dom;
+	    var result1=(Math.round(result*100))/100
+	    $("#id_total_producto").val(result1);
+	    console.log(result);
+    }); 
+
+    $('#id_jueves').change(function(){
+	          
+	    var lun=parseFloat($('#id_lunes').val());
+	    var mar=parseFloat($('#id_martes').val());
+	    var mie=parseFloat($('#id_miercoles').val());
+	    var jue=parseFloat($('#id_jueves').val());
+	    var vie=parseFloat($('#id_viernes').val());
+	    var sab=parseFloat($('#id_sabado').val());
+	    var dom=parseFloat($('#id_domingo').val());
+	    var result= lun+mar+mie+jue+vie+sab+dom;
+	    var result1=(Math.round(result*100))/100
+	    $("#id_total_producto").val(result1);
+	    console.log(result);
+    }); 
+
+    $('#id_viernes').change(function(){
+	          
+	    var lun=parseFloat($('#id_lunes').val());
+	    var mar=parseFloat($('#id_martes').val());
+	    var mie=parseFloat($('#id_miercoles').val());
+	    var jue=parseFloat($('#id_jueves').val());
+	    var vie=parseFloat($('#id_viernes').val());
+	    var sab=parseFloat($('#id_sabado').val());
+	    var dom=parseFloat($('#id_domingo').val());
+	    var result= lun+mar+mie+jue+vie+sab+dom;
+	    var result1=(Math.round(result*100))/100
+	    $("#id_total_producto").val(result1);
+	    console.log(result);
+    }); 
+
+    $('#id_sabado').change(function(){
+	          
+	    var lun=parseFloat($('#id_lunes').val());
+	    var mar=parseFloat($('#id_martes').val());
+	    var mie=parseFloat($('#id_miercoles').val());
+	    var jue=parseFloat($('#id_jueves').val());
+	    var vie=parseFloat($('#id_viernes').val());
+	    var sab=parseFloat($('#id_sabado').val());
+	    var dom=parseFloat($('#id_domingo').val());
+	    var result= lun+mar+mie+jue+vie+sab+dom;
+	    var result1=(Math.round(result*100))/100
+	    $("#id_total_producto").val(result1);
+	    console.log(result);
+    }); 
+
+         
+   </script>
+
+
+
+
+
+
+
+{% endblock %}

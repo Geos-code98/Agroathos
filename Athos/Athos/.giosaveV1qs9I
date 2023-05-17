@@ -1,0 +1,1636 @@
+from django.contrib import admin
+from django.urls import include,path
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
+
+from django.conf import settings 
+from django.conf.urls.static import static
+
+from django.conf.urls import include
+from apps.menu.views import usuarios
+from apps.menu.views import nuevousuario
+from apps.menu.views import editarusuario
+from apps.menu.views import items_subitems
+from apps.menu.views import registrarsubitem
+from apps.menu.views import editarsubitem
+
+from apps.menu.views import menu
+from apps.menu.views import editarmenu
+from apps.menu.views import crearmenu
+
+from apps.menu.views import items
+from apps.menu.views import editaritems
+from apps.menu.views import crearitems
+
+from apps.menu.views import campo
+from apps.menu.views import crearcampo
+from apps.menu.views import editarcampo
+
+from apps.menu.views import cultivo
+from apps.menu.views import crearcultivo
+from apps.menu.views import editarcultivo
+
+from apps.menu.views import crearfeno
+from apps.menu.views import editarfeno
+
+from apps.menu.views import crearcampana
+from apps.menu.views import editarcampana
+
+from apps.menu.views import crearvariedad
+from apps.menu.views import editarvariedad
+from apps.menu.views import crearmodulo
+from apps.menu.views import editarmodulo
+
+from apps.menu.views import crearlote
+from apps.menu.views import editarlote
+
+from apps.menu.views import crearproduccion
+from apps.menu.views import editarproduccion
+
+from apps.menu.views import produccionfenologias
+from apps.menu.views import crearproduccionfeno
+from apps.menu.views import editarproduccionfeno
+
+from apps.menu.views import crearflujo
+from apps.menu.views import editarflujo
+
+from apps.menu.views import crearaccion
+from apps.menu.views import editaraccion
+
+from apps.menu.views import crearproceso
+from apps.menu.views import editarproceso
+
+from apps.menu.views import crearsolicitud
+from apps.menu.views import editarsolicitud
+
+from apps.menu.views import pep
+from apps.menu.views import crearpep
+from apps.menu.views import editarpep
+
+from apps.menu.views import logout
+
+
+from apps.menu.views import ProgramaProduccionListView
+from apps.menu.views import ProgramaProduccionCreateView
+from apps.menu.views import ProgramaProduccionUpdateView
+from apps.menu.views import (load_modulitos, load_lotecitos, load_fundos, load_rutas,load_pep)
+from apps.menu.views import load_procesos
+from apps.menu.views import load_objetivos
+from apps.menu.views import load_planta
+from apps.menu.views import load_nave
+from apps.proyecciones.views import load_data_pep
+from apps.acopio_athos.granada.views import load_almacenes
+from apps.acopio_athos.granada.views import load_vehiculos
+from apps.acopio_athos.granada.views import load_chofer
+from apps.acopio_athos.granada.views import load_ubicacion
+
+from apps.menu.views import crearvariableagro
+from apps.menu.views import editarvariableagro
+
+from apps.menu.views import subvariableagronomica
+from apps.menu.views import crearsubvariableagronomica
+from apps.menu.views import editarsubvariableagronomica
+
+from apps.menu.views import crearversionagro
+from apps.menu.views import editarversionagro
+
+from apps.menu.views import produccionvariable, crearproduccionvariables, editarproduccionvariables
+
+from apps.menu.views import crearplanta
+from apps.menu.views import editarplanta
+
+from apps.menu.views import crearpersonalplanta
+from apps.menu.views import editarpersonalplanta
+
+from apps.menu.views import crearnave
+from apps.menu.views import editarnave
+
+from apps.menu.views import crearlinea
+from apps.menu.views import editarlinea
+
+from apps.menu.views import crearlanzadopaletas
+from apps.menu.views import editarlanzadopaletas 
+
+from apps.menu.views import lanzadopaletasreal
+from apps.menu.views import crearlanzadopaletasreal
+from apps.menu.views import editarlanzadopaletasreal
+
+from apps.menu.views import crearmateriales
+from apps.menu.views import editarmateriales
+
+from apps.menu.views import crearordenpedido
+from apps.menu.views import editarordenpedido
+
+from apps.menu.views import crearpaletizado
+from apps.menu.views import editarpaletizado
+
+from apps.menu.views import crearzonapaletizado
+from apps.menu.views import editarzonapaletizado
+
+from apps.menu.views import paletizado
+from apps.menu.views import crearpaletizado
+from apps.menu.views import editarpaletizado
+
+
+from apps.menu.views import ordenpedidoreal
+from apps.menu.views import crearordenpedidoreal
+from apps.menu.views import editarordenpedidoreal
+
+from apps.menu.views import verificarpalet
+from apps.menu.views import crearverificarpalet
+from apps.menu.views import editarverificarpalet
+
+from apps.menu.views import crearconfigasistenciapl
+from apps.menu.views import asistenciaoingresoplanta
+from apps.menu.views import asistenciaosalidaplanta
+from apps.menu.views import crearasistenciaingresopl
+from apps.menu.views import crearasistenciasalidapl
+
+from apps.menu.views import creararea
+from apps.menu.views import editararea
+
+from apps.menu.views import crearcompetencias
+from apps.menu.views import editarcompetencias
+
+from apps.menu.views import crearalcancecapacitacion
+from apps.menu.views import editaralcancecapacitacion
+
+from apps.menu.views import creartema
+from apps.menu.views import editartema
+
+from apps.menu.views import crearcapacitacion
+from apps.menu.views import editarcapacitacion
+from apps.menu.views import confirmativacapacitacion
+
+from apps.menu.views import asistenciacapacitacion
+from apps.menu.views import crearasistenciacapacitacion
+from apps.menu.views import editarasistenciacapacitacion
+
+from apps.menu.views import crearlabor
+from apps.menu.views import editarlabor
+
+from apps.menu.views import crearturno
+from apps.menu.views import editarturno
+
+from apps.menu.views import creararealabor
+from apps.menu.views import editararealabor
+
+from apps.menu.views import crearfecha
+
+from apps.menu.views import home
+
+
+from apps.menu.views import crearmaterialacopio
+from apps.menu.views import editarmaterialacopio
+
+from apps.menu.views import crearplacasvehiculares
+from apps.menu.views import editarplacasvehiculares
+
+from apps.menu.views import detalleplacasvehiculares
+from apps.menu.views import creardetalleplacasvehiculares
+from apps.menu.views import editardetalleplacasvehiculares
+
+from apps.menu.views import crearchoferesathos
+from apps.menu.views import editarchoferesathos
+
+from apps.menu.views import crearunidadvehicular
+from apps.menu.views import editarunidadvehicular
+
+from apps.menu.views import crearubicacionfundo
+from apps.menu.views import editarubicacionfundo
+
+from apps.menu.views import crearlugarathos
+from apps.menu.views import editarlugarathos
+
+from apps.menu.views import crearcentrosathos
+from apps.menu.views import editarcentrosathos
+
+from apps.menu.views import crearalmacenesathos
+from apps.menu.views import editaralmacenesathos
+
+from apps.menu.views import crearguiaathos
+from apps.menu.views import editarguiaathos
+
+from apps.menu.views import guiadetallesathos
+from apps.menu.views import crearguiadetallesathos
+from apps.menu.views import editarguiadetallesathos
+
+from apps.menu.views import infopalet
+from apps.menu.views import crearinfopalet
+from apps.menu.views import editarinfopalet
+from apps.menu.views import printpalet
+
+from apps.menu.views import crearmaterialtransporte
+from apps.menu.views import editarmaterialtransporte
+
+from apps.menu.views import crearmaterialmmpp
+from apps.menu.views import editarmaterialmmpp
+
+from apps.menu.views import crearparihuela
+from apps.menu.views import editarparihuela
+
+from apps.menu.views import creargaritaacopio
+from apps.menu.views import editargaritaacopio
+
+from apps.menu.views import crearrutasathos
+from apps.menu.views import editarrutasathos
+
+from apps.menu.views import hitos
+from apps.menu.views import crearhitos
+from apps.menu.views import editarhitos
+
+from apps.menu.views import subhitos
+from apps.menu.views import crearsubhitos
+from apps.menu.views import editarsubhitos
+
+from apps.menu.views import load_tema
+
+from apps.menu.views import turnoprogramaproduccion
+from apps.menu.views import crearturnoprogramaproduccion
+from apps.menu.views import editarturnoprogramaproduccion
+
+from apps.menu.views import hitosfenologicos
+from apps.menu.views import crearhitosfenologicos
+from apps.menu.views import editarhitosfenologicos
+
+#acopio
+from apps.acopio.views import campos
+from apps.acopio.views import crearenfriado
+from apps.acopio.views import editarenfriado
+
+from apps.acopio.views import distribucionenfriado
+from apps.acopio.views import creardistribucionenfriado
+from apps.acopio.views import editardistribucionenfriado
+
+from apps.acopio.views import temperaturaenfriado
+from apps.acopio.views import creartemperaturaenfriado
+from apps.acopio.views import editartemperaturaenfriado
+from apps.acopio.views import creardescarteathos
+from apps.acopio.views import editardescarteathos
+
+from apps.acopio.views import crearsalidadescarte
+from apps.acopio.views import editarsalidadescarte
+
+#evaluaciones
+from apps.evaluaciones.views import evaluaciones 
+from apps.evaluaciones.views import crearevfenarandanobrote
+from apps.evaluaciones.views import editarevfenarandanobrote
+
+from apps.evaluaciones.views import detalleplantaevfenbrotesarandanos
+from apps.evaluaciones.views import creardetalleplantaevfenbrotesarandanos
+from apps.evaluaciones.views import editardetalleplantaevfenbrotesarandanos
+
+from apps.evaluaciones.views import broteevfenar
+from apps.evaluaciones.views import crearbroteevfenar
+from apps.evaluaciones.views import editarbroteevfenar
+
+from apps.evaluaciones.views import crearevfenraicesarandanos
+from apps.evaluaciones.views import editarevfenraicesarandanos
+
+from apps.evaluaciones.views import detalleevfenraicesarandanos
+from apps.evaluaciones.views import creardetalleevfenraicesarandanos
+from apps.evaluaciones.views import editardetalleevfenraicesarandanos
+
+from apps.evaluaciones.views import raicesevfenraicesarandanos
+from apps.evaluaciones.views import crearraicesevfenraicesarandanos
+from apps.evaluaciones.views import editarraicesevfenraicesarandanos
+
+from apps.evaluaciones.views import controlproductoterminado
+from apps.evaluaciones.views import crearcontrolproductoterminado
+from apps.evaluaciones.views import editarcontrolproductoterminado
+
+from apps.evaluaciones.views import detallecontrolproductoterminado
+from apps.evaluaciones.views import creardetallecontrolproductoterminado
+from apps.evaluaciones.views import editardetallecontrolproductoterminado
+
+
+
+from apps.evaluaciones.views import crearevfenarandanobrotesem
+from apps.evaluaciones.views import editarevfenarandanobrotesem
+
+from apps.evaluaciones.views import detalleplantaevfenbrotesarandanossem
+from apps.evaluaciones.views import creardetalleplantaevfenbrotesarandanossem
+from apps.evaluaciones.views import editardetalleplantaevfenbrotesarandanossem
+
+from apps.evaluaciones.views import broteevfenarsem
+from apps.evaluaciones.views import crearbroteevfenarsem
+from apps.evaluaciones.views import editarbroteevfenarsem
+
+from apps.evaluaciones.views import load_producto
+from apps.evaluaciones.views import load_lineasempaque
+
+from apps.evaluaciones.views import crearevsanplagasarandanos
+from apps.evaluaciones.views import editarevsanplagasarandanos
+
+from apps.evaluaciones.views import gruposplagasarandanos
+from apps.evaluaciones.views import creargruposplagasarandanos
+from apps.evaluaciones.views import editargruposplagasarandanos
+
+from apps.evaluaciones.views import subgruposplagasarandanos
+from apps.evaluaciones.views import crearsubgruposplagasarandanos
+from apps.evaluaciones.views import editarsubgruposplagasarandanos
+
+from apps.evaluaciones.views import variablesplagasarandanos
+from apps.evaluaciones.views import crearvariablesplagasarandanos
+from apps.evaluaciones.views import editarvariablesplagasarandanos
+
+from apps.evaluaciones.views import aranaroja
+from apps.evaluaciones.views import creararanaroja
+from apps.evaluaciones.views import editararanaroja
+
+from apps.evaluaciones.views import argy
+from apps.evaluaciones.views import crearargy
+from apps.evaluaciones.views import editarargy
+
+from apps.evaluaciones.views import cigarrita
+from apps.evaluaciones.views import crearcigarrita
+from apps.evaluaciones.views import editarcigarrita
+
+from apps.evaluaciones.views import cochinilla
+from apps.evaluaciones.views import crearcochinilla
+from apps.evaluaciones.views import editarcochinilla
+
+from apps.evaluaciones.views import crypto
+from apps.evaluaciones.views import crearcrypto
+from apps.evaluaciones.views import editarcrypto
+
+from apps.evaluaciones.views import diabro
+from apps.evaluaciones.views import creardiabro
+from apps.evaluaciones.views import editardiabro
+
+from apps.evaluaciones.views import gryllus
+from apps.evaluaciones.views import creargryllus
+from apps.evaluaciones.views import editargryllus
+
+from apps.evaluaciones.views import helio
+from apps.evaluaciones.views import crearhelio
+from apps.evaluaciones.views import editarhelio
+
+from apps.evaluaciones.views import membracidos
+from apps.evaluaciones.views import crearmembracidos
+from apps.evaluaciones.views import editarmembracidos
+
+from apps.evaluaciones.views import moscablanca
+from apps.evaluaciones.views import crearmoscablanca
+from apps.evaluaciones.views import editarmoscablanca
+
+from apps.evaluaciones.views import moscafruta
+from apps.evaluaciones.views import crearmoscafruta
+from apps.evaluaciones.views import editarmoscafruta
+
+from apps.evaluaciones.views import plecto
+from apps.evaluaciones.views import crearplecto
+from apps.evaluaciones.views import editarplecto
+
+from apps.evaluaciones.views import procospidos
+from apps.evaluaciones.views import crearprocospidos
+from apps.evaluaciones.views import editarprocospidos
+
+from apps.evaluaciones.views import pulgones
+from apps.evaluaciones.views import crearpulgones
+from apps.evaluaciones.views import editarpulgones
+
+from apps.evaluaciones.views import queresas
+from apps.evaluaciones.views import crearqueresas
+from apps.evaluaciones.views import editarqueresas
+
+from apps.evaluaciones.views import spodo
+from apps.evaluaciones.views import crearspodo
+from apps.evaluaciones.views import editarspodo
+
+from apps.evaluaciones.views import trips
+from apps.evaluaciones.views import creartrips
+from apps.evaluaciones.views import editartrips
+
+from apps.evaluaciones.views import aranas
+from apps.evaluaciones.views import creararanas
+from apps.evaluaciones.views import editararanas
+
+from apps.evaluaciones.views import cocci
+from apps.evaluaciones.views import crearcocci
+from apps.evaluaciones.views import editarcocci
+
+from apps.evaluaciones.views import crisopas
+from apps.evaluaciones.views import crearcrisopas
+from apps.evaluaciones.views import editarcrisopas
+
+from apps.evaluaciones.views import cryptola
+from apps.evaluaciones.views import crearcryptola
+from apps.evaluaciones.views import editarcryptola
+
+from apps.evaluaciones.views import otro
+from apps.evaluaciones.views import crearotro
+from apps.evaluaciones.views import editarotro
+
+from apps.evaluaciones.views import alternaria
+from apps.evaluaciones.views import crearalternaria
+from apps.evaluaciones.views import editaralternaria
+
+from apps.evaluaciones.views import antra
+from apps.evaluaciones.views import crearantra
+from apps.evaluaciones.views import editarantra
+
+from apps.evaluaciones.views import botri
+from apps.evaluaciones.views import crearbotri
+from apps.evaluaciones.views import editarbotri
+
+from apps.evaluaciones.views import lasio
+from apps.evaluaciones.views import crearlasio
+from apps.evaluaciones.views import editarlasio
+
+from apps.evaluaciones.views import pestalo
+from apps.evaluaciones.views import crearpestalo
+from apps.evaluaciones.views import editarpestalo
+
+from apps.evaluaciones.views import phyto
+from apps.evaluaciones.views import crearphyto
+from apps.evaluaciones.views import editarphyto
+
+from apps.evaluaciones.views import plantaquemada
+from apps.evaluaciones.views import crearplantaquemada
+from apps.evaluaciones.views import editarplantaquemada
+
+from apps.evaluaciones.views import roya
+from apps.evaluaciones.views import crearroya
+from apps.evaluaciones.views import editarroya
+
+from apps.evaluaciones.views import hojasanchas
+from apps.evaluaciones.views import crearhojasanchas
+from apps.evaluaciones.views import editarhojasanchas
+
+from apps.evaluaciones.views import hojasangostas
+from apps.evaluaciones.views import crearhojasangostas
+from apps.evaluaciones.views import editarhojasangostas
+
+from apps.evaluaciones.views import abejas
+from apps.evaluaciones.views import crearabejas
+from apps.evaluaciones.views import editarabejas
+
+from apps.evaluaciones.views import crearevfenfrutoarandanos
+from apps.evaluaciones.views import editarevfenfrutoarandanos
+
+from apps.evaluaciones.views import detalleevfenfrutoarandanos
+from apps.evaluaciones.views import creardetalleevfenfrutoarandanos
+from apps.evaluaciones.views import editardetalleevfenfrutoarandanos
+
+from apps.evaluaciones.views import crearevfenplanasa
+from apps.evaluaciones.views import editarevfenplanasa
+
+from apps.evaluaciones.views import detalleevfenplanasa
+from apps.evaluaciones.views import creardetalleevfenplanasa
+from apps.evaluaciones.views import editardetalleevfenplanasa
+
+from apps.evaluaciones.views import crearevcaldefectoscampo
+from apps.evaluaciones.views import editarevcaldefectoscampo
+
+from apps.evaluaciones.views import detalleevcaldefectoscampo
+from apps.evaluaciones.views import creardetalleevcaldefectoscampo
+from apps.evaluaciones.views import editardetalleevcaldefectoscampo
+
+from apps.evaluaciones.views import evcalacopioplanta
+from apps.evaluaciones.views import crearevcalacopioplanta
+from apps.evaluaciones.views import editarevcalacopioplanta
+
+
+from apps.evaluaciones.views import evcalacopioplantaarica2021
+from apps.evaluaciones.views import crearevcalacopioplantaarica2021
+from apps.evaluaciones.views import editarevcalacopioplantaarica2021
+
+
+from apps.evaluaciones.views import crearevcartilladrenado
+from apps.evaluaciones.views import editarevcartilladrenado
+
+from apps.evaluaciones.views import detalleevcartilladrenado
+from apps.evaluaciones.views import creardetalleevcartilladrenado
+from apps.evaluaciones.views import editardetalleevcartilladrenado
+
+from apps.evaluaciones.views import crearseltrabajadorevcalpodaar
+from apps.evaluaciones.views import editarseltrabajadorevcalpodaar
+from apps.evaluaciones.views import crearevcalpodaar
+from apps.evaluaciones.views import editarevcalpodaar
+
+from apps.evaluaciones.views import detalleevcalpodaar
+from apps.evaluaciones.views import creardetalleevcalpodaar
+from apps.evaluaciones.views import editardetalleevcalpodaar
+
+from apps.evaluaciones.views import crearevcalmuestreocosechahg2021
+from apps.evaluaciones.views import editarevcalmuestreocosechahg2021
+
+from apps.evaluaciones.views import detalleevcalmuestreocosechahg2021
+from apps.evaluaciones.views import creardetalleevcalmuestreocosechahg2021
+from apps.evaluaciones.views import editareditardetalleevcalmuestreocosechahg2021
+
+#productoterminado
+from apps.prterminado.views import prterminado 
+from apps.prterminado.views import crearprterminado
+from apps.prterminado.views import editarprterminado
+from apps.prterminado.views import tempprterminado
+from apps.prterminado.views import creartempprterminado
+from apps.prterminado.views import editartempprterminado
+
+
+#proyecciones
+from apps.proyecciones.views import proyecciones
+
+from apps.proyecciones.views import crearproyecciones
+from apps.proyecciones.views import editarproyecciones
+
+from apps.proyecciones.views import editardetalleproyeccionarandano
+from apps.proyecciones.views import creardetalleproyeccionarandano
+from apps.proyecciones.views import detalleproyeccionarandano
+
+from apps.proyecciones.views import editardetalleproyecciondiariaarandano
+from apps.proyecciones.views import creardetalleproyecciondiariaarandano
+from apps.proyecciones.views import detalleproyecciondiariaarandano
+
+from apps.proyecciones.views import proyeccionsemanalarandano
+from apps.proyecciones.views import crearproyeccionsemanalarandano
+from apps.proyecciones.views import editarproyeccionsemanalarandano
+
+from apps.proyecciones.views import crearproyeccionesdiarias
+from apps.proyecciones.views import editarproyeccionesdiarias
+
+from apps.proyecciones.views import crearproyeccionesanual
+from apps.proyecciones.views import editarproyeccionesanual
+
+from apps.proyecciones.views import editardetalleproyeccionanualarandano
+from apps.proyecciones.views import creardetalleproyeccionanualarandano
+from apps.proyecciones.views import Mcreardetalleproyeccionanualarandano
+from apps.proyecciones.views import detalleproyeccionanualarandano
+
+from apps.proyecciones.views import load_variables
+
+#cgfenologias 
+from apps.cgfenologias.views import cgfeno 
+from apps.cgfenologias.views import macroproceso
+from apps.cgfenologias.views import crearmacroproceso
+from apps.cgfenologias.views import editarmacroproceso
+from apps.cgfenologias.views import proceso
+from apps.cgfenologias.views import crearproceso
+from apps.cgfenologias.views import editarproceso
+from apps.cgfenologias.views import objetivoproceso
+from apps.cgfenologias.views import crearobjetivoproceso
+from apps.cgfenologias.views import editarobjetivoproceso
+
+#maestras
+from apps.maestras.views import maestras
+from apps.maestras.views import crearpresentacionesathos
+from apps.maestras.views import editarpresentacionesathos
+
+
+from apps.maestras.views import crearclientesathos
+from apps.maestras.views import editarclientesathos
+
+from apps.maestras.views import crearmaestrapresentacionesathos
+from apps.maestras.views import editarmaestrapresentacionesathos
+from apps.maestras.views import crearcalibresathos
+from apps.maestras.views import editarcalibresathos
+from apps.maestras.views import crearlineaempaqueathos
+from apps.maestras.views import editarlineaempaqueathos
+
+from apps.maestras.views import crearcartillasathos
+from apps.maestras.views import editarcartillasathos
+
+from apps.maestras.views import crearlaboresathos
+from apps.maestras.views import editarlaboresathos
+
+from apps.maestras.views import creardescripcionlaboresathos
+from apps.maestras.views import editardescripcionlaboresathos
+
+from apps.maestras.views import crearauxiliarescampoathos
+from apps.maestras.views import editarauxiliarescampoathos
+
+
+
+#logistica
+from apps.logistica.views import logistica
+from apps.logistica.views import crearproveedorathos
+from apps.logistica.views import editarproveedorathos
+from apps.logistica.views import crearcartillaproveedorathos
+from apps.logistica.views import editarcartillaproveedorathos
+from apps.logistica.views import load_proveedor
+
+#sanidad
+from apps.sanidad.views import sanidad
+from apps.sanidad.views import crearproductossanidad
+from apps.sanidad.views import editarproductossanidad
+from apps.sanidad.views import crearingredientessanidad
+from apps.sanidad.views import editaringredientessanidad
+from apps.sanidad.views import creartoxicologiasanidad
+from apps.sanidad.views import editartoxicologiasanidad
+from apps.sanidad.views import crearplagasenfermedadessanidad
+from apps.sanidad.views import editarplagasenfermedadessanidad
+from apps.sanidad.views import creartipometodosanidad
+from apps.sanidad.views import editartipometodosanidad
+from apps.sanidad.views import crearequipossanidad
+from apps.sanidad.views import editarequipossanidad
+from apps.sanidad.views import creartipodosissanidad
+from apps.sanidad.views import editartipodosissanidad
+from apps.sanidad.views import crearlugaresaplicacionsanidad
+from apps.sanidad.views import editarlugaresaplicacionsanidad
+from apps.sanidad.views import creartractoresathos
+from apps.sanidad.views import editartractoresathos
+from apps.sanidad.views import crearboquillassanidadathos
+from apps.sanidad.views import editarboquillassanidadathos
+from apps.sanidad.views import crearoperadoressanidadathos
+from apps.sanidad.views import editaroperadoressanidadathos
+
+from apps.sanidad.views import crearubicacionproductosautorizados
+from apps.sanidad.views import editarubicacionproductosautorizados
+
+from apps.sanidad.views import productosautorizados
+from apps.sanidad.views import crearproductosautorizados
+from apps.sanidad.views import editarproductosautorizados
+
+from apps.sanidad.views import crearubicacionregistroaplicacion
+from apps.sanidad.views import editarubicacionregistroaplicacion
+
+from apps.sanidad.views import crearmaestralmr
+from apps.sanidad.views import editarmaestralmr
+
+from apps.sanidad.views import detalleproductosautorizados
+from apps.sanidad.views import creardetalleproductosautorizados
+from apps.sanidad.views import editardetalleproductosautorizados
+
+from apps.sanidad.views import registroaplicacion
+from apps.sanidad.views import crearregistroaplicacion
+from apps.sanidad.views import editarregistroaplicacion
+
+from apps.sanidad.views import detallelmrpa
+from apps.sanidad.views import creardetallelmrpa
+from apps.sanidad.views import editardetallelmrpa
+
+from apps.sanidad.views import detalleregistroaplicacion
+from apps.sanidad.views import creardetalleregistroaplicacion
+from apps.sanidad.views import editardetalleregistroaplicacion
+
+from apps.sanidad.views import load_equipossanidad
+from apps.sanidad.views import load_objetivoplagas
+from apps.sanidad.views import load_operariossanidad
+from apps.sanidad.views import load_factor_premezcla
+from apps.sanidad.views import load_area_pproduccion 
+
+from apps.sanidad.views import crearproyeccionsemanalsanidad
+from apps.sanidad.views import editarproyeccionsemanalsanidad
+
+from apps.sanidad.views import detalleproyeccionsemanalsanidad
+from apps.sanidad.views import creardetalleproyeccionsemanalsanidad
+from apps.sanidad.views import editardetalleproyeccionsemanalsanidad
+
+
+
+from apps.sanidad.views import registroproyeccionsemanalsanidad
+from apps.sanidad.views import crearregistroproyeccionsemanalsanidad
+from apps.sanidad.views import editarregistroproyeccionsemanalsanidad
+
+from apps.sanidad.views import confirmativaregistroaplicacion
+from apps.sanidad.views import crearconfirmativaregistroaplicacion
+from apps.sanidad.views import editarconfirmativaregistroaplicacion
+
+
+
+#riego
+from apps.riego.views import load_equipos
+from apps.riego.views import riego
+from apps.riego.views import crearproductosriego
+from apps.riego.views import editarproductosriego
+
+from apps.riego.views import crearmetodoriego
+from apps.riego.views import editarmetodoriego
+
+from apps.riego.views import crearequiposriego
+from apps.riego.views import editarequiposriego
+
+from apps.riego.views import crearpozosriego
+from apps.riego.views import editarpozosriego
+
+from apps.riego.views import crearleynutricionriego
+from apps.riego.views import editarleynutricionriego
+
+from apps.riego.views import crearproyeccionsemanalriego
+from apps.riego.views import editarproyeccionsemanalriego
+
+from apps.riego.views import detalleproyeccionsemanalriego
+from apps.riego.views import creardetalleproyeccionsemanalriego
+from apps.riego.views import editardetalleproyeccionsemanalriego
+
+from apps.riego.views import crearregistroriegofertilizacion
+from apps.riego.views import editarregistroriegofertilizacion
+
+from apps.riego.views import registroproyeccionsemanalriego
+from apps.riego.views import crearregistroproyeccionsemanalriego
+from apps.riego.views import editarregistroproyeccionsemanalriego
+
+from apps.riego.views import detalleregistroriegofertilizacion
+from apps.riego.views import creardetalleregistroriegofertilizacion
+from apps.riego.views import editardetalleregistroriegofertilizacion
+
+from apps.riego.views import detrequerimientoriegofert
+from apps.riego.views import creardetrequerimientoriegofert
+from apps.riego.views import editardetrequerimientoriegofert
+
+from apps.riego.views import consumorequerimientoriegofert
+from apps.riego.views import crearconsumorequerimientoriegofert
+from apps.riego.views import editarconsumorequerimientoriegofert
+
+from apps.riego.views import crearexplotacionpozos
+from apps.riego.views import editarexplotacionpozos
+
+from apps.riego.views import crearoperadoresriegoathos
+from apps.riego.views import editaroperadoresriegoathos
+
+from apps.riego.views import detalleexplotacionpozos
+from apps.riego.views import creardetalleexplotacionpozos
+from apps.riego.views import editardetalleexplotacionpozos
+
+from apps.riego.views import load_pozos
+
+
+from apps.riego.views import detallerequerimientoriegot
+from apps.riego.views import creardetallerequerimientoriegot
+from apps.riego.views import editardetallerequerimientoriegot
+
+from apps.riego.views import crearestacionmeteorologica
+from apps.riego.views import editarestacionmeteorologica
+
+
+
+#acopio-athos-GRANADA
+from apps.acopio_athos.granada.views import acopio_athos
+from apps.acopio_athos.granada.views import crearguiaathosgr2020
+from apps.acopio_athos.granada.views import editarguiaathosgr2020
+
+from apps.acopio_athos.granada.views import guiadetallesathosgr2020
+from apps.acopio_athos.granada.views import crearguiadetallesathosgr2020
+from apps.acopio_athos.granada.views import editarguiadetallesathosgr2020
+from apps.acopio_athos.granada.views import infopaletgr2020
+from apps.acopio_athos.granada.views import crearinfopaletgr2020
+from apps.acopio_athos.granada.views import editarinfopaletgr2020
+from apps.acopio_athos.granada.views import printpaletgr2020
+
+from apps.acopio_athos.granada.views import crearalmacenacopiogr2020
+from apps.acopio_athos.granada.views import editaralmacenacopiogr2020
+
+#acopio-athos-DATIL
+from apps.acopio_athos.datil.views import acopio_athos_02
+from apps.acopio_athos.datil.views import crearguiaathosdt2021
+from apps.acopio_athos.datil.views import editarguiaathosdt2021
+
+from apps.acopio_athos.datil.views import guiadetallesathosdt2021
+from apps.acopio_athos.datil.views import crearguiadetallesathosdt2021
+from apps.acopio_athos.datil.views import editarguiadetallesathosdt2021
+from apps.acopio_athos.datil.views import infopaletdt2021
+from apps.acopio_athos.datil.views import crearinfopaletdt2021
+from apps.acopio_athos.datil.views import editarinfopaletdt2021
+from apps.acopio_athos.datil.views import printpaletdt2021
+
+#acopio-athos-ARANDANO
+from apps.acopio_athos.arandano.views import acopio_athos_03
+from apps.acopio_athos.arandano.views import crearguiaathosarcaraz2021
+from apps.acopio_athos.arandano.views import editarguiaathosarcaraz2021
+
+from apps.acopio_athos.arandano.views import guiadetallesathosarcaraz2021
+from apps.acopio_athos.arandano.views import crearguiadetallesathosarcaraz2021
+from apps.acopio_athos.arandano.views import editarguiadetallesathosarcaraz2021
+from apps.acopio_athos.arandano.views import infopaletarcaraz2021
+from apps.acopio_athos.arandano.views import crearinfopaletarcaraz2021
+from apps.acopio_athos.arandano.views import editarinfopaletarcaraz2021
+from apps.acopio_athos.arandano.views import printpaletarcaraz2021
+
+
+
+from apps.acopio_athos.arandano.views import crearguiaathosarica2021
+from apps.acopio_athos.arandano.views import editarguiaathosarica2021
+
+from apps.acopio_athos.arandano.views import guiadetallesathosarica2021
+from apps.acopio_athos.arandano.views import crearguiadetallesathosarica2021
+from apps.acopio_athos.arandano.views import editarguiadetallesathosarica2021
+from apps.acopio_athos.arandano.views import infopaletarica2021
+from apps.acopio_athos.arandano.views import crearinfopaletarica2021
+from apps.acopio_athos.arandano.views import editarinfopaletarica2021
+from apps.acopio_athos.arandano.views import printpaletarica2021
+
+
+from apps.acopio_athos.arandano.views import crearenfriadoarica2021
+from apps.acopio_athos.arandano.views import editarenfriadoarica2021
+
+from apps.acopio_athos.arandano.views import distribucionenfriadoarica2021
+from apps.acopio_athos.arandano.views import creardistribucionenfriadoarica2021
+from apps.acopio_athos.arandano.views import editardistribucionenfriadoarica2021
+
+from apps.acopio_athos.arandano.views import temperaturaenfriadoarica2021
+from apps.acopio_athos.arandano.views import creartemperaturaenfriadoarica2021
+from apps.acopio_athos.arandano.views import editartemperaturaenfriadoarica2021
+
+
+#acopio-athos-04-ACOPIO HIGO
+from apps.acopio_athos.higo.views import acopio_athos_04
+from apps.acopio_athos.higo.views import crearguiaathoshgpisco2021
+from apps.acopio_athos.higo.views import editarguiaathoshgpisco2021
+
+from apps.acopio_athos.higo.views import guiadetallesathoshgpisco2021
+from apps.acopio_athos.higo.views import crearguiadetallesathoshgpisco2021
+from apps.acopio_athos.higo.views import editarguiadetallesathoshgpisco2021
+from apps.acopio_athos.higo.views import infopalethgpisco2021
+from apps.acopio_athos.higo.views import crearinfopalethgpisco2021
+from apps.acopio_athos.higo.views import editarinfopalethgpisco2021
+from apps.acopio_athos.higo.views import printpalethgpisco2021
+
+from apps.acopio_athos.higo.views import crearalmacenacopiohgpisco2021
+from apps.acopio_athos.higo.views import editaralmacenacopiohgpisco2021
+
+
+#garita
+from apps.garita.views import garita
+from apps.garita.views import load_rutas_placas
+from apps.garita.views import creargaritaathos
+from apps.garita.views import editargaritaathos
+from apps.garita.views import detallegaritabusathos
+from apps.garita.views import creardetallegaritabusathos
+from apps.garita.views import editardetallegaritabusathos
+
+#plantagranada
+from apps.planta.granada_planta.views import plantagranada
+from apps.planta.granada_planta.views import crearubicacionplanta
+from apps.planta.granada_planta.views import editarubicacionplanta
+
+from apps.planta.granada_planta.views import recepcionpaletasgrica2020
+from apps.planta.granada_planta.views import crearrecepcionpaletasgrica2020
+from apps.planta.granada_planta.views import editarrecepcionpaletasgrica2020
+
+from apps.planta.granada_planta.views import lanzadopaletasgrica2020
+from apps.planta.granada_planta.views import crearlanzadopaletasgrica2020
+from apps.planta.granada_planta.views import editarlanzadopaletasgrica2020
+
+from apps.planta.granada_planta.views import crearprepaletizadogrica2020
+from apps.planta.granada_planta.views import editarprepaletizadogrica2020
+from apps.planta.granada_planta.views import confirmativaprepaletizadogrica2020
+
+from apps.planta.granada_planta.views import detalleprepaletizadogrica2020
+from apps.planta.granada_planta.views import creardetalleprepaletizadogrica2020
+from apps.planta.granada_planta.views import editardetalleprepaletizadogrica2020
+
+#programaproduccion
+from apps.programaproduccion.views import programaproduccion
+from apps.programaproduccion.views import creargrupos
+from apps.programaproduccion.views import editargrupos
+
+from apps.programaproduccion.views import crearsubgrupos
+from apps.programaproduccion.views import editarsubgrupos
+
+from apps.programaproduccion.views import crearhitos
+from apps.programaproduccion.views import editarhitos
+
+from apps.programaproduccion.views import crearsubhitos
+from apps.programaproduccion.views import editarsubhitos
+
+from apps.programaproduccion.views import load_subgrupo
+from apps.programaproduccion.views import load_hito
+from apps.programaproduccion.views import load_subhito
+
+
+#calidadagricola
+from apps.calidadagricola.views import calidadagricola
+from apps.calidadagricola.views import crearevcalcosechagr
+from apps.calidadagricola.views import editarevcalcosechagr
+
+from apps.calidadagricola.views import detalleevcalcosechagrcat1
+from apps.calidadagricola.views import creardetalleevcalcosechagrcat1
+from apps.calidadagricola.views import editardetalleevcalcosechagrcat1
+
+from apps.calidadagricola.views import detalleevcalcosechagrcat2
+from apps.calidadagricola.views import creardetalleevcalcosechagrcat2
+from apps.calidadagricola.views import editardetalleevcalcosechagrcat2
+
+from apps.calidadagricola.views import detalleevcalcosechagrdescarte
+from apps.calidadagricola.views import creardetalleevcalcosechagrdescarte
+from apps.calidadagricola.views import editardetalleevcalcosechagrdescarte
+
+from apps.calidadagricola.views import detalleevcalcosechagrcampo
+from apps.calidadagricola.views import creardetalleevcalcosechagrcampo
+from apps.calidadagricola.views import editardetalleevcalcosechagrcampo
+
+from apps.calidadagricola.views import load_turnopp
+
+from apps.calidadagricola.views import crearevcalidadmuestreoplantagr
+from apps.calidadagricola.views import editarevcalidadmuestreoplantagr
+
+
+#topico
+from apps.topico.views import topico
+from apps.topico.views import crearjustificaciontopico
+from apps.topico.views import editarjustificaciontopico
+from apps.topico.views import printjustificacion
+
+
+#planificacion
+
+from apps.planificacion.views import load_datosmateriales
+from apps.planificacion.views import load_detalleplan
+from apps.planificacion.views import load_detallemateriales
+from apps.planificacion.views import load_ordenproceso
+
+from apps.planificacion.views import planificacion
+from apps.planificacion.views import crearmaestraregion
+from apps.planificacion.views import editarmaestraregion
+from apps.planificacion.views import crearmaestraclientes
+from apps.planificacion.views import editarmaestraclientes
+from apps.planificacion.views import crearcategoriacultivo
+from apps.planificacion.views import editarcategoriacultivo
+
+from apps.planificacion.views import crearmarcapt
+from apps.planificacion.views import editarmarcapt
+
+
+from apps.planificacion.views import crearmaterialpt
+from apps.planificacion.views import editarmaterialpt
+
+from apps.planificacion.views import crearplanventas
+from apps.planificacion.views import editarplanventas
+from apps.planificacion.views import importarplanventas2021
+
+from apps.planificacion.views import creardetalleplanventas
+from apps.planificacion.views import editardetalleplanventas
+
+from apps.planificacion.views import ordenproceso
+from apps.planificacion.views import crearordenproceso
+from apps.planificacion.views import editarordenproceso
+
+from apps.planificacion.views import crearprogramaproduccionplanta
+from apps.planificacion.views import editarprogramaproduccionplanta
+
+
+#capacitaciones
+from apps.capacitaciones.views import load_capacitaciones
+from apps.capacitaciones.views import capacitaciones
+from apps.capacitaciones.views import crearencuestacapacitacion
+from apps.capacitaciones.views import editarencuestacapacitacion
+from apps.capacitaciones.views import graciascapacitacion
+
+
+
+urlpatterns = [
+ 	path('logout', logout, name="logout"),
+	path('', include("django.contrib.auth.urls")),
+	path('admin/', admin.site.urls),
+	path('athos/', login_required(usuarios), name="usuarios"),
+	path('athos/usuarios/registrar', login_required(nuevousuario), name="nuevousuario"),
+	path('athos/usuarios/<int:id>', login_required(editarusuario), name="editarusuario"),
+
+
+
+
+	path('athos/items', login_required(items), name="items"),
+	path('athos/items/<int:id>', login_required(editaritems), name="editaritems"),
+	path('athos/items/crear', login_required(crearitems), name="crearitems"),
+
+	path('athos/menu', login_required(menu), name="menu"),
+	path('athos/menu/<int:id>', login_required(editarmenu), name="editarmenu"),
+	path('athos/menu/crear', login_required(crearmenu), name="crearmenu"),
+
+	path('home/', login_required(home), name="home"),
+	
+
+
+	path('athos/items/subitems/<int:id>', login_required(items_subitems), name="items_subitems"),
+	path('athos/items/subitems/<int:id>/nuevo', login_required(registrarsubitem), name="registrarsubitem"),
+	path('athos/items/subitems/<int:id>/editar/<int:idsub>', login_required(editarsubitem), name="editarsubitem"),
+	
+	
+
+	path('athos/campo/<int:id>', login_required(campo), name="campo"),
+	path('athos/campo/<int:id>', login_required(crearmenu), name="crearmenu"),
+	path('athos/campo/<int:id>', login_required(cultivo), name="cultivo"),
+
+	#views-id- acopio - evaluaciones-prdterminado-proyecciones-cgfenologias-maestras-logistica-sanidad-
+	path('athos/acopio/campos/<int:id>', login_required(campos), name="campos"), #view acopio
+	path('athos/evaluaciones/<int:id>', login_required(evaluaciones), name="evaluaciones"), #view evaluaciones
+	path('athos/terminado/prterminado/<int:id>', login_required(prterminado), name="prterminado"), #view prterminado
+	path('athos/proyecciones/athos/<int:id>', login_required(proyecciones), name="proyecciones"), #view proyecciones
+	path('athos/cgfenologias/athos/<int:id>', login_required(cgfeno), name="cgfeno"), #view cgfenologias
+	path('athos/maestras/athos/<int:id>', login_required(maestras), name="maestras"), #view maestras
+	path('athos/logistica/athos/<int:id>', login_required(logistica), name="logistica"), #view logistica
+	path('athos/sanidad/athos/<int:id>', login_required(sanidad), name="sanidad"), #view sanidad
+	path('athos/riego/athos/<int:id>', login_required(riego), name="riego"), #view riego
+	path('athos/acopio-athos/athos/<int:id>', login_required(acopio_athos), name="acopio_athos"), #view acopio athos
+	path('athos/acopio-athos_02/athos/<int:id>', login_required(acopio_athos_02), name="acopio_athos_02"), #view acopio athos
+	path('athos/acopio-athos_03/athos/<int:id>', login_required(acopio_athos_03), name="acopio_athos_03"), #view acopio athos
+	path('athos/acopio-athos_04/athos/<int:id>', login_required(acopio_athos_04), name="acopio_athos_04"), #view acopio athos
+	path('athos/garita-athos/athos/<int:id>', login_required(garita), name="garita"), #view acopio athos
+	path('athos/planta-granada2020/athos/<int:id>', login_required(plantagranada), name="plantagranada"), #view planta granada
+	path('athos/calidad-agricola/<int:id>', login_required(calidadagricola), name="calidadagricola"),
+	path('athos/topico/<int:id>', login_required(topico), name="topico"),
+	path('athos/planificacion/<int:id>', login_required(planificacion), name="planificacion"),
+	path('athos/capacitaciones/<int:id>', login_required(capacitaciones), name="capacitaciones"),
+
+	path('athos/nuevocampo/<int:id>', login_required(crearcampo), name="crearcampo"),
+	path('athos/editarcampo/<int:id>/editar/<int:subid>', login_required(editarcampo), name="editarcampo"),
+
+	path('athos/nuevocultivo/<int:id>', login_required(crearcultivo), name="crearcultivo"),
+	path('athos/editarcultivo/<int:id>/editar/<int:subid>', login_required(editarcultivo), name="editarcultivo"),
+	
+	path('athos/nuevovariedad/<int:id>', login_required(crearvariedad), name="crearvariedad"),
+	path('athos/editarvariedad/<int:id>/editar/<int:subid>', login_required(editarvariedad), name="editarvariedad"),
+	path('athos/nuevomodulo/<int:id>', login_required(crearmodulo), name="crearmodulo"),
+	path('athos/editarmodulo/<int:id>/editar/<int:subid>', login_required(editarmodulo), name="editarmodulo"),
+
+	path('athos/nuevolote/<int:id>', login_required(crearlote), name="crearlote"),
+	path('athos/editarlote/<int:id>/editar/<int:subid>', login_required(editarlote), name="editarlote"),
+
+	path('athos/nuevofeno/<int:id>', login_required(crearfeno), name="crearfeno"),
+	path('athos/editarfeno/<int:id>/editar/<int:subid>', login_required(editarfeno), name="editarfeno"),
+
+	path('athos/nuevocampana', login_required(crearcampana), name="crearcampana"),
+	path('athos/editarcampana/<int:id>/editar/<int:subid>', login_required(editarcampana), name="editarcampana"),
+
+	path('athos/nuevoproduccion', login_required(crearproduccion), name="crearproduccion"),
+	path('athos/editarproduccion/<int:id>/editar/<int:subid>', login_required(editarproduccion), name="editarproduccion"),
+
+	path('athos/verfeno/<int:id>/ver/<int:subid>', login_required(produccionfenologias), name="produccionfenologias"),
+	path('athos/nuevoproduccionfeno/<int:id>/registro/<int:subid>', login_required(crearproduccionfeno), name="crearproduccionfeno"),
+	path('athos/editarprodufeno/<int:id>/produccionfeno/<int:subid>/editar/<int:fenid>', login_required(editarproduccionfeno), name="editarproduccionfeno"),
+
+	path('athos/VAL-programaproduccion/<int:id>/ver/<int:subid>', login_required(turnoprogramaproduccion), name="turnoprogramaproduccion"),
+	path('athos/VAL-programaproduccion/<int:id>/registro/<int:subid>', login_required(crearturnoprogramaproduccion), name="crearturnoprogramaproduccion"),
+	path('athos/VAL-programaproduccion/<int:id>/turno/<int:subid>/editar/<int:fenid>', login_required(editarturnoprogramaproduccion), name="editarturnoprogramaproduccion"),
+
+	path('athos/nuevoflujo', login_required(crearflujo), name="crearflujo"),
+	path('athos/editarflujo/<int:id>/editar/<int:subid>', login_required(editarflujo), name="editarflujo"),
+
+	path('athos/nuevoaccion', login_required(crearaccion), name="crearaccion"),
+	path('athos/editaraccion/<int:id>/editar/<int:subid>', login_required(editaraccion), name="editaraccion"),
+
+	path('athos/nuevoproceso', login_required(crearproceso), name="crearproceso"),
+	path('athos/editarproceso/<int:id>/editar/<int:subid>', login_required(editarproceso), name="editarproceso"),
+
+	path('athos/nuevosolicitud', login_required(crearsolicitud), name="crearsolicitud"),
+	path('athos/editarsolicitud/<int:id>/editar/<int:subid>', login_required(editarsolicitud), name="editarsolicitud"),
+
+	path('athos/pep/<int:id>/ver/<int:subid>', login_required(pep), name="pep"),
+	path('athos/nuevoelementopep/<int:id>/registro/<int:subid>', login_required(crearpep), name="crearpep"),
+	path('athos/editarpep/<int:id>/pep/<int:subid>/editar/<int:pepid>', login_required(editarpep), name="editarpep"),
+	
+	path('athos/nuevovariable/<int:id>', login_required(crearvariableagro), name="crearvariableagro"),
+	path('athos/editarvariable/<int:id>/editar/<int:subid>', login_required(editarvariableagro), name="editarvariableagro"),
+
+	path('athos/subvariable/<int:id>/sub/<int:subid>', login_required(subvariableagronomica), name="subvariableagronomica"),
+	path('athos/nuevosub/<int:id>/registro/<int:subid>', login_required(crearsubvariableagronomica), name="crearsubvariableagronomica"),
+	path('athos/editarsub/<int:id>/variable/<int:subid>/editar/<int:varid>', login_required(editarsubvariableagronomica), name="editarsubvariableagronomica"),
+
+	path('athos/nuevoversion/<int:id>', login_required(crearversionagro), name="crearversionagro"),
+	path('athos/editarversion/<int:id>/editar/<int:subid>', login_required(editarversionagro), name="editarversionagro"),
+
+	path('athos/ppvar/<int:id>/ver/<int:subid>', login_required(produccionvariable), name="produccionvariable"),
+	path('athos/nuevoppvar/<int:id>/registro/<int:subid>', login_required(crearproduccionvariables), name="crearproduccionvariables"),
+	path('athos/editarppvar/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editarproduccionvariables), name="editarproduccionvariables"),
+
+
+	path('athos/nuevoplanta', login_required(crearplanta), name="crearplanta"),
+	path('athos/editarplanta/<int:id>/editar/<int:subid>', login_required(editarplanta), name="editarplanta"),
+
+	path('athos/nuevonave', login_required(crearnave), name="crearnave"),
+	path('athos/editarnave/<int:id>/editar/<int:subid>', login_required(editarnave), name="editarnave"),
+
+	path('athos/nuevolinea', login_required(crearlinea), name="crearlinea"),
+	path('athos/editarlinea/<int:id>/editar/<int:subid>', login_required(editarlinea), name="editarlinea"),
+
+	path('', ProgramaProduccionListView.as_view(), name='programa_changelist'),
+    path('add/', ProgramaProduccionCreateView.as_view(), name='programa_add'),
+    path('<int:id>/', ProgramaProduccionUpdateView.as_view(), name='programa_change'),
+
+    path('ajax/load-modulitos/<int:id>/', load_modulitos, name='ajax_load_modulitos'),  # <-- this one here
+    path('ajax/load-lotecitos/<int:id>/', load_lotecitos, name='ajax_load_lotecitos'),
+    #path('ajax/load-planta/<int:id>/', load_planta, name='ajax_load_planta'),
+     path('ajax/load-fundos/<int:id>/', load_fundos, name='ajax_load_fundos'),
+     path('ajax/load-rutas/<int:id>/', load_rutas, name='ajax_load_rutas'),
+     path('ajax/load-pep/<int:id>/', load_pep, name='ajax_load_pep'),
+     path('ajax/load-procesos/<int:id>/', load_procesos, name='ajax_load_procesos'),
+   	 path('ajax/load-objetivos/<int:id>/', load_objetivos, name='ajax_load_objetivos'),
+   	 path('ajax/load-planta/<int:id>/', load_planta, name='ajax_load_planta'),
+   	 path('ajax/load-nave/<int:id>/', load_nave, name='ajax_load_nave'),
+   	 path('ajax/load-data-pep/<int:id>/', load_data_pep, name='ajax_load_data_pep'),
+   	 path('ajax/load-producto/<int:id>/', load_producto, name='ajax_load_producto'),
+   	 path('ajax/load-lineas/<int:id>/', load_lineasempaque, name='ajax_load_lineasempaque'),
+   	 path('ajax/load-proveedor/<int:id>/', load_proveedor, name='ajax_load_proveedores'),
+   	 path('ajax/load-tema/<int:id>/', load_tema, name='ajax_load_tema'),
+   	 path('ajax/load-equipos/<int:id>/', load_equipos, name='ajax_load_equipos'),
+   	 path('ajax/load-almacenes/<int:id>/', load_almacenes, name='ajax_load_almacenes'),
+   	 path('ajax/load-vehiculos/<int:id>/', load_vehiculos, name='ajax_load_vehiculos'),
+    path('ajax/load-chofer/<int:id>/', load_chofer, name='ajax_load_chofer'),
+    path('ajax/load-ubicacion/<int:id>/', load_ubicacion, name='ajax_load_ubicacion'),
+    path('ajax/load-variables/<int:id>/', load_variables, name='ajax_load_variables'),
+    path('ajax/load-equipossanidad/<int:id>/', load_equipossanidad, name='ajax_load_equipos'),
+    path('ajax/load-operariossanidad/<int:id>/', load_operariossanidad, name='ajax_load_operarios'),
+    path('ajax/load-objetivoplagas/<int:id>/', load_objetivoplagas, name='ajax_load_objetivo'),
+     path('ajax/load-pozos/<int:id>/', load_pozos, name='ajax_load_pozos'),
+    path('ajax/load-turnopp/<int:id>/', load_turnopp, name='ajax_load_turnoṕp'),
+  
+    path('ajax/load-factor-premezcla/<int:ubicacion_id>/<int:objetivo_id>/<int:tipo_id>', load_factor_premezcla, name='ajax_load_factor_premezcla'),
+   
+     path('ajax/load-area-pp/<int:pep_id>/', load_area_pproduccion, name='ajax_load_area_pproduccion'),
+     path('ajax/load-rutas-placas/<slug:id>', load_rutas_placas, name='ajax_load_rutas_placas'),
+    
+
+    #programaproduccion
+    path('ajax/load-subgrupo/<int:id>/', load_subgrupo, name='ajax_load_subgrupo'),
+    path('ajax/load-hito/<int:id>/', load_hito, name='ajax_load_hito'),
+    path('ajax/load-subhito/<int:id>/', load_subhito, name='ajax_load_subhito'),
+
+	path('athos/nuevopersonalplanta', login_required(crearpersonalplanta), name="crearpersonalplanta"),
+	path('athos/editarpersonalplanta/<int:id>/editar/<int:subid>', login_required(editarpersonalplanta), name="editarpersonalplanta"),
+
+	path('athos/nuevolanzadopaletas', login_required(crearlanzadopaletas), name="crearlanzadopaletas"),
+	path('athos/editarlanzadopaletas/<int:id>/editar/<int:subid>', login_required(editarlanzadopaletas), name="editarlanzadopaletas"),
+
+
+
+	path('athos/llr/<int:id>/ver/<int:subid>', login_required(lanzadopaletasreal), name="lanzadopaletasreal"),
+	path('athos/nuevollr/<int:id>/registro/<int:subid>', login_required(crearlanzadopaletasreal), name="crearlanzadopaletasreal"),
+	path('athos/editarpreal/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editarlanzadopaletasreal), name="editarlanzadopaletasreal"),
+
+	path('athos/nuevomaterial', login_required(crearmateriales), name="crearmateriales"),
+	path('athos/editarmaterial/<int:id>/editar/<int:subid>', login_required(editarmateriales), name="editarmateriales"),
+
+	path('athos/nuevoordenpedido', login_required(crearordenpedido), name="crearordenpedido"),
+	path('athos/editarordenpedido/<int:id>/editar/<int:subid>', login_required(editarordenpedido), name="editarordenpedido"),
+
+	path('athos/nuevozonapaletizado', login_required(crearzonapaletizado), name="crearzonapaletizado"),
+	path('athos/editarzonapaletizado/<int:id>/editar/<int:subid>', login_required(editarzonapaletizado), name="editarzonapaletizado"),
+
+
+	path('athos/ordenpedidoreal/<int:id>/ver/<int:subid>', login_required(ordenpedidoreal), name="ordenpedidoreal"),
+	path('athos/nuevoordenpedidoreal/<int:id>/registro/<int:subid>', login_required(crearordenpedidoreal), name="crearordenpedidoreal"),
+	path('athos/editarordenpedidoreal/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editarordenpedidoreal), name="editarordenpedidoreal"),
+
+
+
+	path('athos/paletizado/<int:id>/ver/<int:subid>', login_required(paletizado), name="paletizado"),
+	path('athos/nuevopaletizado/<int:id>/registro/<int:subid>', login_required(crearpaletizado), name="crearpaletizado"),
+	path('athos/editarpaletizado/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editarpaletizado), name="editarpaletizado"),
+
+	
+
+	path('athos/verificarpalet/<int:id>/ver/<int:subid>', login_required(verificarpalet), name="verificarpalet"),
+	path('athos/nuevoverificar/<int:id>/registro/<int:subid>', login_required(crearverificarpalet), name="crearverificarpalet"),
+	path('athos/Editarrecepcion/<int:id>/registro/<int:subid>/editar/<int:varid>', login_required(editarverificarpalet), name="editarverificarpalet"),
+
+	path('athos/editarpaletizado/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editarpaletizado), name="editarpaletizado"),
+	path('athos/configasistenciapl/<int:id>', login_required(crearconfigasistenciapl), name="crearconfigasistenciapl"),
+
+	path('athos/ingresopl/<int:id>/ing/<int:subid>', login_required(asistenciaoingresoplanta), name="asistenciaoingresoplanta"),
+	path('athos/crearingresopl/<int:id>/registro/<int:subid>', login_required(crearasistenciaingresopl), name="crearasistenciaingresopl"),
+	
+	path('athos/configasistenciapl/<int:id>', login_required(crearconfigasistenciapl), name="crearconfigasistenciapl"),
+
+	path('athos/ingresopl/<int:id>/ing/<int:subid>', login_required(asistenciaoingresoplanta), name="asistenciaoingresoplanta"),
+	path('athos/crearingresopl/<int:id>/registro/<int:subid>', login_required(crearasistenciaingresopl), name="crearasistenciaingresopl"),
+
+	path('athos/salidapl/<int:id>/ing/<int:subid>', login_required(asistenciaosalidaplanta), name="asistenciaosalidaplanta"),
+	path('athos/crearsalidapl/<int:id>/registro/<int:subid>', login_required(crearasistenciasalidapl), name="crearasistenciasalidapl"),
+
+	path('athos/nuevoarea', login_required(creararea), name="creararea"),
+	path('athos/editararea/<int:id>/editar/<int:subid>', login_required(editararea), name="editararea"),
+
+	path('athos/nuevocompe', login_required(crearcompetencias), name="crearcompetencias"),
+	path('athos/editarcompe/<int:id>/editar/<int:subid>', login_required(editarcompetencias), name="editarcompetencias"),
+
+	path('athos/nuevotema', login_required(creartema), name="creartema"),
+	path('athos/editartema/<int:id>/editar/<int:subid>', login_required(editartema), name="editartema"),
+
+
+	path('athos/alcance-capacitacion/<int:id>', login_required(crearalcancecapacitacion), name="crearalcancecapacitacion"),
+	path('athos/alcance-capacitacion/<int:id>/editar/<int:subid>', login_required(editaralcancecapacitacion), name="editaralcancecapacitacion"),
+
+
+
+	path('athos/nuevocapacitacion/<int:id>', login_required(crearcapacitacion), name="crearcapacitacion"),
+	path('athos/editarcapacitacion/<int:id>/editar/<int:subid>', login_required(editarcapacitacion), name="editarcapacitacion"),
+	path('athos/confirmar-capacitacion/<int:id>/confirmar/<int:subid>', login_required(confirmativacapacitacion), name="confirmativacapacitacion"),
+	
+	path('athos/detalle-capacitacion/<int:id>/ver/<int:subid>', login_required(asistenciacapacitacion), name="asistenciacapacitacion"),
+	path('athos/detalle-capacitacion/<int:id>/registro/<int:subid>', login_required(crearasistenciacapacitacion), name="crearasistenciacapacitacion"),
+	path('athos/detalle-capacitacion/<int:id>/reg/<int:subid>/editar/<int:varid>', login_required(editarasistenciacapacitacion), name="editarasistenciacapacitacion"),
+	
+	path('athos/nuevolabor', login_required(crearlabor), name="crearlabor"),
+	path('athos/editarlabor/<int:id>/editar/<int:subid>', login_required(editarlabor), name="editarlabor"),
+
+	path('athos/nuevoturno', login_required(crearturno), name="crearturno"),
+	path('athos/editarturno/<int:id>/editar/<int:subid>', login_required(editarturno), name="editarturno"),
+
+	path('athos/nuevoarealabor', login_required(creararealabor), name="creararealabor"),
+	path('athos/editararealabor/<int:id>/editar/<int:subid>', login_required(editararealabor), name="editararealabor"),
+
+	path('athos/nuevofecha', login_required(crearfecha), name="crearfecha"),
+
+
+
+	path('athos/nuevomaterialaco', login_required(crearmaterialacopio), name="crearmaterialacopio"),
+	path('athos/editarmaterialaco/<int:id>/editar/<int:subid>', login_required(editarmaterialacopio), name="editarmaterialacopio"),
+
+	path('athos/nuevomaterialtransporte', login_required(crearmaterialtransporte), name="crearmaterialtransporte"),
+	path('athos/editarmaterialtransporte/<int:id>/editar/<int:subid>', login_required(editarmaterialtransporte), name="editarmaterialtransporte"),
+
+	path('athos/nuevomaterialmmpp', login_required(crearmaterialmmpp), name="crearmaterialmmpp"),
+	path('athos/editarmaterialmmpp/<int:id>/editar/<int:subid>', login_required(editarmaterialmmpp), name="editarmaterialmmpp"),
+
+
+
+	path('athos/nuevoplacasvehiculares', login_required(crearplacasvehiculares), name="crearplacasvehiculares"),
+	path('athos/editarplacas/<int:id>/editar/<int:subid>', login_required(editarplacasvehiculares), name="editarplacasvehiculares"),
+
+	path('athos/detalle-placas-vehiculares/<int:id>/ver/<int:subid>', login_required(detalleplacasvehiculares), name="detalleplacasvehiculares"),
+	path('athos/detalle-placas-vehiculares/<int:id>/registro/<int:subid>', login_required(creardetalleplacasvehiculares), name="creardetalleplacasvehiculares"),
+	path('athos/detalle-placas-vehiculares/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editardetalleplacasvehiculares), name="editardetalleplacasvehiculares"),
+
+	path('athos/nuevochoferesathos', login_required(crearchoferesathos), name="crearchoferesathos"),
+	path('athos/editarchoferesathos/<int:id>/editar/<int:subid>', login_required(editarchoferesathos), name="editarchoferesathos"),
+
+	path('athos/nuevounidadvehicular', login_required(crearunidadvehicular), name="crearunidadvehicular"),
+	path('athos/editarnuevounidadvehicular/<int:id>/editar/<int:subid>', login_required(editarunidadvehicular), name="editarunidadvehicular"),
+
+	path('athos/nuevoubicacionfundo', login_required(crearubicacionfundo), name="crearubicacionfundo"),
+	path('athos/editarubicacionfundo/<int:id>/editar/<int:subid>', login_required(editarubicacionfundo), name="editarubicacionfundo"),
+
+	path('athos/nuevolugarathos', login_required(crearlugarathos), name="crearlugarathos"),
+	path('athos/editarlugarathos/<int:id>/editar/<int:subid>', login_required(editarlugarathos), name="editarlugarathos"),
+
+	path('athos/nuevocentrosathos', login_required(crearcentrosathos), name="crearcentrosathos"),
+	path('athos/editarcentrosathos/<int:id>/editar/<int:subid>', login_required(editarcentrosathos), name="editarcentrosathos"),
+
+	path('athos/nuevoalmacenesathos', login_required(crearalmacenesathos), name="crearalmacenesathos"),
+	path('athos/editaralmacenesathos/<int:id>/editar/<int:subid>', login_required(editaralmacenesathos), name="editaralmacenesathos"),
+
+	path('athos/nuevoguiaathos', login_required(crearguiaathos), name="crearguiaathos"),
+	path('athos/editarguiaathos/<int:id>/editar/<int:subid>', login_required(editarguiaathos), name="editarguiaathos"),
+
+	path('athos/guiad/<int:id>/desc/<int:subid>', login_required(guiadetallesathos), name="guiadetallesathos"),
+	path('athos/crearguiad/<int:id>/registro/<int:subid>', login_required(crearguiadetallesathos), name="crearguiadetallesathos"),
+	path('athos/editarguiad/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editarguiadetallesathos), name="editarguiadetallesathos"),
+
+	path('athos/infopalet/<int:id>/ver/<int:subid>/acopio/<int:varid>', login_required(infopalet), name="infopalet"),
+	path('athos/nuevoinfopalet/<int:id>/registro/<int:subid>/acopio/<int:varid>/crear', login_required(crearinfopalet), name="crearinfopalet"),
+	path('athos/editarinfop/<int:id>/var/<int:subid>/editar/<int:varid>/palet/<int:catid>', login_required(editarinfopalet), name="editarinfopalet"),
+
+	path('athos/print/<int:guia_id>/ver/<int:guia_detalle_id>/acopio/<int:palet_id>', login_required(printpalet), name="printpalet"),
+	path('athos/nuevoparihuela', login_required(crearparihuela), name="crearparihuela"),
+	path('athos/editarparihuela/<int:id>/editar/<int:subid>', login_required(editarparihuela), name="editarparihuela"),
+
+	path('athos/nuevoacopiogarita', login_required(creargaritaacopio), name="creargaritaacopio"),
+	path('athos/editaracopiogarita/<int:id>/editar/<int:subid>', login_required(editargaritaacopio), name="editargaritaacopio"),
+
+	
+	path('athos/nuevaruta/<int:id>', login_required(crearrutasathos), name="crearrutasathos"),
+	path('athos/editarruta/<int:id>/editar/<int:subid>', login_required(editarrutasathos), name="editarrutasathos"),
+	
+	path('athos/hitos/<int:id>/athos/<int:subid>', login_required(hitos), name="hitos"),
+	path('athos/crearhitos/<int:id>/registro/<int:subid>', login_required(crearhitos), name="crearhitos"),
+	path('athos/editarhitos/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editarhitos), name="editarhitos"),
+
+
+	path('athos/subhitos/<int:id>/athos/<int:subid>/ver/<int:varid>', login_required(subhitos), name="subhitos"),
+	path('athos/nuevo/subhitos/<int:id>/athos/<int:subid>/registro/<int:varid>/crear', login_required(crearsubhitos), name="crearsubhitos"),
+	path('athos/edita/subhitos/<int:id>/var/<int:subid>/subhitos/<int:varid>/editar/<int:catid>', login_required(editarsubhitos), name="editarsubhitos"),
+
+	path('athos/hitos-fenologicos/<int:id>/ver/<int:subid>/sprd/<int:varid>', login_required(hitosfenologicos), name="hitosfenologicos"),
+	path('athos/hitos-fenologicos/<int:id>/registro/<int:subid>/sprd/<int:varid>/crear/', login_required(crearhitosfenologicos), name="crearhitosfenologicos"),
+	path('athos/hitos-fenologicos/<int:id>/editar/<int:subid>/prdl/<int:varid>/editar/<int:catid>', login_required(editarhitosfenologicos), name="editarhitosfenologicos"),
+
+
+
+
+#acopio
+	path('athos/acopio/campos/nuevoenfriadoathos/<int:id>', login_required(crearenfriado), name="crearenfriado"),
+	path('athos/acopio/campos/editarenfriadoathos/<int:id>/editar/<int:subid>', login_required(editarenfriado), name="editarenfriado"),
+
+
+	path('athos/acopio/<int:id>/enfriado/<int:subid>', login_required(distribucionenfriado), name="distribucionenfriado"),
+	path('athos/nuevodistribucion/<int:id>/registro/<int:subid>', login_required(creardistribucionenfriado), name="creardistribucionenfriado"),
+	path('athos/editardistribucion/<int:id>/enfriado/<int:subid>/editar/<int:varid>', login_required(editardistribucionenfriado), name="editardistribucionenfriado"),
+
+
+	path('athos/temperatura/<int:id>/enfriado/<int:subid>/ver/<int:varid>', login_required(temperaturaenfriado), name="temperaturaenfriado"),
+	path('athos/nuevotemperaturat/<int:id>/enfriado/<int:subid>/registro/<int:varid>/crear', login_required(creartemperaturaenfriado), name="creartemperaturaenfriado"),
+	path('athos/editartemperatura/<int:id>/var/<int:subid>/enfriado/<int:varid>/editar/<int:catid>', login_required(editartemperaturaenfriado), name="editartemperaturaenfriado"),
+	path('athos/nuevodescarte/<int:id>', login_required(creardescarteathos), name="creardescarteathos"),
+	path('athos/editardescarte/<int:id>/editar/<int:subid>', login_required(editardescarteathos), name="editardescarteathos"),
+
+	path('athos/acopio/nuevosalidadescarteathos/<int:id>', login_required(crearsalidadescarte), name="crearsalidadescarte"),
+	path('athos/acopio/editarsalidadescarteathos/<int:id>/editar/<int:subid>', login_required(editarsalidadescarte), name="editarsalidadescarte"),
+
+#evaluaciones
+	path('athos/ev/fen/nuevoevbrarandano/<int:id>', login_required(crearevfenarandanobrote), name="crearevfenarandanobrote"),
+	path('athos/ev/fen/editarevbrarandano/<int:id>/editar/<int:subid>', login_required(editarevfenarandanobrote), name="editarevfenarandanobrote"),
+
+	path('athos/ev/<int:id>/detalle/<int:subid>', login_required(detalleplantaevfenbrotesarandanos), name="detalleplantaevfenbrotesarandanos"),
+	path('athos/crear/<int:id>/registro/<int:subid>', login_required(creardetalleplantaevfenbrotesarandanos), name="creardetalleplantaevfenbrotesarandanos"),
+	path('athos/editarev/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editardetalleplantaevfenbrotesarandanos), name="editardetalleplantaevfenbrotesarandanos"),
+
+
+	path('athos/brote/<int:id>/ver/<int:subid>/acopio/<int:varid>', login_required(broteevfenar), name="broteevfenar"),
+	path('athos/nuevobrote/<int:id>/registro/<int:subid>/acopio/<int:varid>/crear', login_required(crearbroteevfenar), name="crearbroteevfenar"),
+	path('athos/editarbrote/<int:id>/var/<int:subid>/editar/<int:varid>/evfen/<int:catid>', login_required(editarbroteevfenar), name="editarbroteevfenar"),
+
+	path('athos/ev/fen/crearraices/<int:id>', login_required(crearevfenraicesarandanos), name="crearevfenraicesarandanos"),
+	path('athos/ev/fen/editarraices/<int:id>/editar/<int:subid>', login_required(editarevfenraicesarandanos), name="editarevfenraicesarandanos"),
+
+	path('athos/evraices/<int:id>/detalle/<int:subid>', login_required(detalleevfenraicesarandanos), name="detalleevfenraicesarandanos"),
+	path('athos/crearevraices/<int:id>/registro/<int:subid>', login_required(creardetalleevfenraicesarandanos), name="creardetalleevfenraicesarandanos"),
+	path('athos/editarevraicesv/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editardetalleevfenraicesarandanos), name="editardetalleevfenraicesarandanos"),
+
+	path('athos/raices/<int:id>/ver/<int:subid>/evfen/<int:varid>', login_required(raicesevfenraicesarandanos), name="raicesevfenraicesarandanos"),
+	path('athos/nuevoraices/<int:id>/registro/<int:subid>/evfen/<int:varid>/crear', login_required(crearraicesevfenraicesarandanos), name="crearraicesevfenraicesarandanos"),
+	path('athos/editarraices/<int:id>/var/<int:subid>/editar/<int:varid>/evfen/<int:catid>', login_required(editarraicesevfenraicesarandanos), name="editarraicesevfenraicesarandanos"),
+
+	path('athos/Control/<int:id>/PT/<int:subid>', login_required(controlproductoterminado), name="controlproductoterminado"),
+	path('athos/crear/<int:id>/registroCPT/<int:subid>', login_required(crearcontrolproductoterminado), name="crearcontrolproductoterminado"),
+	path('athos/editarev/<int:id>/var/<int:subid>/editarCPT/<int:varid>', login_required(editarcontrolproductoterminado), name="editarcontrolproductoterminado"),
+
+	path('athos/DetControl/<int:id>/ver/<int:subid>/ev/<int:varid>', login_required(detallecontrolproductoterminado), name="detallecontrolproductoterminado"),
+	path('athos/nuevoDetControl/<int:id>/registro/<int:subid>/ev/<int:varid>/crear', login_required(creardetallecontrolproductoterminado), name="creardetallecontrolproductoterminado"),
+	path('athos/editarDetControl/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:catid>', login_required(editardetallecontrolproductoterminado), name="editardetallecontrolproductoterminado"),
+
+	path('athos/ev/fen/nuevoevbrarandanose/<int:id>', login_required(crearevfenarandanobrotesem), name="crearevfenarandanobrotesem"),
+	path('athos/ev/fen/editarevbrarandanose/<int:id>/editar/<int:subid>', login_required(editarevfenarandanobrotesem), name="editarevfenarandanobrotesem"),
+
+	path('athos/ev/<int:id>/detallese/<int:subid>', login_required(detalleplantaevfenbrotesarandanossem), name="detalleplantaevfenbrotesarandanossem"),
+	path('athos/crear/<int:id>/registrose/<int:subid>', login_required(creardetalleplantaevfenbrotesarandanossem), name="creardetalleplantaevfenbrotesarandanossem"),
+	path('athos/editarevse/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editardetalleplantaevfenbrotesarandanossem), name="editardetalleplantaevfenbrotesarandanossem"),
+
+
+	path('athos/brotese/<int:id>/ver/<int:subid>/acopio/<int:varid>', login_required(broteevfenarsem), name="broteevfenarsem"),
+	path('athos/nuevobrotese/<int:id>/registro/<int:subid>/acopio/<int:varid>/crear', login_required(crearbroteevfenarsem), name="crearbroteevfenarsem"),
+	path('athos/editarbrotese/<int:id>/var/<int:subid>/editar/<int:varid>/evfen/<int:catid>', login_required(editarbroteevfenarsem), name="editarbroteevfenarsem"),
+
+	path('athos/ev/san/crear-plagas/<int:id>', login_required(crearevsanplagasarandanos), name="crearevsanplagasarandanos"),
+	path('athos/ev/san/editar-plagas/<int:id>/editar/<int:subid>', login_required(editarevsanplagasarandanos), name="editarevsanplagasarandanos"),
+
+	path('athos/grupos-plagas/<int:id>/detalle/<int:subid>', login_required(gruposplagasarandanos), name="gruposplagasarandanos"),
+	path('athos/crear-grupos/<int:id>/registro/<int:subid>', login_required(creargruposplagasarandanos), name="creargruposplagasarandanos"),
+	path('athos/editar-grupos/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editargruposplagasarandanos), name="editargruposplagasarandanos"),
+
+
+	path('athos/subgrupos-plagas/<int:id>/ver/<int:subid>/ev/<int:varid>', login_required(subgruposplagasarandanos), name="subgruposplagasarandanos"),
+	path('athos/nuevosubgrupos-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear', login_required(crearsubgruposplagasarandanos), name="crearsubgruposplagasarandanos"),
+	path('athos/editarsubgrupos-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:catid>', login_required(editarsubgruposplagasarandanos), name="editarsubgruposplagasarandanos"),
+
+	path('athos/variables-plagas/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(variablesplagasarandanos), name="variablesplagasarandanos"),
+	path('athos/nuevovariables-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearvariablesplagasarandanos), name="crearvariablesplagasarandanos"),
+	path('athos/editarvariables-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarvariablesplagasarandanos), name="editarvariablesplagasarandanos"),
+
+	path('athos/arana-roja/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(aranaroja), name="aranaroja"),
+	path('athos/nuevoaranaroja-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(creararanaroja), name="creararanaroja"),
+	path('athos/editararanaroja-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editararanaroja), name="editararanaroja"),
+
+	path('athos/argy/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(argy), name="argy"),
+	path('athos/nuevoargy-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearargy), name="crearargy"),
+	path('athos/editarargy-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarargy), name="editarargy"),
+
+	path('athos/cigarrita/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(cigarrita), name="cigarrita"),
+	path('athos/nuevocigarrita-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearcigarrita), name="crearcigarrita"),
+	path('athos/editarcigarrita-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarcigarrita), name="editarcigarrita"),
+
+	path('athos/cochi/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(cochinilla), name="cochinilla"),
+	path('athos/nuevocochinilla-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearcochinilla), name="crearcochinilla"),
+	path('athos/editarcochi-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarcochinilla), name="editarcochinilla"),
+
+	path('athos/crypto/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(crypto), name="crypto"),
+	path('athos/nuevocrypto-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearcrypto), name="crearcrypto"),
+	path('athos/editarcrypto-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarcrypto), name="editarcrypto"),
+
+	path('athos/diabro/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(diabro), name="diabro"),
+	path('athos/nuevodiabro-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(creardiabro), name="creardiabro"),
+	path('athos/editardiabro-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editardiabro), name="editardiabro"),
+
+	path('athos/gryllus/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(gryllus), name="gryllus"),
+	path('athos/nuevogryllus-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(creargryllus), name="creargryllus"),
+	path('athos/editargryllus-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editargryllus), name="editargryllus"),
+
+	path('athos/helio/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(helio), name="helio"),
+	path('athos/nuevohelio-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearhelio), name="crearhelio"),
+	path('athos/editarhelio-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarhelio), name="editarhelio"),
+
+	path('athos/membracidos/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(membracidos), name="membracidos"),
+	path('athos/nuevomembracidos-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearmembracidos), name="crearmembracidos"),
+	path('athos/editarmembracidos-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarmembracidos), name="editarmembracidos"),
+
+	path('athos/moscablanca/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(moscablanca), name="moscablanca"),
+	path('athos/nuevomoscablanca-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearmoscablanca), name="crearmoscablanca"),
+	path('athos/editarmoscablanca-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarmoscablanca), name="editarmoscablanca"),
+
+	path('athos/moscafruta/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(moscafruta), name="moscafruta"),
+	path('athos/nuevomoscafruta-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearmoscafruta), name="crearmoscafruta"),
+	path('athos/editarmoscafruta-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarmoscafruta), name="editarmoscafruta"),
+
+	path('athos/plecto/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(plecto), name="plecto"),
+	path('athos/nuevoplecto-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearplecto), name="crearplecto"),
+	path('athos/editarplecto-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarplecto), name="editarplecto"),
+
+	path('athos/procospidos/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(procospidos), name="procospidos"),
+	path('athos/nuevoprocospidos-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearprocospidos), name="crearprocospidos"),
+	path('athos/editarprocospidos-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarprocospidos), name="editarprocospidos"),
+
+	path('athos/pulgones/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(pulgones), name="pulgones"),
+	path('athos/nuevopulgones-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearpulgones), name="crearpulgones"),
+	path('athos/editarpulgones-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarpulgones), name="editarpulgones"),
+
+	path('athos/queresas/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(queresas), name="queresas"),
+	path('athos/nuevoqueresas-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearqueresas), name="crearqueresas"),
+	path('athos/editarqueresas-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarqueresas), name="editarqueresas"),
+
+	path('athos/spodo/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(spodo), name="spodo"),
+	path('athos/nuevospodo-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearspodo), name="crearspodo"),
+	path('athos/editarspodo-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarspodo), name="editarspodo"),
+
+	path('athos/trips/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(trips), name="trips"),
+	path('athos/nuevotrips-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(creartrips), name="creartrips"),
+	path('athos/editartrips-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editartrips), name="editartrips"),
+
+	path('athos/aranas/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(aranas), name="aranas"),
+	path('athos/nuevoaranas-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(creararanas), name="creararanas"),
+	path('athos/editararanas-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editararanas), name="editararanas"),
+
+	path('athos/cocci/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(cocci), name="cocci"),
+	path('athos/nuevococci-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearcocci), name="crearcocci"),
+	path('athos/editarcocci-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarcocci), name="editarcocci"),
+
+	path('athos/crisopas/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(crisopas), name="crisopas"),
+	path('athos/nuevocrisopas-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearcrisopas), name="crearcrisopas"),
+	path('athos/editarcrisopas-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarcrisopas), name="editarcrisopas"),
+
+	path('athos/cryptola/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(cryptola), name="cryptola"),
+	path('athos/nuevocryptola-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearcryptola), name="crearcryptola"),
+	path('athos/editarcryptola-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarcryptola), name="editarcryptola"),
+
+	path('athos/otro/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(otro), name="otro"),
+	path('athos/nuevootro-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearotro), name="crearotro"),
+	path('athos/editarotro-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarotro), name="editarotro"),
+
+	path('athos/alternaria/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(alternaria), name="alternaria"),
+	path('athos/nuevoalternaria-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearalternaria), name="crearalternaria"),
+	path('athos/editaralternaria-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editaralternaria), name="editaralternaria"),
+
+	path('athos/antra/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(antra), name="antra"),
+	path('athos/nuevoantra-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearantra), name="crearantra"),
+	path('athos/editarantra-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarantra), name="editarantra"),
+
+	path('athos/botri/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(botri), name="botri"),
+	path('athos/nuevobotri-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearbotri), name="crearbotri"),
+	path('athos/editarbotri-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarbotri), name="editarbotri"),
+
+	path('athos/lasio/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(lasio), name="lasio"),
+	path('athos/nuevolasio-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearlasio), name="crearlasio"),
+	path('athos/editarlasio-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarlasio), name="editarlasio"),
+
+	path('athos/pestalo/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(pestalo), name="pestalo"),
+	path('athos/nuevopestalo-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearpestalo), name="crearpestalo"),
+	path('athos/editarpestalo-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarpestalo), name="editarpestalo"),
+
+	path('athos/phyto/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(phyto), name="phyto"),
+	path('athos/nuevophyto-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearphyto), name="crearphyto"),
+	path('athos/editarphyto-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarphyto), name="editarphyto"),
+
+	path('athos/plantaquemada/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(plantaquemada), name="plantaquemada"),
+	path('athos/nuevoplantaquemada-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearplantaquemada), name="crearplantaquemada"),
+	path('athos/editarplantaquemada-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarplantaquemada), name="editarplantaquemada"),
+
+	path('athos/roya/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(roya), name="roya"),
+	path('athos/nuevoroya-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearroya), name="crearroya"),
+	path('athos/editarroya-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarroya), name="editarroya"),
+
+	path('athos/hojasanchas/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(hojasanchas), name="hojasanchas"),
+	path('athos/nuevohojasanchas-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearhojasanchas), name="crearhojasanchas"),
+	path('athos/editarhojasanchas-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarhojasanchas), name="editarhojasanchas"),
+
+	path('athos/hojasangostas/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(hojasangostas), name="hojasangostas"),
+	path('athos/nuevohojasangostas-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearhojasangostas), name="crearhojasangostas"),
+	path('athos/editarhojasangostas-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarhojasangostas), name="editarhojasangostas"),
+
+	path('athos/abejas/<int:id>/ver/<int:subid>/ev/<int:varid>/var/<int:nicoid>', login_required(abejas), name="abejas"),
+	path('athos/nuevoabejas-plagas/<int:id>/registro/<int:subid>/ev/<int:varid>/crear/<int:nicoid>', login_required(crearabejas), name="crearabejas"),
+	path('athos/editarabejas-plagas/<int:id>/ev/<int:subid>/editar/<int:varid>/cpt/<int:nicoid>/ed/<int:chelitaid>', login_required(editarabejas), name="editarabejas"),
+
+
+	path('athos/ev/fenfrutos/crear-frutos/<int:id>', login_required(crearevfenfrutoarandanos), name="crearevfenfrutoarandanos"),
+	path('athos/ev/fen/editar-frutos/<int:id>/editar/<int:subid>', login_required(editarevfenfrutoarandanos), name="editarevfenfrutoarandanos"),
+
+	path('athos/evfrutosdet/<int:id>/detalle/<int:subid>', login_required(detalleevfenfrutoarandanos), name="detalleevfenfrutoarandanos"),
+	path('athos/evfrutosdet/<int:id>/registro/<int:subid>', login_required(creardetalleevfenfrutoarandanos), name="creardetalleevfenfrutoarandanos"),
+	path('athos/evfrutosdet/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editardetalleevfenfrutoarandanos), name="editardetalleevfenfrutoarandanos"),
+
+	path('athos/crear-evfenplanasa/<int:id>', login_required(crearevfenplanasa), name="crearevfenplanasa"),
+	path('athos/editar-evfenplanasa/<int:id>/editar/<int:subid>', login_required(editarevfenplanasa), name="editarevfenplanasa"),
+
+	path('athos/det-evfenplanasa/<int:id>/detalle/<int:subid>', login_required(detalleevfenplanasa), name="detalleevfenplanasa"),
+	path('athos/det-evfenplanasa/<int:id>/registro/<int:subid>', login_required(creardetalleevfenplanasa), name="creardetalleevfenplanasa"),
+	path('athos/det-evfenplanasa/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editardetalleevfenplanasa), name="editardetalleevfenplanasa"),
+
+	path('athos/crear-evcaldefectoscampos/<int:id>', login_required(crearevcaldefectoscampo), name="crearevcaldefectoscampo"),
+	path('athos/editar-evcaldefectoscampos/<int:id>/editar/<int:subid>', login_required(editarevcaldefectoscampo), name="editarevcaldefectoscampo"),
+
+	path('athos/det-evcaldefectos/<int:id>/detalle/<int:subid>', login_required(detalleevcaldefectoscampo), name="detalleevcaldefectoscampo"),
+	path('athos/det-evcaldefectos/<int:id>/registro/<int:subid>', login_required(creardetalleevcaldefectoscampo), name="creardetalleevcaldefectoscampo"),
+	path('athos/det-evcaldefectos/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editardetalleevcaldefectoscampo), name="editardetalleevcaldefectoscampo"),
+
+	path('athos/evcalacopioplanta/<int:id>/PT/<int:subid>', login_required(evcalacopioplanta), name="evcalacopioplanta"),
+	path('athos/crearevcalacopioplanta/<int:id>/registroCPT/<int:subid>', login_required(crearevcalacopioplanta), name="crearevcalacopioplanta"),
+	path('athos/editarevcalacopioplanta/<int:id>/var/<int:subid>/editarCPT/<int:varid>', login_required(editarevcalacopioplanta), name="editarevcalacopioplanta"),
+
+
+#ica ev cal acopio
+	path('athos/evcalacopioplanta-ica-ar2021/<int:id>/PT/<int:subid>', login_required(evcalacopioplantaarica2021), name="evcalacopioplantaarica2021"),
+	path('athos/crearevcalacopioplanta-ica-ar2021/<int:id>/registroCPT/<int:subid>', login_required(crearevcalacopioplantaarica2021), name="crearevcalacopioplantaarica2021"),
+	path('athos/editarevcalacopioplanta-ica-ar2021/<int:id>/var/<int:subid>/editarCPT/<int:varid>', login_required(editarevcalacopioplantaarica2021), name="editarevcalacopioplantaarica2021"),
+
+
+
+
+	path('athos/crear-evcartilladrenado/<int:id>', login_required(crearevcartilladrenado), name="crearevcartilladrenado"),
+	path('athos/editar-evcartilladrenado/<int:id>/editar/<int:subid>', login_required(editarevcartilladrenado), name="editarevcartilladrenado"),
+
+	path('athos/det-evcartilladrenado/<int:id>/detalle/<int:subid>', login_required(detalleevcartilladrenado), name="detalleevcartilladrenado"),
+	path('athos/det-evcartilladrenado/<int:id>/registro/<int:subid>', login_required(creardetalleevcartilladrenado), name="creardetalleevcartilladrenado"),
+	path('athos/det-evcartilladrenado/<int:id>/var/<int:subid>/editar/<int:varid>', login_required(editardetalleevcartilladrenado), name="editardetalleevcartilladrenado"),
+
+	path('athos/Selector-trabajadores-calpoda/<int:id>', login_required(crearseltrabajadorevcalpodaar), name="crearseltrabajadorevcalpodaar"),
+	path('athos/Selector-trabajadores-calpoda/<int:id>/editar/<int:subid>', login_required(editarseltrabajadorevcalpodaar), name="editarseltrabajadorevcalpodaar"),
+
+	path('athos/ev-calpoda/<int:id>', login_required(crearevcalpodaar), name="crearevcalpodaar"),
+	path('athos/ev-calpoda/<int:id>/editar/<int:subid>', login_required(editarevcalpodaar), name="editarevcalpodaar"),
+
+	path('athos/detalle-evcal-poda-ar/<int:id>/ver/<int:subid>', login_required(detalleevcalpodaar), name="detalleevcalpodaar"),
+	path('athos/detalle-evcal-poda-ar/<int:id>/registro/<int:subid>', login_required(creardetalleevcalpodaar), name="creardetalleevcalpodaar"),
+	path('athos/detalle-evcal-poda-ar/<int:id>/produccionfeno/<int:subid>/editar/<int:varid>', login_required(editardetalleevcalpodaar), name="editardetalleevcalpodaar"),
+
+#ev cal muestreo cosecha higo
+	path('athos/ev-cal-muestreo-cosecha-hg/<int:id>', login_required(crearevcalmuestreocosechahg2021), name="crearevcalmuestreocosechahg2021"),
+	path('athos/ev-cal-muestreo-cosecha-hg/<int:id>/editar/<int:subid>', login_required(editarevcalmuestreocosechahg2021), name="editarevcalmuestreocosechahg2021"),
+
+	path('athos/det-evcal-muestreo-cosecha-hg/<int:id>/ver/<int:subid>', login_required(detalleevcalmuestreocosechahg2021), name="detalleevcalmuestreocosechahg2021"),
+	path('athos/det-evcal-muestreo-cosecha-hg/<int:id>/registro/<int:subid>', login_required(creardetalleevcalmuestreocosechahg2021), name="creardetalleevcalmuestreocosechahg2021"),
+	path('athos/det-evcal-muestreo-cosecha-hg/<int:id>/produccionfeno/<int:subid>/editar/<int:varid>', login_required(editardetalleevcalmuestreocosechahg2021), name="editardetalleevcalmuestreocosechahg2021"),
+
+#prterminado
+	path('athos/prterminado/nuevo/<int:id>', login_required(crearprterminado), name="crearprterminado"),
+	path('athos/prterminado/editar/<int:id>/editar/<int:subid>', login_required(editarprterminado), name="editarprterminado"),
+
+	path('athos/prterminado/<int:id>/prterminado/<int:subid>', login_required(tempprterminado), name="tempprterminado"),
+	path('athos/nuevotemp/<int:id>/registro/<int:subid>', login_required(creartempprterminado), name="creartempprterminado"),
+	path('athos/editartemp/<int:id>/pt/<int:subid>/editar/<int:varid>', login_required(editartempprterminado), name="editartempprterminado"),
+
+#proyecciones
+	path('athos/proyecciones/nuevo/<int:id>', login_required(crearproyecciones), name="crearproyecciones"),
+	path('athos/proyecciones/editar/<int:id>/editar/<int:subid>', login_required(editarproyecciones), name="editarproyecciones"),
+
+	path('athos/proyecciones/<int:id>/athos/<int:subid>', login_required(detalleproyeccionarandano), name="detalleproyeccionarandano"),
+	path('athos/nuevoproyecciones/<int:id>/registro/<int:subid>', login_required(creardetalleproyeccionarandano), name="creardetalleproyeccionarandano"),
+	path('athos/editarproyecciones/<int:id>/athos/<int:subid>/editar/<int:varid>', login_required(editardetalleproyeccionarandano), name="editardetalleproyeccionarandano"),
+
+	path('athos/proyeccionessemanales/<int:id>/athos/<int:subid>', login_required(proyeccionsemanalarandano), name="proyeccionsemanalarandano"),
+	path('athos/nuevoproyeccionessemanales/<int:id>/registro/<int:subid>', login_required(crearproyeccionsemanalarandano), name="crearproyeccionsemanalarandano"),
+	path('athos/editarproyeccionessemanales/<int:id>/athos/<int:subid>/editar/<int:varid>', login_required(editarproyeccionsemanalarandano), name="editarproyeccionsemanalarandano"),
+
+	path('athos/proyeccionesdiarias/nuevo/<int:id>', login_required(crearproyeccionesdiarias), name="crearproyeccionesdiarias"),
+	path('athos/proyeccionesdiarias/editar/<int:id>/editar/<int:subid>', login_required(editarproyeccionesdiarias), name="editarproyeccionesdiarias"),
+
+	path('athos/proyeccionesdetdiaria/<int:id>/athos/<int:subid>', login_required(detalleproyecciondiariaarandano), name="detalleproyecciondiariaarandano"),
+	path('athos/nuevoproyeccionesdetdiaria/<int:id>/registro/<int:subid>', login_required(creardetalleproyecciondiariaarandano), name="creardetalleproyecciondiariaarandano"),
+	path('athos/editarproyeccionesdetdiaria/<int:id>/athos/<int:subid>/editar/<int:varid>', login_required(editardetalleproyecciondiariaarandano), name="editardetalleproyecciondiariaarandano"),
+
+	path('athos/proyeccionesan/nuevo/<int:id>', login_required(crearproyeccionesanual), name="crearproyeccionesanual"),
+	path('athos/proyeccionesan/editar/<int:id>/editar/<int:subid>', login_required(editarproyeccionesanual), name="editarproyeccionesanual"),
+
+	path('athos/proyeccionesan/<int:id>/athos/<int:subid>', login_required(detalleproyeccionanualarandano), name="detalleproyeccionanualarandano"),
+	path('athos/nuevoproyeccionesan/<int:id>/registro/<int:subid>', login_required(creardetalleproyeccionanualarandano), name="creardetalleproyeccionanualarandano"),
+	path('athos/Mnuevoproyeccionesan/<int:id>/registro/<int:subid>', login_required(Mcreardetalleproyeccionanualarandano), name="Mcreardetalleproyeccionanualarandano"),
+	path('athos/editarproyeccionesan/<int:id>/athos/<int:subid>/editar/<int:varid>', login_required(editardetalleproyeccionanualarandano), name="editardetalleproyeccionanualarandano"),
+
+
+	#cgfenologias
+	path('athos/cgfenologias/macro/<int:id>/athos/<int:subid>', login_required(macroproceso), name="macroproceso"),
+	path('athos/cgfenologias/nuevo/<int:id>/athos/<int:subid>', login_required(crearmacroproceso), name="crearmacroproceso"),
+	path('athos/cgfenologias/editar/<int:id>/editar/<int:subid>/editar/<int:varid>', login_required(editarmacroproceso), name="editarmacroproceso"),
+
+	path('athos/cgfenologias/<int:id>/athos/<int:subid>/proceso/<int:varid>', login_required(proceso), name="proceso"),
+	path('athos/cgfenologias/<int:id>/registro/<int:subid>/proceso/<int:varid>', login_required(crearproceso), name="crearproceso"),
+	path('athos/cgfenologias/<int:id>/athos/<int:subid>/editar/<int:varid>/editar/<int:catid>', login_required(editarproceso), name="editarproceso"),
+
+	path('athos/cgfenologias/<int:id>/athos/<int:subid>/fen/<int:varid>/athos/<int:catid>', login_required(objetivoproceso), name="objetivoproceso"),
+	path('athos/cgfenologias/<int:id>/registro/<int:subid>/crear/<int:varid>/athos/<int:catid>', login_required(crearobjetivoproceso), name="crearobjetivoproceso"),
+	path('athos/cgfenologias/<int:id>/athos/<int:subid>/editar/<int:varid>/editar/<int:catid>//editar/<int:atid>', login_required(editarobjetivoproceso), name="editarobjetivoproceso"),
+
+
+	#maestras
+	path('athos/maestras/nuevo/<int:id>', login_required(crearpresentacionesathos), name="crearpresentacionesathos"),
+	path('athos/maestras/editar/<int:id>/editar/<int:subid>', login_required(editarpresentacionesathos), name="editarpresentacionesathos"),
+	path('athos/clientes/nuevo/<int:id>', login_required(crearclientesathos), name="crearclientesathos"),
+	path('athos/clientes/editar/<int:id>/editar/<int:subid>', login_required(editarclientesathos), name="editarclientesathos"),
+
+	path('athos/mpresentacion/nuevo/<int:id>', login_required(crearmaestrapresentacionesathos), name="crearmaestrapresentacionesathos"),
+	path('athos/mpresentacion/editar/<int:id>/editar/<int:subid>', login_required(editarmaestrapresentacionesathos), name="editarmaestrapresentacionesathos"),
+	path('athos/calibres/nuevo/<int:id>', login_required(crearcalibresathos), name="crearcalibresathos"),
+	path('athos/calibres/editar/<int:id>/editar/<int:subid>', login_required(editarcalibresathos), name="editarcalibresathos"),
+	path('athos/linea-empaque/nuevo/<int:id>', login_required(crearlineaempaqueathos), name="crearlineaempaqueathos"),
+	path('athos/linea-empaque/editar/<int:id>/editar/<int:subid>', login_required(editarlineaempaqueathos), name="editarlineaempaqueathos"),
+	path('athos/cartillas-athos/nuevo/<int:id>', login_required(crearcartillasathos), name="crearcartillasathos"),
+	path('athos/cartillas-athos/editar/<int:id>/editar/<int:subid>', login_required(editarcartillasathos), name="editarcartillasathos"),
+	path('athos/labores-athos/nuevo/<i

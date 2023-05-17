@@ -1,0 +1,138 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">REPORTE PALETIZADO</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+		
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+				<h1 id="mostrarpalet">N° PALET</h1>
+			<h2 id="mostrarpalet">17</h2>
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+		
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>N° Palet</td>
+						<td>Codigo SAP</td>
+						<td>Trazabilidad</td>
+						<td>Cantidad</td>
+						<td>Calibre</td>
+						
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in paletizadopr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.npalet }}
+							</td>
+
+							<td>
+								{{ dato.anexo_codigo }}
+							</td>
+							<td>
+								{{ dato.trazabilidad }}
+							</td>
+						
+							<td id="javas">
+								{{ dato.cantidad }}
+							</td>
+							<td>
+								{{ dato.calibre }}
+							</td>
+							
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+			        <tr>
+			            <td colspan=3>Total</td>
+			            <td></td>
+			        </tr>
+    			</tfoot>
+			</table>
+		</div>
+		<p>
+    <button name="button" class="btn btn-primary">Calcular</button>
+</p>
+
+<script type="text/javascript" src="qrcode.js"></script>
+
+<div align="center">
+		<div data-role="content">
+
+		<input id="item_txt" type="text" placeholder="Ingresa algún texto">
+			<button id="generarCodigo" class="btn btn-info">Generar</button> <a href="#" id="descargarCodigo" class="btn btn-warning">Descargar</a>
+			<div id="codigoQR"></div>
+</div>	
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+
+	</article>
+</section>
+{% endblock %}
+{%block script%}
+
+<script>
+// generamos el evento para el boton
+document.getElementsByTagName("button")[0].addEventListener("click",ccalcular);
+
+/**
+ * funcion que realiza los calculos
+ */
+function ccalcular() {
+
+    // obtenemos todas las filas del tbody
+    var filas=document.querySelectorAll("#bootstrap-data-table tbody tr");
+ 
+    var total=0;
+ 	
+    // recorremos cada una de las filas
+    filas.forEach(function(e) {
+ 
+        // obtenemos las columnas de cada fila
+        var columnas=e.querySelectorAll("td");
+ 
+        // obtenemos los valores de la cantidad y importe
+        var cantidad=parseFloat(columnas[4].textContent);
+        
+
+        // mostramos el total por fila
+        
+ 
+        total=total+cantidad;
+    });
+ console.log(total);
+
+
+    // mostramos la suma total
+    var filas=document.querySelectorAll("#bootstrap-data-table tfoot tr td");
+    filas[1].textContent=total.toFixed(1);
+    console.log(total);
+}
+</script>
+
+	
+{% endblock %}
+
+

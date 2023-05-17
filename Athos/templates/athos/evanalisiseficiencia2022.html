@@ -1,0 +1,74 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+  <article id="usuarios">
+    <h1 id="h1-usuarios">EFICIENCIA EN LA ETAPA DE SELECCIÓN Y CALIBRADO 2022</h1>
+    <div>
+      <a href="{% url 'crearanalisiseficiencia' id %}" >
+        <button type="button" class="btn btn-success">Registrar</button>
+      </a>
+    </div>
+    <div class="content mt-3">
+      <div class="animated fadeIn">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <strong class="card-title">REPORTE</strong>
+              </div>
+              <div class="card-body">
+                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <td>N°</td>
+                      <td>Palet</td>
+                      <td>Planta</td>
+                      <td>Fecha Creación</td>
+                      <td>Acción</td>
+                    </tr>
+                  </thead>
+                  <tbody id="reportes">
+                    {% for dato in detallespr %}
+                    <tr>
+                      <td>
+                        {{ forloop.counter }}
+                      </td>
+                      <td>
+                        {{ dato.npalet }}
+                      </td>
+                      <td>
+                        {{ dato.anexo_planta }}
+                      </td>
+                      <td>
+                        {{ dato.fecha_hora_creacion |date:'Y-m-d' }}
+                      </td>
+
+                      <td>
+                        <a href="{% url 'editarevanalisiseficiencia'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+                      </td>
+                      
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+{% endblock %}
+
+{% block script %}
+<!--<script type="text/javascript">
+  $(document).ready(function(){
+    Swal.fire({
+      position: 'center',
+      icon: 'warning',
+      title: 'Estamos en Mantenimiento! Espere, por favor.',
+    });
+  });
+</script>-->
+{% endblock %}

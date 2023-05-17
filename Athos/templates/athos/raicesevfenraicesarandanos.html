@@ -1,0 +1,86 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">EV. RAICES ARANDANOS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearraicesevfenraicesarandanos' id subid varid %}" >
+				<button type="button" class="btn btn-success">Registrar Ev.</button>
+			</a>
+			<a href="{% url 'detalleevfenraicesarandanos' id subid  %}" >
+				<button type="button" class="btn btn-secondary">Atras</button>
+			</a>
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N° </td>
+						<td>#Cuadrante</td>
+						<td>Zona</td>
+						<td>RFJB</td>
+						
+						<td>RFJ</td>
+						<td>RFS</td>
+						<td>RE</td>
+						<td>SR</td>
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in raicespr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.anexo_cuadrante}}
+							</td>
+							<td>
+								{{ dato.anexo_zona}}
+							</td>
+							<td>
+								{{ dato.rfjb }}
+							</td>
+							<td>
+								{{ dato.rfj }}
+							</td>
+							<td>
+								{{ dato.rfs}}
+							</td>
+							<td>
+								{{ dato.re }}
+							</td>
+							<td>
+								{{ dato.sr }}
+							</td>
+
+							<td>
+							 	<a href="{% url 'editarraicesevfenraicesarandanos'   id subid  dato.id varid %}"><i class="bi bi-pencil-square"></i></a>
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

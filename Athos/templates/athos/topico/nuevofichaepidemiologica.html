@@ -1,0 +1,319 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> FICHA PERSONAL ATHOS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				
+				<div class='form-group'>
+					{{form.anexo_zona.label}}
+					{{form.anexo_zona}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_lugar.label}}
+					{{form.anexo_lugar}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.dni.label}}
+					{{form.dni}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.nombre_completo.label}}
+					{{form.nombre_completo}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.fecha_evaluacion.label}}
+					{{form.fecha_evaluacion}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.edad.label}}
+					{{form.edad}}
+				</div>
+
+				<div class='form-group'>
+					{{form.genero.label}}
+					{{form.genero}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_preg1.label}}
+					{{form.anexo_preg1}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg2_1.label}}
+					{{form.anexo_preg2_1}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg2_2.label}}
+					{{form.anexo_preg2_2}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg2_3.label}}
+					{{form.anexo_preg2_3}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg2_4.label}}
+					{{form.anexo_preg2_4}}
+				</div>
+			
+				<div class='form-group'>
+					{{form.anexo_preg2_5.label}}
+					{{form.anexo_preg2_5}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_preg2_6.label}}
+					{{form.anexo_preg2_6}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg2_7.label}}
+					{{form.anexo_preg2_7}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.fecha_sintomas.label}}
+					{{form.fecha_sintomas}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg4_1.label}}
+					{{form.anexo_preg4_1}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.lugar_visita.label}}
+					{{form.lugar_visita}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg5_1.label}}
+					{{form.anexo_preg5_1}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.anexo_preg6_1.label}}
+					{{form.anexo_preg6_1}}
+				</div>
+				<div class='form-group'>
+					{{form.trimestre_embarazo.label}}
+					{{form.trimestre_embarazo}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_preg6_2.label}}
+					{{form.anexo_preg6_2}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg6_3.label}}
+					{{form.anexo_preg6_3}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg6_4.label}}
+					{{form.anexo_preg6_4}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg6_5.label}}
+					{{form.anexo_preg6_5}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_preg6_6.label}}
+					{{form.anexo_preg6_6}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_preg6_7.label}}
+					{{form.anexo_preg6_7}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.anexo_preg6_8.label}}
+					{{form.anexo_preg6_8}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.anexo_preg6_9.label}}
+					{{form.anexo_preg6_9}}
+				</div>
+				
+				
+				<div class='form-group'>
+					{{form.anexo_preg6_10.label}}
+					{{form.anexo_preg6_10}}
+				</div>
+				
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{% block script %}
+	 <script>  
+ /*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+$(function () {  
+   $("#id_fecha_evaluacion").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+
+     $("#id_fecha_sintomas").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+   
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+  <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+		 
+       
+	if(m<10)
+    {
+      if(d<10)
+      {
+        $("#id_fecha_evaluacion").val("0"+ d + "/" +"0" +m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_evaluacion").val( d + "/" +"0" +m + "/" +y);  
+      }
+    }
+    else
+    {
+       if(d<10)
+      {
+        $("#id_fecha_evaluacion").val("0"+ d + "/" + m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_evaluacion").val( d + "/" + m + "/" +y);  
+      }
+    }
+          
+
+     });  
+   </script>
+
+
+<script >
+	 function request_lugar (fundoId) {
+		var urldata="/ajax/load-ubicacion/" + fundoId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].Lugar}</option>`;
+        		
+        } 
+        $("#id_anexo_lugar").html(option_html);
+        	console.log(option_html);
+        },
+
+
+        error: function(result) {
+            console.log(result);
+        }
+         
+
+      });
+
+	} 
+      
+    $("#id_anexo_zona").change(function () { 
+       		console.log(fundoId);
+      var fundoId = $(this).val();
+      	
+      request_lugar(fundoId) 
+
+ });
+
+
+ function request_datos_personal(ubicacionId) {
+
+ 		
+ 		
+		var urldata="/ajax/load-datos-personal/" + ubicacionId;
+     console.log(urldata);
+
+      $.ajax({                       
+        url: urldata,                			    
+        data: {},
+
+        success: function (data) {
+     	console.log(data);
+     
+     		$('#id_nombre_completo').val(data[0].ApellidoPat +" " +data[0].ApellidoMat+"-"+data[0].Nombres);
+     	
+     		$('#id_genero').val(data[0].anexo_genero__desc);
+     		
+        
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	}
+
+	  $("#id_dni").change(function () { 
+
+      var ubicacionId = $(this).val();
+      	
+      request_datos_personal(ubicacionId)
+    });
+
+
+</script>
+{% endblock %}
+

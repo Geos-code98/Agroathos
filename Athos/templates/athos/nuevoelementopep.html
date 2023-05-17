@@ -1,0 +1,60 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>REGISTRO </strong><small>ETAPA- PEP</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				
+				<div class='form-group'>
+					{{form.elementopep.label}}
+					{{form.elementopep}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_sanidad.label}}
+					{{form.anexo_sanidad}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_riego.label}}
+					{{form.anexo_riego}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_fertilizacion.label}}
+					{{form.anexo_fertilizacion}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_obra.label}}
+					{{form.anexo_obra}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_estado.label}}
+					{{form.anexo_estado}}
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+{% endblock %}

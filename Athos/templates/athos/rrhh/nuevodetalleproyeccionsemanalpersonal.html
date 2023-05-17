@@ -1,0 +1,342 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido %}
+{% load staticfiles %}
+
+<style type="text/css">
+    .form-group select{
+        width: 150px;
+        cursor: pointer;
+        height: 30px;
+        font-size: 10px;
+        font-family: 'Quicksand', sans-serif;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    #id_anexo_labor{
+        width: 150px !important;
+        cursor: pointer;
+        height: 45px;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    .select2-selection__rendered {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 10px;
+    }
+
+    .select2-results__options{
+        font-size: 10px !important;
+    }
+
+    .valores{
+        width: 50px;
+        height: 30px;
+        font-size: 15px;
+        font-family: 'Quicksand', sans-serif;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+</style>
+
+<section class="contenedor" id="section-usuarios">
+    <div id="registration-form">
+        <div class='fieldset'>
+            <div class="col-lg-24">
+                <div class="card">
+                    <div class="card-header"><strong>Registro</strong><small> DETALLE PROYECCION SEMANAL PERSONAL</small></div>
+                    <div class="card-body card-block">
+                        <form id="frmajax" class="formulario" method="post" data-validate="parsley">
+                            {% csrf_token %}
+
+                            <table class="table-responsive table table-bordered">
+                              <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="text-center"><div style="margin-bottom: 10px;">PEP</div></th>
+                                    <th scope="col" class="text-center"><div style="margin-bottom: 10px;">LABOR</div></th>
+                                    <th scope="col" class="text-center"><div>LUN. <br> CANT.</div></th>
+                                    <th scope="col" class="text-center"><div>LUN. <br> AVAN.</div></th>
+                                    <th scope="col" class="text-center"><div>MAR. <br> CANT.</div></th>
+                                    <th scope="col" class="text-center"><div>MAR. <br> AVAN.</div></th>
+                                    <th scope="col" class="text-center"><div>MIE. <br> CANT.</div></th>
+                                    <th scope="col" class="text-center"><div>MIE. <br> AVAN.</div></th>
+                                    <th scope="col" class="text-center"><div>JUE. <br> CANT.</div></th>
+                                    <th scope="col" class="text-center"><div>JUE. <br> AVAN.</div></th>
+                                    <th scope="col" class="text-center"><div>VIE. <br> CANT.</div></th>
+                                    <th scope="col" class="text-center"><div>VIE. <br> AVAN.</div></th>
+                                    <th scope="col" class="text-center"><div>SAB. <br> CANT.</div></th>
+                                    <th scope="col" class="text-center"><div>SAB. <br> AVAN.</div></th>
+                                    <th scope="col" class="text-center"><div>DOM. <br> CANT.</div></th>
+                                    <th scope="col" class="text-center"><div>DOM. <br> AVAN.</div></th>
+                                    <th scope="col" class="text-center"><div style="margin-bottom: 10px;">ACCIÓN</div></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpo-data">
+                                <tr>
+                                  <td><div class='form-group'>
+                                    {{form.anexo_pep}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.anexo_labor}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.lunes_cantidad}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.lunes_avance}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.martes_cantidad}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.martes_avance}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.miercoles_cantidad}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.miercoles_avance}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.jueves_cantidad}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.jueves_avance}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.viernes_cantidad}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.viernes_avance}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.sabado_cantidad}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.sabado_avance}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.domingo_cantidad}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    {{form.domingo_avance}}
+                                </div></td>
+                                <td><div class='form-group'>
+                                    <a href="#" onclick="agregar();"><img style="width: 35px; height: 35px" src="{% static 'images/add_button.png' %}" title="add"></a>
+                                </div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-center">
+                        <button onclick="send();"  value="Registrar" id="registrar" class="btn btn-success w-25">REGISTRAR</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('body').addClass('open');
+    })
+
+    $('#id_anexo_labor').select2();
+    $('#id_anexo_labor').select2({
+        theme: 'classic',
+        width: 'resolve',
+        font: 'resolve'
+    });
+
+    $("#id_lunes_avance").val(0);
+    $("#id_lunes_cantidad").val(0);
+    $("#id_martes_avance").val(0);
+    $("#id_martes_cantidad").val(0);
+    $("#id_miercoles_avance").val(0);
+    $("#id_miercoles_cantidad").val(0);
+    $("#id_jueves_avance").val(0);
+    $("#id_jueves_cantidad").val(0);
+    $("#id_viernes_avance").val(0);
+    $("#id_viernes_cantidad").val(0);
+    $("#id_sabado_avance").val(0);
+    $("#id_sabado_cantidad").val(0);
+    $("#id_domingo_avance").val(0);
+    $("#id_domingo_cantidad").val(0);
+
+    contador = 0;
+
+    function agregar(){
+
+        var campo = `
+        <tr class="formulario">
+        <td><div class='form-group'>
+        {{form.anexo_pep}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.anexo_labor}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.lunes_cantidad}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.lunes_avance}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.martes_cantidad}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.martes_avance}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.miercoles_cantidad}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.miercoles_avance}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.jueves_cantidad}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.jueves_avance}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.viernes_cantidad}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.viernes_avance}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.sabado_cantidad}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.sabado_avance}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.domingo_cantidad}}
+        </div></td>
+        <td><div class='form-group'>
+        {{form.domingo_avance}}
+        </div></td>
+        <td><div class='form-group'>
+        <a href="#" onclick="agregar();"><img style="width: 35px; height: 35px" src="{% static 'images/add_button.png' %}" title="add"></a>
+        </div></td>
+        </tr>`;
+
+        $("#id_anexo_labor").removeAttr("id");
+        $("#id_lunes_avance").removeAttr("id");
+        $("#id_lunes_cantidad").removeAttr("id");
+        $("#id_martes_avance").removeAttr("id");
+        $("#id_martes_cantidad").removeAttr("id");
+        $("#id_miercoles_avance").removeAttr("id");
+        $("#id_miercoles_cantidad").removeAttr("id");
+        $("#id_jueves_avance").removeAttr("id");
+        $("#id_jueves_cantidad").removeAttr("id");
+        $("#id_viernes_avance").removeAttr("id");
+        $("#id_viernes_cantidad").removeAttr("id");
+        $("#id_sabado_avance").removeAttr("id");
+        $("#id_sabado_cantidad").removeAttr("id");
+        $("#id_domingo_avance").removeAttr("id");
+        $("#id_domingo_cantidad").removeAttr("id");
+
+        $("#id_anexo_labor"+contador).removeAttr("id");
+
+        $("#cuerpo-data").append(campo);
+
+        contador += 1;
+
+        $("#id_anexo_labor"+contador).removeAttr("id");
+        $("#id_anexo_labor").attr("id","id_anexo_labor"+contador);
+
+        $('#id_anexo_labor'+contador).select2();
+        $('#id_anexo_labor'+contador).select2({
+            theme: 'classic',
+            width: 'resolve',
+            font: 'resolve'
+        });
+
+        $("#id_lunes_avance").val(0);
+        $("#id_lunes_cantidad").val(0);
+        $("#id_martes_avance").val(0);
+        $("#id_martes_cantidad").val(0);
+        $("#id_miercoles_avance").val(0);
+        $("#id_miercoles_cantidad").val(0);
+        $("#id_jueves_avance").val(0);
+        $("#id_jueves_cantidad").val(0);
+        $("#id_viernes_avance").val(0);
+        $("#id_viernes_cantidad").val(0);
+        $("#id_sabado_avance").val(0);
+        $("#id_sabado_cantidad").val(0);
+        $("#id_domingo_avance").val(0);
+        $("#id_domingo_cantidad").val(0);
+    }
+</script>
+
+<script type="text/javascript">
+    function send(){
+
+        $("#id_anexo_labor"+contador).removeAttr("id");
+
+        $(".class_anexo_labor").attr("id","id_anexo_labor");
+        $(".class_lunes_avance").attr("id","id_lunes_avance");
+        $(".class_lunes_cantidad").attr("id","id_lunes_cantidad");
+        $(".class_martes_avance").attr("id","id_martes_avance");
+        $(".class_martes_cantidad").attr("id","id_martes_cantidad");
+        $(".class_miercoles_avance").attr("id","id_miercoles_avance");
+        $(".class_miercoles_cantidad").attr("id","id_miercoles_cantidad");
+        $(".class_jueves_avance").attr("id","id_jueves_avance");
+        $(".class_jueves_cantidad").attr("id","id_jueves_cantidad");
+        $(".class_viernes_avance").attr("id","id_viernes_avance");
+        $(".class_viernes_cantidad").attr("id","id_viernes_cantidad");
+        $(".class_sabado_avance").attr("id","id_sabado_avance");
+        $(".class_sabado_cantidad").attr("id","id_sabado_cantidad");
+        $(".class_domingo_avance").attr("id","id_domingo_avance");
+        $(".class_domingo_cantidad").attr("id","id_domingo_cantidad");
+
+     document.querySelectorAll(".formulario").forEach(element=>{
+        
+        data={
+            'anexo_save':'true',
+            'anexo_pep':element.querySelector('[id=id_anexo_pep]').value,
+            'anexo_labor':element.querySelector('[id=id_anexo_labor]').value,
+            'lunes_cantidad':element.querySelector('[id=id_lunes_cantidad]').value,
+            'lunes_avance':element.querySelector('[id=id_lunes_avance]').value,
+            'martes_cantidad':element.querySelector('[id=id_martes_cantidad]').value,
+            'martes_avance':element.querySelector('[id=id_martes_avance]').value,
+            'miercoles_cantidad':element.querySelector('[id=id_miercoles_cantidad]').value,
+            'miercoles_avance':element.querySelector('[id=id_miercoles_avance]').value,
+            'jueves_cantidad':element.querySelector('[id=id_jueves_cantidad]').value,
+            'jueves_avance':element.querySelector('[id=id_jueves_avance]').value,
+            'viernes_cantidad':element.querySelector('[id=id_viernes_cantidad]').value,
+            'viernes_avance':element.querySelector('[id=id_viernes_avance]').value,
+            'sabado_cantidad':element.querySelector('[id=id_sabado_cantidad]').value,
+            'sabado_avance':element.querySelector('[id=id_sabado_avance]').value,
+            'domingo_cantidad':element.querySelector('[id=id_domingo_cantidad]').value,
+            'domingo_avance':element.querySelector('[id=id_domingo_avance]').value,
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "{% url 'creardetalleproyeccionsemanalpersonal' 156 subid %}",
+            data: data,
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                window.location.replace("{% url 'detalleproyeccionsemanalpersonal' 156 subid %}");
+            },
+            error: function() {
+                alert('error handling here');
+            }
+        });
+
+    });
+ }
+</script>
+
+{%endblock%}

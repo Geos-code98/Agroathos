@@ -1,0 +1,246 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> FICHA PERSONAL ATHOS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				
+				<div class='form-group'>
+					{{form.nro_documento.label}}
+					{{form.nro_documento}}
+				</div>
+				<div class='form-group'>
+					{{form.ApellidoPat.label}}
+					{{form.ApellidoPat}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.ApellidoMat.label}}
+					{{form.ApellidoMat}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.Nombres.label}}
+					{{form.Nombres}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.fecha_nacimiento.label}}
+					{{form.fecha_nacimiento}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_estadocivil.label}}
+					{{form.anexo_estadocivil}}
+				</div>
+				
+
+
+				<div class='form-group'>
+					{{form.anexo_grado.label}}
+					{{form.anexo_grado}}
+				</div>
+				<div class='form-group'>
+					{{form.celular.label}}
+					{{form.celular}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.celular_emergencia.label}}
+					{{form.celular_emergencia}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_pareja.label}}
+					{{form.anexo_pareja}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.nombre_pareja.label}}
+					{{form.nombre_pareja}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.direccion_pareja.label}}
+					{{form.direccion_pareja}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.celular_pareja.label}}
+					{{form.celular_pareja}}
+				</div>
+				<div class='form-group'>
+					{{form.cant_hijos.label}}
+					{{form.cant_hijos}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.empresa_experiencia.label}}
+					{{form.empresa_experiencia}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.tiempo_experiencia.label}}
+					{{form.tiempo_experiencia}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.cargo_experiencia.label}}
+					{{form.cargo_experiencia}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.lugar_nacimiento.label}}
+					{{form.lugar_nacimiento}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.direccion.label}}
+					{{form.direccion}}
+				</div>
+				<div class='form-group'>
+					{{form.observacion.label}}
+					{{form.observacion}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_antecedentes.label}}
+					{{form.anexo_antecedentes}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.antecedente.label}}
+					{{form.antecedente}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_alcohol.label}}
+					{{form.anexo_alcohol}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_tabaco.label}}
+					{{form.anexo_tabaco}}
+				</div>
+
+				<div class='form-group'>
+					{{form.anexo_farmaco.label}}
+					{{form.anexo_farmaco}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.anexo_sustancia.label}}
+					{{form.anexo_sustancia}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.otra_sustancia.label}}
+					{{form.otra_sustancia}}
+				</div>
+				
+				
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+ <script>  
+ 	document.getElementById("id_anexo_documentos").value = '1';
+ /*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+$(function () {  
+   $("#datepicker").datetimepicker({  
+       format: 'Y-m-d',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+  <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+		 
+      
+
+          
+
+     });  
+
+
+
+       function request_datos_personal(ubicacionId) {
+
+ 		
+ 		
+		var urldata="/ajax/load-datos-personal/" + ubicacionId;
+     console.log(urldata);
+
+      $.ajax({                       
+        url: urldata,                			    
+        data: {},
+
+        success: function (data) {
+     	console.log(data);
+     
+     		$('#id_ApellidoPat').val(data[0].ApellidoPat);
+     		$('#id_ApellidoMat').val(data[0].ApellidoMat);
+     		$('#id_Nombres').val(data[0].Nombres);
+     		$('#id_fecha_nacimiento').val(data[0].fecha_nacimiento);
+     		
+        
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	}
+
+	  $("#id_nro_documento").change(function () { 
+
+      var ubicacionId = $(this).val();
+      	
+      request_datos_personal(ubicacionId)
+    });
+
+
+   </script>
+
+
+
+ {% endblock %}

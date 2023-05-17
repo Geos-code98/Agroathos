@@ -1,0 +1,194 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> EV. CALIDAD DE MUESTRAS DE CAJAS EMPACADAS GR ICA 2022</small></div>
+					<div class="card-body card-block">
+						<form id="frmajax"  method="post" data-validate="parsley">
+							{% csrf_token %}
+							{% if form.errors %}
+							{% for field in form %}
+
+							{% for error in field.errors %}
+							<div class="alert alert-danger">
+								<strong>{{ field.label|escape }}:</strong>
+								<strong>{{ error|escape }}</strong>
+							</div>
+							{% endfor %}
+
+							{% endfor %}
+							{% for error in form.non_field_errors %}
+							<div class="alert alert-danger">
+								<strong>{{ error|escape }}</strong>
+							</div>
+							{% endfor %}
+							{% endif %}
+
+							<div class='form-group'>
+								{{form.npalet.label}}
+								{{form.npalet}}
+							</div>
+							<div class='form-group'>
+								{{form.variedad.label}}
+								{{form.variedad}}
+							</div>
+							<div class='form-group'>
+								{{form.proveedor.label}}
+								{{form.proveedor}}
+							</div>
+							<div class='form-group'>
+								{{form.fecha_cosecha.label}}
+								{{form.fecha_cosecha}}
+							</div>
+							<div class='form-group'>
+								{{form.fecha_evaluacion.label}}
+								{{form.fecha_evaluacion}}
+							</div>
+							<div class='form-group'>
+								{{form.responsable.label}}
+								{{form.responsable}}
+							</div>
+							<div class='form-group'>
+								{{form.hora_inspeccion.label}}
+								{{form.hora_inspeccion}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_categoria.label}}
+								{{form.anexo_categoria}}
+							</div>
+							<div class='form-group'>
+								{{form.marca_caja.label}}
+								{{form.marca_caja}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_calibre.label}}
+								{{form.anexo_calibre}}
+							</div>
+							<div class='form-group'>
+								{{form.marca.label}}
+								{{form.marca}}
+							</div>
+							<div class='form-group'>
+								{{form.marca_sticker.label}}
+								{{form.marca_sticker}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_corte.label}}
+								{{form.anexo_corte}}
+							</div>
+							<div class='form-group'>
+								{{form.peso_neto.label}}
+								{{form.peso_neto}}
+							</div>
+							<div class='form-group'>
+								{{form.anexo_sobrepeso.label}}
+								{{form.anexo_sobrepeso}}
+							</div>
+
+							<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{%block script%}
+
+<script>
+	$(function () {  
+		$("#id_fecha_evaluacion").datetimepicker({  
+			format: 'd/m/Y',  
+			timepicker:false  
+		});
+		$("#id_hora_inspeccion").datetimepicker({  
+			datepicker:false,
+			timepicker:true,
+			step:10,
+			format:'hh:mm'
+		}); 
+	});
+</script>
+<script>  
+	$(document).ready(function () {  
+		jQuery.datetimepicker.setLocale('es');  
+	});  
+</script> 
+
+
+<script>  
+	$(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+        //Mes
+        m = n.getMonth() + 1;
+        //Día
+        d = n.getDate();
+
+//Lo ordenas a gusto.
+if(m<10)
+{
+	if(d<10)
+	{
+		$("#id_fecha").val("0"+ d + "/" +"0" +m + "/" +y);
+	}
+	else
+	{
+		$("#id_fecha").val( d + "/" +"0" +m + "/" +y);  
+	}
+}
+else
+{
+	if(d<10)
+	{
+		$("#id_fecha").val("0"+ d + "/" + m + "/" +y);
+	}
+	else
+	{
+		$("#id_fecha").val( d + "/" + m + "/" +y);  
+	}
+}
+
+});  
+</script>
+
+<script type="text/javascript">
+	$('#id_npalet').focus();
+	function request_datospalets(ubicacionId) {
+		var urldata="/ajax/load-palets/" + ubicacionId;
+
+		$.ajax({                       
+			url: urldata,
+			data: {},
+
+			success: function (data) {
+				console.log(data);
+				
+				$('#id_fecha_cosecha').val(data[0].anexo_guiad__fecha_cosecha);
+
+				$('#id_proveedor').val(data[0].anexo_guiad__anexo_guia__anexo_fundo__nom_fundo);
+
+				$('#id_variedad').val(data[0].anexo_guiad__anexo_material__anexo_matmmpp__desc_material);
+			},
+			error: function(result) {
+				console.log(result);
+			}
+		});
+	}
+
+	$("#id_npalet").change(function () { 
+
+		var ubicacionId = $(this).val();
+		request_datospalets(ubicacionId);
+		$("#id_fecha_evaluacion").focus();
+	});
+
+</script>
+
+{% endblock %}

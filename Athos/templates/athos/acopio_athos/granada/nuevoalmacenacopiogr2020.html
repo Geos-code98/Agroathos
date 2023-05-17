@@ -1,0 +1,57 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> ALMACEN ACOPIO</small></div>
+					<div class="card-body card-block">
+			<a href="javascript: history.go(-1)" >
+				<button type="button" class="btn btn-secondary">Atrás</button>
+			</a>			
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+				<div class='form-group'>
+					{{form.codigoqr.label}}
+					{{form.codigoqr}}
+				</div>
+				<div class='form-group'>
+					{{form.posicion.label}}
+					{{form.posicion}}
+				</div>
+			
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+ 
+
+{% endblock %}

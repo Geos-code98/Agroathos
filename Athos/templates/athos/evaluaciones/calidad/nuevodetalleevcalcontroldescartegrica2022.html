@@ -1,0 +1,231 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE CONTROL DESCARTE GR ICA</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+            {% for field in form %}
+
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+
+        <div class='form-group'>
+            {{form.hora_inspeccion.label}}
+            {{form.hora_inspeccion}}
+        </div>
+
+        <div class='form-group'>
+            {{form.fecha_cosecha.label}}
+            {{form.fecha_cosecha}}
+        </div>
+
+        <div class='form-group'>
+          {{form.anexo_proveedor.label}}
+          {{form.anexo_proveedor}}
+        </div>
+
+         <div class='form-group'>
+          {{form.anexo_variedad.label}}
+          {{form.anexo_variedad}}
+        </div>
+
+        <div class='form-group'>
+            {{form.cat1_exportable.label}}
+            {{form.cat1_exportable}}
+        </div>
+
+         <div class='form-group'>
+          {{form.cat2_exportable.label}}
+          {{form.cat2_exportable}}
+        </div>
+
+        <div class='form-group'>
+          {{form.catind_exportable.label}}
+          {{form.catind_exportable}}
+        </div>
+
+        <div class='form-group'>
+          {{form.rajadas_ae.label}}
+          {{form.rajadas_ae}}
+        </div>
+
+        <div class='form-group'>
+          {{form.rajadas_golpe.label}}
+          {{form.rajadas_golpe}}
+        </div>
+        <div class='form-group'>
+          {{form.rajadas_hongos.label}}
+          {{form.rajadas_hongos}}
+        </div>
+        
+        <div class='form-group'>
+          {{form.rajadas_golpe_pl.label}}
+          {{form.rajadas_golpe_pl}}
+        </div>
+
+        <div class='form-group'>
+          {{form.rajada_severo.label}}
+          {{form.rajada_severo}}
+        </div>
+        <div class='form-group'>
+          {{form.insolacion_leve.label}}
+          {{form.insolacion_leve}}
+        </div>
+        <div class='form-group'>
+          {{form.insolacion_fuerte.label}}
+          {{form.insolacion_fuerte}}
+        </div>
+
+       
+        <div class='form-group'>
+          {{form.danio_mecanico.label}}
+          {{form.danio_mecanico}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico_pl.label}}
+          {{form.danio_mecanico_pl}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_ave.label}}
+          {{form.danio_ave}}
+        </div>
+        
+        <div class='form-group'>
+          {{form.danio_roedor.label}}
+          {{form.danio_roedor}}
+        </div>
+        <div class='form-group'>
+          {{form.bajo_peso.label}}
+          {{form.bajo_peso}}
+        </div>
+        
+        <div class='form-group'>
+          {{form.alternaria.label}}
+          {{form.alternaria}}
+        </div>
+        <div class='form-group'>
+          {{form.cochinilla.label}}
+          {{form.cochinilla}}
+        </div>
+        <div class='form-group'>
+          {{form.inmadures_verde.label}}
+          {{form.inmadures_verde}}
+        </div>
+        <div class='form-group'>
+          {{form.gelechi.label}}
+          {{form.gelechi}}
+        </div>
+        <div class='form-group'>
+          {{form.pudricion.label}}
+          {{form.pudricion}}
+        </div>
+         <div class='form-group'>
+          {{form.pudricion_corona.label}}
+          {{form.pudricion_corona}}
+        </div>
+        
+        <div class='form-group'>
+          {{form.hongo_corona.label}}
+          {{form.hongo_corona}}
+        </div>
+        <div class='form-group'>
+          {{form.quereza.label}}
+          {{form.quereza}}
+        </div>
+        <div class='form-group'>
+          {{form.golpe_fuerte.label}}
+          {{form.golpe_fuerte}}
+        </div>
+
+        <div class='form-group'>
+          {{form.golpe_fuerte_pl.label}}
+          {{form.golpe_fuerte_pl}}
+        </div>
+        
+
+        <div class='form-group'>
+          {{form.botrytis.label}}
+          {{form.botrytis}}
+        </div>
+        <div class='form-group'>
+          {{form.cicatriz.label}}
+          {{form.cicatriz}}
+        </div>
+        <div class='form-group'>
+          {{form.corona_deshidratada.label}}
+          {{form.corona_deshidratada}}
+        </div>
+        
+        
+        <div class='form-group'>
+          {{form.deforme.label}}
+          {{form.deforme}}
+        </div>
+        
+        
+        <div class='form-group'>
+          {{form.manchas.label}}
+          {{form.manchas}}
+        </div>
+        
+       
+        <div class='form-group'>
+          {{form.russet.label}}
+          {{form.russet}}
+        </div>
+        
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+
+<script>
+
+ $("#id_hora_inspeccion").datetimepicker({  
+      datepicker:false,
+      timepicker:true,
+      step:10,
+      format:'h:i'
+    });
+
+ $("#id_fecha_cosecha").datetimepicker({  
+      format: 'Y-m-d',  
+       timepicker:false,
+       datepicker:true
+    });
+
+</script>
+
+
+
+
+{% endblock %}

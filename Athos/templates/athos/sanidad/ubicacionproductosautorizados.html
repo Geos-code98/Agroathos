@@ -1,0 +1,67 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">UBI. PRODUCTOS AUTORIZADOS ATHOS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearubicacionproductosautorizados' id %}" >
+				<button type="button" class="btn-btn-danger">Registrar Ubicacion</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<TD>Cultivo</TD>
+					
+						
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in ubicacionpr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.anexo_cultivo}}
+							</td>
+						
+			
+						
+							
+							
+
+							<td>
+							 	<a href="{% url 'editarubicacionproductosautorizados'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+							 	<a href="{% url 'productosautorizados'  id dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

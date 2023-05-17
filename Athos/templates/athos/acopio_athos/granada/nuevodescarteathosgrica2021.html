@@ -1,0 +1,940 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DESCARTE GR ICA 2022 ATHOS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+            {% for field in form %}
+
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+				<div class='form-group'>
+					{{form.anexo_eje.label}}
+					{{form.anexo_eje}}
+				</div>
+        <div class='form-group'>
+          {{form.anexo_planta.label}}
+          {{form.anexo_planta}}
+        </div>
+        <div class='form-group'>
+          {{form.anexo_fundo.label}}
+          {{form.anexo_fundo}}
+        </div>
+
+        <div class='form-group'>
+          {{form.anexo_linea.label}}
+          {{form.anexo_linea}}
+        </div>
+      
+        <div class='form-group'>
+          {{form.anexo_material.label}}
+          {{form.anexo_material}}
+        </div>
+
+        <div class='form-group'>
+          {{form.anexo_turno.label}}
+          {{form.anexo_turno}}
+        </div>
+        <div class='form-group'>
+          {{form.fecha_lanzado.label}}
+          {{form.fecha_lanzado}}
+        </div>
+       
+        <div class='form-group'>
+          {{form.fecha_cosecha.label}}
+          {{form.fecha_cosecha}}
+        </div>
+      	
+        
+        
+        <div class='form-group'>
+          {{form.alternaria.label}}
+          {{form.alternaria}}
+        </div>
+        <div class='form-group'>
+          {{form.bajo_peso.label}}
+          {{form.bajo_peso}}
+        </div>
+        <div class='form-group'>
+          {{form.cochinilla.label}}
+          {{form.cochinilla}}
+        </div>
+        <div class='form-group'>
+          {{form.deformes.label}}
+          {{form.deformes}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico.label}}
+          {{form.danio_mecanico}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico_campo.label}}
+          {{form.danio_mecanico_campo}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_roedor.label}}
+          {{form.danio_roedor}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_industrial.label}}
+          {{form.danio_industrial}}
+        </div>
+        <div class='form-group'>
+          {{form.gelechidae.label}}
+          {{form.gelechidae}}
+        </div>
+        <div class='form-group'>
+          {{form.hongo_corona.label}}
+          {{form.hongo_corona}}
+        </div>
+        <div class='form-group'>
+          {{form.inmadurez_verde.label}}
+          {{form.inmadurez_verde}}
+        </div>
+
+        <div class='form-group'>
+          {{form.insolacion_fuerte.label}}
+          {{form.insolacion_fuerte}}
+        </div>
+        <div class='form-group'>
+          {{form.pudricion.label}}
+          {{form.pudricion}}
+        </div>
+        <div class='form-group'>
+          {{form.quereza.label}}
+          {{form.quereza}}
+        </div>
+        <div class='form-group'>
+          {{form.rajadas_ae.label}}
+          {{form.rajadas_ae}}
+        </div>
+        <div class='form-group'>
+          {{form.rajadas_golpe.label}}
+          {{form.rajadas_golpe}}
+        </div>
+        <div class='form-group'>
+          {{form.calibre18.label}}
+          {{form.calibre18}}
+        </div>
+        <div class='form-group'>
+          {{form.arilo_pardo.label}}
+          {{form.arilo_pardo}}
+        </div>
+        <div class='form-group'>
+          {{form.hongo_industrial.label}}
+          {{form.hongo_industrial}}
+        </div>
+
+<!--LINEA2-->
+
+        <div class='form-group'>
+          {{form.alternaria_linea2.label}}
+          {{form.alternaria_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.bajo_peso_linea2.label}}
+          {{form.bajo_peso_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.cochinilla_linea2.label}}
+          {{form.cochinilla_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.deformes_linea2.label}}
+          {{form.deformes_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico_linea2.label}}
+          {{form.danio_mecanico_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico_campo_linea2.label}}
+          {{form.danio_mecanico_campo_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_roedor_linea2.label}}
+          {{form.danio_roedor_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_industrial_linea2.label}}
+          {{form.danio_industrial_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.gelechidae_linea2.label}}
+          {{form.gelechidae_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.hongo_corona_linea2.label}}
+          {{form.hongo_corona_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.inmadurez_verde_linea2.label}}
+          {{form.inmadurez_verde_linea2}}
+        </div>
+
+        <div class='form-group'>
+          {{form.insolacion_fuerte_linea2.label}}
+          {{form.insolacion_fuerte_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.pudricion_linea2.label}}
+          {{form.pudricion_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.quereza_linea2.label}}
+          {{form.quereza_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.rajadas_ae_linea2.label}}
+          {{form.rajadas_ae_linea2}}
+        </div>
+       
+        <div class='form-group'>
+          {{form.rajadas_golpe_linea2.label}}
+          {{form.rajadas_golpe_linea2}}
+        </div>
+         <div class='form-group'>
+          {{form.calibre18_linea2.label}}
+          {{form.calibre18_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.arilo_pardo_linea2.label}}
+          {{form.arilo_pardo_linea2}}
+        </div>
+        <div class='form-group'>
+          {{form.hongo_industrial_linea2.label}}
+          {{form.hongo_industrial_linea2}}
+        </div>
+<!--LINEA3-->
+
+        <div class='form-group'>
+          {{form.alternaria_linea3.label}}
+          {{form.alternaria_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.bajo_peso_linea3.label}}
+          {{form.bajo_peso_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.cochinilla_linea3.label}}
+          {{form.cochinilla_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.deformes_linea3.label}}
+          {{form.deformes_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico_linea3.label}}
+          {{form.danio_mecanico_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico_campo_linea3.label}}
+          {{form.danio_mecanico_campo_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_roedor_linea3.label}}
+          {{form.danio_roedor_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_industrial_linea3.label}}
+          {{form.danio_industrial_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.gelechidae_linea3.label}}
+          {{form.gelechidae_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.hongo_corona_linea3.label}}
+          {{form.hongo_corona_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.inmadurez_verde_linea3.label}}
+          {{form.inmadurez_verde_linea3}}
+        </div>
+
+        <div class='form-group'>
+          {{form.insolacion_fuerte_linea3.label}}
+          {{form.insolacion_fuerte_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.pudricion_linea3.label}}
+          {{form.pudricion_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.quereza_linea3.label}}
+          {{form.quereza_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.rajadas_ae_linea3.label}}
+          {{form.rajadas_ae_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.rajadas_golpe_linea3.label}}
+          {{form.rajadas_golpe_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.calibre18_linea3.label}}
+          {{form.calibre18_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.arilo_pardo_linea3.label}}
+          {{form.arilo_pardo_linea3}}
+        </div>
+        <div class='form-group'>
+          {{form.hongo_industrial_linea3.label}}
+          {{form.hongo_industrial_linea3}}
+        </div>
+
+<!--LINEA4-->
+
+        <div class='form-group'>
+          {{form.alternaria_linea4.label}}
+          {{form.alternaria_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.bajo_peso_linea4.label}}
+          {{form.bajo_peso_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.cochinilla_linea4.label}}
+          {{form.cochinilla_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.deformes_linea4.label}}
+          {{form.deformes_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico_linea4.label}}
+          {{form.danio_mecanico_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_mecanico_campo_linea4.label}}
+          {{form.danio_mecanico_campo_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_roedor_linea4.label}}
+          {{form.danio_roedor_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.danio_industrial_linea4.label}}
+          {{form.danio_industrial_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.gelechidae_linea4.label}}
+          {{form.gelechidae_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.hongo_corona_linea4.label}}
+          {{form.hongo_corona_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.inmadurez_verde_linea4.label}}
+          {{form.inmadurez_verde_linea4}}
+        </div>
+
+        <div class='form-group'>
+          {{form.insolacion_fuerte_linea4.label}}
+          {{form.insolacion_fuerte_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.pudricion_linea4.label}}
+          {{form.pudricion_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.quereza_linea4.label}}
+          {{form.quereza_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.rajadas_ae_linea4.label}}
+          {{form.rajadas_ae_linea4}}
+        </div>
+       
+        <div class='form-group'>
+          {{form.rajadas_golpe_linea4.label}}
+          {{form.rajadas_golpe_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.calibre18_linea4.label}}
+          {{form.calibre18_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.arilo_pardo_linea4.label}}
+          {{form.arilo_pardo_linea4}}
+        </div>
+        <div class='form-group'>
+          {{form.hongo_industrial_linea4.label}}
+          {{form.hongo_industrial_linea4}}
+        </div>
+<!-- calculos-->
+        <div class='form-group'>
+          {{form.cant_jabas.label}}
+          {{form.cant_jabas}}
+        </div>
+
+
+
+          <div class='form-group'>
+          {{form.peso_bruto.label}}
+          {{form.peso_bruto}}
+        </div>
+				<div class='form-group'>
+					{{form.peso_descarte.label}}
+					{{form.peso_descarte}}
+				</div>
+      <div id="ocultardescarte">
+        <div class='form-group'>
+          {{form.trazabilidad.label}}
+          {{form.trazabilidad}}
+        </div>
+
+     
+</div>
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+<script type="text/javascript">
+    
+    $("#id_alternaria").val(0);
+    $("#id_bajo_peso").val(0);
+    $("#id_cochinilla").val(0);
+    $("#id_deformes").val(0);
+    $("#id_danio_mecanico").val(0);
+    $("#id_danio_mecanico_campo").val(0);
+    $("#id_danio_roedor").val(0);
+    $("#id_danio_industrial").val(0);
+    $("#id_gelechidae").val(0);
+    $("#id_hongo_corona").val(0);
+    $("#id_inmadurez_verde").val(0);
+    $("#id_insolacion_fuerte").val(0);
+    $("#id_pudricion").val(0);
+    $("#id_quereza").val(0);
+    $("#id_rajadas_ae").val(0);
+    $("#id_rajadas_golpe").val(0);
+    $("#id_calibre18").val(0);
+    $("#id_arilo_pardo").val(0);
+    $("#id_hongo_industrial").val(0);
+
+
+    $("#id_alternaria_linea2").val(0);
+    $("#id_bajo_peso_linea2").val(0);
+    $("#id_cochinilla_linea2").val(0);
+    $("#id_deformes_linea2").val(0);
+    $("#id_danio_mecanico_linea2").val(0);
+    $("#id_danio_mecanico_campo_linea2").val(0);
+    $("#id_danio_roedor_linea2").val(0);
+    $("#id_danio_industrial_linea2").val(0);
+    $("#id_gelechidae_linea2").val(0);
+    $("#id_hongo_corona_linea2").val(0);
+    $("#id_inmadurez_verde_linea2").val(0);
+    $("#id_insolacion_fuerte_linea2").val(0);
+    $("#id_pudricion_linea2").val(0);
+    $("#id_quereza_linea2").val(0);
+    $("#id_rajadas_ae_linea2").val(0);
+    $("#id_rajadas_golpe_linea2").val(0);
+    $("#id_calibre18_linea2").val(0);
+    $("#id_arilo_pardo_linea2").val(0);
+    $("#id_hongo_industrial_linea2").val(0);
+
+    $("#id_alternaria_linea3").val(0);
+    $("#id_bajo_peso_linea3").val(0);
+    $("#id_cochinilla_linea3").val(0);
+    $("#id_deformes_linea3").val(0);
+    $("#id_danio_mecanico_linea3").val(0);
+    $("#id_danio_mecanico_campo_linea3").val(0);
+    $("#id_danio_roedor_linea3").val(0);
+    $("#id_danio_industrial_linea3").val(0);
+    $("#id_gelechidae_linea3").val(0);
+    $("#id_hongo_corona_linea3").val(0);
+    $("#id_inmadurez_verde_linea3").val(0);
+    $("#id_insolacion_fuerte_linea3").val(0);
+    $("#id_pudricion_linea3").val(0);
+    $("#id_quereza_linea3").val(0);
+    $("#id_rajadas_ae_linea3").val(0);
+    $("#id_rajadas_golpe_linea3").val(0);
+    $("#id_calibre18_linea3").val(0);
+    $("#id_arilo_pardo_linea3").val(0);
+    $("#id_hongo_industrial_linea3").val(0);
+
+    $("#id_alternaria_linea4").val(0);
+    $("#id_bajo_peso_linea4").val(0);
+    $("#id_cochinilla_linea4").val(0);
+    $("#id_deformes_linea4").val(0);
+    $("#id_danio_mecanico_linea4").val(0);
+    $("#id_danio_mecanico_campo_linea4").val(0);
+    $("#id_danio_roedor_linea4").val(0);
+    $("#id_danio_industrial_linea4").val(0);
+    $("#id_gelechidae_linea4").val(0);
+    $("#id_hongo_corona_linea4").val(0);
+    $("#id_inmadurez_verde_linea4").val(0);
+    $("#id_insolacion_fuerte_linea4").val(0);
+    $("#id_pudricion_linea4").val(0);
+    $("#id_quereza_linea4").val(0);
+    $("#id_rajadas_ae_linea4").val(0);
+    $("#id_rajadas_golpe_linea4").val(0);
+    $("#id_calibre18_linea4").val(0);
+    $("#id_arilo_pardo_linea4").val(0);
+    $("#id_hongo_industrial_linea4").val(0);
+
+  function Jabas(){
+    var alternaria=parseFloat( $("#id_alternaria").val());
+    var bajo_peso=parseFloat( $("#id_bajo_peso").val());
+    var cochinilla=parseFloat( $("#id_cochinilla").val());
+    var deformes=parseFloat( $("#id_deformes").val());
+    var danio_mecanico=parseFloat( $("#id_danio_mecanico").val());
+    var danio_mecanico_campo=parseFloat( $("#id_danio_mecanico_campo").val());
+    var danio_roedor=parseFloat( $("#id_danio_roedor").val());
+    var danio_industrial=parseFloat( $("#id_danio_industrial").val());
+    var gelechidae=parseFloat( $("#id_gelechidae").val());
+    var hongo_corona=parseFloat( $("#id_hongo_corona").val());
+    var inmadurez_verde=parseFloat( $("#id_inmadurez_verde").val());
+    var insolacion_fuerte=parseFloat( $("#id_insolacion_fuerte").val());
+    var pudricion=parseFloat( $("#id_pudricion").val());
+    var quereza=parseFloat( $("#id_quereza").val());
+    var rajadas_ae=parseFloat( $("#id_rajadas_ae").val());
+    var rajadas_golpe=parseFloat( $("#id_rajadas_golpe").val());
+    var calibre18=parseFloat( $("#id_calibre18").val());
+    var arilo_pardo=parseFloat( $("#id_arilo_pardo").val());
+    var hongo_industrial=parseFloat( $("#id_hongo_industrial").val());
+
+
+    var alternaria2=parseFloat( $("#id_alternaria_linea2").val());
+    var bajo_peso2=parseFloat( $("#id_bajo_peso_linea2").val());
+    var cochinilla2=parseFloat( $("#id_cochinilla_linea2").val());
+    var deformes2=parseFloat( $("#id_deformes_linea2").val());
+    var danio_mecanico2=parseFloat( $("#id_danio_mecanico_linea2").val());
+    var danio_mecanico_campo2=parseFloat( $("#id_danio_mecanico_campo_linea2").val());
+    var danio_roedor2=parseFloat( $("#id_danio_roedor_linea2").val());
+    var danio_industrial2=parseFloat( $("#id_danio_industrial_linea2").val());
+    var gelechidae2=parseFloat( $("#id_gelechidae_linea2").val());
+    var hongo_corona2=parseFloat( $("#id_hongo_corona_linea2").val());
+    var inmadurez_verde2=parseFloat( $("#id_inmadurez_verde_linea2").val());
+    var insolacion_fuerte2=parseFloat( $("#id_insolacion_fuerte_linea2").val());
+    var pudricion2=parseFloat( $("#id_pudricion_linea2").val());
+    var quereza2=parseFloat( $("#id_quereza_linea2").val());
+    var rajadas_ae2=parseFloat( $("#id_rajadas_ae_linea2").val());
+    var rajadas_golpe2=parseFloat( $("#id_rajadas_golpe_linea2").val());
+    var calibre182=parseFloat( $("#id_calibre18_linea2").val());
+    var arilo_pardo2=parseFloat( $("#id_arilo_pardo_linea2").val());
+    var hongo_industrial2=parseFloat( $("#id_hongo_industrial_linea2").val());
+
+    var alternaria3=parseFloat( $("#id_alternaria_linea3").val());
+    var bajo_peso3=parseFloat( $("#id_bajo_peso_linea3").val());
+    var cochinilla3=parseFloat( $("#id_cochinilla_linea3").val());
+    var deformes3=parseFloat( $("#id_deformes_linea3").val());
+    var danio_mecanico3=parseFloat( $("#id_danio_mecanico_linea3").val());
+    var danio_mecanico_campo3=parseFloat( $("#id_danio_mecanico_campo_linea3").val());
+    var danio_roedor3=parseFloat( $("#id_danio_roedor_linea3").val());
+    var danio_industrial3=parseFloat( $("#id_danio_industrial_linea3").val());
+    var gelechidae3=parseFloat( $("#id_gelechidae_linea3").val());
+    var hongo_corona3=parseFloat( $("#id_hongo_corona_linea3").val());
+    var inmadurez_verde3=parseFloat( $("#id_inmadurez_verde_linea3").val());
+    var insolacion_fuerte3=parseFloat( $("#id_insolacion_fuerte_linea3").val());
+    var pudricion3=parseFloat( $("#id_pudricion_linea3").val());
+    var quereza3=parseFloat( $("#id_quereza_linea3").val());
+    var rajadas_ae3=parseFloat( $("#id_rajadas_ae_linea3").val());
+    var rajadas_golpe3=parseFloat( $("#id_rajadas_golpe_linea3").val());
+    var calibre183=parseFloat( $("#id_calibre18_linea3").val());
+    var arilo_pardo3=parseFloat( $("#id_arilo_pardo_linea3").val());
+    var hongo_industrial3=parseFloat( $("#id_hongo_industrial_linea3").val());
+
+    var alternaria4=parseFloat( $("#id_alternaria_linea4").val());
+    var bajo_peso4=parseFloat( $("#id_bajo_peso_linea4").val());
+    var cochinilla4=parseFloat( $("#id_cochinilla_linea4").val());
+    var deformes4=parseFloat( $("#id_deformes_linea4").val());
+    var danio_mecanico4=parseFloat( $("#id_danio_mecanico_linea4").val());
+    var danio_mecanico_campo4=parseFloat( $("#id_danio_mecanico_campo_linea4").val());
+    var danio_roedor4=parseFloat( $("#id_danio_roedor_linea4").val());
+    var danio_industrial4=parseFloat( $("#id_danio_industrial_linea4").val());
+    var gelechidae4=parseFloat( $("#id_gelechidae_linea4").val());
+    var hongo_corona4=parseFloat( $("#id_hongo_corona_linea4").val());
+    var inmadurez_verde4=parseFloat( $("#id_inmadurez_verde_linea4").val());
+    var insolacion_fuerte4=parseFloat( $("#id_insolacion_fuerte_linea4").val());
+    var pudricion4=parseFloat( $("#id_pudricion_linea4").val());
+    var quereza4=parseFloat( $("#id_quereza_linea4").val());
+    var rajadas_ae4=parseFloat( $("#id_rajadas_ae_linea4").val());
+    var rajadas_golpe4=parseFloat( $("#id_rajadas_golpe_linea4").val());
+    var calibre184=parseFloat( $("#id_calibre18_linea4").val());
+    var arilo_pardo4=parseFloat( $("#id_arilo_pardo_linea4").val());
+    var hongo_industrial4=parseFloat( $("#id_hongo_industrial_linea4").val());
+
+    var resultado1=alternaria+bajo_peso+cochinilla+deformes+danio_mecanico+danio_mecanico_campo+danio_roedor+danio_industrial+gelechidae+hongo_corona+inmadurez_verde+insolacion_fuerte+pudricion+quereza+rajadas_ae+rajadas_golpe+calibre18+arilo_pardo+hongo_industrial;
+
+    var resultado2=alternaria2+bajo_peso2+cochinilla2+deformes2+danio_mecanico2+danio_mecanico_campo2+danio_roedor2+danio_industrial2+gelechidae2+hongo_corona2+inmadurez_verde2+insolacion_fuerte2+pudricion2+quereza2+rajadas_ae2+rajadas_golpe2+calibre182+arilo_pardo2+hongo_industrial2;
+
+    var resultado3=alternaria3+bajo_peso3+cochinilla3+deformes3+danio_mecanico3+danio_mecanico_campo3+danio_roedor3+danio_industrial3+gelechidae3+hongo_corona3+inmadurez_verde3+insolacion_fuerte3+pudricion3+quereza3+rajadas_ae3+rajadas_golpe3+calibre183+arilo_pardo3+hongo_industrial3;
+
+    var resultado4=alternaria4+bajo_peso4+cochinilla4+deformes4+danio_mecanico4+danio_mecanico_campo4+danio_roedor4+danio_industrial4+gelechidae4+hongo_corona4+inmadurez_verde4+insolacion_fuerte4+pudricion4+quereza4+rajadas_ae4+rajadas_golpe4+calibre184+arilo_pardo4+hongo_industrial4;
+
+    var resultado=resultado1+resultado2+resultado3+resultado4;
+
+    $("#id_cant_jabas").val(resultado);
+    $("#id_cant_jabas").trigger('change');
+        return false;
+  }
+
+  /*LINEA 1*/
+  $('#id_alternaria').change(function(){ Jabas(); });
+  $('#id_bajo_peso').change(function(){ Jabas(); });
+  $('#id_cochinilla').change(function(){ Jabas(); });
+  $('#id_deformes').change(function(){ Jabas(); });
+  $('#id_danio_mecanico').change(function(){ Jabas(); });
+  $('#id_danio_mecanico_campo').change(function(){ Jabas(); });
+  $('#id_danio_roedor').change(function(){ Jabas(); });
+  $('#id_danio_industrial').change(function(){ Jabas(); });
+  $('#id_gelechidae').change(function(){ Jabas(); });
+  $('#id_hongo_corona').change(function(){ Jabas(); });
+  $('#id_inmadurez_verde').change(function(){ Jabas(); });
+  $('#id_insolacion_fuerte').change(function(){Jabas(); });
+  $('#id_pudricion').change(function(){ Jabas(); });
+  $('#id_quereza').change(function(){ Jabas(); });
+  $('#id_rajadas_ae').change(function(){ Jabas(); });
+  $('#id_rajadas_golpe').change(function(){ Jabas(); });
+  $('#id_calibre18').change(function(){ Jabas(); });
+  $('#id_arilo_pardo').change(function(){ Jabas(); });
+  $('#id_hongo_industrial').change(function(){ Jabas(); });
+
+  /*LINEA 2*/
+  $('#id_alternaria_linea2').change(function(){ Jabas(); });
+  $('#id_bajo_peso_linea2').change(function(){ Jabas(); });
+  $('#id_cochinilla_linea2').change(function(){ Jabas(); });
+  $('#id_deformes_linea2').change(function(){ Jabas(); });
+  $('#id_danio_mecanico_linea2').change(function(){ Jabas(); });
+  $('#id_danio_mecanico_campo_linea2').change(function(){ Jabas(); });
+  $('#id_danio_roedor_linea2').change(function(){ Jabas(); });
+  $('#id_danio_industrial_linea2').change(function(){ Jabas(); });
+  $('#id_gelechidae_linea2').change(function(){ Jabas(); });
+  $('#id_hongo_corona_linea2').change(function(){ Jabas(); });
+  $('#id_inmadurez_verde_linea2').change(function(){ Jabas(); });
+  $('#id_insolacion_fuerte_linea2').change(function(){Jabas(); });
+  $('#id_pudricion_linea2').change(function(){ Jabas(); });
+  $('#id_quereza_linea2').change(function(){ Jabas(); });
+  $('#id_rajadas_ae_linea2').change(function(){ Jabas(); });
+  $('#id_rajadas_golpe_linea2').change(function(){ Jabas(); });
+  $('#id_calibre18_linea2').change(function(){ Jabas(); });
+  $('#id_arilo_pardo_linea2').change(function(){ Jabas(); });
+  $('#id_hongo_industrial_linea2').change(function(){ Jabas(); });
+
+  /*LINEA 3*/
+  $('#id_alternaria_linea3').change(function(){ Jabas(); });
+  $('#id_bajo_peso_linea3').change(function(){ Jabas(); });
+  $('#id_cochinilla_linea3').change(function(){ Jabas(); });
+  $('#id_deformes_linea3').change(function(){ Jabas(); });
+  $('#id_danio_mecanico_linea3').change(function(){ Jabas(); });
+  $('#id_danio_mecanico_campo_linea3').change(function(){ Jabas(); });
+  $('#id_danio_roedor_linea3').change(function(){ Jabas(); });
+  $('#id_danio_industrial_linea3').change(function(){ Jabas(); });
+  $('#id_gelechidae_linea3').change(function(){ Jabas(); });
+  $('#id_hongo_corona_linea3').change(function(){ Jabas(); });
+  $('#id_inmadurez_verde_linea3').change(function(){ Jabas(); });
+  $('#id_insolacion_fuerte_linea3').change(function(){Jabas(); });
+  $('#id_pudricion_linea3').change(function(){ Jabas(); });
+  $('#id_quereza_linea3').change(function(){ Jabas(); });
+  $('#id_rajadas_ae_linea3').change(function(){ Jabas(); });
+  $('#id_rajadas_golpe_linea3').change(function(){ Jabas(); });
+  $('#id_calibre18_linea3').change(function(){ Jabas(); });
+  $('#id_arilo_pardo_linea3').change(function(){ Jabas(); });
+  $('#id_hongo_industrial_linea3').change(function(){ Jabas(); });
+
+  /*LINEA 4*/
+  $('#id_alternaria_linea4').change(function(){ Jabas(); });
+  $('#id_bajo_peso_linea4').change(function(){ Jabas(); });
+  $('#id_cochinilla_linea4').change(function(){ Jabas(); });
+  $('#id_deformes_linea4').change(function(){ Jabas(); });
+  $('#id_danio_mecanico_linea4').change(function(){ Jabas(); });
+  $('#id_danio_mecanico_campo_linea4').change(function(){ Jabas(); });
+  $('#id_danio_roedor_linea4').change(function(){ Jabas(); });
+  $('#id_danio_industrial_linea4').change(function(){ Jabas(); });
+  $('#id_gelechidae_linea4').change(function(){ Jabas(); });
+  $('#id_hongo_corona_linea4').change(function(){ Jabas(); });
+  $('#id_inmadurez_verde_linea4').change(function(){ Jabas(); });
+  $('#id_insolacion_fuerte_linea4').change(function(){Jabas(); });
+  $('#id_pudricion_linea4').change(function(){ Jabas(); });
+  $('#id_quereza_linea4').change(function(){ Jabas(); });
+  $('#id_rajadas_ae_linea4').change(function(){ Jabas(); });
+  $('#id_rajadas_golpe_linea4').change(function(){ Jabas(); });
+  $('#id_calibre18_linea4').change(function(){ Jabas(); });
+  $('#id_arilo_pardo_linea4').change(function(){ Jabas(); });
+  $('#id_hongo_industrial_linea4').change(function(){ Jabas(); });
+
+  $('#id_peso_bruto').change(function(){
+      
+    var neto=0;
+    var jabas=parseFloat( $("#id_cant_jabas").val());
+    var bruto=parseFloat( $("#id_peso_bruto").val());
+
+    neto=Math.round(((bruto-jabas*1.7)-20)*100)/100;
+   
+    $('#id_peso_descarte').val(neto);
+
+        return false;
+  });
+
+function request_zona (fundoId) {
+    var urldata="/ajax/load-fundos/" + fundoId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) {   
+        
+            
+              option_html += `<option value="${data[i].id}" >${data[i].nom_fundo}</option>`;
+            
+        } 
+        $("#id_anexo_fundo").html(option_html);
+          console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+  }   
+
+
+
+ function request_planta (plantaId) {
+		var urldata="/ajax/load-planta/" + plantaId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].nom_planta}</option>`;
+        		
+        } 
+        $("#id_anexo_planta").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+   
+ function request_nave (naveId) {
+		var urldata="/ajax/load-nave/" + naveId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) { 	
+        
+        		
+        			option_html += `<option value="${data[i].id}" >${data[i].nom_nave}</option>`;
+        		
+        } 
+        $("#id_anexo_nave").html(option_html);
+        	console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	} 
+
+ function request_pep (ubicacionId) {
+    var urldata="/ajax/load-pep/" + ubicacionId;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) {   
+        
+            
+              option_html += `<option value="${data[i].id}" >${data[i].anexo_fundo__abreviatura} ${data[i].anexo_modulo__nombremodulo} ${data[i].anexo_lote__nom_lote}</option>`;
+            
+        } 
+        $("#id_anexo_produccion").html(option_html);
+          console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+  } 
+
+
+function request_trazabilidad(ubicacionId) {
+
+    
+    
+    var urldata="/ajax/load-trazabilidad-grica2021/" + ubicacionId;
+     console.log(urldata);
+
+      $.ajax({                       
+        url: urldata,                         
+        data: {},
+
+        success: function (data) {
+      console.log(data);
+     
+        $('#id_fecha_cosecha').val(data[0].fecha_cosecha);
+        $('#id_fecha_lanzado').val(data[0].fecha_lanzado);
+        $('#id_anexo_turno').val(data[0].anexo_turno__nom_turno);
+        $('#id_anexo_material').val(data[0].material);
+        
+        
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+  }
+
+
+
+
+       $("#id_anexo_eje").change(function () { 
+
+      var plantaId = $(this).val();
+      	
+      request_planta(plantaId)
+    });
+
+          $("#id_anexo_eje").change(function () { 
+
+      var fundoId = $(this).val();
+        
+      request_zona(fundoId)
+    });
+
+  $("#id_anexo_planta").change(function () { 
+
+      var naveId = $(this).val();
+      	
+      request_nave(naveId)
+    });
+
+
+
+  $("#id_anexo_fundo").change(function () { 
+
+      var ubicacionId = $(this).val();
+        
+      request_pep(ubicacionId)
+    });
+
+  $("#id_trazabilidad").change(function () { 
+
+      var ubicacionId = $(this).val();
+        
+      request_trazabilidad(ubicacionId)
+    });
+
+    
+  </script>
+
+ <script>  
+  $(function () {  
+   $("#id_fecha_lanzado").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });
+
+   $("#id_fecha_cosecha").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+    <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+//Lo ordenas a gusto.
+console.log("mes");
+console.log(m);
+		 
+         if(m<10)
+    {
+      if(d<10)
+      {
+        $("#id_fecha_lanzado").val("0"+ d + "/" +"0" +m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_lanzado").val( d + "/" +"0" +m + "/" +y);  
+      }
+    }
+    else
+    {
+       if(d<10)
+      {
+        $("#id_fecha_lanzado").val("0"+ d + "/" + m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_lanzado").val( d + "/" + m + "/" +y);  
+      }
+    }
+        
+
+
+          
+
+     });  
+   </script>
+
+
+{% endblock %}

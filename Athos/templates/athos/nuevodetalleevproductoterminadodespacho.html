@@ -1,0 +1,848 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+          <div class="col-lg-6">
+             <div class="card">
+                 <div class="card-header"><strong>Registro</strong><small> Detalle PR. Terminado Antes de Despacho 2022</small></div>
+                 <div class="card-body card-block">
+                   <form id="frmajax"  method="post" data-validate="parsley">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class='form-group'>
+                        {{form.anexo_cliente.label}}
+                        {{form.anexo_cliente}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_envio.label}}
+                        {{form.anexo_envio}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.trazabilidad.label}}
+                        {{form.trazabilidad}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.npalet.label}}
+                        {{form.npalet}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m01.label}}
+                        {{form.firmeza_clo1_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m02.label}}
+                        {{form.firmeza_clo1_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m03.label}}
+                        {{form.firmeza_clo1_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m04.label}}
+                        {{form.firmeza_clo1_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m05.label}}
+                        {{form.firmeza_clo1_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m06.label}}
+                        {{form.firmeza_clo1_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m07.label}}
+                        {{form.firmeza_clo1_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m08.label}}
+                        {{form.firmeza_clo1_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m09.label}}
+                        {{form.firmeza_clo1_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m10.label}}
+                        {{form.firmeza_clo1_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m11.label}}
+                        {{form.firmeza_clo1_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo1_m12.label}}
+                        {{form.firmeza_clo1_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m01.label}}
+                        {{form.firmeza_clo2_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m02.label}}
+                        {{form.firmeza_clo2_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m03.label}}
+                        {{form.firmeza_clo2_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m04.label}}
+                        {{form.firmeza_clo2_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m05.label}}
+                        {{form.firmeza_clo2_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m06.label}}
+                        {{form.firmeza_clo2_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m07.label}}
+                        {{form.firmeza_clo2_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m08.label}}
+                        {{form.firmeza_clo2_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m09.label}}
+                        {{form.firmeza_clo2_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m10.label}}
+                        {{form.firmeza_clo2_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m11.label}}
+                        {{form.firmeza_clo2_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo2_m12.label}}
+                        {{form.firmeza_clo2_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m01.label}}
+                        {{form.firmeza_clo3_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m02.label}}
+                        {{form.firmeza_clo3_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m03.label}}
+                        {{form.firmeza_clo3_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m04.label}}
+                        {{form.firmeza_clo3_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m05.label}}
+                        {{form.firmeza_clo3_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m06.label}}
+                        {{form.firmeza_clo3_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m07.label}}
+                        {{form.firmeza_clo3_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m08.label}}
+                        {{form.firmeza_clo3_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m09.label}}
+                        {{form.firmeza_clo3_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m10.label}}
+                        {{form.firmeza_clo3_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m11.label}}
+                        {{form.firmeza_clo3_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo3_m12.label}}
+                        {{form.firmeza_clo3_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m01.label}}
+                        {{form.firmeza_clo4_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m02.label}}
+                        {{form.firmeza_clo4_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m03.label}}
+                        {{form.firmeza_clo4_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m04.label}}
+                        {{form.firmeza_clo4_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m05.label}}
+                        {{form.firmeza_clo4_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m06.label}}
+                        {{form.firmeza_clo4_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m07.label}}
+                        {{form.firmeza_clo4_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m08.label}}
+                        {{form.firmeza_clo4_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m09.label}}
+                        {{form.firmeza_clo4_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m10.label}}
+                        {{form.firmeza_clo4_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m11.label}}
+                        {{form.firmeza_clo4_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo4_m12.label}}
+                        {{form.firmeza_clo4_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m01.label}}
+                        {{form.firmeza_clo5_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m02.label}}
+                        {{form.firmeza_clo5_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m03.label}}
+                        {{form.firmeza_clo5_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m04.label}}
+                        {{form.firmeza_clo5_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m05.label}}
+                        {{form.firmeza_clo5_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m06.label}}
+                        {{form.firmeza_clo5_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m07.label}}
+                        {{form.firmeza_clo5_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m08.label}}
+                        {{form.firmeza_clo5_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m09.label}}
+                        {{form.firmeza_clo5_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m10.label}}
+                        {{form.firmeza_clo5_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m11.label}}
+                        {{form.firmeza_clo5_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.firmeza_clo5_m12.label}}
+                        {{form.firmeza_clo5_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m01.label}}
+                        {{form.peso_cj01_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m02.label}}
+                        {{form.peso_cj01_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m03.label}}
+                        {{form.peso_cj01_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m04.label}}
+                        {{form.peso_cj01_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m05.label}}
+                        {{form.peso_cj01_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m06.label}}
+                        {{form.peso_cj01_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m07.label}}
+                        {{form.peso_cj01_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m08.label}}
+                        {{form.peso_cj01_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m09.label}}
+                        {{form.peso_cj01_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m10.label}}
+                        {{form.peso_cj01_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m11.label}}
+                        {{form.peso_cj01_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj01_m12.label}}
+                        {{form.peso_cj01_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m01.label}}
+                        {{form.peso_cj02_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m02.label}}
+                        {{form.peso_cj02_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m03.label}}
+                        {{form.peso_cj02_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m04.label}}
+                        {{form.peso_cj02_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m05.label}}
+                        {{form.peso_cj02_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m06.label}}
+                        {{form.peso_cj02_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m07.label}}
+                        {{form.peso_cj02_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m08.label}}
+                        {{form.peso_cj02_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m09.label}}
+                        {{form.peso_cj02_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m10.label}}
+                        {{form.peso_cj02_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m11.label}}
+                        {{form.peso_cj02_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj02_m12.label}}
+                        {{form.peso_cj02_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m01.label}}
+                        {{form.peso_cj03_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m02.label}}
+                        {{form.peso_cj03_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m03.label}}
+                        {{form.peso_cj03_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m04.label}}
+                        {{form.peso_cj03_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m05.label}}
+                        {{form.peso_cj03_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m06.label}}
+                        {{form.peso_cj03_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m07.label}}
+                        {{form.peso_cj03_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m08.label}}
+                        {{form.peso_cj03_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m09.label}}
+                        {{form.peso_cj03_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m10.label}}
+                        {{form.peso_cj03_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m11.label}}
+                        {{form.peso_cj03_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj03_m12.label}}
+                        {{form.peso_cj03_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m01.label}}
+                        {{form.peso_cj04_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m02.label}}
+                        {{form.peso_cj04_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m03.label}}
+                        {{form.peso_cj04_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m04.label}}
+                        {{form.peso_cj04_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m05.label}}
+                        {{form.peso_cj04_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m06.label}}
+                        {{form.peso_cj04_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m07.label}}
+                        {{form.peso_cj04_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m08.label}}
+                        {{form.peso_cj04_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m09.label}}
+                        {{form.peso_cj04_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m10.label}}
+                        {{form.peso_cj04_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m11.label}}
+                        {{form.peso_cj04_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj04_m12.label}}
+                        {{form.peso_cj04_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m01.label}}
+                        {{form.peso_cj05_m01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m02.label}}
+                        {{form.peso_cj05_m02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m03.label}}
+                        {{form.peso_cj05_m03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m04.label}}
+                        {{form.peso_cj05_m04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m05.label}}
+                        {{form.peso_cj05_m05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m06.label}}
+                        {{form.peso_cj05_m06}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m07.label}}
+                        {{form.peso_cj05_m07}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m08.label}}
+                        {{form.peso_cj05_m08}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m09.label}}
+                        {{form.peso_cj05_m09}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m10.label}}
+                        {{form.peso_cj05_m10}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m11.label}}
+                        {{form.peso_cj05_m11}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.peso_cj05_m12.label}}
+                        {{form.peso_cj05_m12}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_bloom.label}}
+                        {{form.anexo_bloom}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_bloom2.label}}
+                        {{form.anexo_bloom2}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_bloom3.label}}
+                        {{form.anexo_bloom3}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_bloom4.label}}
+                        {{form.anexo_bloom4}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_bloom5.label}}
+                        {{form.anexo_bloom5}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.deshidratados_cj01.label}}
+                        {{form.deshidratados_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.deshidratados_cj02.label}}
+                        {{form.deshidratados_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.deshidratados_cj03.label}}
+                        {{form.deshidratados_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.deshidratados_cj04.label}}
+                        {{form.deshidratados_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.deshidratados_cj05.label}}
+                        {{form.deshidratados_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.blandos_cj01.label}}
+                        {{form.blandos_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.blandos_cj02.label}}
+                        {{form.blandos_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.blandos_cj03.label}}
+                        {{form.blandos_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.blandos_cj04.label}}
+                        {{form.blandos_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.blandos_cj05.label}}
+                        {{form.blandos_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pudricion_cj01.label}}
+                        {{form.pudricion_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pudricion_cj02.label}}
+                        {{form.pudricion_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pudricion_cj03.label}}
+                        {{form.pudricion_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pudricion_cj04.label}}
+                        {{form.pudricion_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pudricion_cj05.label}}
+                        {{form.pudricion_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.frutos_florales_cj01.label}}
+                        {{form.frutos_florales_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.frutos_florales_cj02.label}}
+                        {{form.frutos_florales_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.frutos_florales_cj03.label}}
+                        {{form.frutos_florales_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.frutos_florales_cj04.label}}
+                        {{form.frutos_florales_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.frutos_florales_cj05.label}}
+                        {{form.frutos_florales_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pitting_cj01.label}}
+                        {{form.pitting_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pitting_cj02.label}}
+                        {{form.pitting_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pitting_cj03.label}}
+                        {{form.pitting_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pitting_cj04.label}}
+                        {{form.pitting_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.pitting_cj05.label}}
+                        {{form.pitting_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.machucon_cj01.label}}
+                        {{form.machucon_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.machucon_cj02.label}}
+                        {{form.machucon_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.machucon_cj03.label}}
+                        {{form.machucon_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.machucon_cj04.label}}
+                        {{form.machucon_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.machucon_cj05.label}}
+                        {{form.machucon_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.heridas_cj01.label}}
+                        {{form.heridas_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.heridas_cj02.label}}
+                        {{form.heridas_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.heridas_cj03.label}}
+                        {{form.heridas_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.heridas_cj04.label}}
+                        {{form.heridas_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.heridas_cj05.label}}
+                        {{form.heridas_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.desgarro_pedicelar_cj01.label}}
+                        {{form.desgarro_pedicelar_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.desgarro_pedicelar_cj02.label}}
+                        {{form.desgarro_pedicelar_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.desgarro_pedicelar_cj03.label}}
+                        {{form.desgarro_pedicelar_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.desgarro_pedicelar_cj04.label}}
+                        {{form.desgarro_pedicelar_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.desgarro_pedicelar_cj05.label}}
+                        {{form.desgarro_pedicelar_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.decoloracion_cj01.label}}
+                        {{form.decoloracion_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.decoloracion_cj02.label}}
+                        {{form.decoloracion_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.decoloracion_cj03.label}}
+                        {{form.decoloracion_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.decoloracion_cj04.label}}
+                        {{form.decoloracion_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.decoloracion_cj05.label}}
+                        {{form.decoloracion_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.rojizos_inmaduro_cj01.label}}
+                        {{form.rojizos_inmaduro_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.rojizos_inmaduro_cj02.label}}
+                        {{form.rojizos_inmaduro_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.rojizos_inmaduro_cj03.label}}
+                        {{form.rojizos_inmaduro_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.rojizos_inmaduro_cj04.label}}
+                        {{form.rojizos_inmaduro_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.rojizos_inmaduro_cj05.label}}
+                        {{form.rojizos_inmaduro_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.Exudado_cj01.label}}
+                        {{form.Exudado_cj01}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.Exudado_cj02.label}}
+                        {{form.Exudado_cj02}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.Exudado_cj03.label}}
+                        {{form.Exudado_cj03}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.Exudado_cj04.label}}
+                        {{form.Exudado_cj04}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.Exudado_cj05.label}}
+                        {{form.Exudado_cj05}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_etiquetado.label}}
+                        {{form.anexo_etiquetado}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_etiquetado2.label}}
+                        {{form.anexo_etiquetado2}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_etiquetado3.label}}
+                        {{form.anexo_etiquetado3}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_etiquetado4.label}}
+                        {{form.anexo_etiquetado4}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_etiquetado5.label}}
+                        {{form.anexo_etiquetado5}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_embolsado.label}}
+                        {{form.anexo_embolsado}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_embolsado2.label}}
+                        {{form.anexo_embolsado2}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_embolsado3.label}}
+                        {{form.anexo_embolsado3}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_embolsado4.label}}
+                        {{form.anexo_embolsado4}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_embolsado5.label}}
+                        {{form.anexo_embolsado5}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_arte_caja.label}}
+                        {{form.anexo_arte_caja}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_arte_caja2.label}}
+                        {{form.anexo_arte_caja2}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_arte_caja3.label}}
+                        {{form.anexo_arte_caja3}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_arte_caja4.label}}
+                        {{form.anexo_arte_caja4}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_arte_caja5.label}}
+                        {{form.anexo_arte_caja5}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_decision.label}}
+                        {{form.anexo_decision}}
+                    </div>
+                    
+                    <input type="submit" value="Registrar" class="btn btn-success">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#id_anexo_cliente").select2();
+    });
+</script>
+
+{% endblock %}

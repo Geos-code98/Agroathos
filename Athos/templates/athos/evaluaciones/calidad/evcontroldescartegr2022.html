@@ -1,0 +1,65 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+  <article id="usuarios">
+    <h1 id="h1-usuarios">EV. CONTROL DESCARTE GR ICA 2022</h1>
+    <div>
+      <a href="{% url 'crearevcontroldescartegrica2022' id %}" >
+        <button type="button" class="btn btn-success">Registrar Evaluación</button>
+      </a>
+
+    </div>
+    <div class="content mt-3">
+      <div class="animated fadeIn">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <strong class="card-title">REPORTE</strong>
+              </div>
+              <div class="card-body">
+                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <td>N°</td>
+                      <td>Fecha Evaluación</td>
+                      <td>Turno</td>
+                      <td>Material</td>
+                      <td>Acción</td>
+                    </tr>
+                  </thead>
+                  <tbody id="reportes">
+                    {% for dato in detallespr %}
+                    <tr>
+                      <td>
+                        {{ forloop.counter }}
+                      </td>
+                      <td>
+                        {{ dato.fecha_proceso }}
+                      </td>
+                      <td>
+                        {{ dato.anexo_turno }}
+                      </td>
+                      <td>
+                        {{ dato.material }}
+                      </td>
+
+                      <td>
+                        <a href="{% url 'editarevcontroldescartegrica2022'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+                      </td>
+                      
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">REGISTRO PROYECCION SEMANAL SANIDAD ATHOS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearregistroproyeccionsemanalsanidad' id subid varid %}" >
+				<button type="button" class="btn btn-success">Registrar Sem.</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<TD>Semana2</TD>
+						<td>Semana3</td>
+						<td>Semana4</td>
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in detallepr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							<td>
+								{{ dato.sem2}}
+							</td>
+							
+							<td>
+								{{ dato.sem3}}
+							</td>
+							<td>
+								{{ dato.sem4}}
+							</td>
+								
+
+							<td>
+							 	<a href="{% url 'editarregistroproyeccionsemanalsanidad'  id subid varid dato.id %}"><i class="bi bi-pencil-square"></i></a>
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

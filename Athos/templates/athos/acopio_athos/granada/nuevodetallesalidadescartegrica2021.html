@@ -1,0 +1,141 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido %}
+
+
+
+<section class="contenedor" id="section-usuarios">
+    <div id="registration-form">
+        <div class='fieldset'>
+        <div class="col-lg-6">
+                    <div class="card">
+                    <div class="card-header"><strong>Registro</strong><small> DETALLE SALIDA DESCARTE</small></div>
+                    <div class="card-body card-block">
+                    <a href="{% url 'acopio_athos' 146 %}" >
+                <button type="button" class="btn btn-secondary">Terminar</button>
+            </a>
+            <form id="frmajax"  method="post" data-validate="parsley">
+                {% csrf_token %}
+                
+                <div class='form-group'>
+                    <p id="varid">{{varid}}</p>
+                </div>
+
+                <div class='form-group'>
+                    <p id="varsubid">{{varsubid}}</p>
+                </div>
+                <div class='form-group'>
+                    {{form.anexo_palet.label}}
+                    {{form.anexo_palet}}
+                </div>
+                
+                 <div class='form-group'>
+                    {{form.cantidad.label}}
+                    {{form.cantidad}}
+                </div>
+                
+                
+                <div class='form-group'>
+                    <input type="text" id="id_validacion">
+                </div>
+                
+                
+
+                <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+            </form>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+ var global_placa="";
+
+function request_buscarbusdni (id, subid,dnivalidar) {
+        var urldata="/ajax/load-buscar-dni-bus/" + id+"/"+ subid+"/" +dnivalidar;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+            console.log("dataaaaaa1");
+            console.log(data[0]);
+     
+             global_placa=data[0].anexo_detalle__qrplaca;
+
+             console.log("dataaaaaa2");
+            console.log(global_placa);
+
+         
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+return global_placa;
+    }
+
+  $("#id_dni").change(function () { 
+          var id=parseInt($("#varid").text());
+          var subid=parseInt($("#varsubid").text());
+      var dnivalidar = $(this).val();
+     
+      request_buscarbusdni(id, subid, dnivalidar)
+    });
+   
+
+ $("#registrar").prop('disabled',true);     
+ 
+ function request_validardnibus (id, subid,dnivalidar) {
+        var urldata="/ajax/load-validar-dni-bus/" + id+"/"+ subid+"/" +dnivalidar;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+            console.log(data);
+     
+             $('#id_validacion').val(data);
+             if(data>0)
+             {
+                 $("#id_dni").val("");
+                 alert("DNI YA INGRESADO EN EL VEHICULO: "+global_placa);
+
+
+             }
+
+             else
+             {
+             	$("#registrar").prop('disabled',false); 
+             }
+         
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+    } 
+
+
+
+
+
+    
+  $("#id_dni").change(function () { 
+          var id=parseInt($("#varid").text());
+          var subid=parseInt($("#varsubid").text());
+      var dnivalidar = $(this).val();
+     
+      request_validardnibus(id, subid, dnivalidar)
+    });
+
+
+  </script>  
+{%endblock%}
+

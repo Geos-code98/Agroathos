@@ -1,0 +1,2772 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> EV. CALIDAD MMPP GR ICA 2022</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+            {% for field in form %}
+
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+         <div class='form-group'>
+          {{form.brix1.label}}
+          {{form.brix1}}
+        </div>
+        <div class='form-group'>
+          {{form.brix2.label}}
+          {{form.brix2}}
+        </div>
+        <div class='form-group'>
+          {{form.brix3.label}}
+          {{form.brix3}}
+        </div>
+        <div class='form-group'>
+          {{form.brix4.label}}
+          {{form.brix4}}
+        </div>
+        <div class='form-group'>
+          {{form.acidez1.label}}
+          {{form.acidez1}}
+        </div>
+        <div class='form-group'>
+          {{form.acidez2.label}}
+          {{form.acidez2}}
+        </div>
+        <div class='form-group'>
+          {{form.acidez3.label}}
+          {{form.acidez3}}
+        </div>
+        <div class='form-group'>
+          {{form.acidez4.label}}
+          {{form.acidez4}}
+        </div>
+        <div class='form-group'>
+          {{form.acidez5.label}}
+          {{form.acidez5}}
+        </div>
+        <div class='form-group'>
+          {{form.indice_madurez1.label}}
+          {{form.indice_madurez1}}
+        </div>
+        <div class='form-group'>
+          {{form.indice_madurez2.label}}
+          {{form.indice_madurez2}}
+        </div>
+        <div class='form-group'>
+          {{form.indice_madurez3.label}}
+          {{form.indice_madurez3}}
+        </div>
+        <div class='form-group'>
+          {{form.indice_madurez4.label}}
+          {{form.indice_madurez4}}
+        </div>
+
+        <div class='form-group'>
+          {{form.alternaria.label}}
+          {{form.alternaria}}
+        </div>
+        <div class='form-group'>
+          {{form.gelechi.label}}
+          {{form.gelechi}}
+        </div>
+        <div class='form-group'>
+          {{form.sobremaduracion.label}}
+          {{form.sobremaduracion}}
+        </div>
+         <div class='form-group'>
+          {{form.arilo_pardo.label}}
+          {{form.arilo_pardo}}
+        </div>
+        <div class='form-group'>
+          {{form.cydia.label}}
+          {{form.cydia}}
+        </div>
+
+         <div class='form-group'>
+          {{form.conforme.label}}
+          {{form.conforme}}
+        </div>
+
+        <div class='form-group'>
+          {{form.color_ext1_int1.label}}
+          {{form.color_ext1_int1}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext1_int2.label}}
+          {{form.color_ext1_int2}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext1_int3.label}}
+          {{form.color_ext1_int3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext1_int4.label}}
+          {{form.color_ext1_int4}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext1_int5.label}}
+          {{form.color_ext1_int5}}
+        </div>
+        <div class='form-group'>
+          {{form.color_ext2_int1.label}}
+          {{form.color_ext2_int1}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext2_int2.label}}
+          {{form.color_ext2_int2}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext2_int3.label}}
+          {{form.color_ext2_int3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext2_int4.label}}
+          {{form.color_ext2_int4}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext2_int5.label}}
+          {{form.color_ext2_int5}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext25_int1.label}}
+          {{form.color_ext25_int1}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext25_int2.label}}
+          {{form.color_ext25_int2}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext25_int3.label}}
+          {{form.color_ext25_int3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext25_int4.label}}
+          {{form.color_ext25_int4}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext25_int5.label}}
+          {{form.color_ext25_int5}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext3_int1.label}}
+          {{form.color_ext3_int1}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext3_int2.label}}
+          {{form.color_ext3_int2}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext3_int3.label}}
+          {{form.color_ext3_int3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext3_int4.label}}
+          {{form.color_ext3_int4}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext3_int5.label}}
+          {{form.color_ext3_int5}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext35_int1.label}}
+          {{form.color_ext35_int1}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext35_int2.label}}
+          {{form.color_ext35_int2}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext35_int3.label}}
+          {{form.color_ext35_int3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext35_int4.label}}
+          {{form.color_ext35_int4}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext35_int5.label}}
+          {{form.color_ext35_int5}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext4_int1.label}}
+          {{form.color_ext4_int1}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext4_int2.label}}
+          {{form.color_ext4_int2}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext4_int3.label}}
+          {{form.color_ext4_int3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext4_int4.label}}
+          {{form.color_ext4_int4}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext4_int5.label}}
+          {{form.color_ext4_int5}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext5_int1.label}}
+          {{form.color_ext5_int1}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext5_int2.label}}
+          {{form.color_ext5_int2}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext5_int3.label}}
+          {{form.color_ext5_int3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext5_int4.label}}
+          {{form.color_ext5_int4}}
+        </div>
+         <div class='form-group'>
+          {{form.color_ext5_int5.label}}
+          {{form.color_ext5_int5}}
+        </div>
+
+        <!--
+        <div class='form-group'>
+          {{form.color_interna1.label}}
+          {{form.color_interna1}}
+        </div>
+         <div class='form-group'>
+          {{form.color_interna2.label}}
+          {{form.color_interna2}}
+        </div>
+        <div class='form-group'>
+          {{form.color_interna3.label}}
+          {{form.color_interna3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_interna4.label}}
+          {{form.color_interna4}}
+        </div>
+        <div class='form-group'>
+          {{form.color_interna5.label}}
+          {{form.color_interna5}}
+        </div>
+         <div class='form-group'>
+          {{form.color_externa1.label}}
+          {{form.color_externa1}}
+        </div>
+        <div class='form-group'>
+          {{form.color_externa2.label}}
+          {{form.color_externa2}}
+        </div>
+        <div class='form-group'>
+          {{form.color_externa25.label}}
+          {{form.color_externa25}}
+        </div>
+         <div class='form-group'>
+          {{form.color_externa3.label}}
+          {{form.color_externa3}}
+        </div>
+         <div class='form-group'>
+          {{form.color_externa35.label}}
+          {{form.color_externa35}}
+        </div>
+        <div class='form-group'>
+          {{form.color_externa4.label}}
+          {{form.color_externa4}}
+        </div>
+         <div class='form-group'>
+          {{form.color_externa5.label}}
+          {{form.color_externa5}}
+        </div>
+      -->
+        <div class='form-group'>
+          {{form.cat1_4.label}}
+          {{form.cat1_4}}
+        </div>
+         <div class='form-group'>
+          {{form.cat1_5.label}}
+          {{form.cat1_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cat1_6.label}}
+          {{form.cat1_6}}
+        </div>
+         <div class='form-group'>
+          {{form.cat1_7.label}}
+          {{form.cat1_7}}
+        </div>
+        <div class='form-group'>
+          {{form.cat1_8.label}}
+          {{form.cat1_8}}
+        </div>
+         <div class='form-group'>
+          {{form.cat1_9.label}}
+          {{form.cat1_9}}
+        </div>
+        <div class='form-group'>
+          {{form.cat1_10.label}}
+          {{form.cat1_10}}
+        </div>
+         <div class='form-group'>
+          {{form.cat1_12.label}}
+          {{form.cat1_12}}
+        </div>
+        <div class='form-group'>
+          {{form.cat1_14.label}}
+          {{form.cat1_14}}
+        </div>
+         <div class='form-group'>
+          {{form.cat1_16.label}}
+          {{form.cat1_16}}
+        </div>
+        <div class='form-group'>
+          {{form.cat1_18.label}}
+          {{form.cat1_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.cat1_20.label}}
+          {{form.cat1_20}}
+        </div>
+         <div class='form-group'>
+          {{form.cat1_22.label}}
+          {{form.cat1_22}}
+        </div>
+        <div class='form-group'>
+          {{form.cat1_24.label}}
+          {{form.cat1_24}}
+        </div>
+        
+         <div class='form-group'>
+          {{form.cat2_cicatriz_4.label}}
+          {{form.cat2_cicatriz_4}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_cicatriz_5.label}}
+          {{form.cat2_cicatriz_5}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_cicatriz_6.label}}
+          {{form.cat2_cicatriz_6}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_cicatriz_7.label}}
+          {{form.cat2_cicatriz_7}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_cicatriz_8.label}}
+          {{form.cat2_cicatriz_8}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_cicatriz_9.label}}
+          {{form.cat2_cicatriz_9}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_cicatriz_10.label}}
+          {{form.cat2_cicatriz_10}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_cicatriz_12.label}}
+          {{form.cat2_cicatriz_12}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_cicatriz_14.label}}
+          {{form.cat2_cicatriz_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_cicatriz_16.label}}
+          {{form.cat2_cicatriz_16}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_cicatriz_18.label}}
+          {{form.cat2_cicatriz_18}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_cicatriz_20.label}}
+          {{form.cat2_cicatriz_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_cicatriz_22.label}}
+          {{form.cat2_cicatriz_22}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_cicatriz_24.label}}
+          {{form.cat2_cicatriz_24}}
+        </div>
+
+        <div class='form-group'>
+          {{form.cat2_thrips_4.label}}
+          {{form.cat2_thrips_4}}
+        </div>
+
+         <div class='form-group'>
+          {{form.cat2_thrips_5.label}}
+          {{form.cat2_thrips_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_thrips_6.label}}
+          {{form.cat2_thrips_6}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_thrips_7.label}}
+          {{form.cat2_thrips_7}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_thrips_8.label}}
+          {{form.cat2_thrips_8}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_thrips_9.label}}
+          {{form.cat2_thrips_9}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_thrips_10.label}}
+          {{form.cat2_thrips_10}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_thrips_12.label}}
+          {{form.cat2_thrips_12}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_thrips_14.label}}
+          {{form.cat2_thrips_14}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_thrips_16.label}}
+          {{form.cat2_thrips_16}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_thrips_18.label}}
+          {{form.cat2_thrips_18}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_thrips_20.label}}
+          {{form.cat2_thrips_20}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_thrips_22.label}}
+          {{form.cat2_thrips_22}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_thrips_24.label}}
+          {{form.cat2_thrips_24}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deformes_4.label}}
+          {{form.cat2_deformes_4}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deformes_5.label}}
+          {{form.cat2_deformes_5}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deformes_6.label}}
+          {{form.cat2_deformes_6}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deformes_7.label}}
+          {{form.cat2_deformes_7}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deformes_8.label}}
+          {{form.cat2_deformes_8}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deformes_9.label}}
+          {{form.cat2_deformes_9}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deformes_10.label}}
+          {{form.cat2_deformes_10}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deformes_12.label}}
+          {{form.cat2_deformes_12}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deformes_14.label}}
+          {{form.cat2_deformes_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deformes_16.label}}
+          {{form.cat2_deformes_16}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deformes_18.label}}
+          {{form.cat2_deformes_18}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deformes_20.label}}
+          {{form.cat2_deformes_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deformes_22.label}}
+          {{form.cat2_deformes_22}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deformes_24.label}}
+          {{form.cat2_deformes_24}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_4.label}}
+          {{form.cat2_deshidratadol_4}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deshidratadol_5.label}}
+          {{form.cat2_deshidratadol_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_6.label}}
+          {{form.cat2_deshidratadol_6}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deshidratadol_7.label}}
+          {{form.cat2_deshidratadol_7}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_8.label}}
+          {{form.cat2_deshidratadol_8}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deshidratadol_9.label}}
+          {{form.cat2_deshidratadol_9}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_10.label}}
+          {{form.cat2_deshidratadol_10}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_deshidratadol_12.label}}
+          {{form.cat2_deshidratadol_12}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_14.label}}
+          {{form.cat2_deshidratadol_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_16.label}}
+          {{form.cat2_deshidratadol_16}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_18.label}}
+          {{form.cat2_deshidratadol_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_20.label}}
+          {{form.cat2_deshidratadol_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_22.label}}
+          {{form.cat2_deshidratadol_22}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_deshidratadol_24.label}}
+          {{form.cat2_deshidratadol_24}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_manchas_4.label}}
+          {{form.cat2_manchas_4}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_manchas_5.label}}
+          {{form.cat2_manchas_5}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_manchas_6.label}}
+          {{form.cat2_manchas_6}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_manchas_7.label}}
+          {{form.cat2_manchas_7}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_manchas_8.label}}
+          {{form.cat2_manchas_8}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_manchas_9.label}}
+          {{form.cat2_manchas_9}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_manchas_10.label}}
+          {{form.cat2_manchas_10}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_manchas_12.label}}
+          {{form.cat2_manchas_12}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_manchas_14.label}}
+          {{form.cat2_manchas_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_manchas_16.label}}
+          {{form.cat2_manchas_16}}
+        </div>
+
+         <div class='form-group'>
+          {{form.cat2_manchas_18.label}}
+          {{form.cat2_manchas_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.cat2_manchas_20.label}}
+          {{form.cat2_manchas_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_manchas_22.label}}
+          {{form.cat2_manchas_22}}
+        </div>
+
+         <div class='form-group'>
+          {{form.cat2_manchas_24.label}}
+          {{form.cat2_manchas_24}}
+        </div>
+        
+        <div class='form-group'>
+          {{form.cat2_palidas_4.label}}
+          {{form.cat2_palidas_4}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_palidas_5.label}}
+          {{form.cat2_palidas_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_palidas_6.label}}
+          {{form.cat2_palidas_6}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_palidas_7.label}}
+          {{form.cat2_palidas_7}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_palidas_8.label}}
+          {{form.cat2_palidas_8}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_palidas_9.label}}
+          {{form.cat2_palidas_9}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_palidas_10.label}}
+          {{form.cat2_palidas_10}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_palidas_12.label}}
+          {{form.cat2_palidas_12}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_palidas_14.label}}
+          {{form.cat2_palidas_14}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_palidas_16.label}}
+          {{form.cat2_palidas_16}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_palidas_18.label}}
+          {{form.cat2_palidas_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.cat2_palidas_20.label}}
+          {{form.cat2_palidas_20}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_palidas_22.label}}
+          {{form.cat2_palidas_22}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_palidas_24.label}}
+          {{form.cat2_palidas_24}}
+        </div>
+
+         <div class='form-group'>
+          {{form.cat2_pedunculo_4.label}}
+          {{form.cat2_pedunculo_4}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_pedunculo_5.label}}
+          {{form.cat2_pedunculo_5}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_pedunculo_6.label}}
+          {{form.cat2_pedunculo_6}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_pedunculo_7.label}}
+          {{form.cat2_pedunculo_7}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_pedunculo_8.label}}
+          {{form.cat2_pedunculo_8}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_pedunculo_9.label}}
+          {{form.cat2_pedunculo_9}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_pedunculo_10.label}}
+          {{form.cat2_pedunculo_10}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_pedunculo_12.label}}
+          {{form.cat2_pedunculo_12}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_pedunculo_14.label}}
+          {{form.cat2_pedunculo_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_pedunculo_16.label}}
+          {{form.cat2_pedunculo_16}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_pedunculo_18.label}}
+          {{form.cat2_pedunculo_18}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_pedunculo_20.label}}
+          {{form.cat2_pedunculo_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_pedunculo_22.label}}
+          {{form.cat2_pedunculo_22}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_pedunculo_24.label}}
+          {{form.cat2_pedunculo_24}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_rajadas_4.label}}
+          {{form.cat2_rajadas_4}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_rajadas_5.label}}
+          {{form.cat2_rajadas_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_rajadas_6.label}}
+          {{form.cat2_rajadas_6}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_rajadas_7.label}}
+          {{form.cat2_rajadas_7}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_rajadas_8.label}}
+          {{form.cat2_rajadas_8}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_rajadas_9.label}}
+          {{form.cat2_rajadas_9}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_rajadas_10.label}}
+          {{form.cat2_rajadas_10}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_rajadas_12.label}}
+          {{form.cat2_rajadas_12}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_rajadas_14.label}}
+          {{form.cat2_rajadas_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_rajadas_16.label}}
+          {{form.cat2_rajadas_16}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_rajadas_18.label}}
+          {{form.cat2_rajadas_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.cat2_rajadas_20.label}}
+          {{form.cat2_rajadas_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_rajadas_22.label}}
+          {{form.cat2_rajadas_22}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_rajadas_24.label}}
+          {{form.cat2_rajadas_24}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_recuperable_4.label}}
+          {{form.cat2_recuperable_4}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_recuperable_5.label}}
+          {{form.cat2_recuperable_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_recuperable_6.label}}
+          {{form.cat2_recuperable_6}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_recuperable_7.label}}
+          {{form.cat2_recuperable_7}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_recuperable_8.label}}
+          {{form.cat2_recuperable_8}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_recuperable_9.label}}
+          {{form.cat2_recuperable_9}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_recuperable_10.label}}
+          {{form.cat2_recuperable_10}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_recuperable_12.label}}
+          {{form.cat2_recuperable_12}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_recuperable_14.label}}
+          {{form.cat2_recuperable_14}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_recuperable_16.label}}
+          {{form.cat2_recuperable_16}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_recuperable_18.label}}
+          {{form.cat2_recuperable_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.cat2_recuperable_20.label}}
+          {{form.cat2_recuperable_20}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_recuperable_22.label}}
+          {{form.cat2_recuperable_22}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_recuperable_24.label}}
+          {{form.cat2_recuperable_24}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_russet_4.label}}
+          {{form.cat2_russet_4}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_russet_5.label}}
+          {{form.cat2_russet_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_russet_6.label}}
+          {{form.cat2_russet_6}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_russet_7.label}}
+          {{form.cat2_russet_7}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_russet_8.label}}
+          {{form.cat2_russet_8}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_russet_9.label}}
+          {{form.cat2_russet_9}}
+        </div>
+
+         <div class='form-group'>
+          {{form.cat2_russet_10.label}}
+          {{form.cat2_russet_10}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_russet_12.label}}
+          {{form.cat2_russet_12}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_russet_14.label}}
+          {{form.cat2_russet_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_russet_16.label}}
+          {{form.cat2_russet_16}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_russet_18.label}}
+          {{form.cat2_russet_18}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_russet_20.label}}
+          {{form.cat2_russet_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_russet_22.label}}
+          {{form.cat2_russet_22}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_russet_24.label}}
+          {{form.cat2_russet_24}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_danio_4.label}}
+          {{form.cat2_danio_4}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_danio_5.label}}
+          {{form.cat2_danio_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_danio_6.label}}
+          {{form.cat2_danio_6}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_danio_7.label}}
+          {{form.cat2_danio_7}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_danio_8.label}}
+          {{form.cat2_danio_8}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_danio_9.label}}
+          {{form.cat2_danio_9}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_danio_10.label}}
+          {{form.cat2_danio_10}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_danio_12.label}}
+          {{form.cat2_danio_12}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_danio_14.label}}
+          {{form.cat2_danio_14}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_danio_16.label}}
+          {{form.cat2_danio_16}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_danio_18.label}}
+          {{form.cat2_danio_18}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_danio_20.label}}
+          {{form.cat2_danio_20}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_danio_22.label}}
+          {{form.cat2_danio_22}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_danio_24.label}}
+          {{form.cat2_danio_24}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_insolacion_4.label}}
+          {{form.cat2_insolacion_4}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_insolacion_5.label}}
+          {{form.cat2_insolacion_5}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_insolacion_6.label}}
+          {{form.cat2_insolacion_6}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_insolacion_7.label}}
+          {{form.cat2_insolacion_7}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_insolacion_8.label}}
+          {{form.cat2_insolacion_8}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_insolacion_9.label}}
+          {{form.cat2_insolacion_9}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_insolacion_10.label}}
+          {{form.cat2_insolacion_10}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_insolacion_12.label}}
+          {{form.cat2_insolacion_12}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_insolacion_14.label}}
+          {{form.cat2_insolacion_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_insolacion_16.label}}
+          {{form.cat2_insolacion_16}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_insolacion_18.label}}
+          {{form.cat2_insolacion_18}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_insolacion_20.label}}
+          {{form.cat2_insolacion_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cat2_insolacion_22.label}}
+          {{form.cat2_insolacion_22}}
+        </div>
+         <div class='form-group'>
+          {{form.cat2_insolacion_24.label}}
+          {{form.cat2_insolacion_24}}
+        </div>
+
+        <div class='form-group'>
+          {{form.cati_rajada_sa_4.label}}
+          {{form.cati_rajada_sa_4}}
+        </div>
+         <div class='form-group'>
+          {{form.cati_rajada_sa_5.label}}
+          {{form.cati_rajada_sa_5}}
+        </div>
+        <div class='form-group'>
+          {{form.cati_rajada_sa_6.label}}
+          {{form.cati_rajada_sa_6}}
+        </div>
+        <div class='form-group'>
+          {{form.cati_rajada_sa_7.label}}
+          {{form.cati_rajada_sa_7}}
+        </div>
+         <div class='form-group'>
+          {{form.cati_rajada_sa_8.label}}
+          {{form.cati_rajada_sa_8}}
+        </div>
+        <div class='form-group'>
+          {{form.cati_rajada_sa_9.label}}
+          {{form.cati_rajada_sa_9}}
+        </div>
+         <div class='form-group'>
+          {{form.cati_rajada_sa_10.label}}
+          {{form.cati_rajada_sa_10}}
+        </div>
+        <div class='form-group'>
+          {{form.cati_rajada_sa_12.label}}
+          {{form.cati_rajada_sa_12}}
+        </div>
+         <div class='form-group'>
+          {{form.cati_rajada_sa_14.label}}
+          {{form.cati_rajada_sa_14}}
+        </div>
+        <div class='form-group'>
+          {{form.cati_rajada_sa_16.label}}
+          {{form.cati_rajada_sa_16}}
+        </div>
+         <div class='form-group'>
+          {{form.cati_rajada_sa_18.label}}
+          {{form.cati_rajada_sa_18}}
+        </div>
+        <div class='form-group'>
+          {{form.cati_rajada_sa_20.label}}
+          {{form.cati_rajada_sa_20}}
+        </div>
+        <div class='form-group'>
+          {{form.cati_rajada_sa_22.label}}
+          {{form.cati_rajada_sa_22}}
+        </div>
+         <div class='form-group'>
+          {{form.cati_rajada_sa_24.label}}
+          {{form.cati_rajada_sa_24}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pesome_4.label}}
+          {{form.desc_pesome_4}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_deshisev_4.label}}
+          {{form.desc_deshisev_4}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_deshisev_5.label}}
+          {{form.desc_deshisev_5}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_deshisev_6.label}}
+          {{form.desc_deshisev_6}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_deshisev_7.label}}
+          {{form.desc_deshisev_7}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_deshisev_8.label}}
+          {{form.desc_deshisev_8}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_deshisev_9.label}}
+          {{form.desc_deshisev_9}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_deshisev_10.label}}
+          {{form.desc_deshisev_10}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_deshisev_12.label}}
+          {{form.desc_deshisev_12}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_deshisev_14.label}}
+          {{form.desc_deshisev_14}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_deshisev_16.label}}
+          {{form.desc_deshisev_16}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_deshisev_18.label}}
+          {{form.desc_deshisev_18}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_deshisev_20.label}}
+          {{form.desc_deshisev_20}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_deshisev_22.label}}
+          {{form.desc_deshisev_22}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_deshisev_24.label}}
+          {{form.desc_deshisev_24}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_magullado_4.label}}
+          {{form.desc_magullado_4}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_magullado_5.label}}
+          {{form.desc_magullado_5}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_magullado_6.label}}
+          {{form.desc_magullado_6}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_magullado_7.label}}
+          {{form.desc_magullado_7}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_magullado_8.label}}
+          {{form.desc_magullado_8}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_magullado_9.label}}
+          {{form.desc_magullado_9}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_magullado_10.label}}
+          {{form.desc_magullado_10}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_magullado_12.label}}
+          {{form.desc_magullado_12}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_magullado_14.label}}
+          {{form.desc_magullado_14}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_magullado_16.label}}
+          {{form.desc_magullado_16}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_magullado_18.label}}
+          {{form.desc_magullado_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.desc_magullado_20.label}}
+          {{form.desc_magullado_20}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_magullado_22.label}}
+          {{form.desc_magullado_22}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_magullado_24.label}}
+          {{form.desc_magullado_24}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_moscaf_4.label}}
+          {{form.desc_moscaf_4}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_moscaf_5.label}}
+          {{form.desc_moscaf_5}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_moscaf_6.label}}
+          {{form.desc_moscaf_6}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_moscaf_7.label}}
+          {{form.desc_moscaf_7}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_moscaf_8.label}}
+          {{form.desc_moscaf_8}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_moscaf_9.label}}
+          {{form.desc_moscaf_9}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_moscaf_10.label}}
+          {{form.desc_moscaf_10}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_moscaf_12.label}}
+          {{form.desc_moscaf_12}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_moscaf_14.label}}
+          {{form.desc_moscaf_14}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_moscaf_16.label}}
+          {{form.desc_moscaf_16}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_moscaf_18.label}}
+          {{form.desc_moscaf_18}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_moscaf_20.label}}
+          {{form.desc_moscaf_20}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_moscaf_22.label}}
+          {{form.desc_moscaf_22}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_moscaf_24.label}}
+          {{form.desc_moscaf_24}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_gelechi_4.label}}
+          {{form.desc_gelechi_4}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_gelechi_5.label}}
+          {{form.desc_gelechi_5}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_gelechi_6.label}}
+          {{form.desc_gelechi_6}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_gelechi_7.label}}
+          {{form.desc_gelechi_7}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_gelechi_8.label}}
+          {{form.desc_gelechi_8}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_gelechi_9.label}}
+          {{form.desc_gelechi_9}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_gelechi_10.label}}
+          {{form.desc_gelechi_10}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_gelechi_12.label}}
+          {{form.desc_gelechi_12}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_gelechi_14.label}}
+          {{form.desc_gelechi_14}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_gelechi_16.label}}
+          {{form.desc_gelechi_16}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_gelechi_18.label}}
+          {{form.desc_gelechi_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.desc_gelechi_20.label}}
+          {{form.desc_gelechi_20}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_gelechi_22.label}}
+          {{form.desc_gelechi_22}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_gelechi_24.label}}
+          {{form.desc_gelechi_24}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_hongosi_4.label}}
+          {{form.desc_hongosi_4}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_hongosi_5.label}}
+          {{form.desc_hongosi_5}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_hongosi_6.label}}
+          {{form.desc_hongosi_6}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_hongosi_7.label}}
+          {{form.desc_hongosi_7}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_hongosi_8.label}}
+          {{form.desc_hongosi_8}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_hongosi_9.label}}
+          {{form.desc_hongosi_9}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_hongosi_10.label}}
+          {{form.desc_hongosi_10}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_hongosi_12.label}}
+          {{form.desc_hongosi_12}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_hongosi_14.label}}
+          {{form.desc_hongosi_14}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_hongosi_16.label}}
+          {{form.desc_hongosi_16}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_hongosi_18.label}}
+          {{form.desc_hongosi_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.desc_hongosi_20.label}}
+          {{form.desc_hongosi_20}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_hongosi_22.label}}
+          {{form.desc_hongosi_22}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_hongosi_24.label}}
+          {{form.desc_hongosi_24}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_inmadurez_4.label}}
+          {{form.desc_inmadurez_4}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_inmadurez_5.label}}
+          {{form.desc_inmadurez_5}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_inmadurez_6.label}}
+          {{form.desc_inmadurez_6}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_inmadurez_7.label}}
+          {{form.desc_inmadurez_7}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_inmadurez_8.label}}
+          {{form.desc_inmadurez_8}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_inmadurez_9.label}}
+          {{form.desc_inmadurez_9}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_inmadurez_10.label}}
+          {{form.desc_inmadurez_10}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_inmadurez_12.label}}
+          {{form.desc_inmadurez_12}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_inmadurez_14.label}}
+          {{form.desc_inmadurez_14}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_inmadurez_16.label}}
+          {{form.desc_inmadurez_16}}
+        </div>
+        
+      
+        <div class='form-group'>
+          {{form.desc_inmadurez_18.label}}
+          {{form.desc_inmadurez_18}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_inmadurez_20.label}}
+          {{form.desc_inmadurez_20}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_inmadurez_22.label}}
+          {{form.desc_inmadurez_22}}
+        </div>
+        
+      
+        <div class='form-group'>
+          {{form.desc_inmadurez_24.label}}
+          {{form.desc_inmadurez_24}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_insolacion_4.label}}
+          {{form.desc_insolacion_4}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_insolacion_5.label}}
+          {{form.desc_insolacion_5}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_insolacion_6.label}}
+          {{form.desc_insolacion_6}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_insolacion_7.label}}
+          {{form.desc_insolacion_7}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_insolacion_8.label}}
+          {{form.desc_insolacion_8}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_insolacion_9.label}}
+          {{form.desc_insolacion_9}}
+        </div>
+
+         <div class='form-group'>
+          {{form.desc_insolacion_10.label}}
+          {{form.desc_insolacion_10}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_insolacion_12.label}}
+          {{form.desc_insolacion_12}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_insolacion_14.label}}
+          {{form.desc_insolacion_14}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_insolacion_16.label}}
+          {{form.desc_insolacion_16}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_insolacion_18.label}}
+          {{form.desc_insolacion_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.desc_insolacion_20.label}}
+          {{form.desc_insolacion_20}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_insolacion_22.label}}
+          {{form.desc_insolacion_22}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_insolacion_24.label}}
+          {{form.desc_insolacion_24}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_quereza_4.label}}
+          {{form.desc_quereza_4}}
+        </div>
+
+         <div class='form-group'>
+          {{form.desc_quereza_5.label}}
+          {{form.desc_quereza_5}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_quereza_6.label}}
+          {{form.desc_quereza_6}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_quereza_7.label}}
+          {{form.desc_quereza_7}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_quereza_8.label}}
+          {{form.desc_quereza_8}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_quereza_9.label}}
+          {{form.desc_quereza_9}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_quereza_10.label}}
+          {{form.desc_quereza_10}}
+        </div>
+
+         <div class='form-group'>
+          {{form.desc_quereza_12.label}}
+          {{form.desc_quereza_12}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_quereza_14.label}}
+          {{form.desc_quereza_14}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_quereza_16.label}}
+          {{form.desc_quereza_16}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_quereza_18.label}}
+          {{form.desc_quereza_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.desc_quereza_20.label}}
+          {{form.desc_quereza_20}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_quereza_22.label}}
+          {{form.desc_quereza_22}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_quereza_24.label}}
+          {{form.desc_quereza_24}}
+        </div>
+
+
+         <div class='form-group'>
+          {{form.desc_botritis_4.label}}
+          {{form.desc_botritis_4}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_botritis_5.label}}
+          {{form.desc_botritis_5}}
+        </div>
+
+         <div class='form-group'>
+          {{form.desc_botritis_6.label}}
+          {{form.desc_botritis_6}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_botritis_7.label}}
+          {{form.desc_botritis_7}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_botritis_8.label}}
+          {{form.desc_botritis_8}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_botritis_9.label}}
+          {{form.desc_botritis_9}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_botritis_10.label}}
+          {{form.desc_botritis_10}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_botritis_12.label}}
+          {{form.desc_botritis_12}}
+        </div>
+
+         <div class='form-group'>
+          {{form.desc_botritis_14.label}}
+          {{form.desc_botritis_14}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_botritis_16.label}}
+          {{form.desc_botritis_16}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_botritis_18.label}}
+          {{form.desc_botritis_18}}
+        </div>
+
+         <div class='form-group'>
+          {{form.desc_botritis_20.label}}
+          {{form.desc_botritis_20}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_botritis_22.label}}
+          {{form.desc_botritis_22}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_botritis_24.label}}
+          {{form.desc_botritis_24}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_4.label}}
+          {{form.desc_cochinilla_4}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_cochinilla_5.label}}
+          {{form.desc_cochinilla_5}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_6.label}}
+          {{form.desc_cochinilla_6}}
+        </div>
+
+         <div class='form-group'>
+          {{form.desc_cochinilla_7.label}}
+          {{form.desc_cochinilla_7}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_8.label}}
+          {{form.desc_cochinilla_8}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_cochinilla_9.label}}
+          {{form.desc_cochinilla_9}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_10.label}}
+          {{form.desc_cochinilla_10}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_cochinilla_12.label}}
+          {{form.desc_cochinilla_12}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_14.label}}
+          {{form.desc_cochinilla_14}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_16.label}}
+          {{form.desc_cochinilla_16}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_18.label}}
+          {{form.desc_cochinilla_18}}
+        </div>
+
+         <div class='form-group'>
+          {{form.desc_cochinilla_20.label}}
+          {{form.desc_cochinilla_20}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_22.label}}
+          {{form.desc_cochinilla_22}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_cochinilla_24.label}}
+          {{form.desc_cochinilla_24}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_pudricion_4.label}}
+          {{form.desc_pudricion_4}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_5.label}}
+          {{form.desc_pudricion_5}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_6.label}}
+          {{form.desc_pudricion_6}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_7.label}}
+          {{form.desc_pudricion_7}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_pudricion_8.label}}
+          {{form.desc_pudricion_8}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_9.label}}
+          {{form.desc_pudricion_9}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_10.label}}
+          {{form.desc_pudricion_10}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_12.label}}
+          {{form.desc_pudricion_12}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_14.label}}
+          {{form.desc_pudricion_14}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_16.label}}
+          {{form.desc_pudricion_16}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_18.label}}
+          {{form.desc_pudricion_18}}
+        </div>
+
+        <div class='form-group'>
+          {{form.desc_pudricion_20.label}}
+          {{form.desc_pudricion_20}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_22.label}}
+          {{form.desc_pudricion_22}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_pudricion_24.label}}
+          {{form.desc_pudricion_24}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_4.label}}
+          {{form.desc_rajadasae_4}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_rajadasae_5.label}}
+          {{form.desc_rajadasae_5}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_6.label}}
+          {{form.desc_rajadasae_6}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_7.label}}
+          {{form.desc_rajadasae_7}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_8.label}}
+          {{form.desc_rajadasae_8}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_rajadasae_9.label}}
+          {{form.desc_rajadasae_9}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_10.label}}
+          {{form.desc_rajadasae_10}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_12.label}}
+          {{form.desc_rajadasae_12}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_14.label}}
+          {{form.desc_rajadasae_14}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_rajadasae_16.label}}
+          {{form.desc_rajadasae_16}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_18.label}}
+          {{form.desc_rajadasae_18}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_20.label}}
+          {{form.desc_rajadasae_20}}
+        </div>
+         <div class='form-group'>
+          {{form.desc_rajadasae_22.label}}
+          {{form.desc_rajadasae_22}}
+        </div>
+        <div class='form-group'>
+          {{form.desc_rajadasae_24.label}}
+          {{form.desc_rajadasae_24}}
+        </div>
+
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+<script type="text/javascript">
+
+
+  $('#id_color_ext1_int1').change(function(){
+       
+    var ext1_int1=parseInt( $("#id_color_ext1_int1").val());
+    var ext1_int2=parseInt( $("#id_color_ext1_int2").val());
+    var ext1_int3=parseInt( $("#id_color_ext1_int3").val());
+    var ext1_int4=parseInt( $("#id_color_ext1_int4").val());
+    var ext1_int5=parseInt( $("#id_color_ext1_int5").val());
+
+    var resultado = ext1_int1+ext1_int2+ext1_int3+ext1_int4+ext1_int5;
+
+    var int1_1=parseInt( $("#id_color_ext1_int1").val());
+    var int1_2=parseInt( $("#id_color_ext2_int1").val());
+    var int1_25=parseInt( $("#id_color_ext25_int1").val());
+    var int1_3=parseInt( $("#id_color_ext3_int1").val());
+    var int1_35=parseInt( $("#id_color_ext35_int1").val());
+    var int1_4=parseInt( $("#id_color_ext4_int1").val());
+    var int1_5=parseInt( $("#id_color_ext5_int1").val());
+
+    var resultado_interna = int1_1+int1_2+int1_25+int1_3+int1_35+int1_4+int1_5;
+
+    $("#id_color_externa1").val(resultado);
+    //$("#id_color_interna1").val(resultado_interna);
+    $("#id_color_externa1").trigger('change');
+        return false;
+    });
+
+  $('#id_color_ext1_int2').change(function(){
+       
+    var ext1_int1=parseInt( $("#id_color_ext1_int1").val());
+    var ext1_int2=parseInt( $("#id_color_ext1_int2").val());
+    var ext1_int3=parseInt( $("#id_color_ext1_int3").val());
+    var ext1_int4=parseInt( $("#id_color_ext1_int4").val());
+    var ext1_int5=parseInt( $("#id_color_ext1_int5").val());
+
+    var resultado = ext1_int1+ext1_int2+ext1_int3+ext1_int4+ext1_int5;
+
+    var int2_1=parseInt( $("#id_color_ext1_int2").val());
+    var int2_2=parseInt( $("#id_color_ext2_int2").val());
+    var int2_25=parseInt( $("#id_color_ext25_int2").val());
+    var int2_3=parseInt( $("#id_color_ext3_int2").val());
+    var int2_35=parseInt( $("#id_color_ext35_int2").val());
+    var int2_4=parseInt( $("#id_color_ext4_int2").val());
+    var int2_5=parseInt( $("#id_color_ext5_int2").val());
+
+    var resultado_interna = int2_1+int2_2+int2_25+int2_3+int2_35+int2_4+int2_5;
+
+    $("#id_color_externa1").val(resultado);
+    //$("#id_color_interna2").val(resultado_interna);
+    $("#id_color_externa1").trigger('change');
+        return false;
+    });
+
+  $('#id_color_ext1_int3').change(function(){
+       
+    var ext1_int1=parseInt( $("#id_color_ext1_int1").val());
+    var ext1_int2=parseInt( $("#id_color_ext1_int2").val());
+    var ext1_int3=parseInt( $("#id_color_ext1_int3").val());
+    var ext1_int4=parseInt( $("#id_color_ext1_int4").val());
+    var ext1_int5=parseInt( $("#id_color_ext1_int5").val());
+
+    var resultado = ext1_int1+ext1_int2+ext1_int3+ext1_int4+ext1_int5;
+
+    var int3_1=parseInt( $("#id_color_ext1_int3").val());
+    var int3_2=parseInt( $("#id_color_ext2_int3").val());
+    var int3_25=parseInt( $("#id_color_ext25_int3").val());
+    var int3_3=parseInt( $("#id_color_ext3_int3").val());
+    var int3_35=parseInt( $("#id_color_ext35_int3").val());
+    var int3_4=parseInt( $("#id_color_ext4_int3").val());
+    var int3_5=parseInt( $("#id_color_ext5_int3").val());
+
+    var resultado_interna = int3_1+int3_2+int3_25+int3_3+int3_35+int3_4+int3_5;
+
+    $("#id_color_externa1").val(resultado);
+    //$("#id_color_interna3").val(resultado_interna);
+    $("#id_color_externa1").trigger('change');
+        return false;
+    });
+
+  $('#id_color_ext1_int4').change(function(){
+       
+    var ext1_int1=parseInt( $("#id_color_ext1_int1").val());
+    var ext1_int2=parseInt( $("#id_color_ext1_int2").val());
+    var ext1_int3=parseInt( $("#id_color_ext1_int3").val());
+    var ext1_int4=parseInt( $("#id_color_ext1_int4").val());
+    var ext1_int5=parseInt( $("#id_color_ext1_int5").val());
+
+    var resultado = ext1_int1+ext1_int2+ext1_int3+ext1_int4+ext1_int5;
+
+    var int4_1=parseInt( $("#id_color_ext1_int4").val());
+    var int4_2=parseInt( $("#id_color_ext2_int4").val());
+    var int4_25=parseInt( $("#id_color_ext25_int4").val());
+    var int4_3=parseInt( $("#id_color_ext3_int4").val());
+    var int4_35=parseInt( $("#id_color_ext35_int4").val());
+    var int4_4=parseInt( $("#id_color_ext4_int4").val());
+    var int4_5=parseInt( $("#id_color_ext5_int4").val());
+
+    var resultado_interna = int4_1+int4_2+int4_25+int4_3+int4_35+int4_4+int4_5;
+
+    $("#id_color_externa1").val(resultado);
+    //$("#id_color_interna4").val(resultado_interna);
+    $("#id_color_externa1").trigger('change');
+        return false;
+    });
+
+  $('#id_color_ext1_int5').change(function(){
+       
+    var ext1_int1=parseInt( $("#id_color_ext1_int1").val());
+    var ext1_int2=parseInt( $("#id_color_ext1_int2").val());
+    var ext1_int3=parseInt( $("#id_color_ext1_int3").val());
+    var ext1_int4=parseInt( $("#id_color_ext1_int4").val());
+    var ext1_int5=parseInt( $("#id_color_ext1_int5").val());
+
+    var resultado = ext1_int1+ext1_int2+ext1_int3+ext1_int4+ext1_int5;
+
+    var int5_1=parseInt( $("#id_color_ext1_int5").val());
+    var int5_2=parseInt( $("#id_color_ext2_int5").val());
+    var int5_25=parseInt( $("#id_color_ext25_int5").val());
+    var int5_3=parseInt( $("#id_color_ext3_int5").val());
+    var int5_35=parseInt( $("#id_color_ext35_int5").val());
+    var int5_4=parseInt( $("#id_color_ext4_int5").val());
+    var int5_5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado_interna = int5_1+int5_2+int5_25+int5_3+int5_35+int5_4+int5_5;
+
+    $("#id_color_externa1").val(resultado);
+    //$("#id_color_interna5").val(resultado_interna);
+    $("#id_color_externa1").trigger('change');
+        return false;
+    });
+
+  $('#id_color_ext2_int1').change(function(){
+       
+    var ext2_int1=parseInt( $("#id_color_ext2_int1").val());
+    var ext2_int2=parseInt( $("#id_color_ext2_int2").val());
+    var ext2_int3=parseInt( $("#id_color_ext2_int3").val());
+    var ext2_int4=parseInt( $("#id_color_ext2_int4").val());
+    var ext2_int5=parseInt( $("#id_color_ext2_int5").val());
+
+    var resultado = ext2_int1+ext2_int2+ext2_int3+ext2_int4+ext2_int5;
+
+    var int1_1=parseInt( $("#id_color_ext1_int1").val());
+    var int1_2=parseInt( $("#id_color_ext2_int1").val());
+    var int1_25=parseInt( $("#id_color_ext25_int1").val());
+    var int1_3=parseInt( $("#id_color_ext3_int1").val());
+    var int1_35=parseInt( $("#id_color_ext35_int1").val());
+    var int1_4=parseInt( $("#id_color_ext4_int1").val());
+    var int1_5=parseInt( $("#id_color_ext5_int1").val());
+
+    var resultado_interna = int1_1+int1_2+int1_25+int1_3+int1_35+int1_4+int1_5;
+
+    $("#id_color_externa2").val(resultado);
+    //$("#id_color_interna1").val(resultado_interna);
+    $("#id_color_externa2").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext2_int2').change(function(){
+       
+    var ext2_int1=parseInt( $("#id_color_ext2_int1").val());
+    var ext2_int2=parseInt( $("#id_color_ext2_int2").val());
+    var ext2_int3=parseInt( $("#id_color_ext2_int3").val());
+    var ext2_int4=parseInt( $("#id_color_ext2_int4").val());
+    var ext2_int5=parseInt( $("#id_color_ext2_int5").val());
+
+    var resultado = ext2_int1+ext2_int2+ext2_int3+ext2_int4+ext2_int5;
+
+    var int2_1=parseInt( $("#id_color_ext1_int2").val());
+    var int2_2=parseInt( $("#id_color_ext2_int2").val());
+    var int2_25=parseInt( $("#id_color_ext25_int2").val());
+    var int2_3=parseInt( $("#id_color_ext3_int2").val());
+    var int2_35=parseInt( $("#id_color_ext35_int2").val());
+    var int2_4=parseInt( $("#id_color_ext4_int2").val());
+    var int2_5=parseInt( $("#id_color_ext5_int2").val());
+
+    var resultado_interna = int2_1+int2_2+int2_25+int2_3+int2_35+int2_4+int2_5;
+
+    $("#id_color_externa2").val(resultado);
+    //$("#id_color_interna2").val(resultado_interna);
+    $("#id_color_externa2").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext2_int3').change(function(){
+       
+    var ext2_int1=parseInt( $("#id_color_ext2_int1").val());
+    var ext2_int2=parseInt( $("#id_color_ext2_int2").val());
+    var ext2_int3=parseInt( $("#id_color_ext2_int3").val());
+    var ext2_int4=parseInt( $("#id_color_ext2_int4").val());
+    var ext2_int5=parseInt( $("#id_color_ext2_int5").val());
+
+    var resultado = ext2_int1+ext2_int2+ext2_int3+ext2_int4+ext2_int5;
+
+    var int3_1=parseInt( $("#id_color_ext1_int3").val());
+    var int3_2=parseInt( $("#id_color_ext2_int3").val());
+    var int3_25=parseInt( $("#id_color_ext25_int3").val());
+    var int3_3=parseInt( $("#id_color_ext3_int3").val());
+    var int3_35=parseInt( $("#id_color_ext35_int3").val());
+    var int3_4=parseInt( $("#id_color_ext4_int3").val());
+    var int3_5=parseInt( $("#id_color_ext5_int3").val());
+
+    var resultado_interna = int3_1+int3_2+int3_25+int3_3+int3_35+int3_4+int3_5;
+
+    $("#id_color_externa2").val(resultado);
+    //$("#id_color_interna3").val(resultado_interna);
+    $("#id_color_externa2").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext2_int4').change(function(){
+       
+    var ext2_int1=parseInt( $("#id_color_ext2_int1").val());
+    var ext2_int2=parseInt( $("#id_color_ext2_int2").val());
+    var ext2_int3=parseInt( $("#id_color_ext2_int3").val());
+    var ext2_int4=parseInt( $("#id_color_ext2_int4").val());
+    var ext2_int5=parseInt( $("#id_color_ext2_int5").val());
+
+    var resultado = ext2_int1+ext2_int2+ext2_int3+ext2_int4+ext2_int5;
+
+    var int4_1=parseInt( $("#id_color_ext1_int4").val());
+    var int4_2=parseInt( $("#id_color_ext2_int4").val());
+    var int4_25=parseInt( $("#id_color_ext25_int4").val());
+    var int4_3=parseInt( $("#id_color_ext3_int4").val());
+    var int4_35=parseInt( $("#id_color_ext35_int4").val());
+    var int4_4=parseInt( $("#id_color_ext4_int4").val());
+    var int4_5=parseInt( $("#id_color_ext5_int4").val());
+
+    var resultado_interna = int4_1+int4_2+int4_25+int4_3+int4_35+int4_4+int4_5;
+
+    $("#id_color_externa2").val(resultado);
+    //$("#id_color_interna4").val(resultado_interna);
+    $("#id_color_externa2").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext2_int5').change(function(){
+       
+    var ext2_int1=parseInt( $("#id_color_ext2_int1").val());
+    var ext2_int2=parseInt( $("#id_color_ext2_int2").val());
+    var ext2_int3=parseInt( $("#id_color_ext2_int3").val());
+    var ext2_int4=parseInt( $("#id_color_ext2_int4").val());
+    var ext2_int5=parseInt( $("#id_color_ext2_int5").val());
+
+    var resultado = ext2_int1+ext2_int2+ext2_int3+ext2_int4+ext2_int5;
+
+    var int5_1=parseInt( $("#id_color_ext1_int5").val());
+    var int5_2=parseInt( $("#id_color_ext2_int5").val());
+    var int5_25=parseInt( $("#id_color_ext25_int5").val());
+    var int5_3=parseInt( $("#id_color_ext3_int5").val());
+    var int5_35=parseInt( $("#id_color_ext35_int5").val());
+    var int5_4=parseInt( $("#id_color_ext4_int5").val());
+    var int5_5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado_interna = int5_1+int5_2+int5_25+int5_3+int5_35+int5_4+int5_5;
+
+    $("#id_color_externa2").val(resultado);
+    //$("#id_color_interna5").val(resultado_interna);
+    $("#id_color_externa2").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext25_int1').change(function(){
+       
+    var ext25_int1=parseInt( $("#id_color_ext25_int1").val());
+    var ext25_int2=parseInt( $("#id_color_ext25_int2").val());
+    var ext25_int3=parseInt( $("#id_color_ext25_int3").val());
+    var ext25_int4=parseInt( $("#id_color_ext25_int4").val());
+    var ext25_int5=parseInt( $("#id_color_ext25_int5").val());
+
+    var resultado = ext25_int1+ext25_int2+ext25_int3+ext25_int4+ext25_int5;
+
+    var int1_1=parseInt( $("#id_color_ext1_int1").val());
+    var int1_2=parseInt( $("#id_color_ext2_int1").val());
+    var int1_25=parseInt( $("#id_color_ext25_int1").val());
+    var int1_3=parseInt( $("#id_color_ext3_int1").val());
+    var int1_35=parseInt( $("#id_color_ext35_int1").val());
+    var int1_4=parseInt( $("#id_color_ext4_int1").val());
+    var int1_5=parseInt( $("#id_color_ext5_int1").val());
+
+    var resultado_interna = int1_1+int1_2+int1_25+int1_3+int1_35+int1_4+int1_5;
+
+    $("#id_color_externa25").val(resultado);
+    //$("#id_color_interna1").val(resultado_interna);
+    $("#id_color_externa25").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext25_int2').change(function(){
+       
+    var ext25_int1=parseInt( $("#id_color_ext25_int1").val());
+    var ext25_int2=parseInt( $("#id_color_ext25_int2").val());
+    var ext25_int3=parseInt( $("#id_color_ext25_int3").val());
+    var ext25_int4=parseInt( $("#id_color_ext25_int4").val());
+    var ext25_int5=parseInt( $("#id_color_ext25_int5").val());
+
+    var resultado = ext25_int1+ext25_int2+ext25_int3+ext25_int4+ext25_int5;
+
+    var int2_1=parseInt( $("#id_color_ext1_int2").val());
+    var int2_2=parseInt( $("#id_color_ext2_int2").val());
+    var int2_25=parseInt( $("#id_color_ext25_int2").val());
+    var int2_3=parseInt( $("#id_color_ext3_int2").val());
+    var int2_35=parseInt( $("#id_color_ext35_int2").val());
+    var int2_4=parseInt( $("#id_color_ext4_int2").val());
+    var int2_5=parseInt( $("#id_color_ext5_int2").val());
+
+    var resultado_interna = int2_1+int2_2+int2_25+int2_3+int2_35+int2_4+int2_5;
+
+    $("#id_color_externa25").val(resultado);
+    //$("#id_color_interna2").val(resultado_interna);
+    $("#id_color_externa25").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext25_int3').change(function(){
+       
+    var ext25_int1=parseInt( $("#id_color_ext25_int1").val());
+    var ext25_int2=parseInt( $("#id_color_ext25_int2").val());
+    var ext25_int3=parseInt( $("#id_color_ext25_int3").val());
+    var ext25_int4=parseInt( $("#id_color_ext25_int4").val());
+    var ext25_int5=parseInt( $("#id_color_ext25_int5").val());
+
+    var resultado = ext25_int1+ext25_int2+ext25_int3+ext25_int4+ext25_int5;
+
+    var int3_1=parseInt( $("#id_color_ext1_int3").val());
+    var int3_2=parseInt( $("#id_color_ext2_int3").val());
+    var int3_25=parseInt( $("#id_color_ext25_int3").val());
+    var int3_3=parseInt( $("#id_color_ext3_int3").val());
+    var int3_35=parseInt( $("#id_color_ext35_int3").val());
+    var int3_4=parseInt( $("#id_color_ext4_int3").val());
+    var int3_5=parseInt( $("#id_color_ext5_int3").val());
+
+    var resultado_interna = int3_1+int3_2+int3_25+int3_3+int3_35+int3_4+int3_5;
+
+    $("#id_color_externa25").val(resultado);
+    //$("#id_color_interna3").val(resultado_interna);
+    $("#id_color_externa25").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext25_int4').change(function(){
+       
+    var ext25_int1=parseInt( $("#id_color_ext25_int1").val());
+    var ext25_int2=parseInt( $("#id_color_ext25_int2").val());
+    var ext25_int3=parseInt( $("#id_color_ext25_int3").val());
+    var ext25_int4=parseInt( $("#id_color_ext25_int4").val());
+    var ext25_int5=parseInt( $("#id_color_ext25_int5").val());
+
+    var resultado = ext25_int1+ext25_int2+ext25_int3+ext25_int4+ext25_int5;
+
+    var int4_1=parseInt( $("#id_color_ext1_int4").val());
+    var int4_2=parseInt( $("#id_color_ext2_int4").val());
+    var int4_25=parseInt( $("#id_color_ext25_int4").val());
+    var int4_3=parseInt( $("#id_color_ext3_int4").val());
+    var int4_35=parseInt( $("#id_color_ext35_int4").val());
+    var int4_4=parseInt( $("#id_color_ext4_int4").val());
+    var int4_5=parseInt( $("#id_color_ext5_int4").val());
+
+    var resultado_interna = int4_1+int4_2+int4_25+int4_3+int4_35+int4_4+int4_5;
+
+    $("#id_color_externa25").val(resultado);
+    //$("#id_color_interna4").val(resultado_interna);
+    $("#id_color_externa25").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext25_int5').change(function(){
+       
+    var ext25_int1=parseInt( $("#id_color_ext25_int1").val());
+    var ext25_int2=parseInt( $("#id_color_ext25_int2").val());
+    var ext25_int3=parseInt( $("#id_color_ext25_int3").val());
+    var ext25_int4=parseInt( $("#id_color_ext25_int4").val());
+    var ext25_int5=parseInt( $("#id_color_ext25_int5").val());
+
+    var resultado = ext25_int1+ext25_int2+ext25_int3+ext25_int4+ext25_int5;
+
+    var int5_1=parseInt( $("#id_color_ext1_int5").val());
+    var int5_2=parseInt( $("#id_color_ext2_int5").val());
+    var int5_25=parseInt( $("#id_color_ext25_int5").val());
+    var int5_3=parseInt( $("#id_color_ext3_int5").val());
+    var int5_35=parseInt( $("#id_color_ext35_int5").val());
+    var int5_4=parseInt( $("#id_color_ext4_int5").val());
+    var int5_5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado_interna = int5_1+int5_2+int5_25+int5_3+int5_35+int5_4+int5_5;
+
+    $("#id_color_externa25").val(resultado);
+    //$("#id_color_interna5").val(resultado_interna);
+    $("#id_color_externa25").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext3_int1').change(function(){
+       
+    var ext3_int1=parseInt( $("#id_color_ext3_int1").val());
+    var ext3_int2=parseInt( $("#id_color_ext3_int2").val());
+    var ext3_int3=parseInt( $("#id_color_ext3_int3").val());
+    var ext3_int4=parseInt( $("#id_color_ext3_int4").val());
+    var ext3_int5=parseInt( $("#id_color_ext3_int5").val());
+
+    var resultado = ext3_int1+ext3_int2+ext3_int3+ext3_int4+ext3_int5;
+
+    var int1_1=parseInt( $("#id_color_ext1_int1").val());
+    var int1_2=parseInt( $("#id_color_ext2_int1").val());
+    var int1_25=parseInt( $("#id_color_ext25_int1").val());
+    var int1_3=parseInt( $("#id_color_ext3_int1").val());
+    var int1_35=parseInt( $("#id_color_ext35_int1").val());
+    var int1_4=parseInt( $("#id_color_ext4_int1").val());
+    var int1_5=parseInt( $("#id_color_ext5_int1").val());
+
+    var resultado_interna = int1_1+int1_2+int1_25+int1_3+int1_35+int1_4+int1_5;
+
+    $("#id_color_externa3").val(resultado);
+    //$("#id_color_interna1").val(resultado_interna);
+    $("#id_color_externa3").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext3_int2').change(function(){
+       
+    var ext3_int1=parseInt( $("#id_color_ext3_int1").val());
+    var ext3_int2=parseInt( $("#id_color_ext3_int2").val());
+    var ext3_int3=parseInt( $("#id_color_ext3_int3").val());
+    var ext3_int4=parseInt( $("#id_color_ext3_int4").val());
+    var ext3_int5=parseInt( $("#id_color_ext3_int5").val());
+
+    var resultado = ext3_int1+ext3_int2+ext3_int3+ext3_int4+ext3_int5;
+
+    var int2_1=parseInt( $("#id_color_ext1_int2").val());
+    var int2_2=parseInt( $("#id_color_ext2_int2").val());
+    var int2_25=parseInt( $("#id_color_ext25_int2").val());
+    var int2_3=parseInt( $("#id_color_ext3_int2").val());
+    var int2_35=parseInt( $("#id_color_ext35_int2").val());
+    var int2_4=parseInt( $("#id_color_ext4_int2").val());
+    var int2_5=parseInt( $("#id_color_ext5_int2").val());
+
+    var resultado_interna = int2_1+int2_2+int2_25+int2_3+int2_35+int2_4+int2_5;
+
+    $("#id_color_externa3").val(resultado);
+    //$("#id_color_interna2").val(resultado_interna);
+    $("#id_color_externa3").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext3_int3').change(function(){
+       
+    var ext3_int1=parseInt( $("#id_color_ext3_int1").val());
+    var ext3_int2=parseInt( $("#id_color_ext3_int2").val());
+    var ext3_int3=parseInt( $("#id_color_ext3_int3").val());
+    var ext3_int4=parseInt( $("#id_color_ext3_int4").val());
+    var ext3_int5=parseInt( $("#id_color_ext3_int5").val());
+
+    var resultado = ext3_int1+ext3_int2+ext3_int3+ext3_int4+ext3_int5;
+
+    var int3_1=parseInt( $("#id_color_ext1_int3").val());
+    var int3_2=parseInt( $("#id_color_ext2_int3").val());
+    var int3_25=parseInt( $("#id_color_ext25_int3").val());
+    var int3_3=parseInt( $("#id_color_ext3_int3").val());
+    var int3_35=parseInt( $("#id_color_ext35_int3").val());
+    var int3_4=parseInt( $("#id_color_ext4_int3").val());
+    var int3_5=parseInt( $("#id_color_ext5_int3").val());
+
+    var resultado_interna = int3_1+int3_2+int3_25+int3_3+int3_35+int3_4+int3_5;
+
+    $("#id_color_externa3").val(resultado);
+    //$("#id_color_interna3").val(resultado_interna);
+    $("#id_color_externa3").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext3_int4').change(function(){
+       
+    var ext3_int1=parseInt( $("#id_color_ext3_int1").val());
+    var ext3_int2=parseInt( $("#id_color_ext3_int2").val());
+    var ext3_int3=parseInt( $("#id_color_ext3_int3").val());
+    var ext3_int4=parseInt( $("#id_color_ext3_int4").val());
+    var ext3_int5=parseInt( $("#id_color_ext3_int5").val());
+
+    var resultado = ext3_int1+ext3_int2+ext3_int3+ext3_int4+ext3_int5;
+
+    var int4_1=parseInt( $("#id_color_ext1_int4").val());
+    var int4_2=parseInt( $("#id_color_ext2_int4").val());
+    var int4_25=parseInt( $("#id_color_ext25_int4").val());
+    var int4_3=parseInt( $("#id_color_ext3_int4").val());
+    var int4_35=parseInt( $("#id_color_ext35_int4").val());
+    var int4_4=parseInt( $("#id_color_ext4_int4").val());
+    var int4_5=parseInt( $("#id_color_ext5_int4").val());
+
+    var resultado_interna = int4_1+int4_2+int4_25+int4_3+int4_35+int4_4+int4_5;
+
+    $("#id_color_externa3").val(resultado);
+    //$("#id_color_interna4").val(resultado_interna);
+    $("#id_color_externa3").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext3_int5').change(function(){
+       
+    var ext3_int1=parseInt( $("#id_color_ext3_int1").val());
+    var ext3_int2=parseInt( $("#id_color_ext3_int2").val());
+    var ext3_int3=parseInt( $("#id_color_ext3_int3").val());
+    var ext3_int4=parseInt( $("#id_color_ext3_int4").val());
+    var ext3_int5=parseInt( $("#id_color_ext3_int5").val());
+
+    var resultado = ext3_int1+ext3_int2+ext3_int3+ext3_int4+ext3_int5;
+
+    var int5_1=parseInt( $("#id_color_ext1_int5").val());
+    var int5_2=parseInt( $("#id_color_ext2_int5").val());
+    var int5_25=parseInt( $("#id_color_ext25_int5").val());
+    var int5_3=parseInt( $("#id_color_ext3_int5").val());
+    var int5_35=parseInt( $("#id_color_ext35_int5").val());
+    var int5_4=parseInt( $("#id_color_ext4_int5").val());
+    var int5_5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado_interna = int5_1+int5_2+int5_25+int5_3+int5_35+int5_4+int5_5;
+
+    $("#id_color_externa3").val(resultado);
+    //$("#id_color_interna5").val(resultado_interna);
+    $("#id_color_externa3").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext35_int1').change(function(){
+       
+    var ext35_int1=parseInt( $("#id_color_ext35_int1").val());
+    var ext35_int2=parseInt( $("#id_color_ext35_int2").val());
+    var ext35_int3=parseInt( $("#id_color_ext35_int3").val());
+    var ext35_int4=parseInt( $("#id_color_ext35_int4").val());
+    var ext35_int5=parseInt( $("#id_color_ext35_int5").val());
+
+    var resultado = ext35_int1+ext35_int2+ext35_int3+ext35_int4+ext35_int5;
+
+    var int1_1=parseInt( $("#id_color_ext1_int1").val());
+    var int1_2=parseInt( $("#id_color_ext2_int1").val());
+    var int1_25=parseInt( $("#id_color_ext25_int1").val());
+    var int1_3=parseInt( $("#id_color_ext3_int1").val());
+    var int1_35=parseInt( $("#id_color_ext35_int1").val());
+    var int1_4=parseInt( $("#id_color_ext4_int1").val());
+    var int1_5=parseInt( $("#id_color_ext5_int1").val());
+
+    var resultado_interna = int1_1+int1_2+int1_25+int1_3+int1_35+int1_4+int1_5;
+
+    $("#id_color_externa35").val(resultado);
+    //$("#id_color_interna1").val(resultado_interna);
+    $("#id_color_externa35").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext35_int2').change(function(){
+       
+    var ext35_int1=parseInt( $("#id_color_ext35_int1").val());
+    var ext35_int2=parseInt( $("#id_color_ext35_int2").val());
+    var ext35_int3=parseInt( $("#id_color_ext35_int3").val());
+    var ext35_int4=parseInt( $("#id_color_ext35_int4").val());
+    var ext35_int5=parseInt( $("#id_color_ext35_int5").val());
+
+    var resultado = ext35_int1+ext35_int2+ext35_int3+ext35_int4+ext35_int5;
+
+    var int2_1=parseInt( $("#id_color_ext1_int2").val());
+    var int2_2=parseInt( $("#id_color_ext2_int2").val());
+    var int2_25=parseInt( $("#id_color_ext25_int2").val());
+    var int2_3=parseInt( $("#id_color_ext3_int2").val());
+    var int2_35=parseInt( $("#id_color_ext35_int2").val());
+    var int2_4=parseInt( $("#id_color_ext4_int2").val());
+    var int2_5=parseInt( $("#id_color_ext5_int2").val());
+
+    var resultado_interna = int2_1+int2_2+int2_25+int2_3+int2_35+int2_4+int2_5;
+
+    $("#id_color_externa35").val(resultado);
+    //$("#id_color_interna2").val(resultado_interna);
+    $("#id_color_externa35").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext35_int3').change(function(){
+       
+    var ext35_int1=parseInt( $("#id_color_ext35_int1").val());
+    var ext35_int2=parseInt( $("#id_color_ext35_int2").val());
+    var ext35_int3=parseInt( $("#id_color_ext35_int3").val());
+    var ext35_int4=parseInt( $("#id_color_ext35_int4").val());
+    var ext35_int5=parseInt( $("#id_color_ext35_int5").val());
+
+    var resultado = ext35_int1+ext35_int2+ext35_int3+ext35_int4+ext35_int5;
+
+    var int3_1=parseInt( $("#id_color_ext1_int3").val());
+    var int3_2=parseInt( $("#id_color_ext2_int3").val());
+    var int3_25=parseInt( $("#id_color_ext25_int3").val());
+    var int3_3=parseInt( $("#id_color_ext3_int3").val());
+    var int3_35=parseInt( $("#id_color_ext35_int3").val());
+    var int3_4=parseInt( $("#id_color_ext4_int3").val());
+    var int3_5=parseInt( $("#id_color_ext5_int3").val());
+
+    var resultado_interna = int3_1+int3_2+int3_25+int3_3+int3_35+int3_4+int3_5;
+
+    $("#id_color_externa35").val(resultado);
+    //$("#id_color_interna3").val(resultado_interna);
+    $("#id_color_externa35").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext35_int4').change(function(){
+       
+    var ext35_int1=parseInt( $("#id_color_ext35_int1").val());
+    var ext35_int2=parseInt( $("#id_color_ext35_int2").val());
+    var ext35_int3=parseInt( $("#id_color_ext35_int3").val());
+    var ext35_int4=parseInt( $("#id_color_ext35_int4").val());
+    var ext35_int5=parseInt( $("#id_color_ext35_int5").val());
+
+    var resultado = ext35_int1+ext35_int2+ext35_int3+ext35_int4+ext35_int5;
+
+    var int4_1=parseInt( $("#id_color_ext1_int4").val());
+    var int4_2=parseInt( $("#id_color_ext2_int4").val());
+    var int4_25=parseInt( $("#id_color_ext25_int4").val());
+    var int4_3=parseInt( $("#id_color_ext3_int4").val());
+    var int4_35=parseInt( $("#id_color_ext35_int4").val());
+    var int4_4=parseInt( $("#id_color_ext4_int4").val());
+    var int4_5=parseInt( $("#id_color_ext5_int4").val());
+
+    var resultado_interna = int4_1+int4_2+int4_25+int4_3+int4_35+int4_4+int4_5;
+
+    $("#id_color_externa35").val(resultado);
+    //$("#id_color_interna4").val(resultado_interna);
+    $("#id_color_externa35").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext35_int5').change(function(){
+       
+    var ext35_int1=parseInt( $("#id_color_ext35_int1").val());
+    var ext35_int2=parseInt( $("#id_color_ext35_int2").val());
+    var ext35_int3=parseInt( $("#id_color_ext35_int3").val());
+    var ext35_int4=parseInt( $("#id_color_ext35_int4").val());
+    var ext35_int5=parseInt( $("#id_color_ext35_int5").val());
+
+    var resultado = ext35_int1+ext35_int2+ext35_int3+ext35_int4+ext35_int5;
+
+    var int5_1=parseInt( $("#id_color_ext1_int5").val());
+    var int5_2=parseInt( $("#id_color_ext2_int5").val());
+    var int5_25=parseInt( $("#id_color_ext25_int5").val());
+    var int5_3=parseInt( $("#id_color_ext3_int5").val());
+    var int5_35=parseInt( $("#id_color_ext35_int5").val());
+    var int5_4=parseInt( $("#id_color_ext4_int5").val());
+    var int5_5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado_interna = int5_1+int5_2+int5_25+int5_3+int5_35+int5_4+int5_5;
+
+    $("#id_color_externa35").val(resultado);
+    //$("#id_color_interna5").val(resultado_interna);
+    $("#id_color_externa35").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext4_int1').change(function(){
+       
+    var ext4_int1=parseInt( $("#id_color_ext4_int1").val());
+    var ext4_int2=parseInt( $("#id_color_ext4_int2").val());
+    var ext4_int3=parseInt( $("#id_color_ext4_int3").val());
+    var ext4_int4=parseInt( $("#id_color_ext4_int4").val());
+    var ext4_int5=parseInt( $("#id_color_ext4_int5").val());
+
+    var resultado = ext4_int1+ext4_int2+ext4_int3+ext4_int4+ext4_int5;
+
+    var int1_1=parseInt( $("#id_color_ext1_int1").val());
+    var int1_2=parseInt( $("#id_color_ext2_int1").val());
+    var int1_25=parseInt( $("#id_color_ext25_int1").val());
+    var int1_3=parseInt( $("#id_color_ext3_int1").val());
+    var int1_35=parseInt( $("#id_color_ext35_int1").val());
+    var int1_4=parseInt( $("#id_color_ext4_int1").val());
+    var int1_5=parseInt( $("#id_color_ext5_int1").val());
+
+    var resultado_interna = int1_1+int1_2+int1_25+int1_3+int1_35+int1_4+int1_5;
+
+    $("#id_color_externa4").val(resultado);
+    //$("#id_color_interna1").val(resultado_interna);
+    $("#id_color_externa4").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext4_int2').change(function(){
+       
+    var ext4_int1=parseInt( $("#id_color_ext4_int1").val());
+    var ext4_int2=parseInt( $("#id_color_ext4_int2").val());
+    var ext4_int3=parseInt( $("#id_color_ext4_int3").val());
+    var ext4_int4=parseInt( $("#id_color_ext4_int4").val());
+    var ext4_int5=parseInt( $("#id_color_ext4_int5").val());
+
+    var resultado = ext4_int1+ext4_int2+ext4_int3+ext4_int4+ext4_int5;
+
+    var int2_1=parseInt( $("#id_color_ext1_int2").val());
+    var int2_2=parseInt( $("#id_color_ext2_int2").val());
+    var int2_25=parseInt( $("#id_color_ext25_int2").val());
+    var int2_3=parseInt( $("#id_color_ext3_int2").val());
+    var int2_35=parseInt( $("#id_color_ext35_int2").val());
+    var int2_4=parseInt( $("#id_color_ext4_int2").val());
+    var int2_5=parseInt( $("#id_color_ext5_int2").val());
+
+    var resultado_interna = int2_1+int2_2+int2_25+int2_3+int2_35+int2_4+int2_5;
+
+    $("#id_color_externa4").val(resultado);
+    //$("#id_color_interna2").val(resultado_interna);
+    $("#id_color_externa4").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext4_int3').change(function(){
+       
+    var ext4_int1=parseInt( $("#id_color_ext4_int1").val());
+    var ext4_int2=parseInt( $("#id_color_ext4_int2").val());
+    var ext4_int3=parseInt( $("#id_color_ext4_int3").val());
+    var ext4_int4=parseInt( $("#id_color_ext4_int4").val());
+    var ext4_int5=parseInt( $("#id_color_ext4_int5").val());
+
+    var resultado = ext4_int1+ext4_int2+ext4_int3+ext4_int4+ext4_int5;
+
+    var int3_1=parseInt( $("#id_color_ext1_int3").val());
+    var int3_2=parseInt( $("#id_color_ext2_int3").val());
+    var int3_25=parseInt( $("#id_color_ext25_int3").val());
+    var int3_3=parseInt( $("#id_color_ext3_int3").val());
+    var int3_35=parseInt( $("#id_color_ext35_int3").val());
+    var int3_4=parseInt( $("#id_color_ext4_int3").val());
+    var int3_5=parseInt( $("#id_color_ext5_int3").val());
+
+    var resultado_interna = int3_1+int3_2+int3_25+int3_3+int3_35+int3_4+int3_5;
+
+    $("#id_color_externa4").val(resultado);
+    //$("#id_color_interna3").val(resultado_interna);
+    $("#id_color_externa4").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext4_int4').change(function(){
+       
+    var ext4_int1=parseInt( $("#id_color_ext4_int1").val());
+    var ext4_int2=parseInt( $("#id_color_ext4_int2").val());
+    var ext4_int3=parseInt( $("#id_color_ext4_int3").val());
+    var ext4_int4=parseInt( $("#id_color_ext4_int4").val());
+    var ext4_int5=parseInt( $("#id_color_ext4_int5").val());
+
+    var resultado = ext4_int1+ext4_int2+ext4_int3+ext4_int4+ext4_int5;
+
+    var int4_1=parseInt( $("#id_color_ext1_int4").val());
+    var int4_2=parseInt( $("#id_color_ext2_int4").val());
+    var int4_25=parseInt( $("#id_color_ext25_int4").val());
+    var int4_3=parseInt( $("#id_color_ext3_int4").val());
+    var int4_35=parseInt( $("#id_color_ext35_int4").val());
+    var int4_4=parseInt( $("#id_color_ext4_int4").val());
+    var int4_5=parseInt( $("#id_color_ext5_int4").val());
+
+    var resultado_interna = int4_1+int4_2+int4_25+int4_3+int4_35+int4_4+int4_5;
+
+    $("#id_color_externa4").val(resultado);
+    //$("#id_color_interna4").val(resultado_interna);
+    $("#id_color_externa4").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext4_int5').change(function(){
+       
+    var ext4_int1=parseInt( $("#id_color_ext4_int1").val());
+    var ext4_int2=parseInt( $("#id_color_ext4_int2").val());
+    var ext4_int3=parseInt( $("#id_color_ext4_int3").val());
+    var ext4_int4=parseInt( $("#id_color_ext4_int4").val());
+    var ext4_int5=parseInt( $("#id_color_ext4_int5").val());
+
+    var resultado = ext4_int1+ext4_int2+ext4_int3+ext4_int4+ext4_int5;
+
+    var int5_1=parseInt( $("#id_color_ext1_int5").val());
+    var int5_2=parseInt( $("#id_color_ext2_int5").val());
+    var int5_25=parseInt( $("#id_color_ext25_int5").val());
+    var int5_3=parseInt( $("#id_color_ext3_int5").val());
+    var int5_35=parseInt( $("#id_color_ext35_int5").val());
+    var int5_4=parseInt( $("#id_color_ext4_int5").val());
+    var int5_5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado_interna = int5_1+int5_2+int5_25+int5_3+int5_35+int5_4+int5_5;
+
+    $("#id_color_externa4").val(resultado);
+    //$("#id_color_interna5").val(resultado_interna);
+    $("#id_color_externa4").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext5_int1').change(function(){
+       
+    var ext5_int1=parseInt( $("#id_color_ext5_int1").val());
+    var ext5_int2=parseInt( $("#id_color_ext5_int2").val());
+    var ext5_int3=parseInt( $("#id_color_ext5_int3").val());
+    var ext5_int4=parseInt( $("#id_color_ext5_int4").val());
+    var ext5_int5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado = ext5_int1+ext5_int2+ext5_int3+ext5_int4+ext5_int5;
+
+    var int1_1=parseInt( $("#id_color_ext1_int1").val());
+    var int1_2=parseInt( $("#id_color_ext2_int1").val());
+    var int1_25=parseInt( $("#id_color_ext25_int1").val());
+    var int1_3=parseInt( $("#id_color_ext3_int1").val());
+    var int1_35=parseInt( $("#id_color_ext35_int1").val());
+    var int1_4=parseInt( $("#id_color_ext4_int1").val());
+    var int1_5=parseInt( $("#id_color_ext5_int1").val());
+
+    var resultado_interna = int1_1+int1_2+int1_25+int1_3+int1_35+int1_4+int1_5;
+
+    $("#id_color_externa5").val(resultado);
+    //$("#id_color_interna1").val(resultado_interna);
+    $("#id_color_externa5").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext5_int2').change(function(){
+       
+    var ext5_int1=parseInt( $("#id_color_ext5_int1").val());
+    var ext5_int2=parseInt( $("#id_color_ext5_int2").val());
+    var ext5_int3=parseInt( $("#id_color_ext5_int3").val());
+    var ext5_int4=parseInt( $("#id_color_ext5_int4").val());
+    var ext5_int5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado = ext5_int1+ext5_int2+ext5_int3+ext5_int4+ext5_int5;
+
+    var int2_1=parseInt( $("#id_color_ext1_int2").val());
+    var int2_2=parseInt( $("#id_color_ext2_int2").val());
+    var int2_25=parseInt( $("#id_color_ext25_int2").val());
+    var int2_3=parseInt( $("#id_color_ext3_int2").val());
+    var int2_35=parseInt( $("#id_color_ext35_int2").val());
+    var int2_4=parseInt( $("#id_color_ext4_int2").val());
+    var int2_5=parseInt( $("#id_color_ext5_int2").val());
+
+    var resultado_interna = int2_1+int2_2+int2_25+int2_3+int2_35+int2_4+int2_5;
+
+    $("#id_color_externa5").val(resultado);
+    //$("#id_color_interna2").val(resultado_interna);
+    $("#id_color_externa5").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext5_int3').change(function(){
+       
+    var ext5_int1=parseInt( $("#id_color_ext5_int1").val());
+    var ext5_int2=parseInt( $("#id_color_ext5_int2").val());
+    var ext5_int3=parseInt( $("#id_color_ext5_int3").val());
+    var ext5_int4=parseInt( $("#id_color_ext5_int4").val());
+    var ext5_int5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado = ext5_int1+ext5_int2+ext5_int3+ext5_int4+ext5_int5;
+
+    var int3_1=parseInt( $("#id_color_ext1_int3").val());
+    var int3_2=parseInt( $("#id_color_ext2_int3").val());
+    var int3_25=parseInt( $("#id_color_ext25_int3").val());
+    var int3_3=parseInt( $("#id_color_ext3_int3").val());
+    var int3_35=parseInt( $("#id_color_ext35_int3").val());
+    var int3_4=parseInt( $("#id_color_ext4_int3").val());
+    var int3_5=parseInt( $("#id_color_ext5_int3").val());
+
+    var resultado_interna = int3_1+int3_2+int3_25+int3_3+int3_35+int3_4+int3_5;
+
+    $("#id_color_externa5").val(resultado);
+    //$("#id_color_interna3").val(resultado_interna);
+    $("#id_color_externa5").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext5_int4').change(function(){
+       
+    var ext5_int1=parseInt( $("#id_color_ext5_int1").val());
+    var ext5_int2=parseInt( $("#id_color_ext5_int2").val());
+    var ext5_int3=parseInt( $("#id_color_ext5_int3").val());
+    var ext5_int4=parseInt( $("#id_color_ext5_int4").val());
+    var ext5_int5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado = ext5_int1+ext5_int2+ext5_int3+ext5_int4+ext5_int5;
+
+    var int4_1=parseInt( $("#id_color_ext1_int4").val());
+    var int4_2=parseInt( $("#id_color_ext2_int4").val());
+    var int4_25=parseInt( $("#id_color_ext25_int4").val());
+    var int4_3=parseInt( $("#id_color_ext3_int4").val());
+    var int4_35=parseInt( $("#id_color_ext35_int4").val());
+    var int4_4=parseInt( $("#id_color_ext4_int4").val());
+    var int4_5=parseInt( $("#id_color_ext5_int4").val());
+
+    var resultado_interna = int4_1+int4_2+int4_25+int4_3+int4_35+int4_4+int4_5;
+
+    $("#id_color_externa5").val(resultado);
+    //$("#id_color_interna4").val(resultado_interna);
+    $("#id_color_externa5").trigger('change');
+        return false;
+    });
+
+    $('#id_color_ext5_int5').change(function(){
+       
+    var ext5_int1=parseInt( $("#id_color_ext5_int1").val());
+    var ext5_int2=parseInt( $("#id_color_ext5_int2").val());
+    var ext5_int3=parseInt( $("#id_color_ext5_int3").val());
+    var ext5_int4=parseInt( $("#id_color_ext5_int4").val());
+    var ext5_int5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado = ext5_int1+ext5_int2+ext5_int3+ext5_int4+ext5_int5;
+
+    var int5_1=parseInt( $("#id_color_ext1_int5").val());
+    var int5_2=parseInt( $("#id_color_ext2_int5").val());
+    var int5_25=parseInt( $("#id_color_ext25_int5").val());
+    var int5_3=parseInt( $("#id_color_ext3_int5").val());
+    var int5_35=parseInt( $("#id_color_ext35_int5").val());
+    var int5_4=parseInt( $("#id_color_ext4_int5").val());
+    var int5_5=parseInt( $("#id_color_ext5_int5").val());
+
+    var resultado_interna = int5_1+int5_2+int5_25+int5_3+int5_35+int5_4+int5_5;
+
+    $("#id_color_externa5").val(resultado);
+    //$("#id_color_interna5").val(resultado_interna);
+    $("#id_color_externa5").trigger('change');
+        return false;
+    });
+
+</script>
+
+
+<script type="text/javascript">
+     
+      
+    
+      $('#id_anexo_responsable').select2();
+       $('#id_anexo_produccion').select2();
+      
+     
+      
+
+function request_turno (turnoid) {
+    var urldata="/ajax/load-turnopp/" + turnoid;
+     
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+        var option_html = `<option value="0" >---------</option>`;
+        for (var i = 0; i < data.length; i++) {   
+        
+  
+            
+              option_html += `<option value="${data[i].id}" > ${data[i].turno} </option>`;
+            
+        } 
+        $("#id_anexo_valvula").html(option_html);
+          console.log(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+  } 
+
+   
+$("#id_anexo_produccion").change(function () { 
+
+      var turnoid = $(this).val();
+        
+      request_turno(turnoid)
+    });
+
+  </script>
+
+{% endblock %}

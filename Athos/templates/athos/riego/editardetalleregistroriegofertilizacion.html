@@ -1,0 +1,206 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE REGISTRO RIEGO FERT.</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+
+				<div class='form-group'>
+					{{form.anexo_fecha.label}}
+					{{form.anexo_fecha}}
+				</div>
+				<div class='form-group'>
+					{{form.turno.label}}
+					{{form.turno}}
+				</div>
+				<div class='form-group'>
+					{{form.valvula.label}}
+					{{form.valvula}}
+				</div>
+				<div class='form-group'>
+					{{form.eto_acu.label}}
+					{{form.eto_acu}}
+				</div>
+			
+				
+
+				
+				<div class='form-group'>
+					{{form.hectareaje.label}}
+					{{form.hectareaje}}
+				</div>
+
+				<div class='form-group'>
+					{{form.kc.label}}
+					{{form.kc}}
+				</div>
+				<div class='form-group'>
+					{{form.m3.label}}
+					{{form.m3}}
+				</div>
+
+				<p>RESULTADO M3 / Ha: <span id="resDivision"></span></p>
+
+				<div class='form-group'>
+					{{form.proporcion.label}}
+					{{form.proporcion}}
+				</div>
+				<div class='form-group'>
+					{{form.solucion_madre.label}}
+					{{form.solucion_madre}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_tanque.label}}
+					{{form.anexo_tanque}}
+				</div>
+				<div class='form-group'>
+					{{form.pulso1.label}}
+					{{form.pulso1}}
+				</div>
+				<div class='form-group'>
+					{{form.pulso2.label}}
+					{{form.pulso2}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.pulso3.label}}
+					{{form.pulso3}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.pulso4.label}}
+					{{form.pulso4}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.pulso5.label}}
+					{{form.pulso5}}
+				</div>
+				
+				
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{% block script %}
+ <script>  
+  $(function () {  
+   $("#id_anexo_fecha").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');
+           division();
+     });  
+   </script> 
+
+<script>
+	$("#id_hectareaje").change(function(){
+		division();
+	});
+	$("#id_m3").change(function(){
+		division();
+	});
+
+	function division(){
+		var ha = $('#id_hectareaje').val();
+		var m3 = $('#id_m3').val();
+    
+    if (ha > 0) {
+    	if (m3 > 0) {
+    		resultado = m3/ha;
+    		document.getElementById('resDivision').innerHTML = resultado;
+    	}else{
+    		document.getElementById('resDivision').innerHTML = 0;
+    	}
+    }else{
+    	document.getElementById('resDivision').innerHTML = 0;
+    }
+	}
+</script>
+
+<script >
+	$(document).ready(function(){
+	$("#id_kc").change(function(){
+		var eto=$("#id_eto_acu").val();
+		var ha=$("#id_hectareaje").val();
+		var kc=$("#id_kc").val();
+		var eto1=eto.replace(",",".");
+		var ha1=ha.replace(",",".");
+		var kc1=kc.replace(",",".");
+		var m3=(eto1*10*kc1*ha1);
+		var m3f=(Math.round((m3/0.9)*100))/100;
+		console.log(m3f);
+		$("#id_m3").val(m3f);	
+
+		var ha_new = $('#id_hectareaje').val();
+		var m3_new = $('#id_m3').val();
+		var resNew = m3_new / ha_new;
+		document.getElementById('resDivision').innerHTML = Math.ceil(resNew);
+
+            
+        });
+
+	$("#id_eto_acu").change(function(){
+		var eto=$("#id_eto_acu").val();
+		var ha=$("#id_hectareaje").val();
+		var kc=$("#id_kc").val();
+		var eto1=eto.replace(",",".");
+		var ha1=ha.replace(",",".");
+		var kc1=kc.replace(",",".");
+		var m3=(eto1*10*kc1*ha1);
+		var m3f=(Math.round((m3/0.9)*100))/100;
+		console.log(m3f);
+		$("#id_m3").val(m3f);	
+
+            
+        });
+	$("#id_proporcion").change(function(){
+		var proporcion=$("#id_proporcion").val();
+		var m3=$("#id_m3").val();
+		var res=m3*proporcion;
+		var resf=(Math.round(res*100))/100;
+		$("#id_solucion_madre").val(resf);	
+
+            
+        });
+	
+});
+
+</script>
+
+ {% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">PROGRAMA DE PRODUCCION PLANTA</h1>
+		
+	<br>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'crearprogramaproduccionplanta' id  %}" >
+				<button type="button" class="btn btn-success">Registrar Programa</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Fecha Programada</td>
+						<td>Orden</td>
+						<td>Posicion-Orden</td>
+						<td>Material</td>
+						<td>Cant, Cajas</td>
+					
+						<td>KPG</td>
+						<td>Consumo Cajas</td>
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in programapr%}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.fecha_programada}}
+							</td>
+							<td>
+								{{ dato.anexo_orden}}
+							</td>
+							<td>
+								{{ dato.pos_orden}}
+							</td>
+
+							<td>
+								{{ dato.desc_material }}
+							</td>
+
+							<td>
+								{{ dato.cant_cajas }}
+							</td>
+
+							
+							<td>
+								{{ dato.kpg }}
+							</td>
+							<td>
+								{{ dato.consumo }}
+							</td>
+							
+
+							<td>
+							 	<a href="{% url 'editarprogramaproduccionplanta'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+							
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

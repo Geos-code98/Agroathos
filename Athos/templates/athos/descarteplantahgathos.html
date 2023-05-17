@@ -1,0 +1,67 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">DESCARTE PLANTA HG ATHOS</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'creardescarteplantahgathos' id %}" >
+				<button type="button" class="btn btn-success">Registrar Descarte</button>
+			</a>
+		</div>
+		<div class="content mt-3">
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<strong class="card-title">REPORTE</strong>
+							</div>
+							<div class="card-body">
+								<table id="bootstrap-data-table" class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<td>N°</td>
+											<td>Fecha Proceso</td>
+											<td>Turno</td>
+											<TD>Planta</TD>
+											<td>Material</td>
+											<td>Acción</td>
+										</tr>
+									</thead>
+									<tbody id="reportes">
+										{% for dato in descartepr %}
+										<tr>
+											<td>
+												{{ forloop.counter }}
+											</td>
+											
+											<td>
+												{{ dato.fecha_proceso}}
+											</td>
+											<td>
+												{{ dato.anexo_turno}}
+											</td>
+											<td>
+												{{ dato.anexo_planta}}
+											</td>
+											<td>
+												{{ dato.anexo_material}}
+											</td>
+
+											<td>
+												<a href="{% url 'editardescarteplantahgathos'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+</section>
+{% endblock %}

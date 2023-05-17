@@ -1,0 +1,189 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+
+<section  class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small>RECEPCION  PALETAS</small></div>
+					<div class="card-body card-block">
+			<form  id="lanzadopaletasrealform"  method="post" data-validate="parsley"  data-cities-url="" validate>
+				{% csrf_token %}
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+
+				<input type="submit" value="RECEPCIONAR PALET" id="registrar" class="btn btn-primary">
+				<input type="button" onclick="limpiarFormulario()" value="LIMPIAR" id="registrar" class="btn btn-danger">		
+				<div class='form-group' >
+					{{form.fecha_lanzado.label}}
+					{{form.fecha_lanzado}}
+				</div>		
+				<div class='form-group' >
+					{{form.leerqr.label}}
+					{{form.leerqr}}
+				</div>
+					<div class='form-group'>
+					{{form.linea.label}}
+					{{form.linea}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_turno.label}}
+					{{form.anexo_turno}}
+				</div>
+				<div class='form-group'>
+					{{form.npalet.label}}
+					{{form.npalet}}
+				</div>
+
+				<div class='form-group'>
+					{{form.njavas.label}}
+					{{form.njavas}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.peso.label}}
+					{{form.peso}}
+				</div>
+				<div class='form-group'>
+					{{form.estado.label}}
+					{{form.estado}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.fecha_hora_creacion.label}}
+					{{form.fecha_hora_creacion}}
+				</div>
+
+				
+				<a href="{% url 'programa_changelist' %}">Nevermind</a>
+			</form>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script>  
+  $(function () {  
+   $("#datepicker").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+    <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+
+		H= n.getHours();
+		MI=n.getMinutes();
+		SEC=n.getSeconds();
+		console.log(H);
+		console.log(MI);
+		if (H<=20 && MI<=59)
+		{
+			document.getElementById("id_anexo_turno").value=1;
+		}
+		else
+		{
+			document.getElementById("id_anexo_turno").value=2;
+		}
+
+//Lo ordenas a gusto.
+		 
+          if(d<10)
+		 {
+		 	if(m<10)
+		 	{
+          		$("#datepicker").val("0"+ d + "/" +"0" +m + "/" +y);
+          		$("#datepickercreacion").val(y + "-"+ "0"+m+ "-"+ "0"+ d + " "+ H+":"+MI+":"+SEC);
+          	}
+          	else
+          	{
+          		$("#datepicker").val("0"+ d + "/" +m + "/" +y);
+          		$("#datepickercreacion").val(y + "-"+ m + "-"+"0" + d  + " "+ H + ":" + MI + ":" +SEC);
+          	}
+      	 }
+      	 else
+      	 {
+      	 	 if(m<10)
+		 	{
+          		$("#datepicker").val(d + "/" +"0" +m + "/" +y);
+          		$("#datepickercreacion").val(y + "-"+  "0" +m +"-"+ d  + " "+ H + ":" + MI + ":" +SEC);
+          	}
+          	else
+          	{
+          		$("#datepicker").val(d + "/" +m + "/" +y);
+          		$("#datepickercreacion").val(y + "-"+ m + "-"+d  + " "+ H + ":" + MI + ":" +SEC);
+          	}
+      	 }
+
+
+          
+
+     });  
+   </script>
+<script>
+
+	function limpiarFormulario() {
+    document.getElementById("id_leerqr").value="";
+    $("#id_leerqr").removeAttr("readonly");
+  }
+	$(document).ready(function() {
+
+    $('#id_leerqr').change(function(){
+    	 var cad = document.getElementById("id_leerqr").value;
+		//var java=cad.substring(71, 69);
+		arreglo=cad.split("||");
+		$("#id_leerqr").attr("readonly","readonly");
+		//alert(java);
+       //document.getElementById(canjavas).value = java;
+       $("#id_npalet").val(arreglo[0]);
+       $("#id_njavas").val(arreglo[6]);
+       $("#id_peso").val(arreglo[5].replace(",","."));
+       
+        return false;
+    });
+ document.getElementById("id_estado").value=1;
+$("#id_estado option[value=" + 2 + "]").hide();
+});
+	
+</script>
+<script>
+  
+</script>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> GUIA DETALLES</small></div>
+					<div class="card-body card-block">
+					<a href="javascript: history.go(-1)" >
+						<button type="button" class="btn btn-secondary">Atrás</button>
+					</a>
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				
+				<div class='form-group'>
+					{{form.anexo_ubi_mmpp.label}}
+					{{form.anexo_ubi_mmpp}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_calidad.label}}
+					{{form.anexo_calidad}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_material.label}}
+					{{form.anexo_material}}
+				</div>
+				<div class='form-group'>
+					{{form.cant_jabas.label}}
+					{{form.cant_jabas}}
+				</div>
+				
+				
+				
+				<div class='form-group'>
+					{{form.peso_jabas.label}}
+					{{form.peso_jabas}}
+				</div>
+
+				<div class='form-group'>
+					{{form.fecha_cosecha.label}}
+					{{form.fecha_cosecha}}
+				</div>
+				<div class='form-group'>
+					
+					<p id="peso_jaba">{{palet1.pesommpp_estimado}}</p>
+					<br>
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+<script type="text/javascript">
+      $('#id_anexo_ubi_mmpp').select2();
+      $('#id_anexo_material').select2();
+  </script>
+
+ <script>  
+  $(function () {  
+   $("#datepicker").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+  
+   <script>
+	$(document).ready(function() {
+
+	/*$('#id_linea').change(function(){
+		document.getElementById("id_Codigoqr").focus();
+	});
+	*/
+
+    $('#id_cant_jabas').change(function(){
+    	 
+    	var cant_jabas=$('#id_cant_jabas').val();
+		 var cad =  $('#id_anexo_material option:selected').text();
+		var peso_estimado_total=0;
+		
+		console.log(cant_jabas);
+		 console.log(cad);
+		//var java=cad.substring(71, 69);
+		arreglo=cad.split("--");
+		
+		//alert(java);
+       //document.getElementById(canjavas).value = java;
+       //var peso_estimado= parseFloat($("#peso_jaba").html((arreglo[1])));
+       var peso_estimado=parseFloat(arreglo[1]);
+
+       console.log(peso_estimado);
+
+		peso_estimado_total1=parseFloat(cant_jabas*peso_estimado);
+		peso_estimado_total=Math.round((peso_estimado_total1)*100)/100;	
+		$('#id_peso_jabas').val(peso_estimado_total);
+		//alert(java);
+       //document.getElementById(canjavas).value = java;
+      // $("#id_npalet").val(arreglo[0]);
+      // $("#id_njavas").val(arreglo[7]);
+       //$("#id_peso").val(arreglo[6].replace(",","."));
+       
+      
+
+       
+
+
+    });
+  
+    
+  
+   });
+
+</script>
+
+{% endblock %}

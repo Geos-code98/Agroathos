@@ -1,0 +1,47 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DETALLE EV. FEN ARANDANO</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				<div class='form-group'>
+					{{form.num_planta.label}}
+					{{form.num_planta}}
+				</div>
+			
+				<div class='form-group'>
+					{{form.ancho.label}}
+					{{form.ancho}}
+				</div>
+				<div class='form-group'>
+					{{form.largo.label}}
+					{{form.largo}}
+				</div>
+				<div class='form-group'>
+					{{form.alto.label}}
+					{{form.alto}}
+				</div>
+				<div class='form-group'>
+					{{form.altura_molde.label}}
+					{{form.altura_molde}}
+				</div>
+			
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

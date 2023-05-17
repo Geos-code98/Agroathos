@@ -1,0 +1,84 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido %}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">TEMPERATURA</h1>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'creartemperaturaenfriado' id subid varid %}" >
+				<button type="button" class="btn btn-success">Registrar Temperatura</button>
+			</a>
+			<a href="{% url 'distribucionenfriado' id subid  %}" >
+				<button type="button" class="btn btn-primary">Ir a Distribucion</button>
+			</a>
+			<a href="{% url 'campos' id  %}" >
+				<button type="button" class="btn btn-warning">Ir a Enfriado</button>
+			</a>
+
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						
+						<td>Temp. Interna</td>
+						 <td>Temp. Externa</td>
+						 <td>Temp. Ambiente</td>
+						 <td>Fecha</td>
+					
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in temperaturapr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							
+							
+
+							<td>
+								{{ dato.m_tempinterna }}
+							</td>
+							<td>
+								{{ dato.m_tempexterna }}
+							</td>
+							<td>
+								{{ dato.m_tempambiente }}
+							</td>
+							
+							<td>
+								{{ dato.fecha_hora_creacion|date:'d/m/Y H:i:s' }}
+							</td>
+							<td>
+							 	<a href="{% url 'editartemperaturaenfriado' id subid  dato.id varid  %}"><i class="bi bi-pencil-square"></i></a>
+							 	<a href="{% url 'distribucionenfriado'  id dato.id %}"><i class="bi bi-eye-fill"></i></a>
+								
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}
+

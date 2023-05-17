@@ -1,0 +1,220 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+    <div id="registration-form">
+        <div class='fieldset'>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header"><strong>Registro</strong><small> EV. CONTROL DESCARTE GR ICA 2022</small></div>
+                    <div class="card-body card-block">
+                        <form id="frmajax"  method="post" data-validate="parsley">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                            {% for field in form %}
+
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ field.label|escape }}:</strong>
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                            <div class='form-group'>
+                                {{form.fecha_proceso.label}}
+                                {{form.fecha_proceso}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.anexo_turno.label}}
+                                {{form.anexo_turno}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.material.label}}
+                                {{form.material}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.santiaguillo.label}}
+                                {{form.santiaguillo}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.santiago_apostol.label}}
+                                {{form.santiago_apostol}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.los_pobres.label}}
+                                {{form.los_pobres}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.macacara.label}}
+                                {{form.macacara}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.santa_filomena.label}}
+                                {{form.santa_filomena}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.parcelas.label}}
+                                {{form.parcelas}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.sojo.label}}
+                                {{form.sojo}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.las_dunas.label}}
+                                {{form.las_dunas}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.lindero.label}}
+                                {{form.lindero}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.caylan.label}}
+                                {{form.caylan}}
+                            </div>
+                            <div class='form-group'>
+                                {{form.total_descarte.label}}
+                                {{form.total_descarte}}
+                            </div>
+
+                            <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block script %}
+
+<script type="text/javascript">
+
+$('#id_fecha_proceso').focus();
+
+$("#id_santiaguillo").val(0);
+$("#id_santiago_apostol").val(0);
+$("#id_los_pobres").val(0);
+$("#id_macacara").val(0);
+$("#id_santa_filomena").val(0);
+$("#id_parcelas").val(0);
+$("#id_sojo").val(0);
+$("#id_las_dunas").val(0);
+$("#id_lindero").val(0);
+$("#id_caylan").val(0);
+
+function totalDescarte(){
+    var santiaguillo = parseFloat($("#id_santiaguillo").val());
+    var santiago_apostol = parseFloat($("#id_santiago_apostol").val());
+    var los_pobres = parseFloat($("#id_los_pobres").val());
+    var macacara = parseFloat($("#id_macacara").val());
+    var santa_filomena = parseFloat($("#id_santa_filomena").val());
+    var parcelas = parseFloat($("#id_parcelas").val());
+    var sojo = parseFloat($("#id_sojo").val());
+    var las_dunas = parseFloat($("#id_las_dunas").val());
+    var lindero = parseFloat($("#id_lindero").val());
+    var caylan = parseFloat($("#id_caylan").val());
+
+    var resultado = santiaguillo + santiago_apostol + los_pobres + macacara + santa_filomena + parcelas + sojo + las_dunas + lindero + caylan;
+
+    $("#id_total_descarte").val(resultado.toFixed(2));
+    $("#id_total_descarte").trigger('change');
+    return false;
+}
+
+$('#id_santiaguillo').change(function(){
+    totalDescarte();
+});
+
+$('#id_santiago_apostol').change(function(){
+    totalDescarte();
+});
+
+$('#id_los_pobres').change(function(){
+    totalDescarte();
+});
+
+$('#id_macacara').change(function(){
+    totalDescarte();
+});
+
+$('#id_parcelas').change(function(){
+    totalDescarte();
+});
+
+$('#id_sojo').change(function(){
+    totalDescarte();
+});
+
+$('#id_las_dunas').change(function(){
+    totalDescarte();
+});
+
+$('#id_lindero').change(function(){
+    totalDescarte();
+});
+
+$('#id_caylan').change(function(){
+    totalDescarte();
+});
+</script>
+
+<script>
+$("#id_fecha_proceso").datetimepicker({  
+    format: 'd/m/Y',  
+    timepicker:false ,
+}); 
+</script>
+
+<script>  
+$(document).ready(function () {  
+    jQuery.datetimepicker.setLocale('es');  
+});
+</script>
+
+<script>
+$(document).ready(function () {  
+    n =  new Date();
+    y = n.getFullYear();
+    //Mes
+    m = n.getMonth() + 1;
+    //Día
+    d = n.getDate();
+
+    //Lo ordenas a gusto.
+    if(m<10)
+    {
+        if(d<10)
+        {
+            $("#id_fecha_proceso").val("0"+ d + "/" +"0" +m + "/" +y);
+        }
+        else
+        {
+            $("#id_fecha_proceso").val( d + "/" +"0" +m + "/" +y);  
+        }
+    }
+    else
+    {
+        if(d<10)
+        {
+            $("#id_fecha_proceso").val("0"+ d + "/" + m + "/" +y);
+        }
+        else
+        {
+            $("#id_fecha_proceso").val( d + "/" + m + "/" +y);  
+        }
+    }
+
+});  
+</script>
+
+{% endblock %}

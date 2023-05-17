@@ -1,0 +1,43 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> DESCRIPCION LABORES ATHOS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+				<div class='form-group'>
+					{{form.anexo_centro.label}}
+					{{form.anexo_centro}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_cultivo.label}}
+					{{form.anexo_cultivo}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.codigo_labor.label}}
+					{{form.codigo_labor}}
+				</div>
+				<div class='form-group'>
+					{{form.anexo_tipolabor.label}}
+					{{form.anexo_tipolabor}}
+				</div>
+				<div class='form-group'>
+					{{form.descripcion_labor.label}}
+					{{form.descripcion_labor}}
+				</div>
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

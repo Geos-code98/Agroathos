@@ -1,0 +1,101 @@
+{% extends 'base/baseathos.html' %}
+
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+    <article id="usuarios">
+        <h2 id="h1-usuarios"> CAPA1-REGISTRO RIEGO FERTILIZACION ATHOS</h2>
+        <div>
+            <!--  data-toggle="modal" data-target="#scrollmodal" -->
+            <a href="{% url 'crearregistroriegofertilizacion' id %}" >
+                <button type="button" class="btn btn-success">Registrar R. Riego</button>
+            </a>
+
+        </div>
+        <div class="content mt-3">
+        <div class="animated fadeIn">
+        <div class="row">
+        <div class="col-md-12">
+        <div class="card">
+        <div class="card-header">
+        <strong class="card-title">REPORTE</strong>
+        </div>
+        <div class="card-body">
+        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <td>N°</td>
+                        <td>Nro Reserva</td>
+                        <td>Año</td>
+                        <td>Semana</td>
+                        <td>Cultivo</td>
+                        <td>Zona</td>
+                        <td>Fundo</td>
+                        <td>PEP</td>
+                        <td>Metodo</td>
+                        <td>Fecha-Creacion</td>
+                        <td>UBI ID</td>
+                        <td>Acción</td>
+                    </tr>
+                </thead>
+                <tbody id="reportes">
+                    
+                    {% for dato in registropr %}
+                        {% now "Y-m-d" as todays_date %}
+                        <tr>
+                            <td>
+                                {{ forloop.counter }}
+                            </td>
+                            <td>
+                                {{ dato.nroreserva}}
+                            </td>
+                            <td>
+                                {{ dato.anio}}
+                            </td>
+                            <td>
+                                {{ dato.semana}}
+                            </td>    
+                            <td>
+                                {{ dato.anexo_cultivo.nom_cultivo}}
+                            </td>
+                            <td>
+                                {{ dato.anexo_zona.nombre_eje}}
+                            </td>
+                            <td>
+                                {{ dato.anexo_fundo.nom_fundo}}
+                            </td>
+                            <td>
+                                {{ dato.anexo_pep}}
+                            </td>
+                            <td>
+                                {{ dato.anexo_metodo}}
+                            </td>
+                            <td>
+                                {{ dato.fecha_hora_creacion|date:'Y-m-d'}}
+                            </td>
+                            <td>
+                                {{ dato.id}}
+                            </td>
+                        
+                            <td>
+                            {% if dato.fecha_hora_creacion|date:'Y-m-d' >= todays_date or request.user.username == "jcordova" or request.user.username == "rrojas" or request.user.username == "dlifonzo" or request.user.username == "achacaliaza" or request.user.username == "wtucno" or request.user.username == "jmamani"%}
+                                       <a href="{% url 'editarregistroriegofertilizacion'  id dato.id %}"><i class="bi bi-pencil-square"></i></a>
+                            {% endif %}
+                                 
+                                 <a href="{% url 'detalleregistroriegofertilizacion'  id dato.id %}"><i class="bi bi-eye-fill"></i></a>
+                                 <a href="{% url 'detrequerimientoriegofert'  id dato.id %}"><i class="bi bi-sun-fill"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+    </article>
+</section>
+{% endblock %}
+

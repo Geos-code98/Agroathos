@@ -1,0 +1,52 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header"><strong>Registro</strong><small>DETALLE PRODUCTIVIDAD</small></div>
+					<div class="card-body card-block">
+						<form id="frmajax"  method="post" data-validate="parsley">
+							{% csrf_token %}
+							<div class='form-group'>
+								{{form.qr.label}}
+								{{form.qr}}
+							</div>
+							<a href="{% url 'detalleproductividadplanta' id %}">
+								<input type="button" value="Regresar" class="btn btn-danger">
+							</a>
+							<input type="submit" value="Registrar" class="btn btn-success">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{%block script%}
+<script>
+	$(document).ready(function(){
+		$('#id_qr').focus();
+	});
+
+	/*$('#id_qr').change(function(){
+	});
+
+	function registrar(){
+		$.ajax({
+			url: "{% url 'nuevodetalleproductividadplanta' id %}",
+			data: $('#frmajax').serialize(),
+			type: "POST",
+			success: function(result){
+				$('#id_qr').val("");$('#id_qr').focus();
+			},
+			error: function(e){
+				alert(e.error);
+			}
+		});
+	}*/
+</script>
+{% endblock %}

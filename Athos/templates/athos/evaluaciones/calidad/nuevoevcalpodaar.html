@@ -1,0 +1,160 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+          <div class="col-lg-6">
+             <div class="card">
+                 <div class="card-header"><strong>Registro</strong><small> EV. CALIDAD PODA ARANDANO</small></div>
+                 <div class="card-body card-block">
+                   <form id="frmajax"  method="post" data-validate="parsley">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class='form-group'>
+                     {{form.fecha.label}}
+                     {{form.fecha}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.anexo_zona.label}}
+                     {{form.anexo_zona}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.anexo_fundo.label}}
+                     {{form.anexo_fundo}}
+                 </div>
+                 <div class='form-group'>
+                     {{form.anexo_cultivo.label}}
+                     {{form.anexo_cultivo}}
+                 </div>
+                 <div class='form-group'>
+                    {{form.anexo_pep.label}}
+                    {{form.anexo_pep}}
+                </div>
+                <div class='form-group'>
+                  {{form.anexo_trabajador.label}}
+                  {{form.anexo_trabajador}}
+              </div>
+
+              <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+          </form>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+<script>  
+  $(function () {  
+   $("#id_fecha").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+});  
+</script>
+<script>  
+ $(document).ready(function () {  
+    jQuery.datetimepicker.setLocale('es');
+    $("#id_anexo_pep").select2();
+});  
+</script>
+
+<script>  
+    $(document).ready(function (){
+        n =  new Date();
+        y = n.getFullYear();
+        //Mes
+        m = n.getMonth() + 1;
+		//Día
+        d = n.getDate();
+
+        //Lo ordenas a gusto.
+        if(m<10){
+            if(d<10){
+                $("#id_fecha").val("0"+ d + "/" +"0" +m + "/" +y);
+            }else{
+                $("#id_fecha").val( d + "/" +"0" +m + "/" +y);  
+            }
+        }else{
+            if(d<10){
+                $("#id_fecha").val("0"+ d + "/" + m + "/" +y);
+            }else{
+                $("#id_fecha").val( d + "/" + m + "/" +y);
+            }
+        }
+    });
+</script>
+
+<script type="text/javascript">
+  $('#id_anexo_trabajador').select2();
+  $("#id_anexo_cultivo option[value="+ 2 +"]").attr("selected",true);
+  // $("#id_anexo_cultivo").val(2).trigger('change');
+  //$("#id_anexo_eje").val(2).trigger('change');
+
+  function request_zona (fundoId) {
+      var urldata="/ajax/load-fundos/" + fundoId;
+
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+            var option_html = `<option value="0" >---------</option>`;
+            for (var i = 0; i < data.length; i++) {
+                option_html += `<option value="${data[i].id}" >${data[i].nom_fundo}</option>`;
+            }
+            $("#id_anexo_fundo").html(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+    });
+  }
+
+  function request_pep (ubicacionId) {
+      var urldata="/ajax/load-pep/" + ubicacionId;
+
+      $.ajax({                       
+        url: urldata,                    
+        data: {},
+        success: function (data) {
+            var option_html = `<option value="0" >---------</option>`;
+            for (var i = 0; i < data.length; i++) {
+                option_html += `<option value="${data[i].id}" >${data[i].anexo_fundo__abreviatura} ${data[i].anexo_modulo__nombremodulo} ${data[i].anexo_lote__nom_lote}</option>`;
+            }
+            $("#id_anexo_pep").html(option_html);
+        },
+        error: function(result) {
+            console.log(result);
+        }
+    });
+  }
+
+  $("#id_anexo_zona").change(function () { 
+      var fundoId = $(this).val();
+      request_zona(fundoId)
+  });
+
+  $("#id_anexo_fundo").change(function () { 
+      var ubicacionId = $(this).val();
+      request_pep(ubicacionId)
+  });
+</script>
+{% endblock %}

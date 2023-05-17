@@ -1,0 +1,86 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h4 id="h1-usuarios">PRE PALETIZADO</h4>
+		<div>
+			<!--  data-toggle="modal" data-target="#scrollmodal" -->
+			<a href="{% url 'creardetalleprepaletizadogrica2020' id subid  %}" >
+				<button type="button" class="btn btn-success">ADD TRAZA</button>
+			</a>
+			<a href="{% url 'plantagranada' id %}" >
+				<button type="button" class="btn btn-secondary">Atras</button>
+			</a>
+			
+
+		</div>
+		
+
+
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td><b>N°</b></td>
+						
+						<td><b>Trazabilidad</b></td>
+						
+						
+						
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for dato in detallepr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+
+							
+
+							<td>
+								{{ dato.traza }}
+							</td>
+							
+							
+							
+							<td>
+
+								
+								<a href="{% url 'editardetalleprepaletizadogrica2020' id subid dato.id %}"><i class="bi bi-pencil-square"></i></a>
+								
+
+							
+
+							 	
+								
+							</td>
+
+						</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			<br>
+		
+		</div>
+	</article>
+</section>
+{% endblock %}

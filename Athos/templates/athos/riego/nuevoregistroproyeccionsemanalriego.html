@@ -1,0 +1,55 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> REG. PROYECCION SEMANAL</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				
+
+				<div class='form-group'>
+					{{form.anexo_ley.label}}
+					{{form.anexo_ley}}
+				</div>
+				<div class='form-group'>
+					{{form.sem2.label}}
+					{{form.sem2}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.sem3.label}}
+					{{form.sem3}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.sem4.label}}
+					{{form.sem4}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.sem5.label}}
+					{{form.sem5}}
+				</div>
+				
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script>
+	$("#id_anexo_ley").select2();
+</script>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base/baseathos.html' %}
+{% load staticfiles %}
+{% load extras %}
+{% block contenido%}
+<section class="contenedor" id="section-usuarios">
+	<article id="usuarios">
+		<h1 id="h1-usuarios">DETALLE EV. CALIDAD CONTROL DESCARTE AR ICA</h1>
+		<div>
+			<a href="{% url 'creardetalleevcalcontroldescartearica2022' id subid %}" >
+				<button type="button" class="btn btn-success">Registrar Detalle</button>
+			</a>
+		</div>
+		<div class="content mt-3">
+		<div class="animated fadeIn">
+		<div class="row">
+		<div class="col-md-12">
+		<div class="card">
+		<div class="card-header">
+		<strong class="card-title">REPORTE</strong>
+		</div>
+		<div class="card-body">
+		<table id="bootstrap-data-table" class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td>N°</td>
+						<td>Exportable</td>
+						<td>Condicion</td>
+						<td>Calidad</td>
+						<td>Fitosanitario</td>
+						<td>Acción</td>
+					</tr>
+				</thead>
+				<tbody id="reportes">
+					{% for dato in detallepr %}
+						<tr>
+							<td>
+								{{ forloop.counter }}
+							</td>
+							<td>
+								{{ dato.exportable1 }}
+							</td>
+							<td>
+								{{ dato.condicion1 }}
+							</td>
+							<td>
+								{{ dato.calidad1 }}
+							</td>
+							<td>
+								{{ dato.fitosanitario1 }}
+							</td>
+							
+							<td>
+							 	<a href="{% url 'editardetalleevcalcontroldescartearica2022'  id  subid dato.id %}"><i class="bi bi-pencil-square"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+	</article>
+</section>
+{% endblock %}

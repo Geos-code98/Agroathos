@@ -1,0 +1,250 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+		<div class="col-lg-6">
+					<div class="card">
+					<div class="card-header"><strong>Registro</strong><small> PLAN VENTAS</small></div>
+					<div class="card-body card-block">
+			<form id="frmajax"  method="post" data-validate="parsley">
+				{% csrf_token %}
+				{% if form.errors %}
+				    {% for field in form %}
+
+				        {% for error in field.errors %}
+				            <div class="alert alert-danger">
+				                <strong>{{ field.label|escape }}:</strong>
+				                <strong>{{ error|escape }}</strong>
+				            </div>
+				        {% endfor %}
+				    {% endfor %}
+				    {% for error in form.non_field_errors %}
+				        <div class="alert alert-danger">
+				            <strong>{{ error|escape }}</strong>
+				        </div>
+				    {% endfor %}
+				{% endif %}
+				
+				
+				<div class='form-group'>
+					{{form.pos_pedido.label}}
+					{{form.pos_pedido}}
+				</div>
+				
+				
+				<div class='form-group'>
+					{{form.anexo_material.label}}
+					{{form.anexo_material}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.desc_material.label}}
+					{{form.desc_material}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.un_material.label}}
+					{{form.un_material}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.peso_material.label}}
+					{{form.peso_material}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.cant_cajas.label}}
+					{{form.cant_cajas}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.kpg.label}}
+					{{form.kpg}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.cajas_palet.label}}
+					{{form.cajas_palet}}
+				</div>
+				
+
+				<div class='form-group'>
+					{{form.cant_palet.label}}
+					{{form.cant_palet}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_categoria.label}}
+					{{form.anexo_categoria}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_calibre.label}}
+					{{form.anexo_calibre}}
+				</div>
+				
+				<div class='form-group'>
+					{{form.anexo_variedad.label}}
+					{{form.anexo_variedad}}
+				</div>
+				
+			
+
+
+				<input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+			</form>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+{%block script%}
+
+
+ <script>  
+  $(function () {  
+   $("#id_fecha_despacho").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   }); 
+   $("#id_fecha_produccion").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });  
+  });  
+ </script>
+ <script>  
+     $(document).ready(function () {  
+           jQuery.datetimepicker.setLocale('es');  
+     });  
+   </script> 
+
+   
+    <script>  
+     $(document).ready(function () {  
+		n =  new Date();
+		y = n.getFullYear();
+		//Mes
+		m = n.getMonth() + 1;
+		//Día
+		d = n.getDate();
+    
+
+//Lo ordenas a gusto.
+if(m<10)
+    {
+      if(d<10)
+      {
+        $("#id_fecha_despacho").val("0"+ d + "/" +"0" +m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_despacho").val( d + "/" +"0" +m + "/" +y);  
+      }
+    }
+    else
+    {
+       if(d<10)
+      {
+        $("#id_fecha_despacho").val("0"+ d + "/" + m + "/" +y);
+      }
+      else
+      {
+        $("#id_fecha_despacho").val( d + "/" + m + "/" +y);  
+      }
+    }
+
+
+          
+
+
+          
+
+     });  
+   </script>
+
+
+<script type="text/javascript">
+     
+      
+     function request_datosmateriales(id) {
+
+ 		
+ 		
+		var urldata="/ajax/load-datosmateriales/" + id;
+     console.log(urldata);
+
+      $.ajax({                       
+        url: urldata,                			    
+        data: {},
+
+        success: function (data) {
+     	console.log(data);
+     
+     		$('#id_desc_material').val(data[0].desc_material);
+
+     		$('#id_peso_material').val(data[0].peso_neto);
+
+     		$('#id_anexo_categoria').val(data[0].anexo_categoria__desc);
+			
+			$('#id_un_material').val(data[0].anexo_unidad__desc);
+
+     		$('#id_anexo_calibre').val(data[0].calibre);
+     
+        
+        },
+        error: function(result) {
+            console.log(result);
+        }
+
+      });
+
+	}
+
+   $("#id_anexo_material").change(function () { 
+
+      var id = $(this).val();
+    	
+      request_datosmateriales(id)
+    });
+
+   $("#id_cant_cajas").change(function () { 
+
+      var peso=$("#id_peso_material").val();
+      var cant=$("#id_cant_cajas").val();
+      var resultado=peso*cant;
+      var resultado1=(Math.round(resultado*100))/100;
+      $("#id_kpg").val(resultado1);
+
+      var cajas_palet=$("#id_cajas_palet").val();
+      
+      var palet=cant/cajas_palet;
+      var palet1=(Math.round(palet*100))/100;
+      $("#id_cant_palet").val(palet1);
+      
+    });
+
+
+   $("#id_cajas_palet").change(function () { 
+   	  var cant=$("#id_cant_cajas").val();
+      var cajas_palet=$("#id_cajas_palet").val();
+      
+      var palet=cant/cajas_palet;
+      var palet1=(Math.round(palet*100))/100;
+      $("#id_cant_palet").val(palet1);
+      
+    });
+</script>
+
+
+
+
+{% endblock %}

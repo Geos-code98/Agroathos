@@ -1,0 +1,175 @@
+{% extends 'base/baseathos.html' %}
+{% block contenido%}
+
+<section class="contenedor" id="section-usuarios">
+	<div id="registration-form">
+		<div class='fieldset'>
+          <div class="col-lg-6">
+           <div class="card">
+               <div class="card-header"><strong>Registro</strong><small> DETALLE CONTROL DESCARTE AR</small></div>
+               <div class="card-body card-block">
+                 <form id="frmajax"  method="post" data-validate="parsley">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ field.label|escape }}:</strong>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class='form-group'>
+                        {{form.fecha_cosecha.label}}
+                        {{form.fecha_cosecha}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_fundo.label}}
+                        {{form.anexo_fundo}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.anexo_turno.label}}
+                        {{form.anexo_turno}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.acopio1.label}}
+                        {{form.acopio1}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.acopio2.label}}
+                        {{form.acopio2}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.seleccion1.label}}
+                        {{form.seleccion1}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.seleccion2.label}}
+                        {{form.seleccion2}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.calibrado1.label}}
+                        {{form.calibrado1}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.calibrado2.label}}
+                        {{form.calibrado2}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.calibrado3.label}}
+                        {{form.calibrado3}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.calibrado4.label}}
+                        {{form.calibrado4}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.empaque1.label}}
+                        {{form.empaque1}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.empaque2.label}}
+                        {{form.empaque2}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.empaque3.label}}
+                        {{form.empaque3}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.empaque4.label}}
+                        {{form.empaque4}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.empaque5.label}}
+                        {{form.empaque5}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.empaque6.label}}
+                        {{form.empaque6}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.empaque7.label}}
+                        {{form.empaque7}}
+                    </div>
+                    <div class='form-group'>
+                        {{form.calidad1.label}}
+                        {{form.calidad1}}
+                    </div>
+
+                    <input type="submit" value="Registrar" id="registrar" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+{% endblock %}
+{%block script%}
+
+<script>  
+ $(document).ready(function () {
+    $("#id_fecha_cosecha").datetimepicker({  
+       format: 'd/m/Y',  
+       timepicker:false  
+   });
+
+    $("#id_acopio1").val(0)
+    $("#id_acopio2").val(0)
+    $("#id_seleccion1").val(0)
+    $("#id_seleccion2").val(0)
+    $("#id_calibrado1").val(0)
+    $("#id_calibrado2").val(0)
+    $("#id_calibrado3").val(0)
+    $("#id_calibrado4").val(0)
+    $("#id_empaque1").val(0)
+    $("#id_empaque2").val(0)
+    $("#id_empaque3").val(0)
+    $("#id_empaque4").val(0)
+    $("#id_empaque5").val(0)
+    $("#id_empaque6").val(0)
+    $("#id_empaque7").val(0)
+    $("#id_calidad1").val(0)
+    
+    n =  new Date();
+    y = n.getFullYear();
+      //Mes
+      m = n.getMonth() + 1;
+      //Día
+      d = n.getDate();
+
+//Lo ordenas a gusto.
+if(m<10)
+{
+  if(d<10)
+  {
+    $("#id_fecha_cosecha").val("0"+ d + "/" +"0" +m + "/" +y);
+}
+else
+{
+    $("#id_fecha_cosecha").val( d + "/" +"0" +m + "/" +y);
+}
+}
+else
+{
+   if(d<10)
+   {
+    $("#id_fecha_cosecha").val("0"+ d + "/" + m + "/" +y);
+}
+else
+{
+    $("#id_fecha_cosecha").val( d + "/" + m + "/" +y);
+}
+}
+
+});  
+</script>
+
+{% endblock %}
